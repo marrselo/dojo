@@ -1,0 +1,102 @@
+<?php echo $this->doctype() ?>    
+<html>
+    <head>
+            <?php echo $this->headTitle() ?>
+            <?php echo $this->headMeta() ?>
+            <?php echo $this->headLink() ?>
+            <?php echo $this->headStyle() ?>
+    </head>
+    <body class="sidebar-left thmr_call">
+        <div id="header-region" class="clear-block">
+            <!--[header] -->
+        </div>
+        <div id="wrapper">
+            <div id="container" class="clear-block">
+                <div id="header">
+                    
+                </div>
+                <div id="sidebar-left" class="sidebar">
+					<span class="thmr_call">
+						<div class="clear-block block block-user">
+							<h2>[Nombre de usuario]</h2>
+							<div class="content">
+								<span class="thmr_call">
+									<ul class="menu">
+                                                                            
+                                                                            <?php foreach($this->perfilUsuario as $index):?>
+                                                                            
+										<span class="thmr_call">
+											<li class="leaf first">
+												<span class="thmr_call">
+													<a href="<?php echo $index['url']?>"><?php echo $index['nombre']?></a>
+												</span>
+											</li>
+										</span>
+                                                                            <?php endforeach; ?>
+                                                                            
+										<span class="thmr_call">
+											<li class="leaf">
+												<span class="thmr_call">
+													<a href="/admin/login/logout">Salir</a>
+												</span>
+											</li>
+										</span>
+<!--										<span class="thmr_call">
+											<li class="leaf">
+												<span class="thmr_call">
+													<a href="/admin/articulo">Artículos</a>
+												</span>
+											</li>
+										</span>
+										<span class="thmr_call">
+											<li class="leaf">
+												<span class="thmr_call">
+													<a href="/admin/pedidos">Pedidos</a>
+												</span>
+											</li>
+										</span>
+										<span class="thmr_call">
+											<li class="leaf">
+												<span class="thmr_call">
+													<a href="/admin/pedidos">Comprobantes</a>
+												</span>
+											</li>
+										</span>
+										<span class="thmr_call">
+											<li class="leaf">
+												<span class="thmr_call">
+													<a href="/admin/usuario">Usuarios</a>
+												</span>
+											</li>
+										</span>
+										<span class="thmr_call">
+											<li class="leaf">
+												<span class="thmr_call">
+													<a href="/admin/reportes">Reportes</a>
+												</span>
+											</li>
+										</span>-->
+                                                                            
+									</ul>
+								</span>
+							</div>
+						</div>
+					</span>
+                </div>
+                <div id="center">
+                    <div id="squeeze">
+                        <div class="right-corner">
+                            <div class="left-corner">
+                                <?php echo $this->layout()->content ?>
+                                <div class="footer">
+                                    [footer]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.left-corner, /.right-corner, /#squeeze, /#center -->
+            </div>
+        </div>
+        <?php echo $this->headScript() ?>
+    </body>
+</html>

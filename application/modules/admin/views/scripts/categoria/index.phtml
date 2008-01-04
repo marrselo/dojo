@@ -1,0 +1,57 @@
+<?php if(is_array($this->messages) && count($this->messages)>0 ) { ?>
+<div class="ybox center ">
+	        <?php foreach($this->messages as $index):?>
+	        <p><?php echo $index; ?></p>
+                <?php endforeach;?>
+        
+    </div>
+<?php } ?>
+<?php echo $this->form; ?>
+
+<table class="sticky-enabled tableSelect-processed sticky-table">
+	<thead class="tableHeader-processed">
+		<tr>
+			<th class="select-all"><input type="checkbox" class="form-checkbox" title="Select all rows in this table"></th>
+			<th>Nombre</th>
+			<th>Descripción</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php $i = 0;?>
+	<?php if(count($this->paginator)>0):?>
+	<?php foreach($this->paginator as $item):?>
+		<tr class="<?php echo ($i%2==0)?"odd":"even";?>">
+			<td>
+				
+			</td>
+			<td>
+				<span class="thmr_call">
+					<a href="<?php echo $item["idcategoria"];?>"><?php echo $item["nombre"];?></a>
+				</span>
+			</td>
+			<td>
+				<span class="thmr_call">
+					<a href="<?php echo $item["idcategoria"];?>"><?php echo $item["descripcion"];?></a>
+				</span>
+			</td>
+			<td>
+				<a href="">Editar</a>
+				<a href="">Eliminar</a>
+				
+			</td>
+		</tr>
+	<?php $i++;?>	
+	<?php endforeach;?>
+	<?php else:?>
+		<tr class="odd">
+			<td colspan="2">No hay items disponibles.</td>	
+		</tr>
+	<?php endif;?>	
+	</tbody>
+</table>
+<?php echo $this->paginationControl($this->paginator,
+                                    'Sliding',
+                                    '/categoria/paginator.phtml'); ?>
+
+

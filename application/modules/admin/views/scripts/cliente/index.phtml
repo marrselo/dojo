@@ -1,0 +1,89 @@
+<?php if(is_array($this->messages) && count($this->messages)>0 ) { ?>
+<div class="ybox center ">
+	        <?php foreach($this->messages as $index):?>
+	        <p><?php echo $index; ?></p>
+                <?php endforeach;?>
+        
+    </div>
+<?php } ?>
+
+<div><?php echo $this->formBuscar; ?></div>
+<div><a href="/admin/cliente/nuevo-cliente">Nuevo</a></div>
+
+<?php 
+if(count($this->clientes)==0 ){
+echo $paginator = $this->paginationControl($this->paginator,
+                                    'Sliding',
+                                    '/categoria/paginator.phtml'); 
+}
+else{
+    $this->paginator = $this->clientes;
+}
+?>
+
+<?php
+if($this->flasbuscar){
+    ?>
+<a href="">Cancelar La Busqeuda</a>
+    <?php
+}
+?>
+<table class="sticky-enabled tableSelect-processed sticky-table">
+	<thead class="tableHeader-processed">
+		<tr>
+			<th class="select-all"><input type="checkbox" class="form-checkbox" title="Select all rows in this table"></th>
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>Dni</th>
+			<th>Direción</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+            
+	<?php $i = 0; ?>
+	<?php if(count($this->paginator)>0):?>
+	<?php foreach($this->paginator as $item):?>
+		<tr class="<?php echo ($i%2==0)?"odd":"even";?>">
+			<td>
+				
+			</td>
+			<td>
+				<span class="thmr_call">
+					<a href="<?php echo $item["idcliente"];?>"><?php echo $item["nombre"];?></a>
+				</span>
+			</td>
+			<td>
+				<span class="thmr_call">
+					<a href="<?php echo $item["idcliente"];?>"><?php echo $item["apellidopaterno"];?> <?php echo $item["apellidomaterno"];?></a>
+				</span>
+			</td>
+                        
+			<td>
+				<span class="thmr_call">
+					<a href="<?php echo $item["idcliente"];?>"><?php echo $item["dni"];?> </a>
+				</span>
+			</td>
+			<td>
+				<span class="thmr_call">
+					<a href="<?php echo $item["idcliente"];?>"><?php echo $item["direccion"];?> </a>
+				</span>
+			</td>
+			<td>
+				<a href="/admin/cliente/actualizar-cliente/idCliente/<?php echo $item["idcliente"];?>">Editar</a>
+				<a href="">Eliminar</a>
+				
+			</td>
+		</tr>
+	<?php $i++;?>	
+	<?php endforeach;?>
+	<?php else:?>
+		<tr class="odd">
+			<td colspan="2">No hay items disponibles.</td>	
+		</tr>
+	<?php endif;?>	
+	</tbody>
+</table>
+
+
+<?php echo $paginator; ?>

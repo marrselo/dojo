@@ -1,0 +1,77 @@
+<div><?php echo $this->formBuscar; ?></div>
+<?php if(is_array($this->messages) && count($this->messages)>0 ) { ?>
+
+<div class="ybox center ">
+	        <?php foreach($this->messages as $index):?>
+	        <p><?php echo $index; ?></p>
+                <?php endforeach;?>
+        
+</div>
+<?php } ?>
+<div><a href="/admin/articulo/nuevo-articulo">Nuevo</a></div>
+<table class="sticky-enabled tableSelect-processed sticky-table">
+    <thead class="tableHeader-processed">
+        <tr>
+            <th class="select-all"><input type="checkbox" class="form-checkbox" title="Select all rows in this table"></th>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>P. Venta</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $i = 0; ?>
+        <?php if (count($this->paginator) > 0): ?>
+            <?php foreach ($this->paginator as $item): ?>
+                <tr class="<?php echo ($i % 2 == 0) ? "odd" : "even"; ?>">
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <span class="thmr_call">
+                            <a href="<?php echo $item["idarticulo"]; ?>"><?php echo $item["codigo"]; ?></a>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="thmr_call">
+                            <?php echo $item["nombre"]; ?>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="thmr_call">
+                            <?php echo $item["descripcion"]; ?>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="thmr_call">
+                            <?php echo $item["cantidad"]; ?>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="thmr_call">
+                            <?php echo $item["precioventa"]; ?>
+                        </span>
+                    </td>
+                    
+                    <td>
+                        <a href="/admin/articulo/actualizar-articulo/idArticulo/<?php echo $item["idarticulo"];?>">Editar</a>
+                        <a href="/admin/articulo/movimiento-articulo/idArticulo/<?php echo $item["idarticulo"];?>">Kardex</a>
+                        <a href="/admin/articulo/eliminar-articulo/idArticulo/<?php echo $item["idarticulo"];?>">borrar</a>
+
+                    </td>
+                </tr>
+                <?php $i++; ?>	
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr class="odd">
+                <td colspan="2">No hay items disponibles.</td>	
+            </tr>
+        <?php endif; ?>	
+    </tbody>
+</table>
+<?php echo $this->paginationControl($this->paginator,
+                                    'Sliding',
+                                    '/articulo/paginator.phtml'); ?>
+<?php echo $this->form; ?>

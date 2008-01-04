@@ -1,0 +1,105 @@
+<div><label>Buscar Cliente <input type="text" name="searchArticulo" id="searchArticulo" ></label></div>
+<table class="sticky-enabled tableSelect-processed sticky-table">
+    <thead class="tableHeader-processed">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Edad</th>
+        <th>Dirección</th>
+        <th>Telefonos</th>
+        <th>Dni</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nazart</td>     
+            <td>Jara Huaman</td>     
+            <td>26</td>     
+            <td>av. cueva pueblo - libre</td>     
+            <td>2355168 - 989044605</td>     
+            <td>44513555</td>     
+        </tr>
+    </tbody>
+</table>
+<div><label>Buscar Articulo <input type="text" name="searchArticulo" id="searchArticulo" ></label></div>
+<table class="sticky-enabled tableSelect-processed sticky-table">
+    <thead class="tableHeader-processed">
+    <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>articulo 1</td>
+            <td>descripcion articulo 1</td>
+            <td>123</td>
+            <td>2</td>
+            <td>246</td>
+            <td>
+                [<a href="">Eliminar</a>]
+            </td>
+        </tr>
+        <tr>
+            <td>articulo 1</td>
+            <td>descripcion articulo 1</td>
+            <td>123</td>
+            <td>2</td>
+            <td>246</td>
+            <td>
+                [<a href="">Eliminar</a>]
+            </td>
+        </tr>
+        <tr>
+            <td>articulo 1</td>
+            <td>descripcion articulo 1</td>
+            <td>123</td>
+            <td>2</td>
+            <td>246</td>
+            <td>
+                [<a href="">Eliminar</a>]
+            </td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td style="color: red; font-weight: bold"> Total General </td>
+            <td style="color: red; font-weight: bold"> 738</td>
+            <td> </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <label>Fecha Entrega <input type="text"></label>
+    <label>Hora Entrega </label>
+        <select>
+            <?php
+            foreach(range(0,23) as $index): ?>
+            <option value="<?php echo $index ?>"><?php echo strlen($index)==1?'0'.$index:$index;  ?></option>
+            <?php endforeach; ?>
+        </select>
+        <select>
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+        </select>
+    
+</div>
+<div>
+    <label> Informacion Adicional
+    <textarea>
+
+    </textarea>
+        </label>
+</div>
+<div>
+    <label>Responsable <input type="text"></label>    
+    <span> Marcelo Carranza <a href="#">x</a></span> 
+</div> 
+<div> [<a href="#">Enviar Pedido</a>] - [<a href="">Cancelar Pedido</a>]</div>
