@@ -26,7 +26,21 @@ class Admin_PedidosController
         echo Zend_Json::encode($articulo);
     }
     function indexAction(){
-        
+        $script="
+jQuery(function ($) {
+	$('#basic-modal .basic').click(function (e) {
+		$('#basic-modal-content').modal();
+		return false;
+	});
+});            
+";
+        $form = new Application_Form_FormCliente();
+        echo $form;
+        $this->view->headScript()->appendScript($script, $type = 'text/javascript');
     }
+    
+    
+    
+   
     
 }
