@@ -35,8 +35,31 @@ jQuery(function ($) {
 });            
 ";
         $form = new Application_Form_FormCliente();
-        echo $form;
+        $form->setAction('/admin/pedidos/crear-cliente');
+        $this->view->formularioCliente = $form;
         $this->view->headScript()->appendScript($script, $type = 'text/javascript');
+    }
+    function crearClienteAction(){
+        $form = new Application_Form_FormCliente();
+        $params = $this->_getAllParams();
+        if ($this->_request->isPost()) {
+            $this->session->emailCliente = $data['correo'];
+        if($form->isValid($params)){
+            $data['nombre']=$params['nombre'];
+            $data['apellidomaterno']=$params['apellidomaterno'];
+            $data['apellidopaterno']=$params['apellidopaterno'];
+            $data['direccion']=$params['direccion'];
+            $data['dni']=$params['dni'];
+            $data['web']=$params['web'];
+            $data['correo']=$params['correo'];
+            $data['telefono1']=$params['telefono1'];
+            $data['telefono2']=$params['telefono2'];
+            $data['movil']=$params['movil'];
+            $data['ruc']=$params['ruc'];
+            $this->crearCliente($data);
+            $this->_clienteModel->crearCliente($data);
+        }}
+
     }
     
     

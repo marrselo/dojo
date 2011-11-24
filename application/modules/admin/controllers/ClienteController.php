@@ -38,7 +38,6 @@ class Admin_ClienteController
     }
     
     function nuevoClienteAction() {
-        
         $form = $this->formularioCliente();
         $this->view->form = $form;
         $params = $this->_getAllParams();
