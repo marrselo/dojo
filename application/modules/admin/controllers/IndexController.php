@@ -10,8 +10,7 @@ class Admin_IndexController
     }
     function indexAction()
     {
-        print_r($this->_identity);
-    }
+           }
 
 
 }
