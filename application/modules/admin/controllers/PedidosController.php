@@ -62,6 +62,13 @@ jQuery(function ($) {
 
     }
     
+    function crearPedidoAction(){
+        
+    }
+    
+    function listarPedidosAction(){
+            
+    }
     
     
    
