@@ -27,7 +27,9 @@ class Application_Model_Cliente  extends Zend_Db_Table {
     }
     public function crearCliente($data){
         $this->insert($data);
+        return $this->getAdapter()->lastInsertId();
     }
+    
     public function eliminarCliente($idCliente){
         $where = $this->getAdapter()->quoteInto('idcliente = ?', $idCliente);
         $data = array('estado'=>'0');
