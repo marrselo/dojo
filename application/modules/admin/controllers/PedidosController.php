@@ -38,6 +38,8 @@ jQuery(function ($) {
         $form->setAction('/admin/pedidos/crear-cliente');
         $this->view->formularioCliente = $form;
         $this->view->headScript()->appendScript($script, $type = 'text/javascript');
+        $this->view->headScript()->appendFile('/js/modal.js', $type = 'text/javascript') ;
+        $this->view->headLink()->appendStylesheet("/css/modal.css");
     }
     function crearClienteAction(){
         $form = new Application_Form_FormCliente();
@@ -63,6 +65,7 @@ jQuery(function ($) {
     }
     
     function crearPedidoAction(){
+        
         
     }
     
