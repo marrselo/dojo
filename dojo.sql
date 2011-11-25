@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v8.61 
-MySQL - 5.1.53-log : Database - dojo
+SQLyog Enterprise - MySQL GUI v8.02 RC
+MySQL - 5.5.15-log : Database - dojo
 *********************************************************************
 */
 
@@ -8,31 +8,12 @@ MySQL - 5.1.53-log : Database - dojo
 
 /*!40101 SET SQL_MODE=''*/;
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`dojo` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
 USE `dojo`;
-
-/*Table structure for table `CORE_Session` */
-
-DROP TABLE IF EXISTS `CORE_Session`;
-
-CREATE TABLE `CORE_Session` (
-  `Id` varchar(32) NOT NULL,
-  `save_path` varchar(32) NOT NULL,
-  `name` varchar(32) NOT NULL DEFAULT '',
-  `Modified` int(11) DEFAULT NULL,
-  `LifeTime` int(11) DEFAULT NULL,
-  `Data` text,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `CORE_Session` */
-
-insert  into `CORE_Session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('0852p6k3kg7orfdccb776utl06','','',1321919046,1440,''),('blhht4gblejaaq3gm0s9u40nr3','','',1321888104,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('piinla67nbpl4i2igqpqkke317','','',1321887103,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}');
 
 /*Table structure for table `acc` */
 
@@ -179,6 +160,24 @@ CREATE TABLE `combo` (
 
 /*Data for the table `combo` */
 
+/*Table structure for table `core_session` */
+
+DROP TABLE IF EXISTS `core_session`;
+
+CREATE TABLE `core_session` (
+  `Id` varchar(32) NOT NULL,
+  `save_path` varchar(32) NOT NULL,
+  `name` varchar(32) NOT NULL DEFAULT '',
+  `Modified` int(11) DEFAULT NULL,
+  `LifeTime` int(11) DEFAULT NULL,
+  `Data` text,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `core_session` */
+
+insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('0852p6k3kg7orfdccb776utl06','','',1321919046,1440,''),('6vmc1m7k7937c1t9jjmfb307o2','','',1322116388,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('blhht4gblejaaq3gm0s9u40nr3','','',1321888104,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('df66nf0hmkt0u2kmguctia9187','','',1199537971,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('lu058v4ahrf9g8q3fc437puak6','','',1322192767,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('piinla67nbpl4i2igqpqkke317','','',1321887103,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}');
+
 /*Table structure for table `crg` */
 
 DROP TABLE IF EXISTS `crg`;
@@ -191,54 +190,50 @@ CREATE TABLE `crg` (
 
 /*Data for the table `crg` */
 
-/*Table structure for table `det_doc` */
+/*Table structure for table `detalledocumentopago` */
 
-DROP TABLE IF EXISTS `det_doc`;
+DROP TABLE IF EXISTS `detalledocumentopago`;
 
-CREATE TABLE `det_doc` (
-  `iddet_doc` int(11) NOT NULL AUTO_INCREMENT,
-  `iddoc` int(11) NOT NULL,
-  `idpro` int(11) NOT NULL,
-  `can` smallint(6) NOT NULL DEFAULT '0',
-  `impor` smallint(6) NOT NULL,
-  `pes` decimal(10,2) NOT NULL,
-  `pre` decimal(10,2) NOT NULL,
-  `idart` int(11) NOT NULL,
-  `fla` char(1) NOT NULL COMMENT '1 despachado\n2 Sin despachar',
-  PRIMARY KEY (`iddet_doc`),
-  KEY `fk_det_doc_pro1` (`idpro`),
-  KEY `fk_det_doc_doc1` (`iddoc`)
+CREATE TABLE `detalledocumentopago` (
+  `iddetalledocumento` int(11) NOT NULL AUTO_INCREMENT,
+  `iddocumento` int(11) NOT NULL,
+  `cantidad` smallint(6) NOT NULL DEFAULT '0',
+  `importe` smallint(6) NOT NULL,
+  `peso` decimal(10,2) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `idarticulo` int(11) NOT NULL,
+  PRIMARY KEY (`iddetalledocumento`),
+  KEY `fk_det_doc_doc1` (`iddocumento`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
-/*Data for the table `det_doc` */
+/*Data for the table `detalledocumentopago` */
 
-/*Table structure for table `doc` */
+/*Table structure for table `documentopago` */
 
-DROP TABLE IF EXISTS `doc`;
+DROP TABLE IF EXISTS `documentopago`;
 
-CREATE TABLE `doc` (
-  `iddoc` int(11) NOT NULL AUTO_INCREMENT,
-  `ser` varchar(10) NOT NULL,
-  `num` int(11) NOT NULL,
-  `fec` date NOT NULL,
-  `fec_v` date DEFAULT NULL,
-  `tot` decimal(10,2) NOT NULL,
-  `idtip_doc` int(11) NOT NULL,
-  `idemp` tinyint(4) NOT NULL,
-  `idcli` int(11) NOT NULL,
-  `idmdo` int(11) NOT NULL,
-  `idest` int(11) NOT NULL,
-  `act` int(11) DEFAULT NULL,
+CREATE TABLE `documentopago` (
+  `iddocumento` int(11) NOT NULL AUTO_INCREMENT,
+  `numeroserie` varchar(10) NOT NULL,
+  `numerocomprobante` int(11) NOT NULL,
+  `fechacreacion` date NOT NULL,
+  `fecvencimiento` date DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `idtipodocumento` int(11) NOT NULL,
+  `idempresa` tinyint(4) NOT NULL,
+  `idcliente` int(11) NOT NULL,
+  `idestado` int(11) NOT NULL COMMENT '0 pedido, 1 entregado, 2 eliminado',
+  `flagactivo` int(11) DEFAULT NULL,
   `moneda` char(10) NOT NULL,
-  `tip_cam` decimal(10,2) NOT NULL,
-  `vendedor` varchar(150) NOT NULL,
+  `tipocambio` decimal(10,2) NOT NULL,
+  `idvendedor` varchar(150) NOT NULL,
   `IGV` char(3) NOT NULL DEFAULT 'SIN',
   `comentario` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`iddoc`),
-  KEY `fk_doc_tip_doc1` (`idtip_doc`)
+  PRIMARY KEY (`iddocumento`),
+  KEY `fk_doc_tip_doc1` (`idtipodocumento`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
-/*Data for the table `doc` */
+/*Data for the table `documentopago` */
 
 /*Table structure for table `emp` */
 
@@ -574,5 +569,3 @@ DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

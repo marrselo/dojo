@@ -38,7 +38,6 @@ class Admin_ClienteController
     }
     
     function nuevoClienteAction() {
-        
         $form = $this->formularioCliente();
         $this->view->form = $form;
         $params = $this->_getAllParams();
@@ -63,18 +62,15 @@ class Admin_ClienteController
 
         
     }
-    
     function crearCliente($data){
         $this->_clienteModel->crearCliente($data);
         $this->_flashMessenger->addMessage('Datos actualizados satisfactoriamente.');
         $this->_redirect('/admin/cliente');
     }
-    
     function eliminarClienteAction() {
         $this->_clienteModel->eliminarCliente($params['idCliente']);
         $this->_redirect('/admin/cliente');
     }
-    
     function actualizarClienteAction() {
         $params = $this->_getAllParams();
         $cliente = $this->_clienteModel->listarUnCliente($params['idCliente']);
@@ -118,44 +114,11 @@ class Admin_ClienteController
         }
         $this->view->formulario = $form;
     }
-    
     function formularioCliente() {
-        $form = new Zend_Form();
-        $form->setMethod('Post');
-        $form->addElement(new Zend_Form_Element_Text('apellidomaterno',
-                array('label'=>'Apellido Materno')));
-        $form->addElement(new Zend_Form_Element_Text('apellidopaterno',
-                array('label'=>'Apellido Paterno')));
-        $form->addElement(new Zend_Form_Element_Text('nombre',
-                array('label'=>'Nombre','required'=>true)));
-        $form->addElement(new Zend_Form_Element_Text('direccion',
-                array('label'=>'Direccion','required'=>true)));
-        $arrayValidator = array(new ZExtraLib_Validate_DniExist(),
-                                new Zend_Validate_StringLength(array('min'=>8,'max'=>8)));
-        $form->addElement(new Zend_Form_Element_Text('dni',
-                array('label'=>'Dni',
-                     'Validators'=>$arrayValidator)));
-        $form->addElement(new Zend_Form_Element_Text('web',
-                array('label'=>'web')));
-        $arrayValidator = array(new Zend_Validate_EmailAddress(),
-                                new ZExtraLib_Validate_MailExist());
-        $form->addElement(new Zend_Form_Element_Text('correo',
-                array('label'=>'Correo',
-                      'Validators'=>$arrayValidator)));
-        $arrayValidator = array(new Zend_Validate_StringLength(array('min'=>1,'max'=>15)));
-        $form->addElement(new Zend_Form_Element_Text('telefono1',
-                array('label'=>'Telefono 1',
-                      'required'=>true,
-                      'Validators'=>$arrayValidator)));
-        $form->addElement(new Zend_Form_Element_Text('telefono2',
-                array('label'=>'Telefono 2')));
-        $form->addElement(new Zend_Form_Element_Text('movil',
-                array('label'=>'Celular')));
-        $form->addElement(new Zend_Form_Element_Text('ruc',
-                array('label'=>'Ruc')));
-        $form->addElement(new Zend_Form_Element_Submit('Enviar'));
+        $form = new Application_Form_FormCliente();
         return $form;
     }
+    
 }
 
 //class Admin_IndexController
