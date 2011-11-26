@@ -19,8 +19,8 @@ class Admin_PedidosController
     function ajaxSearchClientesAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        $cliente = $this->_clienteModel->listaClientes($params['searchCliente']);
-        echo Zend_Json::encode($cliente);
+        $cliente = $this->_clienteModel->listaClientes($params['term']);
+        echo $this->_helper->json($cliente);
     }
     
     function ajaxSearchResponsableAction(){
@@ -43,9 +43,9 @@ class Admin_PedidosController
         echo $date->now()->get('YY-mm-dd');
         $form = new Application_Form_FormCliente();
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
+        $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
         $this->view->formularioCliente = $form;
         $this->view->headScript()->appendFile('/js/modal.js', $type = 'text/javascript') ;
-        $this->view->headLink()->appendStylesheet("/css/modal.css");
     }
     
     function nuevoClienteAjaxAction(){
