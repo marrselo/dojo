@@ -61,10 +61,6 @@ class ZExtraLib_Controller_Action
                 
             $this->view->perfilUsuario = array();
         }
-        
-        
-        
-        
     }
 
 }

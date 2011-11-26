@@ -19,7 +19,7 @@ class Admin_PedidosController
     function ajaxSearchClientesAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        $cliente = $this->_clienteModel->listaClientes($params['term']);
+        $cliente = $this->_clienteModel->listaClientes($params['searchCliente']);
         echo $this->_helper->json($cliente);
     }
     
@@ -27,7 +27,7 @@ class Admin_PedidosController
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $usuarios = $this->_usuarioModel->listaUsuarios($this->_getParam('buscarResponsable'));
-        echo Zend_Json::encode($usuarios);
+        echo $this->_helper->json($usuarios);
     }
     
     function ajaxSearchArticulosAction(){
@@ -35,7 +35,7 @@ class Admin_PedidosController
         $params = $this->_getAllParams();
         $articulo = $this->_articuloModel->buscarArticulos(isset($params['searchArticulo'])?$params['searchArticulo']:'',
                                                            isset($params['idCategoria'])?$params['idCategoria']:'');
-        echo Zend_Json::encode($articulo);
+        echo $this->_helper->json($articulo);
     }
     
     function indexAction(){
@@ -74,7 +74,7 @@ class Admin_PedidosController
             $estado = 0;
             $data = array();
         }
-        echo Zend_Json::encode(array('messages'=> $messages,
+        echo $this->_helper->json(array('messages'=> $messages,
                                      'estado' => $estado,
                                      'data' => $data ));
     }
