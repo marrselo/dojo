@@ -6,13 +6,147 @@
             <?php echo $this->headMeta() ?>
             <?php echo $this->headLink() ?>
             <?php echo $this->headStyle() ?>
+            <link rel="stylesheet" type="text/css" href="styles/maq.css" />
+            <link rel="stylesheet" type="text/css" href="styles/web.css" />
+            <link rel="stylesheet" type="text/css" href="styles/ban.css" />
+            <link rel="stylesheet" type="text/css" href="styles/edi.css" />
+            <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
             
     </head>
     <body> 
+<div id="maq_root">
+	<div id="maq_fondo1">        
+          <div id="maq_alineacion1">
+            <div id="maq_cabecera">
+                <div id="web_cabecera">
+                    <h1 id="web_logo">
+                        <a href="#">
+                            <strong>Segurikids</strong>
+                            <img src="images/logo_empresa.png" alt="" width="210" height="120" />
+                        </a>
+                    </h1>
+					
+					<div id="web_menuPrincipal">
+                        <ul>
+                            <li><a href="#" class="">Inicio</a></li>
+                            <li><a href="#" class="">Cobertura</a></li>
+                            <li><a href="#" class="">Realizar el pedido</a></li>
+                            <li class="last"><a href="#" class="">Mi Cuenta</a></li>
+                        </ul>
+                    </div>
+					
+                    <div id="web_menuSuperior1">
+                        <ul>
+                            <li><a href="#">Login</a></li>
+                            <li>/</li>
+                            <li><a href="#">Regístrate</a></li>
+                        </ul>
+                    </div>
+                    <div id="web_menuSuperior2">
+                        <ul>
+                            <li class="carrito">Agregó 0 producto(s)</li>
+                            <li><a href="#">Ir al carrito</a></li>
+                        </ul>
+                    </div>
+                    <div id="web_redesSuperior">
+                        <a href="#" class="facebook">facebook</a>
+                        <a href="#" class="twitter">twitter</a>
+                    </div>
+                    <a href="#" id="botonTip">tip</a>
+                    <div id="web_banner" class="ban_tipo1">
+                        <div id="ban_bloque">
+                            <div id="ban_slider">
+                                <div class="ban_banner"><img src="images/banner_principal.jpg" width="960" height="390" alt="" /></div>
+                                <div class="ban_banner"><img src="images/banner_principal.jpg" width="960" height="390" alt="" /></div>
+                                <div class="ban_banner"><img src="images/banner_principal.jpg" width="960" height="390" alt="" /></div>
+                            </div>
+                        </div>
+                        <div id="ban_bloquePaginador"><div class="ban_paginacion" id="paginacion_home"></div></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+           <div id="maq_opciones">
+        	<div class="fondo"></div>
+            <div id="pie"></div>
+        </div>
+        
+        
         
         <?php echo $this->layout()->content ?>
-       
+ </div>
+    <div id="maq_fondo2">
+        <div id="maq_alineacion3">
+            <div id="maq_pie">
+                <div id="web_pie">
+                    <div id="standares">
+                    	<a href="#" class="w3c">w3c</a>
+                        <a href="#" class="xhtml">xhtml</a>
+                        <a href="#" class="css">css</a>
+                    </div>
+                    <div id="web_menuInferior1">
+                        <ul>
+                            <li><a href="#">Términos y Condiciones</a></li>
+                            <li>|</li>
+                            <li><a href="#">Políticas de Privacidad</a></li>
+                            <li>|</li>
+                            <li><a href="#">Políticas de Atención</a></li>
+                            <li>|</li>
+                            <li><a href="#">Como Comprar</a></li>
+                        </ul>
+                    </div>
+                    <p id="creditos">by <span><a href="#">staffcreativa</a></span>.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+    
+        <script type="text/javascript" src="js/AG_slider.js"></script>
+<script type="text/javascript">
+	
+	//<![CDATA[
+	
+	$(function(){
+		
+		jQuery.fn.AG_slider({
+	       numDesplazamiento:1,
+	       anchoElemento:960,
+	       area:1,
+	       slider:'#ban_slider',
+	       velocidadSlide:500,
+	       //conteo:'#mostrarInfo',
+	       elemento:'#ban_slider .ban_banner',
+
+	       botonIzq:'#ban_btnIzq .ban_btnIzquierdo1',
+	       botonDer:'#ban_btnDer .ban_btnDerecho1',
+	       botonIzqInactivo:'#ban_btnIzq .ban_btnIzquierdo2',
+	       botonDerInactivo:'#ban_btnDer .ban_btnDerecho2',
+	       
+	       botones:true,
+	       //opacidadBoton:0.3,
+	       paginador:'#paginacion_home',
+	       activarPaginacion:true,
+	       paginadorCentrado:false,
+	       auto:true,
+	       temporizador:5000,
+	       elementoBloqueo:'#web_banner'
+	    }); 	
+		
+	})
+	
+	
+	 //]]>
+	
+</script>
+
        <?php echo $this->headScript() ?>
+    
+    
+    
     </body>
     
     </html>
