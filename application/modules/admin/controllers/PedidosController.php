@@ -45,7 +45,7 @@ class Admin_PedidosController
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
         $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
         $this->view->formularioCliente = $form;
-        $this->view->headScript()->appendFile('/js/modal.js', $type = 'text/javascript') ;
+        $this->view->headScript()->appendFile('/js/jquery.simplemodal.js', $type = 'text/javascript') ;
     }
     
     function nuevoClienteAjaxAction(){
