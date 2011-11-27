@@ -112,10 +112,12 @@ class Admin_ClienteController
             $form->getElement('movil')->setValue($cliente['movil']);
             $form->getElement('ruc')->setValue($cliente['ruc']);
         }
+        
         $this->view->formulario = $form;
     }
     function formularioCliente() {
         $form = new Application_Form_FormCliente();
+        $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
         return $form;
     }
     

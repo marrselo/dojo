@@ -10,7 +10,12 @@ class Admin_ArticuloController
         $this->_articuloModel= new Application_Model_Articulo();
     }
     function indexAction()
-    {                                
+    {
+        $resizeObj = new ZExtraLib_ResizeImage(APPLICATION_PATH.'/../public/resize-example/sample.jpg');
+        $resizeObj -> resizeImage(200, 200, 'crop');
+	$resizeObj -> saveImage(APPLICATION_PATH.'/../public/resize-example/sample_desdeZendparamarce.jpg', 500);
+        
+        
         $formBusqueda = new Zend_Form();
         $formBusqueda->addElement(new Zend_Form_Element_Text('buscar'));
         $this->view->messages = $this->_flashMessenger->getMessages();

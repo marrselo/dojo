@@ -11,7 +11,6 @@ class ZExtraLib_Controller_Action
     public function init() 
     {
         parent::init();
-        $this->view->headScript()->appendFile('/js/jquery.simplemodal.js', $type = 'text/javascript') ;
         $this->session = (!isset($this->session))?new Zend_Session_Namespace('dojo'):null;
         $this->_identity = Zend_Auth::getInstance()->getIdentity();
         $this->_layout = Zend_Layout::getMvcInstance();
@@ -62,10 +61,6 @@ class ZExtraLib_Controller_Action
                 
             $this->view->perfilUsuario = array();
         }
-        
-        
-        
-        
     }
 
 }
