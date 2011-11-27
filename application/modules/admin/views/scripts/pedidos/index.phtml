@@ -111,3 +111,33 @@
 <div id="basic-modal-content">
     <?php echo $this->formularioCliente ?>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $( "#searchArticulo" ).autocomplete({
+            
+            source: function( request, response ) {
+                    $.ajax({
+                            url: "/admin/pedidos/ajax-search-clientes/searchCliente/",
+                            dataType: "J",
+                            data: {
+                                    name_startsWith: request.term
+                            },
+                            success: function( data ) {
+                                    console.log(data)
+                                    response( $.map( data.geonames, function( item ) {
+                                            return {
+                                                    label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+                                                    value: item.name
+                                            }
+                                    }));
+                            }
+                    });
+            }
+            
+            
+    });
+    
+});
+
+</script>
