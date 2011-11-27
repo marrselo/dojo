@@ -545,21 +545,27 @@ insert  into `usuario`(`idusuario`,`nombre`,`apellidopaterno`,`apellidomaterno`,
 
 DELIMITER $$
 
-/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `TG_actualizarStock` */$$
+/*!50003 show triggers*//*!50032 IF EXISTS */ /*!50003 `TG_actualizarStock` */$$
 
-/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `TG_actualizarStock` BEFORE INSERT ON `kardex` FOR EACH ROW BEGIN
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `TG_actualizarStock` BEFORE INSERT ON `kardex` 
+FOR EACH ROW 
+BEGIN
 	DECLARE cantidadTotal INT;
 	DECLARE cantidadFinal INT;
 	
+	SET cantidadTotal = 0;
+	IF (SELECT COUNT(*) FROM kardex WHERE idarticulo = new.idarticulo)>0 THEN
+    
 	SELECT stock INTO cantidadTotal FROM kardex WHERE idkardex < new.idkardex ORDER BY idkardex DESC  limit 1;
 	
+	ELSE
+		cantidadTotal = 0 ;
 	IF new.fla = 2 THEN
-		SET cantidadFinal = (new.cantidadtotal - cantidadTotal) ;
+			SET cantidadFinal = (new.cantidadtotal - cantidadTotal) ;
 	ELSE
 		SET cantidadFinal = (new.cantidadtotal + cantidadTotal) ;
-	END IF;	
+	END IF;
 	
-	UPDATE kardex set cantidadtotal= cantidadTotal, fecha = curdate() WHERE idkardex= new.idkardex;
 	UPDATE articulo SET cantidad = cantidadFinal WHERE idarticulo= new.idarticulo; 
 	
     END */$$

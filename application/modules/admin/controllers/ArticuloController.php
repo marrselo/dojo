@@ -98,6 +98,8 @@ class Admin_ArticuloController
         $this->view->form = $formMovimiento;
         
         if ($this->_request->isPost()) {
+            $page = ($this->getRequest()->getUserParam('page')=='')
+                    ? '' : 'page/'.$this->getRequest()->getUserParam('page') ;
             $kardex = New Application_Model_Kardex();
             if($formMovimiento->isValid($params)){
                  $data['stock']   =$params['cantidad'];
@@ -106,7 +108,7 @@ class Admin_ArticuloController
                  $data['motivo'] = $params['motivo'];
                  
                 $kardex->crearKardex($data);
-                $this->_redirect('/admin/articulo/');
+                $this->_redirect('/admin/articulo/'.$page);
             }
         }
         
