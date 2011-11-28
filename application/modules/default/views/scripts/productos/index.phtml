@@ -1,0 +1,37 @@
+<div id="maq_alineacion2">
+            <div id="maq_principal">
+          <div class="web_interna web_modo2" id="internaTipo1">
+                	<h2 class="titulo">Productos</h2>
+                    <div id="web_columna1">
+                        
+                        <ul class="web_menuLateral">
+                        <?php foreach($this->categorias as $index){ ?>    
+                            <li><a href="/productos/<?php echo $index['idcategoria']?>"><?php echo $index['nombre']?></a></li>
+                        <?php } ?>    
+                        </ul>
+</div>
+                    <div id="web_columna2">
+                    	<h3 class="subtitulo">Cocina</h3>
+                        <div class="listado" id="listadoTipo1">
+                        	<ul>
+                            	<?php foreach($this->articulos as $index){?>
+                                    <li>
+                                	<div class="bloque">
+                                        <img src="images/<?php echo $index['images']?>" width="150" height="120" />
+                                        <div class="info">
+                                            <h3><?php echo $index['nombre']?></h3>
+                                            <p>Precio: S/.<?php echo $index['precioventa']?></p>
+                                            <a href="/detalle-producto/<?php echo $index['idarticulo']?>" class="boton"><span><strong>Ver detalle</strong></span></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php }?>
+                                
+                                
+                                
+                            </ul><br />
+                        </div>
+                    </div><br />
+                </div>
+            </div>
+        </div>

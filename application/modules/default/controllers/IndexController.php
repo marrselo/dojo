@@ -1,6 +1,6 @@
 <?php
 
-class Default_IndexController extends Zend_Controller_Action
+class Default_IndexController extends ZExtraLib_Controller_Action
 {
 
     public function init() {
@@ -8,6 +8,9 @@ class Default_IndexController extends Zend_Controller_Action
     }
     public function indexAction()
     {
+    }
+    public function productosAction(){
+        
     }
     
 

@@ -42,6 +42,15 @@ class Application_Model_Articulo  extends Zend_Db_Table {
                 ->query()
                 ->fetch();
     }
+    
+    public function listarArticulosDeUnaCategoria($idCategoria) {
+        return  $this->getAdapter()
+                ->select()->from('articulo')
+                ->where('idcategoria = ?', $idCategoria)
+                ->query()
+                ->fetchAll();
+    }
+    
     public function buscarArticulos($like,$idCategoria=null) {
         
         $where  =  $this->getAdapter()->quoteInto(' articulo.codigo like ?', '%'.$like.'%');

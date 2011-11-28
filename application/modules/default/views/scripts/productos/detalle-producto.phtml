@@ -1,0 +1,64 @@
+ <div id="maq_alineacion2">
+            <div id="maq_principal">
+          <div class="web_interna web_modo2" id="internaTipo1">
+                	<h2 class="titulo">Productos</h2>
+                    <div id="web_columna1">
+                        <ul class="web_menuLateral">
+                        <?php foreach($this->categorias as $index){ ?>    
+                            <li><a href="/productos/<?php echo $index['idcategoria']?>"><?php echo $index['nombre']?></a></li>
+                        <?php } ?>    
+                        </ul>
+                    </div>
+                    <div id="web_columna2">
+                    	<h3 class="subtitulo"><?php echo $this->articulo['nombre']?></h3>
+                        <div class="detalle">
+                      		<div id="precio">
+                            	<h4>Precio S/.<?php echo $this->articulo['precioventa'];?></h4>
+                                <div class="compartir">
+                                	<!-- AddThis Button BEGIN -->
+                                    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=xa-4df19d2f70b3bfd7"><img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+                                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4df19d2f70b3bfd7"></script>
+                                    <!-- AddThis Button END -->
+                                </div>
+                            </div>
+                            <div id="descripcion">
+                                <h4>Descripci&oacute;n</h4>
+                                <p><?php echo $this->articulo['descripcion']?></p>
+                                <div class="producto">
+                                    <form action="/compras" method="post" id="form">
+                                        <input type="hidden" name="producto"  id="producto"  value="<?php echo $this->articulo['idarticulo'];?>">
+                                        <div id="agregar" class="form">
+                                            <ul>
+                                                <li>
+                                                  <label class="label labelTipo2">Cantidad:</label><select name="cantidad" class="combo comboTipo1" id="cantidad">
+                                                  <option value="1">1</option>
+                                                  <option value="2">2</option>
+                                              </select><br /></li>
+                                            </ul>
+                                            <div class="enlaces">
+                                            	<button class="botonAgregar">Agregar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="bloque">
+                            	<div id="imagen"><img src="images/imagen_producto.jpg" width="366" height="220" alt="" /></div>
+                                <div id="sociales">
+                                	<div id="redTwitter">
+                                        <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                                    </div>
+                                    <div id="redFacebook">
+                                        <iframe src="http://www.facebook.com/plugins/like.php?href&amp;send=true&amp;layout=standard&amp;width=404&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:404px; height:80px;" allowTransparency="true"></iframe>
+                                    </div>
+                                </div>
+                                <div class="enlaces">
+                                    <a href="/compras" class="boton"><span><strong>Ir a carrito</strong></span></a>
+                                    <a href="/productos" class="boton"><span><strong>Ir a productos</strong></span></a><br />
+                                </div>
+                            </div><br />
+                        </div>
+                    </div><br />
+                </div>
+            </div>
+        </div>
