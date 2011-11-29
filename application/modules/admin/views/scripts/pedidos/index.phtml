@@ -1,5 +1,6 @@
 <div>
-    <label>Buscar Cliente <input type="text" name="searchArticulo" id="searchArticulo" ></label> 
+    <label>Buscar Cliente <input type="text" name="searchCliente" id="searchCliente" ></label>
+    <span id="autocompleteCliente" style="position: absolute; background-color: #009ede;"></span>
     [<a href="#">Nuevo Cliente</a>]
 </div>
 <table class="sticky-enabled tableSelect-processed sticky-table">
@@ -24,7 +25,9 @@
         </tr>
     </tbody>
 </table>
-<div><label>Buscar Articulo <input type="text" name="searchArticulo" id="searchArticulo" ></label></div>
+<div><label>Buscar Articulo <input type="text" name="searchArticulo" id="searchArticulo" ></label>
+<span id="autocompleteArticulo" style="position: absolute; background-color: #009ede;"></span>
+</div>
 <table class="sticky-enabled tableSelect-processed sticky-table">
     <thead class="tableHeader-processed">
     <tr>
@@ -113,31 +116,67 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-    $( "#searchArticulo" ).autocomplete({
-            
-            source: function( request, response ) {
-                    $.ajax({
-                            url: "/admin/pedidos/ajax-search-clientes/searchCliente/",
-                            dataType: "J",
-                            data: {
-                                    name_startsWith: request.term
-                            },
-                            success: function( data ) {
-                                    console.log(data)
-                                    response( $.map( data.geonames, function( item ) {
-                                            return {
-                                                    label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                                                    value: item.name
-                                            }
-                                    }));
-                            }
-                    });
+$(function() {
+		$( "#searchCliente" ).bind( "keydown", function( ) {
+                    var valor = this.value;
+                                    $.ajax({
+        data: "searchCliente="+valor,
+        type: "POST",
+        dataType: "json",
+        url: "/admin/pedidos/ajax-search-clientes",
+        success: function(data){ 
+            $('#autocompleteCliente').empty(); 
+            var contenido='';
+            contenido = '<div><table>';
+            for (var i = 0; i < data.length; i++) { 
+                contenido = contenido + '<tr style="cursor:pointer" class="item-'+data[i]['nombre']+'">';
+                contenido = contenido + '<td>';
+                contenido = contenido + data[i]['nombre'];
+                contenido = contenido + '</td>';
+                contenido = contenido + '<td>';
+                contenido = contenido + data[i]['apellidomaterno'] +' '+ data[i]['apellidopaterno'];
+                contenido = contenido + '</td>';
+                contenido = contenido + '</tr>';
+                
             }
+            contenido = contenido + '</table></div>';
             
-            
-    });
-    
-});
-
-</script>
+            $('#autocompleteCliente').append(contenido);
+        }
+       });
+			})
+	});
+        
+$(function() {
+$( "#searchArticulo" ).keypress(function(e) {
+    $.ajax({
+        data: "searchArticulo="+valor,
+        type: "POST",
+        dataType: "json",
+        url: "/admin/pedidos/ajax-search-articulos",
+        success: function(data){
+            $('#autocompleteArticulo').empty(); 
+            var contenido='';
+            contenido = '<div><table>';
+            for (var i = 0; i < data.length; i++) { 
+                contenido = contenido + '<tr style="cursor:pointer" class="item-'+data[i]['nombre']+'">';
+                contenido = contenido + '<td>';
+                contenido = contenido + data[i]['nombre'];
+                contenido = contenido + '</td>';
+                contenido = contenido + '</tr>';
+            }
+            contenido = contenido + '</table></div>';
+            $('#autocompleteArticulo').append(contenido);
+        }
+       });
+			})
+	});
+        
+        
+        
+        
+        $("[class^=item]").bind("click",function(){
+        alert('as');
+        });
+        
+	</script>
