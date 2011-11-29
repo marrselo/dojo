@@ -1,42 +1,34 @@
 <div>
-    <label>Buscar Cliente <input type="text" name="searchCliente" id="searchCliente" ></label>
-    <span id="autocompleteCliente" style="position: absolute; background-color: #009ede;"></span>
-    [<a href="#">Nuevo Cliente</a>]
+    <label>
+        Buscar Cliente 
+        <input type="text" name="searchCliente" id="searchCliente" >
+    </label>
+</div>
+<div id="actionViewModal"> Nuevo Cliente </div>
+    <span id="autocompleteCliente" style="position: absolute; background-color: #009ede;">
+        
+    </span>
+
+<input type="hidden" value="" id="idcliente">
+<div id="tableSeachCLiente"></div>
+<div>
+    <label>
+        Buscar Articulo 
+        <input type="text" name="searchArticulo" id="searchArticulo" >
+    </label>
+    <span id="autocompleteArticulo" style="position: absolute; background-color: #009ede;">
+        
+    </span>
 </div>
 <table class="sticky-enabled tableSelect-processed sticky-table">
     <thead class="tableHeader-processed">
-    <tr>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Edad</th>
-        <th>Dirección</th>
-        <th>Telefonos</th>
-        <th>Dni</th>
-    </tr>
-    </thead>
-    <tbody>
         <tr>
-            <td>Nazart</td>     
-            <td>Jara Huaman</td>     
-            <td>26</td>     
-            <td>av. cueva pueblo - libre</td>     
-            <td>2355168 - 989044605</td>     
-            <td>44513555</td>     
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
         </tr>
-    </tbody>
-</table>
-<div><label>Buscar Articulo <input type="text" name="searchArticulo" id="searchArticulo" ></label>
-<span id="autocompleteArticulo" style="position: absolute; background-color: #009ede;"></span>
-</div>
-<table class="sticky-enabled tableSelect-processed sticky-table">
-    <thead class="tableHeader-processed">
-    <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Total</th>
-    </tr>
     </thead>
     <tbody>
         <tr>
@@ -45,9 +37,7 @@
             <td><input type="text" value="123"></td>
             <td><input type="text" value="2"></td>
             <td><input disabled="disabled" type="text" value="256"></td>
-            <td>
-                [<a href="">Eliminar</a>]
-            </td>
+            <td>[<a href="">Eliminar</a>]</td>
         </tr>
         <tr>
             <td>articulo 1</td>
@@ -55,9 +45,7 @@
             <td><input type="text" value="123"></td>
             <td><input type="text" value="2"></td>
             <td><input disabled="disabled" type="text" value="256"></td>
-            <td>
-                [<a href="">Eliminar</a>]
-            </td>
+            <td>[<a href="">Eliminar</a>]</td>
         </tr>
         <tr>
             <td>articulo 1</td>
@@ -83,10 +71,10 @@
 <div>
     <label>Fecha Entrega <input type="text"></label>
     <label>Hora Entrega </label>
-        <select>
-            <?php
-            foreach(range(0,23) as $index): ?>
-            <option value="<?php echo $index ?>"><?php echo strlen($index)==1?'0'.$index:$index;  ?></option>
+    <select>
+    <?php foreach(range(0,23) as $index): ?>
+        <option value="<?php echo $index ?>"><?php echo strlen($index)==1?'0'.$index:$index;  ?>
+        </option>
             <?php endforeach; ?>
         </select>
         <select>
@@ -111,25 +99,31 @@
 <div> [<a href="#">Enviar Pedido</a>] - [<a href="">Cancelar Pedido</a>]</div>
 
 
-<div id="basic-modal-content">
+<div id="modalView" class="modalInActive" >
+    <div id="boxes" >
     <?php echo $this->formularioCliente ?>
+    </div>    
 </div>
 
 <script type="text/javascript">
+    
+    
+    
 $(function() {
-		$( "#searchCliente" ).bind( "keydown", function( ) {
-                    var valor = this.value;
-                                    $.ajax({
-        data: "searchCliente="+valor,
-        type: "POST",
-        dataType: "json",
+    $( "#searchCliente" ).keypress(function(e) {
+        if(e.which == 13){
+            var valor = this.value;       
+            $.ajax({
+                data: "searchCliente="+valor,
+                type: "POST",
+                dataType: "json",
         url: "/admin/pedidos/ajax-search-clientes",
         success: function(data){ 
             $('#autocompleteCliente').empty(); 
             var contenido='';
             contenido = '<div><table>';
             for (var i = 0; i < data.length; i++) { 
-                contenido = contenido + '<tr style="cursor:pointer" class="item-'+data[i]['nombre']+'">';
+                contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemCliente-'+data[i]['idcliente']+'">';
                 contenido = contenido + '<td>';
                 contenido = contenido + data[i]['nombre'];
                 contenido = contenido + '</td>';
@@ -144,10 +138,14 @@ $(function() {
             $('#autocompleteCliente').append(contenido);
         }
        });
-			})
+
+                    }
+    			})
 	});
         
 $(function() {
+
+
 $( "#searchArticulo" ).keypress(function(e) {
     $.ajax({
         data: "searchArticulo="+valor,
@@ -159,7 +157,7 @@ $( "#searchArticulo" ).keypress(function(e) {
             var contenido='';
             contenido = '<div><table>';
             for (var i = 0; i < data.length; i++) { 
-                contenido = contenido + '<tr style="cursor:pointer" class="item-'+data[i]['nombre']+'">';
+                contenido = contenido + '<tr style="cursor:pointer" id="item-'+data[i]['nombre']+'">';
                 contenido = contenido + '<td>';
                 contenido = contenido + data[i]['nombre'];
                 contenido = contenido + '</td>';
@@ -168,15 +166,57 @@ $( "#searchArticulo" ).keypress(function(e) {
             contenido = contenido + '</table></div>';
             $('#autocompleteArticulo').append(contenido);
         }
-       });
-			})
-	});
-        
-        
-        
-        
-        $("[class^=item]").bind("click",function(){
-        alert('as');
         });
+        })
+        });
+        $("[id^=itemCliente]").live("click",function(){
+        var idClienteArray = this.id.split('-');
+        //var idCliente = idClienteArray[1];
+        mostrarCLiente(idClienteArray[1]);
+        });
+        
+        
+        function mostrarCLiente(idCliente){
+        $.ajax({
+        data: "idCliente="+idCliente,
+        type: "POST",
+        dataType: "json",
+        url: "/admin/pedidos/ajax-get-cliente",
+        success: function(data){
+            $('#tableSeachCLiente').empty(); 
+            $('#idcliente').attr('value',data['idcliente']); 
+            
+            var contenido='';
+            contenido = '<table class="sticky-enabled tableSelect-processed sticky-table">';
+            contenido = contenido +'<thead class="tableHeader-processed">';
+            contenido = contenido +'<tr>';
+            contenido = contenido +'<th>Nombre</th>';
+            contenido = contenido +'<th>Apellidos</th>';
+            contenido = contenido +'<th>Ruc</th>';
+            contenido = contenido +'<th>Dirección</th>';
+            contenido = contenido +'<th>Telefonos</th>';
+            contenido = contenido +'<th>Dni</th>';
+            contenido = contenido +'</tr>';
+            contenido = contenido +'</thead>';
+            contenido = contenido +'<tbody>';
+            contenido = contenido +'<tr>';
+            contenido = contenido +'<td>'+data['nombre']+'</td>';
+            contenido = contenido +'<td>'+data['apellidomaterno']+ ' ' +data['apellidopaterno']+'</td>';
+            contenido = contenido +'<td>'+data['ruc']+ '</td>';
+            contenido = contenido +'<td>'+data['direccion']+ '</td>';
+            contenido = contenido +'<td>'+data['telefono1']+ ' - ' +data['telefono2']+ ' - ' +data['movil']+'</td>';
+            contenido = contenido +'<td>'+data['dni']+ '</td>';
+            contenido = contenido +'</tr>';
+            contenido = contenido +'</tbody>';
+            contenido = contenido + '</table>';
+            $('#tableSeachCLiente').append(contenido);
+            $('#autocompleteCliente').empty(); 
+        }
+        });
+        
+        $("#actionViewModal").click(function(){
+            $("modalView").attr('class','modalActive'); 
+        });
+}
         
 	</script>

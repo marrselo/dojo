@@ -41,6 +41,7 @@ class ZExtraLib_Controller_Action
         
             $this->_layout->setLayout('layoutadmin');
             $this->view->headLink()->appendStylesheet("/css/style.css")
+                    ->appendStylesheet("/css/custom.css")
                     ->appendStylesheet("/css/defaults.css")
                     ->appendStylesheet("/css/print.css",array("media"=>"print"));
             $this->view->headScript()

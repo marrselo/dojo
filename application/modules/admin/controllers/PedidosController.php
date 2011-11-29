@@ -30,6 +30,13 @@ class Admin_PedidosController
         echo $this->_helper->json($usuarios);
     }
     
+    function ajaxGetClienteAction(){
+        $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        $cliente = $this->_clienteModel->listarUnCliente($params['idCliente']);
+        echo $this->_helper->json($cliente);
+    }
+    
     function ajaxSearchArticulosAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
