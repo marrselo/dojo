@@ -16,11 +16,14 @@
         Buscar Articulo 
         <input type="text" name="searchArticulo" id="searchArticulo" >
     </label>
+    <div id="tableSeachArticulo">
+        
+    </div>
     <span id="autocompleteArticulo" style="position: absolute; background-color: #009ede;">
         
     </span>
 </div>
-<table class="sticky-enabled tableSelect-processed sticky-table">
+<table id="tableArticulo" class="sticky-enabled tableSelect-processed sticky-table">
     <thead class="tableHeader-processed">
         <tr>
             <th>Nombre</th>
@@ -30,33 +33,11 @@
             <th>Total</th>
         </tr>
     </thead>
+    
     <tbody>
-        <tr>
-            <td>articulo 1</td>
-            <td>descripcion articulo 1</td>
-            <td><input type="text" value="123"></td>
-            <td><input type="text" value="2"></td>
-            <td><input disabled="disabled" type="text" value="256"></td>
-            <td>[<a href="">Eliminar</a>]</td>
-        </tr>
-        <tr>
-            <td>articulo 1</td>
-            <td>descripcion articulo 1</td>
-            <td><input type="text" value="123"></td>
-            <td><input type="text" value="2"></td>
-            <td><input disabled="disabled" type="text" value="256"></td>
-            <td>[<a href="">Eliminar</a>]</td>
-        </tr>
-        <tr>
-            <td>articulo 1</td>
-            <td>descripcion articulo 1</td>
-            <td><input type="text" value="123"></td>
-            <td><input type="text" value="2"></td>
-            <td><input disabled="disabled" type="text" value="256"></td>
-            <td>
-                [<a href="">Eliminar</a>]
-            </td>
-        </tr>
+        
+    </tbody>
+    
         <tr>
             <td> </td>
             <td> </td>
@@ -65,7 +46,7 @@
             <td style="color: red; font-weight: bold"> 738</td>
             <td> </td>
         </tr>
-    </tbody>
+
 </table>
 
 <div>
@@ -106,10 +87,11 @@
 </div>
 
 <script type="text/javascript">
-    
-    
-    
 $(function() {
+    $('#actionViewModal').click(function(){
+        $("modalView").attr('class','modalActive'); 
+    });
+
     $( "#searchCliente" ).keypress(function(e) {
         if(e.which == 13){
             var valor = this.value;       
@@ -117,64 +99,103 @@ $(function() {
                 data: "searchCliente="+valor,
                 type: "POST",
                 dataType: "json",
-        url: "/admin/pedidos/ajax-search-clientes",
-        success: function(data){ 
-            $('#autocompleteCliente').empty(); 
-            var contenido='';
-            contenido = '<div><table>';
-            for (var i = 0; i < data.length; i++) { 
-                contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemCliente-'+data[i]['idcliente']+'">';
-                contenido = contenido + '<td>';
-                contenido = contenido + data[i]['nombre'];
-                contenido = contenido + '</td>';
-                contenido = contenido + '<td>';
-                contenido = contenido + data[i]['apellidomaterno'] +' '+ data[i]['apellidopaterno'];
-                contenido = contenido + '</td>';
-                contenido = contenido + '</tr>';
-                
-            }
-            contenido = contenido + '</table></div>';
-            
-            $('#autocompleteCliente').append(contenido);
-        }
-       });
-
+                url: "/admin/pedidos/ajax-search-clientes",
+                success: function(data){ 
+                    $('#autocompleteCliente').empty(); 
+                    var contenido='';
+                    contenido = '<div><table>';
+                    for (var i = 0; i < data.length; i++) { 
+                        contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemCliente-'+data[i]['idcliente']+'">';
+                        contenido = contenido + '<td>';
+                        contenido = contenido + data[i]['nombre'];
+                        contenido = contenido + '</td>';
+                        contenido = contenido + '<td>';
+                        contenido = contenido + data[i]['apellidomaterno'] +' '+ data[i]['apellidopaterno'];
+                        contenido = contenido + '</td>';
+                        contenido = contenido + '</tr>';
                     }
-    			})
-	});
-        
-$(function() {
+                    contenido = contenido + '</table></div>';
+                    $('#autocompleteCliente').append(contenido);
+                    }
+                    });
+          }
+      })
+	
 
-
-$( "#searchArticulo" ).keypress(function(e) {
-    $.ajax({
-        data: "searchArticulo="+valor,
-        type: "POST",
-        dataType: "json",
-        url: "/admin/pedidos/ajax-search-articulos",
-        success: function(data){
-            $('#autocompleteArticulo').empty(); 
-            var contenido='';
-            contenido = '<div><table>';
-            for (var i = 0; i < data.length; i++) { 
-                contenido = contenido + '<tr style="cursor:pointer" id="item-'+data[i]['nombre']+'">';
-                contenido = contenido + '<td>';
-                contenido = contenido + data[i]['nombre'];
-                contenido = contenido + '</td>';
-                contenido = contenido + '</tr>';
-            }
-            contenido = contenido + '</table></div>';
-            $('#autocompleteArticulo').append(contenido);
+    $( "#searchArticulo" ).keypress(function(e) {
+    
+        if(e.which == 13){
+            var valor = this.value;       
+            $.ajax({
+                data: "searchArticulo="+valor,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-search-articulos",
+                success: function(data){
+                    $('#autocompleteArticulo').empty(); 
+                    var contenido='';
+                    contenido = '<div><table>';
+                    for (var i = 0; i < data.length; i++) { 
+                        contenido = contenido + '<tr style="cursor:pointer" id="itemArticulo-'+data[i]['idarticulo']+'">';
+                        contenido = contenido + '<td>';
+                        contenido = contenido + data[i]['nomArticulo'];
+                        contenido = contenido + '</td>';
+                        contenido = contenido + '</tr>';
+                    }
+                    contenido = contenido + '</table></div>';
+                    $('#autocompleteArticulo').append(contenido);
+                }
+            });
         }
-        });
-        })
-        });
+    })
+        
+        
         $("[id^=itemCliente]").live("click",function(){
         var idClienteArray = this.id.split('-');
-        //var idCliente = idClienteArray[1];
         mostrarCLiente(idClienteArray[1]);
         });
-        
+        $("[id^=itemArticulo]").live("click",function(){
+        var idClienteArray = this.id.split('-');
+        mostrarArticulo(idClienteArray[1]);
+        });
+        $("[id^=eliminarArti]").live("click",function(){
+        var idArticuloArray = this.id.split('-');
+        $(this).parent().parent().remove();
+        eliminaArticulo(idArticuloArray[1]);
+        });
+
+    function eliminaArticulo(idArticulo){
+         $.ajax({
+        data: "idArticulo="+idArticulo,
+        type: "POST",
+        dataType: "json",
+        url: "/admin/pedidos/ajax-delete-articulo",
+        success: function(data){
+        }
+         });
+    }
+    function mostrarArticulo(idArticulo){
+        $.ajax({
+        data: "idArticulo="+idArticulo,
+        type: "POST",
+        dataType: "json",
+        url: "/admin/pedidos/ajax-get-articulo",
+        success: function(data){
+            var contenido='';
+                contenido = contenido +'<tr id="row_'+data['idarticulo']+'">'
+                contenido = contenido +'<td>'+data['nombre']+'</td>'
+                contenido = contenido +'<td>'+data['descripcion']+'</td>'
+                contenido = contenido +'<td><input name="precio[]" id="precio_'+data['idarticulo']+'" type="text" value="'+data['precioventa']+'"></td>'
+                contenido = contenido +'<td><input name="cantidad[]" id="cantidad_'+data['idarticulo']+'" type="text" value="0"></td>'
+                contenido = contenido +'<td><input disabled="disabled" type="text" value="0"></td>'
+                contenido = contenido +'<td>[<a id="eliminarArti-'+data['idarticulo']+'" href="#">Eliminar</a>]</td>'
+                contenido = contenido +'</tr>'
+            $('#tableArticulo tr:first').after(contenido);
+            $('#autocompleteArticulo').empty(); 
+            
+            }
+        });
+        }
         
         function mostrarCLiente(idCliente){
         $.ajax({
@@ -214,9 +235,9 @@ $( "#searchArticulo" ).keypress(function(e) {
         }
         });
         
-        $("#actionViewModal").click(function(){
-            $("modalView").attr('class','modalActive'); 
-        });
-}
+        }
+        
+         });
+
         
 	</script>

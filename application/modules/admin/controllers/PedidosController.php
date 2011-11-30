@@ -36,26 +36,38 @@ class Admin_PedidosController
         $cliente = $this->_clienteModel->listarUnCliente($params['idCliente']);
         echo $this->_helper->json($cliente);
     }
+    function ajaxDeleteArticuloAction(){
+        $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        unset($this->session->articuloEnLista[array_search($params['idArticulo'],$this->session->articuloEnLista)]); 
+        echo $this->_helper->json(array());
+    }
+    
+    function ajaxGetArticuloAction(){
+        $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        $articulo = $this->_articuloModel->listarUnArticulo($params['idArticulo']);
+        $this->session->articuloEnLista[] = $articulo['idarticulo'];
+        echo $this->_helper->json($articulo);
+    }
     
     function ajaxSearchArticulosAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
+        $notInt = count($this->session->articuloEnLista)>0?implode(',',$this->session->articuloEnLista):'';
         $articulo = $this->_articuloModel->buscarArticulos(isset($params['searchArticulo'])?$params['searchArticulo']:'',
-                                                           isset($params['idCategoria'])?$params['idCategoria']:'');
+                                                           isset($params['idCategoria'])?$params['idCategoria']:'',$notInt);
         echo $this->_helper->json($articulo);
     }
     
     function indexAction(){
+        $this->session->articuloEnLista=array();
         $date = new Zend_Date();
         echo $date->now()->get('YY-mm-dd');
         $form = new Application_Form_FormCliente();
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
         $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
         $this->view->formularioCliente = $form;
-        $this->view->headScript()->appendFile('/js/ui/jquery.ui.core.js', $type = 'text/javascript') ;
-        $this->view->headScript()->appendFile('/js/ui/jquery.ui.widget.js', $type = 'text/javascript') ;
-        $this->view->headScript()->appendFile('/js/ui/jquery.ui.position.js', $type = 'text/javascript') ;
-        $this->view->headScript()->appendFile('/js/ui/jquery.ui.autocomplete.js', $type = 'text/javascript') ;
     }
     
     function nuevoClienteAjaxAction(){

@@ -23,6 +23,7 @@ class Application_Model_Articulo  extends Zend_Db_Table {
                     ->query()->fetchAll();
         }
     }
+    
     public function crearArticulo($data){
         $this->insert($data);
     }  
@@ -35,12 +36,12 @@ class Application_Model_Articulo  extends Zend_Db_Table {
         $where = $this->getAdapter()->quoteInto('idarticulo = ?', $idArticulo);
         $this->update($data, $where);
     }
+    
     public function listarUnArticulo($idArticulo) {
-        return  $this->getAdapter()
+        $response = $this->getAdapter()
                 ->select()->from('articulo')
-                ->where('idarticulo = ?', $idArticulo)
-                ->query()
-                ->fetch();
+                ->where('idarticulo = ?', $idArticulo);
+        return $response->query()->fetch();
     }
     
     public function listarArticulosDeUnaCategoria($idCategoria) {
@@ -51,7 +52,7 @@ class Application_Model_Articulo  extends Zend_Db_Table {
                 ->fetchAll();
     }
     
-    public function buscarArticulos($like,$idCategoria=null) {
+    public function buscarArticulos($like,$idCategoria=null,$notInt=null) {
         
         $where  =  $this->getAdapter()->quoteInto(' articulo.codigo like ?', '%'.$like.'%');
         $where .=  $this->getAdapter()->quoteInto(' or  articulo.nombre like ?', '%'.$like.'%');
@@ -76,6 +77,11 @@ class Application_Model_Articulo  extends Zend_Db_Table {
         if($idCategoria!=''){
             $result->where($this->getAdapter()->quoteInto(' idcategoria = ?', $idCategoria));
         }
+        
+        if($notInt!=''){
+        $result->where('articulo.idarticulo not in ('.$notInt.')');    
+        }
+        //echo $result;
       
         return $result->query()->fetchAll();
 
