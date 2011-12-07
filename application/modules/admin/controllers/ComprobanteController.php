@@ -7,6 +7,10 @@ class Admin_ComprobanteController
         parent::init();
     }
     function indexAction(){
+        $this->view->form = new Application_Form_ComprobanteForm();             
+    }
+    
+    function listarComprobantes(){
         
     }
 }
