@@ -1,14 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
     <head>
-        <title>Servicio de reparto a domicilio de licores, snacks, regalos y paquetes</title>
-        <meta name="description" content="Shop powered by PrestaShop">
-        <meta name="keywords" content="tienda, prestashop">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="generator" content="PrestaShop">
-        <meta name="robots" content="index,follow">
-        <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <?php echo $this->headLink() ?>
+        <?php echo $this->headStyle() ?>
         <script type="text/javascript" src="/f/js/jquery-1.js"></script>
+        <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
     </head>
     <body id="index">
         <div id="page">
@@ -66,12 +64,9 @@
                     <!-- Block search module -->
                     <div id="search_block">
                         <h4>Buscar</h4>
-                        <form method="get" action="#" id="searchbox">
+                        <form method="get" action="/buscar" id="searchbox">
                             <p class="block_content">
-                                <input name="orderby" value="position" type="hidden">
-                                <input name="orderway" value="desc" type="hidden">
                                 <input class="search_query" id="search_query_block" name="search_query" value="Buscar" onfocus="if (this.value == 'Buscar') this.value = ''" onblur="if (this.value == '') this.value = 'Buscar'" type="text">
-                                <!--input type="submit" id="search_button" class="button_mini" value="buscar" /-->
                             </p>
                         </form>
                     </div>	
@@ -140,87 +135,7 @@
                 <!-- Center -->
                 <div id="center_column">
                     <!-- MODULE Home Featured Products -->
-                    <div id="featured-products_block_center" class="block products_block">
-                        <h4>Productos destacados</h4>
-                        <div class="block_content">
-                            <ul>
-                                <li class="ajax_block_product first_item clear ">
-                                    <div id="product-box">
-                                        <h5><a href="#" title="Nacimiento niño 1">Pack Chelero La mano de Dios</a></h5>
-                                        <div class="product_imagebox"><a href="#" title="Nacimiento niño 1" class="product_image"><img src="delivery_files/14-67-large.jpg" alt="Nacimiento niño 1" height="255"></a>
-                                        </div>
-                                        <div>
-                                            <p class="price_container"><span class="price">$60.00</span></p>
-                                            <p class="product_buttons">
-                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_14" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=14&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
-                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=14" title="Ver">Ver</a>
-                                            </p>					
-                                        </div>						
-                                    </div>
-                                </li>
-                                <li class="ajax_block_product item  ">
-                                    <div id="product-box">
-                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=15" title="Nacimiento niño 2">Caramelo de Licor + agua natural RIMAC</a></h5>			
-                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=15" title="Nacimiento niño 2" class="product_image"><img src="delivery_files/15-68-large.jpg" alt="Nacimiento niño 2" height="255"></a></div>
-                                        <div>
-                                            <p class="price_container"><span class="price">$65.00</span></p>						<p class="product_buttons">
-                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_15" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=15&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
-                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=15" title="Ver">Ver</a>
-                                            </p>					
-                                        </div>						
-                                    </div>
-                                </li>
-                                <li class="ajax_block_product item  ">
-                                    <div id="product-box">
-                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=16" title="Nacimiento Niño 3">Pack para chapita</a></h5>			
-                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=16" title="Nacimiento Niño 3" class="product_image"><img src="delivery_files/16-69-large.jpg" alt="Nacimiento Niño 3" height="255"></a></div>
-                                        <div>
-                                            <p class="price_container"><span class="price">$72.00</span></p>						<p class="product_buttons">
-                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_16" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=16&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
-                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=16" title="Ver">Ver</a>
-                                            </p>					
-                                        </div>						
-                                    </div>
-                                </li>
-                                <li class="ajax_block_product item last_item_of_line ">
-                                    <div id="product-box">
-                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=17" title="Nacimiento niño 4">Nacimiento niño 4</a></h5>			
-                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=17" title="Nacimiento niño 4" class="product_image"><img src="delivery_files/17-70-large.jpg" alt="Nacimiento niño 4" height="255"></a></div>
-                                        <div>
-                                            <p class="price_container"><span class="price">$43.00</span></p>						<p class="product_buttons">
-                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_17" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=17&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
-                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=17" title="Ver">Ver</a>
-                                            </p>					
-                                        </div>						
-                                    </div>
-                                </li>
-                                <li class="ajax_block_product item clear last_line">
-                                    <div id="product-box">
-                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=18" title="Nacimiento niño 5 ">Nacimiento niño 5 </a></h5>			
-                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=18" title="Nacimiento niño 5 " class="product_image"><img src="delivery_files/18-71-large.jpg" alt="Nacimiento niño 5 " height="255"></a></div>
-                                        <div>
-                                            <p class="price_container"><span class="price">$72.00</span></p>						<p class="product_buttons">
-                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_18" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=18&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
-                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=18" title="Ver">Ver</a>
-                                            </p>					
-                                        </div>						
-                                    </div>
-                                </li>
-                                <li class="ajax_block_product last_item  last_line">
-                                    <div id="product-box">
-                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=19" title="Nacimiento niño 6 ">Nacimiento niño 6 </a></h5>			
-                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=19" title="Nacimiento niño 6 " class="product_image"><img src="delivery_files/19-72-large.jpg" alt="Nacimiento niño 6 " height="255"></a></div>
-                                        <div>
-                                            <p class="price_container"><span class="price">$43.00</span></p>						<p class="product_buttons">
-                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_19" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=19&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
-                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=19" title="Ver">Ver</a>
-                                            </p>					
-                                        </div>						
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <?php echo $this->layout()->content ?>
                     <!-- /MODULE Home Featured Products -->
                 </div>
                 <div id="right_column" class="column">
