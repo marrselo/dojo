@@ -1,57 +1,23 @@
-     <div id="maq_alineacion2">
-            <div id="maq_principal">
-                <div class="web_home">
-                    <div id="web_columna1">
-                        <div id="web_zonas">
-                            <div class="zona">
-                            	<table class="tablaZona" cellspacing="0">
-                                	<tr>
-                                    	<td class="td1">
-                                        	<h3 class="subtitulo1">Enlaces <br />Descatados</h3>
-                                            <p class="texto4">Los cursos de inglés general están diseñados
-Los cursos de inglés general están diseñados
-Los cursos de inglés general están diseñados</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    	<td class="td2"><p class="texto2"><a href="#">Ver más</a></p></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="zona">
-                            	<table class="tablaZona" cellspacing="0">
-                                	<tr>
-                                    	<td class="td1">
-                                        	<h3 class="subtitulo1">Enlaces <br />Descatados</h3>
-                                            <p class="texto4">Los cursos de inglés general están diseñados
-Los cursos de inglés general están diseñados
-Los cursos de inglés general están diseñados</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    	<td class="td2"><p class="texto2"><a href="#">Ver más</a></p></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="zona">
-                            	<table class="tablaZona" cellspacing="0">
-                                	<tr>
-                                    	<td class="td1">
-                                        	<h3 class="subtitulo1">Enlaces <br />Descatados</h3>
-                                            <p class="texto4">Los cursos de inglés general están diseñados
-Los cursos de inglés general están diseñados
-Los cursos de inglés general están diseñados</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    	<td class="td2"><p class="texto2"><a href="#">Ver más</a></p></td>
-                                    </tr>
-                                </table>
-                            </div><br />
-                        </div>
-                        <div id="web_extra"></div>
+<div id="featured-products_block_center" class="block products_block">
+    <h4>Productos destacados</h4>
+    <div class="block_content">
+        <ul>
+            <?php foreach($this->articulos as $index): ?>
+            <li class="ajax_block_product first_item clear ">
+                <div id="product-box">
+                    <h5><a href="#" title="<?php echo $index['nombre']?>"><?php echo $index['nombre']?></a></h5>
+                    <div class="product_imagebox"><a href="#" title="<?php echo $index['nombre']?>" class="product_image"><img src="<?php echo $index['imagen']?>" alt="<?php echo $index['nombre']?>" height="255"></a>
                     </div>
+                    <div>
+                        <p class="price_container"><span class="price"><?php echo $index['precioventa']?></span></p>
+                        <p class="product_buttons">
+                            <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_14" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=14&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
+                            <a class="product-viewdetails" href="/detalle-producto/<?php echo $index['idarticulo']?>" title="Ver">Ver</a>
+                        </p>					
+                    </div>						
                 </div>
-            </div>
-        </div>
-        
+            </li>
+            <?php  endforeach; ?>
+        </ul>
+    </div>
+</div>

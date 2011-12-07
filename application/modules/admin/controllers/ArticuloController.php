@@ -14,7 +14,6 @@ class Admin_ArticuloController
         $resizeObj = new ZExtraLib_ResizeImage(APPLICATION_PATH.'/../public/resize-example/sample.jpg');
         $resizeObj -> resizeImage(200, 200, 'crop');
 	$resizeObj -> saveImage(APPLICATION_PATH.'/../public/resize-example/sample_desdeZendparamarce.jpg', 500);
-        
         $formBusqueda = new Zend_Form();
         $formBusqueda->addElement(new Zend_Form_Element_Text('buscar'));
         $this->view->messages = $this->_flashMessenger->getMessages();
@@ -120,35 +119,8 @@ class Admin_ArticuloController
     
     
     function formularioArticulo(){
-        
-        $categoria = New Application_Model_Categoria();
-        $listaCategoria = $categoria->listaCategorias();        
-        $optionCategoria = array(''=>'Escoge una categoria'); 
-        foreach($listaCategoria as $index =>$valor){
-            $optionCategoria[$valor['idcategoria']] = $valor['descripcion'];
-            
-        }
-       
-        $form = new Zend_Form();
-        $form->setMethod('Post');
-         $form->addElement( 'select','idcategoria',
-                          array('requerid'=>true,
-                                'label'=>'Lista de Categorias',
-                                'multiOptions'=>$optionCategoria
-                              )
-                          );
-        $form->addElement(new Zend_Form_Element_Text('codigo'));
-        $form->addElement(new Zend_Form_Element_Text('nombre'));
-        $form->addElement(new Zend_Form_Element_Text('descripcion'));
-        $form->addElement(new Zend_Form_Element_Text('precioventa'));
-        $form->addElement(new Zend_Form_Element_Text('preciocompra'));
-        $form->addElement(new Zend_Form_Element_Submit('Enviar'));         
-        $form->getElement('codigo')->setLabel('Código');
-        $form->getElement('nombre')->setLabel('Nombre');
-        $form->getElement('nombre')->setRequired();
-        $form->getElement('descripcion')->setLabel('Descripcion');
-        $form->getElement('preciocompra')->setLabel('Precio Compra');
-        $form->getElement('precioventa')->setLabel('Precio Venta');
+        $form = new Application_Form_FormArticulo();
+        $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/articulo.phtml'))));
         return $form;
     }
     function nuevoArticuloAction()
