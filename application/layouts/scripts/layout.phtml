@@ -1,152 +1,301 @@
-    <?php echo $this->doctype() ?>    
-<html>
-        
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
     <head>
-            <?php echo $this->headTitle() ?>
-            <?php echo $this->headMeta() ?>
-            <?php echo $this->headLink() ?>
-            <?php echo $this->headStyle() ?>
-            <link rel="stylesheet" type="text/css" href="/styles/maq.css" />
-            <link rel="stylesheet" type="text/css" href="/styles/web.css" />
-            <link rel="stylesheet" type="text/css" href="/styles/ban.css" />
-            <link rel="stylesheet" type="text/css" href="/styles/edi.css" />
-            <script type="text/javascript" src="/js/jquery-1.7.min.js"></script>
-            
+        <title>Servicio de reparto a domicilio de licores, snacks, regalos y paquetes</title>
+        <meta name="description" content="Shop powered by PrestaShop">
+        <meta name="keywords" content="tienda, prestashop">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="generator" content="PrestaShop">
+        <meta name="robots" content="index,follow">
+        <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
+        <script type="text/javascript" src="/f/js/jquery-1.js"></script>
     </head>
-    <body> 
-<div id="maq_root">
-	<div id="maq_fondo1">        
-          <div id="maq_alineacion1">
-            <div id="maq_cabecera">
-                <div id="web_cabecera">
-                    <h1 id="web_logo">
-                        <a href="#">
-                            <strong>Segurikids</strong>
-                            <img src="/images/logo_empresa.png" alt="" width="210" height="120" />
+    <body id="index">
+        <div id="page">
+            <!-- Header -->
+            <div id="header">
+                <div id="header-wrapper">
+                    <!-- Logo -->
+                    <div class="header-middle">
+                        <a id="header_logo" href="index.html" title="Delivery Premium">
+                            <img class="logo" src="img/logo.png" alt="Delivery Premium">
                         </a>
-                    </h1>
-					
-					<div id="web_menuPrincipal">
-                        <ul>
-                            <li><a href="#" class="">Inicio</a></li>
-                            <li><a href="#" class="">Cobertura</a></li>
-                            <li><a href="#" class="">Realizar el pedido</a></li>
-                            <li class="last"><a href="#" class="">Mi Cuenta</a></li>
-                        </ul>
-                    </div>
-					
-                    <div id="web_menuSuperior1">
-                        <ul>
-                            <li><a href="#">Login</a></li>
-                            <li>/</li>
-                            <li><a href="#">Regístrate</a></li>
-                        </ul>
-                    </div>
-                    <div id="web_menuSuperior2">
-                        <ul>
-                            <li class="carrito">Agregó 0 producto(s)</li>
-                            <li><a href="#">Ir al carrito</a></li>
-                        </ul>
-                    </div>
-                    <div id="web_redesSuperior">
-                        <a href="#" class="facebook">facebook</a>
-                        <a href="#" class="twitter">twitter</a>
-                    </div>
-                    <a href="#" id="botonTip">tip</a>
-                    <div id="web_banner" class="ban_tipo1">
-                        <div id="ban_bloque">
-                            <div id="ban_slider">
-                                <div class="ban_banner"><img src="/images/banner_principal.jpg" width="960" height="390" alt="" /></div>
-                                <div class="ban_banner"><img src="/images/banner_principal.jpg" width="960" height="390" alt="" /></div>
-                                <div class="ban_banner"><img src="/images/banner_principal.jpg" width="960" height="390" alt="" /></div>
+                        <div id="header_right">
+                            <!-- Block user information module HEADER -->
+                            <div id="header_user">
+                                <p id="header_user_info">
+                                    Bienvenido,
+                                    <a href="#">Entrar</a>
+                                </p>
+                                <ul id="header_nav">
+                                    <li id="shopping_cart">
+                                        <a href="#" title="Su carrito de la compra"><span class="ajax_cart_quantity hidden">0</span>
+                                            <span class="ajax_cart_product_txt hidden">producto</span>
+                                            <span class="ajax_cart_product_txt_s hidden">productos</span>
+                                        </a>
+                                        <span class="ajax_cart_no_product">Sin productos</span>
+                                    </li>
+                                    <li id="your_account">
+                                        <a href="#" title="Su cuenta">Su cuenta</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /Block user information module HEADER -->
+                            <div id="phone_block">
+                                <span>Central telefónica</span>
+                                <h4>721-2121</h4>
+                            </div>
+                            <div id="exchange_block">
+                                <p><a href="http://www.sunat.gob.pe/cl-at-ittipcam/tcS01Alias" target="_blank">Tipo de cambio</a></p>
+                            </div>
+                            <div id="social_block">
+                                <a href="#"><img src="img/faceb.png" alt="Facebook" title="Hazte fan en Facebook"></a>
                             </div>
                         </div>
-                        <div id="ban_bloquePaginador"><div class="ban_paginacion" id="paginacion_home"></div></div>
+                        <div class="clear"></div>
                     </div>
-                    
+                </div>
+                <div id="menu-top">
+                    <ul id="menu">
+                        <li><a href="#" class="active">Inicio</a></li>
+                        <li><a href="#">Zonas de Reparto</a></li>	
+                        <li><a href="#">Realizar Pedidos</a></li>
+                        <li><a href="#">Políticas</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                    <!-- Block search module -->
+                    <div id="search_block">
+                        <h4>Buscar</h4>
+                        <form method="get" action="#" id="searchbox">
+                            <p class="block_content">
+                                <input name="orderby" value="position" type="hidden">
+                                <input name="orderway" value="desc" type="hidden">
+                                <input class="search_query" id="search_query_block" name="search_query" value="Buscar" onfocus="if (this.value == 'Buscar') this.value = ''" onblur="if (this.value == '') this.value = 'Buscar'" type="text">
+                                <!--input type="submit" id="search_button" class="button_mini" value="buscar" /-->
+                            </p>
+                        </form>
+                    </div>	
+                </div>
+                <!-- Show slideshow in homepage -->
+                <div id="slideshow">
+                    <!--NO TE OLVIDES DE AGREGAR UN BANNER ROTATIVO-->
+                </div>
+            </div>
+            <div id="columns">
+                <!-- Left -->
+                <div id="left_column" class="column">
+                    <!-- Block categories module -->
+                    <div id="categories_block_left" class="block">
+                        <h4>Delivery de Productos</h4>
+                        <div class="block_content">
+                            <ul style="display: block;" class="tree dynamized">
+                                <li>
+                                    <a href="#" title="Nacimiento niño">¡Ofertas Semanales!</a>
+                                </li>
+                                <li>
+                                    <a href="#" title="Nacimiento niña">Licores</a>
+                                </li>
+                                <li>
+                                    <a href="#" title="Arreglos con rosas">Bebida y Agua</a>
+                                </li>
+                                <li>
+                                    <a href="#" title="Arreglos variados">Snacks y Piqueos</a>
+                                </li>
+                                <li>
+                                    <a href="#" title="Arreglos con girasoles">Cigarros</a>
+                                </li>
+                                <li class="last">
+                                    <a href="#" title="Corsage Promo">Hielos y Otros</a>
+                                </li>
+                            </ul>
+                            <script type="text/javascript">
+                                // <![CDATA[
+                                // we hide the tree only if JavaScript is activated
+                                $('div#categories_block_left ul.dhtml').hide();
+                                // ]]>
+                            </script>
+                        </div>
+                    </div>
+                    <!-- /Block categories module -->
+                    <!-- Block Newsletter module-->
+                    <div id="newsletter_block_left" class="block">
+                        <h4>Suscríbete</h4>
+                        <div class="block_content">
+                            <form action="http://www.floreriadetalles.com/tienda/" method="post">
+                                <p>
+                                    <input name="email" size="18" value="su email" onfocus="javascript:if(this.value=='su email')this.value='';" onblur="javascript:if(this.value=='')this.value='su email';" type="text">
+                                </p>
+                                <p>
+                                    <select name="action">
+                                        <option selected="selected" value="0">suscribirse</option>
+                                        <option value="1">Borrarse</option>
+                                    </select>
+                                    <input value="ok" name="submitNewsletter" type="submit">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /Block Newsletter module-->
+                </div>
+                <!-- Center -->
+                <div id="center_column">
+                    <!-- MODULE Home Featured Products -->
+                    <div id="featured-products_block_center" class="block products_block">
+                        <h4>Productos destacados</h4>
+                        <div class="block_content">
+                            <ul>
+                                <li class="ajax_block_product first_item clear ">
+                                    <div id="product-box">
+                                        <h5><a href="#" title="Nacimiento niño 1">Pack Chelero La mano de Dios</a></h5>
+                                        <div class="product_imagebox"><a href="#" title="Nacimiento niño 1" class="product_image"><img src="delivery_files/14-67-large.jpg" alt="Nacimiento niño 1" height="255"></a>
+                                        </div>
+                                        <div>
+                                            <p class="price_container"><span class="price">$60.00</span></p>
+                                            <p class="product_buttons">
+                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_14" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=14&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
+                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=14" title="Ver">Ver</a>
+                                            </p>					
+                                        </div>						
+                                    </div>
+                                </li>
+                                <li class="ajax_block_product item  ">
+                                    <div id="product-box">
+                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=15" title="Nacimiento niño 2">Caramelo de Licor + agua natural RIMAC</a></h5>			
+                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=15" title="Nacimiento niño 2" class="product_image"><img src="delivery_files/15-68-large.jpg" alt="Nacimiento niño 2" height="255"></a></div>
+                                        <div>
+                                            <p class="price_container"><span class="price">$65.00</span></p>						<p class="product_buttons">
+                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_15" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=15&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
+                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=15" title="Ver">Ver</a>
+                                            </p>					
+                                        </div>						
+                                    </div>
+                                </li>
+                                <li class="ajax_block_product item  ">
+                                    <div id="product-box">
+                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=16" title="Nacimiento Niño 3">Pack para chapita</a></h5>			
+                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=16" title="Nacimiento Niño 3" class="product_image"><img src="delivery_files/16-69-large.jpg" alt="Nacimiento Niño 3" height="255"></a></div>
+                                        <div>
+                                            <p class="price_container"><span class="price">$72.00</span></p>						<p class="product_buttons">
+                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_16" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=16&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
+                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=16" title="Ver">Ver</a>
+                                            </p>					
+                                        </div>						
+                                    </div>
+                                </li>
+                                <li class="ajax_block_product item last_item_of_line ">
+                                    <div id="product-box">
+                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=17" title="Nacimiento niño 4">Nacimiento niño 4</a></h5>			
+                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=17" title="Nacimiento niño 4" class="product_image"><img src="delivery_files/17-70-large.jpg" alt="Nacimiento niño 4" height="255"></a></div>
+                                        <div>
+                                            <p class="price_container"><span class="price">$43.00</span></p>						<p class="product_buttons">
+                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_17" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=17&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
+                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=17" title="Ver">Ver</a>
+                                            </p>					
+                                        </div>						
+                                    </div>
+                                </li>
+                                <li class="ajax_block_product item clear last_line">
+                                    <div id="product-box">
+                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=18" title="Nacimiento niño 5 ">Nacimiento niño 5 </a></h5>			
+                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=18" title="Nacimiento niño 5 " class="product_image"><img src="delivery_files/18-71-large.jpg" alt="Nacimiento niño 5 " height="255"></a></div>
+                                        <div>
+                                            <p class="price_container"><span class="price">$72.00</span></p>						<p class="product_buttons">
+                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_18" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=18&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
+                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=18" title="Ver">Ver</a>
+                                            </p>					
+                                        </div>						
+                                    </div>
+                                </li>
+                                <li class="ajax_block_product last_item  last_line">
+                                    <div id="product-box">
+                                        <h5><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=19" title="Nacimiento niño 6 ">Nacimiento niño 6 </a></h5>			
+                                        <div class="product_imagebox"><a href="http://www.floreriadetalles.com/tienda/product.php?id_product=19" title="Nacimiento niño 6 " class="product_image"><img src="delivery_files/19-72-large.jpg" alt="Nacimiento niño 6 " height="255"></a></div>
+                                        <div>
+                                            <p class="price_container"><span class="price">$43.00</span></p>						<p class="product_buttons">
+                                                <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_19" href="http://www.floreriadetalles.com/tienda/cart.php?qty=1&amp;id_product=19&amp;token=6a4b0680d3cda087dadb4e916561e4e2&amp;add" title="Añadir al carrito">Añadir al carrito</a>
+                                                <a class="product-viewdetails" href="http://www.floreriadetalles.com/tienda/product.php?id_product=19" title="Ver">Ver</a>
+                                            </p>					
+                                        </div>						
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /MODULE Home Featured Products -->
+                </div>
+                <div id="right_column" class="column">
+                    <!-- MODULE Block cart -->
+                    <div id="cart_block" class="block exclusive">
+                        <h4>
+                            <a href="http://www.floreriadetalles.com/tienda/order.php">Mi Carrito</a>
+                        </h4>
+                        <div class="block_content">
+                            <!-- block summary -->
+                            <div id="cart_block_summary" class="collapsed">
+                                <span class="ajax_cart_quantity" style="display:none;">0</span>
+                                <span class="ajax_cart_product_txt_s" style="display:none">productos</span>
+                                <span class="ajax_cart_product_txt">producto</span>
+                                <span class="ajax_cart_total" style="display:none">$0.00</span>
+                                <span class="ajax_cart_no_product">(vacío)</span>
+                            </div>
+                            <!-- block list of products -->
+                            <div id="cart_block_list" class="expanded">
+                                <p id="cart_block_no_products">Sin producto</p>
+                                <div id="cart-prices">
+                                    <div id="cart-prices-box">
+                                        <span>Transporte</span>
+                                        <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">$0.00</span>
+                                    </div>
+                                    <div id="cart-prices-box">
+                                        <span>Total</span>
+                                        <span id="cart_block_total" class="price ajax_block_cart_total">$0.00</span>
+                                    </div>
+                                </div>
+                                <p id="cart-buttons">
+                                    <a href="http://www.floreriadetalles.com/tienda/order.php" class="button_blockcart" title="Carrito">Carrito</a>			<a href="http://www.floreriadetalles.com/tienda/order.php?step=1" id="button_order_cart" class="button_blockcart " title="Confirmar">Confirmar</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /MODULE Block cart -->
+                    <!-- MODULE Block specials -->
+                    <div id="special_block_right" class="block products_block exclusive blockspecials">
+                        <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
+                        <div class="block_content">
+                            <h5><a href="#" title="Variados 4">Variados 4</a></h5>
+                            <p class="description">&nbsp;bouquet de rosas rojas y...</p>
+                            <div class="product_image">
+                                <a href="#"><img src="delivery_files/39-92-large.jpg" alt="Variados 4" title="Variados 4"></a>
+                            </div>
+                            <span class="price-discount">Antes $43.00</span>
+                            <span class="price">$32.00</span>
+                            <a class="special-addcart ajax_add_to_cart_button" rel="ajax_id_product_39" href="#" title="Add to cart">Agregar a carrito</a>
+                            <p>
+                                <a href="#" title="Ver todas las ofertas" class="button_large">Ver todas las ofertas</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /MODULE Block specials -->
+                    <div class="box-gray">
+                        <h4>Se aceptan tarjetas</h4>
+                        <a href="http://www.floreriadetalles.com/tienda/"><img src="img/payment001.png"></a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!-- Footer -->
+            <div id="footer">
+                <div id="footer_top">
+                    <div class="info">
+                        SERVICIO DE REPARTO EXCLUSIVO.<br />
+                        <span style="color:#FFF; font-size:15px">Atención de repartos de Jueves a Domingo de 5pm a 5am, Feriados de 3pm. a 3am.</span><br /><br />
+                        TOMAR BEBIDAS ALCOHÓLICAS EN EXCESO ES DAÑINO
+                    </div>
+                    <div class="logo">
+                        <a href="#"><img src="img/logo_footer.png"></a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-           <div id="maq_opciones">
-        	<div class="fondo"></div>
-            <div id="pie"></div>
-        </div>
-        
-        
-        
-        <?php echo $this->layout()->content ?>
- </div>
-    <div id="maq_fondo2">
-        <div id="maq_alineacion3">
-            <div id="maq_pie">
-                <div id="web_pie">
-                    <div id="standares">
-                    	<a href="#" class="w3c">w3c</a>
-                        <a href="#" class="xhtml">xhtml</a>
-                        <a href="#" class="css">css</a>
-                    </div>
-                    <div id="web_menuInferior1">
-                        <ul>
-                            <li><a href="#">Términos y Condiciones</a></li>
-                            <li>|</li>
-                            <li><a href="#">Políticas de Privacidad</a></li>
-                            <li>|</li>
-                            <li><a href="#">Políticas de Atención</a></li>
-                            <li>|</li>
-                            <li><a href="#">Como Comprar</a></li>
-                        </ul>
-                    </div>
-                    <p id="creditos">by <span><a href="#">staffcreativa</a></span>.com</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        
-    
-        <script type="text/javascript" src="/js/AG_slider.js"></script>
-<script type="text/javascript">
-	
-	//<![CDATA[
-	
-	$(function(){
-		
-		jQuery.fn.AG_slider({
-	       numDesplazamiento:1,
-	       anchoElemento:960,
-	       area:1,
-	       slider:'#ban_slider',
-	       velocidadSlide:500,
-	       //conteo:'#mostrarInfo',
-	       elemento:'#ban_slider .ban_banner',
-
-	       botonIzq:'#ban_btnIzq .ban_btnIzquierdo1',
-	       botonDer:'#ban_btnDer .ban_btnDerecho1',
-	       botonIzqInactivo:'#ban_btnIzq .ban_btnIzquierdo2',
-	       botonDerInactivo:'#ban_btnDer .ban_btnDerecho2',
-	       
-	       botones:true,
-	       //opacidadBoton:0.3,
-	       paginador:'#paginacion_home',
-	       activarPaginacion:true,
-	       paginadorCentrado:false,
-	       auto:true,
-	       temporizador:5000,
-	       elementoBloqueo:'#web_banner'
-	    }); 	
-		
-	})
-	
-	
-	 //]]>
-	
-</script>
-
-       <?php echo $this->headScript() ?>
-    
-    
-    
     </body>
-    
-    </html>
+</html>

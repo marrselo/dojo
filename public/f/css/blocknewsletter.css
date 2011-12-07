@@ -1,0 +1,56 @@
+/* Block newsletter */
+#newsletter_block_left .block_content { padding: 0.5em 0; text-align: center }
+#newsletter_block_left .block_content p { padding: 0.3em 0; text-align: center }
+#newsletter_block_left .block_content input, #newsletter_block_left .block_content select { margin-left:0; text-align:center; }
+#newsletter_block_left .block_content input.button {
+    background: url('../../../img/vs-btn-special.png') repeat-x scroll right 5px #91611A;
+    font-size: 10px !important;
+    height: 18px;
+    margin: 1em auto 0;
+    padding-bottom: 2px;
+    padding-right: 6px;
+    width:100px;
+}
+
+/* Block newsletter home */
+#index #center_column #newsletter_block_left {
+    background: url('../../../img/vs-bg-newsletter.gif') no-repeat scroll 0 0 #4F3916;
+    float: left;
+    margin: 10px 0;
+    width: 308px;
+	height:80px;
+}
+#index #center_column #newsletter_block_left h4 {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+    padding:10px 0 8px;
+    text-align: center;
+}
+#index #center_column #newsletter_block_left .block_content {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+}
+#index #center_column #newsletter_block_left .block_content form { overflow:hidden; width:250px; margin:0 auto; }
+#index #center_column #newsletter_block_left .block_content p {
+    float: left;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    width: 145px;
+}
+#index #center_column #newsletter_block_left .block_content p.nl-submit { width:105px; }
+#index #center_column #newsletter_block_left .block_content p.warning_inline {
+    display: block;
+    float: none;
+    text-align: center;
+    width: 308px;
+}
+#index #center_column #newsletter_block_left .block_content input, 
+#index #center_column #newsletter_block_left .block_content select { font-size: 11px; }
+#index #center_column #newsletter_block_left .block_content select { width:100px; display:none; }
+#index #center_column #newsletter_block_left .block_content input { margin: 0; padding: 1px 0 2px; width: 140px; }
+#index #center_column #newsletter_block_left .block_content input.button { margin: 0 auto; padding: 0 0 2px; width: 100px; }

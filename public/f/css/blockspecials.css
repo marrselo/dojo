@@ -1,0 +1,79 @@
+/* Block specials */
+.blockspecials h5 {
+	display: block;
+	color: #37580d;
+    font-family: 'AllerItalic';	
+	font-size: 14px;
+	margin-left: 1em;
+}
+.blockspecials h5 a,
+.blockspecials h5 a:hover {
+	color: #37580d;
+}
+.blockspecials div.product_image {
+	text-align: center;
+	border: 1px solid #91a21c;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-o-border-radius: 1em;
+	-ms-border-radius: 1em;
+	-pie-border-radius: 1em;
+	height: 223px;
+	margin: 0 auto;
+	position: relative;
+	width: 198px;
+	behavior: url('/tienda/PIE.htc');
+}
+.blockspecials div.product_image img {
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-o-border-radius: 1em;
+	-ms-border-radius: 1em;
+	-pie-border-radius: 1em;
+	height: 223px;
+	position: relative;
+	width: 198px;
+	behavior: url('/tienda/PIE.htc');
+}
+.blockspecials p {
+	padding: 3px 0 2px; 
+	margin: 0;
+	text-align: center;
+	clear: both
+}
+.blockspecials p a { margin: 0 auto }
+.blockspecials p.description { 
+	color: #585858;
+	padding: 0 1em 0.5em;
+	text-align: left;
+}
+.blockspecials span.price-discount {
+	display: block;
+	color: #585858;
+    font-family: 'AllerItalic';
+	font-size: 14px;
+	padding: 0.5em 1em 0;
+}
+.blockspecials span.price {
+	display: block;
+	color: #37580d;
+    font-family: 'ChunkFiveRoman';
+	font-size: 22px;
+	margin: 0;
+	padding: 0 0.6em 0;
+}
+.blockspecials a.special-addcart {
+	background: url('../../../img/button_larger.png');
+	color: #ffffff;
+	display: block;
+	font-size: 11px;
+	height: 23px;
+	padding: 0.7em 0.7em 0;
+	margin-left: 1em;
+	width: 86px;
+}
+.blockspecials a.special-addcart:hover {
+	color: #ffffff;
+}

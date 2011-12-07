@@ -1,0 +1,12 @@
+/* block myaccount */
+div.myaccount ul.bullet li { 
+    background: url('../../../img/vs-disc.png') no-repeat scroll 0 10px transparent;
+    border-bottom: 1px dashed #CBC3B4;
+    line-height: 1.5;
+    margin: 0 5px;
+    padding: 5px 10px !important;
+}
+div.myaccount ul.bullet .icon { display: none }
+
+div.myaccount p.logout { padding: 0.3em 0 0.3em 1.5em; }
+div.myaccount p.logout a { font-weight: bold; }

@@ -1,0 +1,29 @@
+/* Block manufacturer */
+#manufacturers_block_left .tree {
+	padding: 0 5px 0;
+}
+#manufacturers_block_left .tree li {
+	background: none;
+	border: none;
+	border-bottom: 1px dotted #AEAEAE;
+	font-size: 13px;
+	font-family: Arial;
+	line-height: 1.5;
+	width: 189px;
+	padding: 0;
+	overflow: hidden;
+}
+#manufacturers_block_left .tree a {
+	background: url('../../../img/list-arrow.png') left top no-repeat;
+	color: #585858;
+	display: block;
+	padding: 3px 0 3px 13px;
+	float: left;
+}
+#manufacturers_block_left .tree a:hover {
+	background: url('../../../img/list-arrow.png') left bottom no-repeat;
+	color: #1FA22E;
+	text-decoration: none;
+}
+.blockmanufacturer p { text-align:center; }
+.blockmanufacturer select { margin: 0 0 5px; width: 95%; }
