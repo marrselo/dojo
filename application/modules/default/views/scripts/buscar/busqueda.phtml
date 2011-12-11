@@ -1,8 +1,15 @@
 <div id="featured-products_block_center" class="block products_block">
     <h4>Productos destacados</h4>
     <div class="block_content">
+        <?php
+        $params = array('slug'=>$this->slug);
+        echo $paginator = $this->paginationControl($this->articulos,
+                                    'Sliding',
+                                    '/buscar/paginator.phtml',$params); 
+        ?>
+        <?php if(count($this->articulos)>0){?>
         <ul>
-            <?php foreach($this->articulos as $index): ?>
+                        <?php foreach($this->articulos as $index): ?>
             <li class="ajax_block_product first_item clear ">
                 <div id="product-box">
                     <h5>
@@ -30,6 +37,11 @@
                 </div>
             </li>
             <?php  endforeach; ?>
+
         </ul>
+        <?php echo $paginator;?>
+    <?php  } else { ?>    
+        No se encontro ningun articulo
+    <?php  } ?>    
     </div>
 </div>

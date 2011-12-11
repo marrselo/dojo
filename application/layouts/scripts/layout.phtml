@@ -55,11 +55,11 @@
                 </div>
                 <div id="menu-top">
                     <ul id="menu">
-                        <li><a href="#" class="active">Inicio</a></li>
-                        <li><a href="#">Zonas de Reparto</a></li>	
-                        <li><a href="#">Realizar Pedidos</a></li>
-                        <li><a href="#">Políticas</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="/" class="<?php echo $this->menuActive1 ?>">Inicio</a></li>
+                        <li><a href="/zonas-reparto" class="<?php echo $this->menuActive2 ?>">Zonas de Reparto</a></li>	
+                        <li><a href="/realizar-pedidos" class="<?php echo $this->menuActive3 ?>">Realizar Pedidos</a></li>
+                        <li><a href="/politicas" class="<?php echo $this->menuActive4 ?>">Políticas</a></li>
+                        <li><a href="/contacto" class="<?php echo $this->menuActive5 ?>">Contacto</a></li>
                     </ul>
                     <!-- Block search module -->
                     <div id="search_block">
@@ -71,10 +71,14 @@
                         </form>
                     </div>	
                 </div>
+                
+                <?php if($this->slideshow){  ?>
                 <!-- Show slideshow in homepage -->
                 <div id="slideshow">
                     <!--NO TE OLVIDES DE AGREGAR UN BANNER ROTATIVO-->
                 </div>
+                <?php } ?>
+                
             </div>
             <div id="columns">
                 <!-- Left -->

@@ -11,9 +11,7 @@ class Admin_ArticuloController
     }
     function indexAction()
     {
-        $resizeObj = new ZExtraLib_ResizeImage(APPLICATION_PATH.'/../public/resize-example/sample.jpg');
-        $resizeObj -> resizeImage(200, 200, 'crop');
-	$resizeObj -> saveImage(APPLICATION_PATH.'/../public/resize-example/sample_desdeZendparamarce.jpg', 500);
+        $this->view->messages = $this->_flashMessenger->getMessages();
         $formBusqueda = new Zend_Form();
         $formBusqueda->addElement(new Zend_Form_Element_Text('buscar'));
         $this->view->messages = $this->_flashMessenger->getMessages();
@@ -54,6 +52,15 @@ class Admin_ArticuloController
         
         if ($this->_request->isPost()) {
             if($form->isValid($params)){
+                unlink($form->imagen->getDestination().'/'.$articulo['imagen']);
+                $extn = pathinfo($form->imagen->getFileName(),PATHINFO_EXTENSION);
+                $filter = new ZExtraLib_SeoUrl();
+                $nameFile = $filter->filter(trim($params['nombre']),'-',0);
+                $slugBusqueda = str_replace('-',' ',$filter->filter(trim($params['slugBusqueda']),'-',0));
+                $form->imagen->addFilter('Rename',array('target' => $form->imagen->getDestination().'/'.$nameFile.'-'.$params['idArticulo'].'.'.$extn )); 
+                $form->imagen->receive();
+                $this->redimencionarImagen($form->imagen->getDestination().'/'.$nameFile.'-'.$params['idArticulo'].'.'.$extn);
+
                 $page = ($this->getRequest()->getUserParam('page')=='')? '' : 'page/'.$this->getRequest()->getUserParam('page') ;
                 $data['idcategoria']=$params['idcategoria'];
                 $data['codigo']=$params['codigo'];
@@ -61,9 +68,13 @@ class Admin_ArticuloController
                 $data['descripcion']=$params['descripcion'];
                 $data['precioventa']=$params['precioventa'];
                 $data['preciocompra']=$params['preciocompra'];
+                $data['slugbusqueda']=$slugBusqueda;
+                $data['imagen']=$nameFile.'-'.$params['idArticulo'].'.'.$extn;
+                $data['slug']=$nameFile.'-'.$params['idArticulo'];
                 $this->_articuloModel->actualizarArticulo($params['idArticulo'],$data);
                 $this->_flashMessenger->addMessage('Datos actualizados satisfactoriamente.');
-                $this->_redirect('/admin/articulo/'.$page);
+                $this->_articuloModel->registroSlugArticulo($params['nombre'].' '.$slugBusqueda,$params['idArticulo']);
+                //$this->_redirect('/admin/articulo/'.$page);
             }
         }else{
             $form->getElement('codigo')->setValue($articulo['codigo']);
@@ -71,8 +82,15 @@ class Admin_ArticuloController
             $form->getElement('precioventa')->setValue($articulo['precioventa']);
             $form->getElement('preciocompra')->setValue($articulo['preciocompra']);
             $form->getElement('descripcion')->setValue($articulo['descripcion']);
+            $form->getElement('slugBusqueda')->setValue($articulo['slugbusqueda']);
         }
         $this->view->formulario = $form;
+        $this->view->imagen = $articulo['imagen'];
+    }
+    function redimencionarImagen($file){
+        $resizeObj = new ZExtraLib_ResizeImage($file);
+        $resizeObj -> resizeImage(251,232,'crop');
+        $resizeObj -> saveImage($file);
     }
     function movimientoArticuloAction(){
         $params = $this->_getAllParams();
@@ -116,8 +134,6 @@ class Admin_ArticuloController
         }
         
     }
-    
-    
     function formularioArticulo(){
         $form = new Application_Form_FormArticulo();
         $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/articulo.phtml'))));
@@ -130,18 +146,39 @@ class Admin_ArticuloController
         $params = $this->_getAllParams();
         if ($this->_request->isPost()) {            
             if($form->isValid($params)){
+                $filter = new ZExtraLib_SeoUrl();
                 $page = ($this->getRequest()->getUserParam('page')=='')? '' : 'page/'.$this->getRequest()->getUserParam('page') ;
                 $data['idcategoria']=$params['idcategoria'];
+                //$slugBusqueda = $filter->filter(trim($params['slugBusqueda']),' ',0);
+                $slugBusqueda = str_replace('-',' ',$filter->filter(trim($params['slugBusqueda']),'-',0));
                 $data['codigo']=$params['codigo'];
                 $data['nombre']=$params['nombre'];
+                $data['slugbusqueda']=$slugBusqueda;
                 $data['descripcion']=$params['descripcion'];
                 $data['precioventa']=$params['precioventa'];
                 $data['preciocompra']=$params['preciocompra'];
                 $data['fla']='1';
-                $this->_articuloModel->crearArticulo($data);                                
+                $idArticulo = $this->_articuloModel->crearArticulo($data);                                
+                $extn = pathinfo($form->imagen->getFileName(),PATHINFO_EXTENSION);
+                
+                $nameFile = $filter->filter(trim($params['nombre']),'-',0);
+                $form->imagen->addFilter('Rename',array('target' => $form->imagen->getDestination().'/'.$nameFile.'-'.$idArticulo.'.'.$extn )); 
+                $form->imagen->receive();
+                $this->redimencionarImagen($form->imagen->getDestination().'/'.$nameFile.'-'.$idArticulo.'.'.$extn);
+                $data = array(
+                    'imagen'=>$nameFile.'-'.$idArticulo.'.'.$extn,
+                    'slug'=>$nameFile.'-'.$idArticulo
+                    );
+                $this->_articuloModel->actualizarArticulo($idArticulo,$data);
+                $this->_flashMessenger->addMessage('Datos actualizados satisfactoriamente.');
+                $this->_articuloModel->registroSlugArticulo($params['nombre'].' '.$slugBusqueda,$idArticulo);
+                $this->_redirect('/admin/articulo/');
             }        
         }
-        
+    }
+    function registroArticuloSlug($idArticulo,$text){
+        $filter = new ZExtraLib_SeoUrl();
+        $nameFile = $filter->filter(trim($text),'-',0);
         
     }
 

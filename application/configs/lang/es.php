@@ -83,5 +83,9 @@ return array(Zend_Validate_NotEmpty::IS_EMPTY => 'Este campo es obligatorio.',
     Zend_Validate_Hostname::LOCAL_NAME_NOT_ALLOWED => "'%value%' parece ser una nombre de red local, pero el nombre de red local no ha sido asignado",
     Zend_Validate_Hostname::CANNOT_DECODE_PUNYCODE => "'%value%' parece ser un nombre de host DNS, pero la notación no puede ser decodificada",
     Zend_Validate_InArray::NOT_IN_ARRAY => "'%value%' no se encontro en el arreglo",
-    Zend_Validate_LessThan::NOT_LESS => "'%value%' no es menor que '%max%'"
+    Zend_Validate_LessThan::NOT_LESS => "'%value%' no es menor que '%max%'",
+    Zend_Validate_File_Size::TOO_BIG => "Todos los archivos de la suma debe tener un tamaño máximo de '%max%'",
+    Zend_Validate_File_Upload::NO_FILE => "El Arichivo no ha sido subido",
+    Zend_Validate_File_Extension::FALSE_EXTENSION => "el archivo '%value%' no tiene una extencion adecuada"
+        
 );

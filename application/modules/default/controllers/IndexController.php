@@ -18,12 +18,9 @@ class Default_IndexController extends ZExtraLib_Controller_Action
         $params = $this->_getAllParams();
         $params['categoria']=isset($params['categoria'])?$params['categoria']:$categorias[0]['idcategoria'];
         $this->view->articulos = $this->_modelArticulos->listarArticulosDeUnaCategoria($params['categoria']);
+        $this->view->menuActive1='active';
+        $this->view->slideshow = true;
 
     }
-    public function productosAction(){
-        
-    }
-    
-
 }
 

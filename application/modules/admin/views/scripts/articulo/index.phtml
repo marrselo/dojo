@@ -1,13 +1,4 @@
 <div><?php echo $this->formBuscar; ?></div>
-<?php if(is_array($this->messages) && count($this->messages)>0 ) { ?>
-
-<div class="ybox center ">
-	        <?php foreach($this->messages as $index):?>
-	        <p><?php echo $index; ?></p>
-                <?php endforeach;?>
-        
-</div>
-<?php } ?>
 <div><a href="/admin/articulo/nuevo-articulo">Nuevo</a></div>
 <table class="sticky-enabled tableSelect-processed sticky-table">
     <thead class="tableHeader-processed">
