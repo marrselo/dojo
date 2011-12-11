@@ -43,7 +43,7 @@
             <td> </td>
             <td> </td>
             <td style="color: red; font-weight: bold"> Total General </td>
-            <td style="color: red; font-weight: bold"> 738</td>
+            <td style="color: red; font-weight: bold"> <span id="total">0</span></td>
             <td> </td>
         </tr>
 
@@ -65,6 +65,7 @@
             <option value="45">45</option>
         </select>
     
+    
 </div>
 <div>
     <label> Informacion Adicional
@@ -74,8 +75,12 @@
         </label>
 </div>
 <div>
-    <label>Responsable <input type="text"></label>    
-    <span> Marcelo Carranza <a href="#">x</a></span> 
+    <label>Responsable <input type="text" id="searchTextResponsable">
+    <span id="responsableSearch" style="position: absolute; background-color: #009ede;"></span>
+    <span id="responsable"></span>
+    </label>
+    
+    
 </div> 
 <div> [<a href="#">Enviar Pedido</a>] - [<a href="">Cancelar Pedido</a>]</div>
 
@@ -89,9 +94,15 @@
 <script type="text/javascript">
 $(function() {
     $('#actionViewModal').click(function(){
-        $("modalView").attr('class','modalActive'); 
+        $("#modalView").attr('class','modalActive'); 
     });
 
+    $("#searchTextResponsable").keypress(function(e) {
+       if(e.which == 13){
+           searchResponsable(this.value);
+       } 
+    });
+    
     $( "#searchCliente" ).keypress(function(e) {
         if(e.which == 13){
             var valor = this.value;       
@@ -154,6 +165,12 @@ $(function() {
         var idClienteArray = this.id.split('-');
         mostrarCLiente(idClienteArray[1]);
         });
+        
+        $("[id^=itemResponsable]").live("click",function(){
+        var idClienteArray = this.id.split('-');
+        mostrarResponsable(idClienteArray[1]);
+        });
+        
         $("[id^=itemArticulo]").live("click",function(){
         var idClienteArray = this.id.split('-');
         mostrarArticulo(idClienteArray[1]);
@@ -162,8 +179,28 @@ $(function() {
         var idArticuloArray = this.id.split('-');
         $(this).parent().parent().remove();
         eliminaArticulo(idArticuloArray[1]);
+        totalProductos();
         });
 
+    function mostrarResponsable(idusuario){
+        $.ajax({
+        data: "idusuario="+idusuario,
+        type: "POST",
+        dataType: "json",
+        url: "/admin/pedidos/ajax-get-responsable",
+        success: function(data){
+                    var contenido='';
+                        var nombre = data['apellidomaterno'];
+                        nombre = nombre + ' ' + data['apellidopaterno'];
+                        nombre = nombre + ' ' + data['nombre'];
+                        contenido = nombre+'<input type="hidden" id="idusuario" value='+idusuario+'>';
+            $('#responsable').empty(); 
+            $('#responsableSearch').empty(); 
+            $('#responsable').append(contenido);
+            
+            }
+        });
+    }
     function eliminaArticulo(idArticulo){
          $.ajax({
         data: "idArticulo="+idArticulo,
@@ -174,6 +211,8 @@ $(function() {
         }
          });
     }
+    
+    
     function mostrarArticulo(idArticulo){
         $.ajax({
         data: "idArticulo="+idArticulo,
@@ -183,18 +222,72 @@ $(function() {
         success: function(data){
             var contenido='';
                 contenido = contenido +'<tr id="row_'+data['idarticulo']+'">'
-                contenido = contenido +'<td>'+data['nombre']+'</td>'
+                contenido = contenido +'<td>'+data['nombre']+'<input type="hidden" name="idarticulo[]" value="'+data['idarticulo']+'" id="idarticulo_'+data['idarticulo']+'"></td>'
                 contenido = contenido +'<td>'+data['descripcion']+'</td>'
-                contenido = contenido +'<td><input name="precio[]" id="precio_'+data['idarticulo']+'" type="text" value="'+data['precioventa']+'"></td>'
-                contenido = contenido +'<td><input name="cantidad[]" id="cantidad_'+data['idarticulo']+'" type="text" value="0"></td>'
-                contenido = contenido +'<td><input disabled="disabled" type="text" value="0"></td>'
+                contenido = contenido +'<td><input name="precio[]" id="precio_'+data['idarticulo']+'" type="text" value="'+parseFloat(data['precioventa'])+'"></td>'
+                contenido = contenido +'<td><input name="cantidad[]" id="cantidad_'+data['idarticulo']+'" type="text" value="1"></td>'
+                contenido = contenido +'<td><input name="total[]" id="total_'+data['idarticulo']+'"  disabled="disabled" type="text" value="0"></td>'
                 contenido = contenido +'<td>[<a id="eliminarArti-'+data['idarticulo']+'" href="#">Eliminar</a>]</td>'
                 contenido = contenido +'</tr>'
             $('#tableArticulo tr:first').after(contenido);
             $('#autocompleteArticulo').empty(); 
-            
+            totalItem(data['idarticulo']);
+            //totalProductos();
             }
         });
+        }
+        
+        $("[id^=precio_]").live("keyup",function(e){
+        var splitId = this.id.split('_');
+        totalItem(splitId[1]);
+        });
+        $("[id^=cantidad_]").live("keyup",function(e){
+        var splitId = this.id.split('_');
+        totalItem(splitId[1]);
+        });
+        
+        function totalProductos(){
+            var total =0;
+            $("[id^=idarticulo_]").each(function(){
+                var splitId = this.id.split('_');
+                total = total + parseFloat($('#total_'+splitId[1]).attr('value'));
+            });
+            $('#total').empty(); 
+            $('#total').append(total);
+
+        }
+        
+        function totalItem(idArticulo){
+        $('#total_'+idArticulo).attr('value',parseFloat($('#precio_'+idArticulo).attr('value'))*parseFloat($('#cantidad_'+idArticulo).attr('value')));
+        totalProductos();
+        }
+        
+        
+        function searchResponsable(textSearch){
+        $.ajax({
+        data: "buscarResponsable="+textSearch,
+        type: "POST",
+        dataType: "json",
+        url: "/admin/pedidos/ajax-search-responsable",
+        success: function(data){
+                    var contenido='';
+                    contenido = '<div><table>';
+                    for (var i = 0; i < data.length; i++) { 
+                        var nombre = data[i]['apellidomaterno'];
+                        nombre = nombre + ' ' + data[i]['apellidopaterno'];
+                        nombre = nombre + ' ' + data[i]['nombre'];
+                        contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemResponsable-'+data[i]['idusuario']+'">';
+                        contenido = contenido + '<td>';
+                        contenido = contenido + nombre;
+                        contenido = contenido + '</td>';
+                        contenido = contenido + '</tr>';
+                    }
+                    contenido = contenido + '</table></div>';
+            $('#responsableSearch').empty(); 
+            $('#responsableSearch').append(contenido);
+        }
+        });
+        
         }
         
         function mostrarCLiente(idCliente){
@@ -206,7 +299,6 @@ $(function() {
         success: function(data){
             $('#tableSeachCLiente').empty(); 
             $('#idcliente').attr('value',data['idcliente']); 
-            
             var contenido='';
             contenido = '<table class="sticky-enabled tableSelect-processed sticky-table">';
             contenido = contenido +'<thead class="tableHeader-processed">';
