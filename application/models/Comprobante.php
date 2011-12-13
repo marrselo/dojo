@@ -5,14 +5,16 @@ class Application_Model_Comprobante  extends Zend_Db_Table {
     function listarComprobante(){
         $db = $this->getAdapter();
         $resul = $db->select()
-            ->from($this->_name)
-            ->join(
-                'tipo_doc',
-                'numserie.idtip_doc=.idtip_doc',
-                array())           
-            ->query();
-        return $resul;        
+            ->from(array('N' => 'numeroserie' ), array(
+                'N.idnumeroserie', 'tipo' => 'N.idtip_doc', 'N.serie', 'max' => 'max(num)' ,
+                'min' => 'min(num)'))
+            ->join(array('T' => 'tip_doc'), 'N.idtip_doc = T.idtip_doc' )
+            ->group('idtip_doc')
+            ->group('serie')
+                ->query()->fetchAll();
+        return $resul;    
 }
+
     function existeTipo($tipo,$serie){
         $num = $this->fetchRow(
                 $this->select()->where('idtip_doc = ? ',$tipo)
