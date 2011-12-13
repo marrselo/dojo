@@ -10,7 +10,8 @@ class Admin_ComprobanteController
     function indexAction(){
         $form = new Application_Form_ComprobanteForm();
         $comp = new Application_Model_Comprobante();        
-        $params = $this->_request->getParams();
+        $params = $this->_request->getParams();        
+
         if($this->_request->isPost() && $form->isValid($params)){
             $values = $form->getValues();
             $tipo = $values['idtip_doc'];
@@ -55,16 +56,17 @@ class Admin_ComprobanteController
             }
             if($this->view->message == ""){
                 $this->view->message = "OK";                
-                }            
-            
-                
-                    
-            
-                    
-            
+                }         
             }               
             
         $this->view->form = $form;
+        
+        //paginador 
+        $comprobante = $this->_comprobante->listarComprobante();
+        $this->view->comprobante = $comprobante;
+        $paginator = Zend_Paginator::factory($comprobante); 
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $this->view->paginator = $paginator;
     }
     
     function listarComprobantes(){
