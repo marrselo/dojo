@@ -52,8 +52,8 @@ class Admin_PedidosController
     function ajaxGetArticuloAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        $articulo = $this->_articuloModel->listarUnArticulo($params['idArticulo']);
-        $this->session->articuloEnLista[] = $articulo['idarticulo'];
+        //$articulo = $this->_articuloModel->listarUnArticulo($params['idArticulo']);
+        $this->session->articuloEnLista[] = $params['idArticulo'];
         echo $this->_helper->json($articulo);
     }
     

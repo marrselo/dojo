@@ -67,20 +67,45 @@
     
     
 </div>
+
+<div>
+    <label>
+        Tipo Documento
+        <select>
+            <option>as</option>
+            <option>as</option>
+        </select>
+    </label>
+</div>
+
+<div>
+    <label>
+        Nº Serie
+        <select>
+        </select>
+    </label>
+</div>
+
+<div>
+    <label>
+        Nº Serie
+        <select>
+        </select>
+    </label>
+</div>
+
+
 <div>
     <label> Informacion Adicional
-    <textarea>
-
-    </textarea>
-        </label>
+    <textarea id="informacionAdicional" name="informacionAdicional" >
+    </textarea>    
+    </label>
 </div>
 <div>
     <label>Responsable <input type="text" id="searchTextResponsable">
     <span id="responsableSearch" style="position: absolute; background-color: #009ede;"></span>
     <span id="responsable"></span>
     </label>
-    
-    
 </div> 
 <div> [<a href="#">Enviar Pedido</a>] - [<a href="">Cancelar Pedido</a>]</div>
 
@@ -116,8 +141,31 @@ $(function() {
                     var contenido='';
                     contenido = '<div><table>';
                     for (var i = 0; i < data.length; i++) { 
+                        contenidoHidden = '<table class="sticky-enabled tableSelect-processed sticky-table">';
+                        contenidoHidden = contenidoHidden +'<thead class="tableHeader-processed">';
+                        contenidoHidden = contenidoHidden +'<tr>';
+                        contenidoHidden = contenidoHidden +'<th>Nombre</th>';
+                        contenidoHidden = contenidoHidden +'<th>Apellidos</th>';
+                        contenidoHidden = contenidoHidden +'<th>Ruc</th>';
+                        contenidoHidden = contenidoHidden +'<th>Dirección</th>';
+                        contenidoHidden = contenidoHidden +'<th>Telefonos</th>';
+                        contenidoHidden = contenidoHidden +'<th>Dni</th>';
+                        contenidoHidden = contenidoHidden +'</tr>';
+                        contenidoHidden = contenidoHidden +'</thead>';
+                        contenidoHidden = contenidoHidden +'<tbody>';
+                        contenidoHidden = contenidoHidden +'<tr>';
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['nombre']+'</td>';
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['apellidomaterno']+ ' ' +data[i]['apellidopaterno']+'</td>';
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['ruc']+ '</td>';
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['direccion']+ '</td>';
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['telefono1']+ ' - ' +data[i]['telefono2']+ ' - ' +data[i]['movil']+'</td>';
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['dni']+ '</td>';
+                        contenidoHidden = contenidoHidden +'</tr>';
+                        contenidoHidden = contenidoHidden +'</tbody>';
+                        contenidoHidden = contenidoHidden + '</table>';
                         contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemCliente-'+data[i]['idcliente']+'">';
                         contenido = contenido + '<td>';
+                        contenido = contenido + "<input type='hidden' id='itemHiddenCliente-"+data[i]['idcliente']+"'   value='"+contenidoHidden+"' >";
                         contenido = contenido + data[i]['nombre'];
                         contenido = contenido + '</td>';
                         contenido = contenido + '<td>';
@@ -132,9 +180,7 @@ $(function() {
           }
       })
 	
-
     $( "#searchArticulo" ).keypress(function(e) {
-    
         if(e.which == 13){
             var valor = this.value;       
             $.ajax({
@@ -145,13 +191,23 @@ $(function() {
                 success: function(data){
                     $('#autocompleteArticulo').empty(); 
                     var contenido='';
+                    var contenidoHidden='';
                     contenido = '<div><table>';
                     for (var i = 0; i < data.length; i++) { 
+                        contenidoHidden = contenidoHidden +'<tr id="row_'+data[i]['idarticulo']+'">'
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['nomArticulo']+'<input type="hidden" name="idarticulo[]" value="'+data[i]['idarticulo']+'" id="idarticulo_'+data[i]['idarticulo']+'"></td>'
+                        contenidoHidden = contenidoHidden +'<td>'+data[i]['descArticulo']+'</td>'
+                        contenidoHidden = contenidoHidden +'<td><input name="precio[]" id="precio_'+data[i]['idarticulo']+'" type="text" value="'+parseFloat(data[i]['precioventa'])+'"></td>'
+                        contenidoHidden = contenidoHidden +'<td><input name="cantidad[]" id="cantidad_'+data[i]['idarticulo']+'" type="text" value="1"></td>'
+                        contenidoHidden = contenidoHidden +'<td><input name="total[]" id="total_'+data[i]['idarticulo']+'"  disabled="disabled" type="text" value="0"></td>'
+                        contenidoHidden = contenidoHidden +'<td>[<a id="eliminarArti-'+data[i]['idarticulo']+'" href="#">Eliminar</a>]</td>'
+                        contenidoHidden = contenidoHidden +'</tr>'
                         contenido = contenido + '<tr style="cursor:pointer" id="itemArticulo-'+data[i]['idarticulo']+'">';
-                        contenido = contenido + '<td>';
+                        contenido = contenido + "<td><input type='hidden' value='"+contenidoHidden+"' id='itemArticuloHide-"+data[i]['idarticulo']+"'>";
                         contenido = contenido + data[i]['nomArticulo'];
                         contenido = contenido + '</td>';
                         contenido = contenido + '</tr>';
+                        contenidoHidden='';
                     }
                     contenido = contenido + '</table></div>';
                     $('#autocompleteArticulo').append(contenido);
@@ -161,26 +217,29 @@ $(function() {
     })
         
         
-        $("[id^=itemCliente]").live("click",function(){
+    $("[id^=itemCliente]").live("click",function(){
         var idClienteArray = this.id.split('-');
-        mostrarCLiente(idClienteArray[1]);
-        });
-        
-        $("[id^=itemResponsable]").live("click",function(){
+        contenValueHiden = $("#itemHiddenCliente-"+idClienteArray[1]).attr('value');
+        mostrarCLiente(contenValueHiden,idClienteArray[1]);
+    });
+    
+    $("[id^=itemResponsable]").live("click",function(){
         var idClienteArray = this.id.split('-');
         mostrarResponsable(idClienteArray[1]);
-        });
-        
-        $("[id^=itemArticulo]").live("click",function(){
+    });
+    
+    $("[id^=itemArticulo]").live("click",function(){
         var idClienteArray = this.id.split('-');
-        mostrarArticulo(idClienteArray[1]);
-        });
-        $("[id^=eliminarArti]").live("click",function(){
+        contenValueHiden = $("#itemArticuloHide-"+idClienteArray[1]).attr('value');
+        mostrarArticulo(contenValueHiden,idClienteArray[1]);
+    });
+    
+    $("[id^=eliminarArti]").live("click",function(){
         var idArticuloArray = this.id.split('-');
         $(this).parent().parent().remove();
         eliminaArticulo(idArticuloArray[1]);
         totalProductos();
-        });
+    });
 
     function mostrarResponsable(idusuario){
         $.ajax({
@@ -202,41 +261,26 @@ $(function() {
         });
     }
     function eliminaArticulo(idArticulo){
-         $.ajax({
-        data: "idArticulo="+idArticulo,
-        type: "POST",
-        dataType: "json",
-        url: "/admin/pedidos/ajax-delete-articulo",
-        success: function(data){
-        }
-         });
-    }
-    
-    
-    function mostrarArticulo(idArticulo){
         $.ajax({
-        data: "idArticulo="+idArticulo,
-        type: "POST",
-        dataType: "json",
-        url: "/admin/pedidos/ajax-get-articulo",
-        success: function(data){
-            var contenido='';
-                contenido = contenido +'<tr id="row_'+data['idarticulo']+'">'
-                contenido = contenido +'<td>'+data['nombre']+'<input type="hidden" name="idarticulo[]" value="'+data['idarticulo']+'" id="idarticulo_'+data['idarticulo']+'"></td>'
-                contenido = contenido +'<td>'+data['descripcion']+'</td>'
-                contenido = contenido +'<td><input name="precio[]" id="precio_'+data['idarticulo']+'" type="text" value="'+parseFloat(data['precioventa'])+'"></td>'
-                contenido = contenido +'<td><input name="cantidad[]" id="cantidad_'+data['idarticulo']+'" type="text" value="1"></td>'
-                contenido = contenido +'<td><input name="total[]" id="total_'+data['idarticulo']+'"  disabled="disabled" type="text" value="0"></td>'
-                contenido = contenido +'<td>[<a id="eliminarArti-'+data['idarticulo']+'" href="#">Eliminar</a>]</td>'
-                contenido = contenido +'</tr>'
-            $('#tableArticulo tr:first').after(contenido);
-            $('#autocompleteArticulo').empty(); 
-            totalItem(data['idarticulo']);
-            //totalProductos();
-            }
+            data: "idArticulo="+idArticulo,
+            type: "POST",
+            dataType: "json",
+            url: "/admin/pedidos/ajax-delete-articulo",
+            success: function(data){}
         });
+    }
+    function mostrarArticulo(contenido,idArticulo){
+    $('#autocompleteArticulo').empty(); 
+    $('#tableArticulo tr:first').after(contenido);
+    totalItem(idArticulo);    
+    $.ajax({
+                data: "idArticulo="+idArticulo,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-get-articulo",
+                success: function(data){}
+            });
         }
-        
         $("[id^=precio_]").live("keyup",function(e){
         var splitId = this.id.split('_');
         totalItem(splitId[1]);
@@ -263,73 +307,39 @@ $(function() {
         }
         
         
-        function searchResponsable(textSearch){
+    function searchResponsable(textSearch){
         $.ajax({
-        data: "buscarResponsable="+textSearch,
-        type: "POST",
-        dataType: "json",
-        url: "/admin/pedidos/ajax-search-responsable",
-        success: function(data){
-                    var contenido='';
-                    contenido = '<div><table>';
-                    for (var i = 0; i < data.length; i++) { 
-                        var nombre = data[i]['apellidomaterno'];
-                        nombre = nombre + ' ' + data[i]['apellidopaterno'];
-                        nombre = nombre + ' ' + data[i]['nombre'];
-                        contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemResponsable-'+data[i]['idusuario']+'">';
-                        contenido = contenido + '<td>';
-                        contenido = contenido + nombre;
-                        contenido = contenido + '</td>';
-                        contenido = contenido + '</tr>';
-                    }
-                    contenido = contenido + '</table></div>';
-            $('#responsableSearch').empty(); 
-            $('#responsableSearch').append(contenido);
-        }
+            data: "buscarResponsable="+textSearch,
+            type: "POST",
+            dataType: "json",
+            url: "/admin/pedidos/ajax-search-responsable",
+            success: function(data){
+                var contenido='';
+                contenido = '<div><table>';
+                for (var i = 0; i < data.length; i++) { 
+                    var nombre = data[i]['apellidomaterno'];
+                    nombre = nombre + ' ' + data[i]['apellidopaterno'];
+                    nombre = nombre + ' ' + data[i]['nombre'];
+                    contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemResponsable-'+data[i]['idusuario']+'">';
+                    contenido = contenido + '<td>';
+                    contenido = contenido + nombre;
+                    contenido = contenido + '</td>';
+                    contenido = contenido + '</tr>';
+            }
+                contenido = contenido + '</table></div>';
+                $('#responsableSearch').empty(); 
+                $('#responsableSearch').append(contenido);
+            }
         });
+    }
         
-        }
-        
-        function mostrarCLiente(idCliente){
-        $.ajax({
-        data: "idCliente="+idCliente,
-        type: "POST",
-        dataType: "json",
-        url: "/admin/pedidos/ajax-get-cliente",
-        success: function(data){
-            $('#tableSeachCLiente').empty(); 
-            $('#idcliente').attr('value',data['idcliente']); 
-            var contenido='';
-            contenido = '<table class="sticky-enabled tableSelect-processed sticky-table">';
-            contenido = contenido +'<thead class="tableHeader-processed">';
-            contenido = contenido +'<tr>';
-            contenido = contenido +'<th>Nombre</th>';
-            contenido = contenido +'<th>Apellidos</th>';
-            contenido = contenido +'<th>Ruc</th>';
-            contenido = contenido +'<th>Dirección</th>';
-            contenido = contenido +'<th>Telefonos</th>';
-            contenido = contenido +'<th>Dni</th>';
-            contenido = contenido +'</tr>';
-            contenido = contenido +'</thead>';
-            contenido = contenido +'<tbody>';
-            contenido = contenido +'<tr>';
-            contenido = contenido +'<td>'+data['nombre']+'</td>';
-            contenido = contenido +'<td>'+data['apellidomaterno']+ ' ' +data['apellidopaterno']+'</td>';
-            contenido = contenido +'<td>'+data['ruc']+ '</td>';
-            contenido = contenido +'<td>'+data['direccion']+ '</td>';
-            contenido = contenido +'<td>'+data['telefono1']+ ' - ' +data['telefono2']+ ' - ' +data['movil']+'</td>';
-            contenido = contenido +'<td>'+data['dni']+ '</td>';
-            contenido = contenido +'</tr>';
-            contenido = contenido +'</tbody>';
-            contenido = contenido + '</table>';
-            $('#tableSeachCLiente').append(contenido);
-            $('#autocompleteCliente').empty(); 
-        }
-        });
-        
-        }
-        
-         });
+    function mostrarCLiente(contenido,idcliente){
+        $('#tableSeachCLiente').empty(); 
+        $('#idcliente').attr('value',idcliente); 
+        $('#tableSeachCLiente').append(contenido);
+        $('#autocompleteCliente').empty(); 
+    }
+});
 
         
 	</script>

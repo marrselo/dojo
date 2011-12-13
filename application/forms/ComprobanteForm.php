@@ -25,12 +25,12 @@ class Application_Form_ComprobanteForm extends Zend_Form
             $element->setLabel('Serie');
             $this->addElement($element);
 
-            $element = new Zend_Form_Element_Text('desde');
+            $element = new Zend_Form_Element_Text('num');
             $element->setRequired(true);
             $element->setLabel('Desde');
             $this->addElement($element);
             
-            $element = new Zend_Form_Element_Text('hasta');
+            $element = new Zend_Form_Element_Text('num_hast');
             $element->setRequired(true);
             $element->setLabel('Hasta');
             $this->addElement($element);       
