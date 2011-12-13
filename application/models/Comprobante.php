@@ -36,10 +36,10 @@ class Application_Model_Comprobante  extends Zend_Db_Table {
         $max=$result['max'];
         
         return $max;
-
-        
-        
     }    
+    function listarNumSerie(){
+        
+    }
 
 
 }

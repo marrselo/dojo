@@ -42,6 +42,14 @@ class Admin_PedidosController
         $cliente = $this->_clienteModel->listarUnCliente($params['idCliente']);
         echo $this->_helper->json($cliente);
     }
+    
+    function ajaxListarNumeroSerieAction(){
+        $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        
+        echo $this->_helper->json(array());
+    }
+    
     function ajaxDeleteArticuloAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
@@ -52,7 +60,6 @@ class Admin_PedidosController
     function ajaxGetArticuloAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        //$articulo = $this->_articuloModel->listarUnArticulo($params['idArticulo']);
         $this->session->articuloEnLista[] = $params['idArticulo'];
         echo $this->_helper->json($articulo);
     }
