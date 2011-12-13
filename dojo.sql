@@ -70,11 +70,11 @@ CREATE TABLE `articulo` (
   PRIMARY KEY (`idarticulo`),
   KEY `fk_art_sub_fam` (`idcategoria`),
   KEY `fk_art_combo1` (`idcombo`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `articulo` */
 
-insert  into `articulo`(`idarticulo`,`idcategoria`,`idcombo`,`idunidad`,`codigo`,`nombre`,`descripcion`,`precioventa`,`preciocompra`,`cantidad`,`stock_min`,`peso`,`ubicacion`,`fla`,`imagen`,`slug`,`slugbusqueda`) values (1,9,NULL,0,'','coca cola descartable medio litro','nuevo','123.00','1233.00',0,NULL,NULL,NULL,1,'coca-cola-descartable-medio-litro-1.jpg','coca-cola-descartable-medio-litro-1','bebida soda gaseosa helada');
+insert  into `articulo`(`idarticulo`,`idcategoria`,`idcombo`,`idunidad`,`codigo`,`nombre`,`descripcion`,`precioventa`,`preciocompra`,`cantidad`,`stock_min`,`peso`,`ubicacion`,`fla`,`imagen`,`slug`,`slugbusqueda`) values (1,9,NULL,0,'','coca cola descartable medio litro','nuevo','123.00','1233.00',0,NULL,NULL,NULL,1,'coca-cola-descartable-medio-litro-1.jpg','coca-cola-descartable-medio-litro-1','bebida soda gaseosa helada'),(2,9,NULL,0,'','pepsi medio litro','pepsi medio litro','123.00','123.00',0,NULL,NULL,NULL,1,'pepsi-medio-litro-2.jpg','pepsi-medio-litro-2','pepsi medio litro');
 
 /*Table structure for table `car` */
 
@@ -180,7 +180,7 @@ CREATE TABLE `core_session` (
 
 /*Data for the table `core_session` */
 
-insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('a8h28rknkrk3d0eq85pppd55t0','','',1323241796,1440,'dojo|a:1:{s:13:\"listaArticulo\";a:1:{i:6236;a:15:{s:10:\"idarticulo\";s:4:\"6236\";s:11:\"idcategoria\";s:1:\"9\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:6:\"123123\";s:6:\"nombre\";s:6:\"qweqwe\";s:11:\"descripcion\";s:6:\"qweqwe\";s:11:\"precioventa\";s:6:\"123.00\";s:12:\"preciocompra\";s:6:\"123.00\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";N;s:16:\"cantidadArticulo\";s:3:\"122\";}}}Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('cfo04p3a628ki5u9q59lkibsi5','','',1323240804,1440,''),('jjtqu1qbcpdi43qe3hit5jg950','','',1323319399,1440,''),('ltjaornnmtg2e38jbqqr0vcha5','','',1323534526,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('md1rs02mojdgfqgq3r5rhiuls3','','',1323236744,1440,'dojo|a:1:{s:13:\"listaArticulo\";a:1:{i:6236;a:15:{s:10:\"idarticulo\";s:4:\"6236\";s:11:\"idcategoria\";s:1:\"9\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:6:\"123123\";s:6:\"nombre\";s:6:\"qweqwe\";s:11:\"descripcion\";s:6:\"qweqwe\";s:11:\"precioventa\";s:6:\"123.00\";s:12:\"preciocompra\";s:6:\"123.00\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";N;s:16:\"cantidadArticulo\";N;}}}'),('u1j0a1oeb5ab0b2g0678qed772','','',1323336885,1440,''),('v0tllj34o3d3d8lt9kplvmm522','','',1323500361,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}');
+insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('7ovrq0apeh89t2k3ut32cc5vd5','','',1323635973,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}dojo|a:1:{s:15:\"articuloEnLista\";a:0:{}}'),('fhp21sl0uvadciulim2buc1ra5','','',1323624973,1440,'');
 
 /*Table structure for table `crg` */
 
@@ -221,11 +221,11 @@ CREATE TABLE `detalleslug` (
   `idarticulo` int(11) DEFAULT NULL,
   `idslug` int(11) DEFAULT NULL,
   PRIMARY KEY (`iddetalleslug`)
-) ENGINE=InnoDB AUTO_INCREMENT=262 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `detalleslug` */
 
-insert  into `detalleslug`(`iddetalleslug`,`idarticulo`,`idslug`) values (3,2,1),(4,2,2),(5,2,5),(6,2,5),(7,3,5),(8,6282,5),(9,6282,1),(10,6282,2),(11,6282,8),(12,6282,9),(13,6283,10),(14,6283,1),(15,6283,2),(16,6283,8),(17,6283,9),(18,6283,11),(253,1,1),(254,1,2),(255,1,16),(256,1,8),(257,1,9),(258,1,10),(259,1,15),(260,1,7),(261,1,18);
+insert  into `detalleslug`(`iddetalleslug`,`idarticulo`,`idslug`) values (7,3,5),(8,6282,5),(9,6282,1),(10,6282,2),(11,6282,8),(12,6282,9),(13,6283,10),(14,6283,1),(15,6283,2),(16,6283,8),(17,6283,9),(18,6283,11),(253,1,1),(254,1,2),(255,1,16),(256,1,8),(257,1,9),(258,1,10),(259,1,15),(260,1,7),(261,1,18),(262,2,11),(263,2,8),(264,2,9);
 
 /*Table structure for table `documentopago` */
 
@@ -328,7 +328,20 @@ CREATE TABLE `kardex` (
 
 /*Data for the table `kardex` */
 
-insert  into `kardex`(`idkardex`,`iddoc`,`cantidadtotal`,`stock`,`fecha`,`idarticulo`,`fla`,`motivo`) values (4431,0,NULL,50,NULL,6241,1,''),(4432,0,NULL,12,NULL,2,2,'cuaklqueira'),(4433,0,NULL,12,NULL,6238,1,'dadasd');
+/*Table structure for table `mantenimientopagina` */
+
+DROP TABLE IF EXISTS `mantenimientopagina`;
+
+CREATE TABLE `mantenimientopagina` (
+  `idpagina` int(11) NOT NULL AUTO_INCREMENT,
+  `nombrepagina` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`idpagina`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `mantenimientopagina` */
+
+insert  into `mantenimientopagina`(`idpagina`,`nombrepagina`,`descripcion`) values (1,'Zonas de Reparto',NULL),(2,'Politicas',NULL);
 
 /*Table structure for table `mdo` */
 
@@ -540,6 +553,8 @@ CREATE TABLE `tip_doc` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Data for the table `tip_doc` */
+
+insert  into `tip_doc`(`idtip_doc`,`des`) values (1,'Boleta'),(2,'Factura'),(3,'Gia Remision');
 
 /*Table structure for table `unidad` */
 
