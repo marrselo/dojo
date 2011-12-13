@@ -143,11 +143,11 @@ class Admin_PedidosController
         $this->_detalleDocumentoModel->crearDetalleDocumento($data);
     }
     
-    function listarPedidosAction(){
-        
+    function listaPedidosAction(){
+        $this->view->menuTop = $menuTop = array('Lista Productos'=>'..//admin/articulo','Nuevo Articulo'=>'../articulo/nuevo-articulo','Lista Pedidos'=>'pedidos/lista-pedidos');
+        $pedidos = new Application_Model_Documento();
+        $this->view->listaPedidos = $pedidos->listarDocumentos();
     }
-    
-    
     
     
    
