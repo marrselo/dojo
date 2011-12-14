@@ -4,29 +4,59 @@ class Admin_CategoriaController
         extends ZExtraLib_Controller_Action
 {
        protected $_categoriaModel;
+       protected $URL;
 
     function init() {
         parent::init();
         $this->_categoriaModel = new Application_Model_Categoria();
+        $this->URL = '/'.$this->getRequest()->getModuleName().'/'.$this->getRequest()->getControllerName();
     }
     function indexAction()
     {
-        $this->view->messages = $this->_flashMessenger->getMessages();
         $categorias = $this->_categoriaModel->listaCategorias();
         $this->view->categorias = $categorias;
         $paginator = Zend_Paginator::factory($categorias); 
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $this->view->paginator = $paginator;
+        
+        if($this->_getParam('id')==null){
+        $this->view->messages = $this->_flashMessenger->getMessages();        
         $form = $this->formularioCategoria();
         $this->view->form = $form;
         $params = $this->_getAllParams();
         if ($this->_request->isPost()) {
         if($form->isValid($params)){
+            $data['codigo']=$params['codigo'];
             $data['nombre']=$params['nombre'];
             $data['descripcion']=$params['descripcion'];
-            $this->crearCategoria($data);
+            $data['estado']=$params['estado'];
+            $this->_categoriaModel->insert($data);
+            $this->_redirect('/admin/categoria');
+            //$this->crearCategoria($data);
         }}
+        }
+        else
+        {
+        $where = 'idcategoria='.$this->_getParam('id');
+        $categoria = $this->_categoriaModel->fetchRow($where);
+        $form = $this->formularioCategoria();
+        if(!is_null($categoria)){
+            if($this->_request->isPost() && $form->isValid($this->_request->getPost()) ){
+                $this->_categoriaModel->update($form->getValues(),$where);
+                $this->_helper->FlashMessenger('Se modificó Categoria ');
+                $this->_redirect($this->URL);
+            }
+            $form->setDefaults($categoria->toArray());
+            $this->view->form = $form;
+        }else{
+            $this->_helper->FlashMessenger('No existe ese fabricante');
+            $this->_redirect($this->URL);
+        }  
         
+
+        
+        
+        }
     }
     function crearCategoria($data){
         
@@ -66,16 +96,39 @@ class Admin_CategoriaController
     function formularioCategoria() {
         $form = new Zend_Form();
         $form->setMethod('Post');
+        $form->addElement(new Zend_Form_Element_Text('codigo'));
         $form->addElement(new Zend_Form_Element_Text('nombre'));
         $form->addElement(new Zend_Form_Element_Text('descripcion'));
+        $form->addElement(new Zend_Form_Element_Checkbox('estado'));
         $form->addElement(new Zend_Form_Element_Submit('Enviar'));
+        $form->getElement('codigo')->setLabel('Código');
         $form->getElement('nombre')->setLabel('Nombre');
         $form->getElement('nombre')->setRequired();
-        $form->getElement('descripcion')->setLabel('Descripcion');
+        $form->getElement('descripcion')->setLabel('Descripción');
+        $form->getElement('estado')->setLabel('Estado');
         return $form;
     }
-
-
+    
+    public function activarAction() {
+        $id = $this->_request->getParam('id');
+        $this->_categoriaModel->update(array('estado'=>1),'idcategoria='.$id);
+        $this->_helper->FlashMessenger('Categoria Activada');
+        $this->_redirect($this->URL);
+        
+    }
+    
+    public function desactivarAction(){
+        $id = $this->_request->getParam('id');
+        $this->_categoriaModel->update(array('estado'=>0),'idcategoria='.$id);        
+        $this->_helper->FlashMessenger('Categoria Desactivada');
+        $this->_redirect($this->URL);
 }
 
-//class Admin_IndexController
+    public function eliminarAction() {
+        $id = $this->_request->getParam('id');
+        $this->_categoriaModel->delete('idcategoria='.$id);
+        $this->_helper->FlashMessenger('Se elimino correctamente Categoria');
+        $this->_redirect($this->URL);
+    }
+
+}
