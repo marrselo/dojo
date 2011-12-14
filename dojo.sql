@@ -1,6 +1,6 @@
 /*
 SQLyog Enterprise - MySQL GUI v8.02 RC
-MySQL - 5.5.15-log : Database - dojo
+MySQL - 5.5.16-log : Database - dojo
 *********************************************************************
 */
 
@@ -134,7 +134,7 @@ CREATE TABLE `cliente` (
 
 /*Data for the table `cliente` */
 
-insert  into `cliente`(`idcliente`,`apellidomaterno`,`apellidopaterno`,`nombre`,`direccion`,`dni`,`web`,`correo`,`telefono1`,`telefono2`,`movil`,`flagactivo`,`ruc`,`estado`) values (452,'huaman','jara','asdfasfa','sdfasdfasdf','44513557','','nazartjb@hotmail.com','12312333','','4234234234',0,'',1),(454,'dgsdgsd','sdfgsdgsd','jorge','sdgsdfg','445855587','','','sdgsdgsdfg','','',0,'',1),(455,'asdasdasd','asdadasd','asdasdasd','asdasdasd','44513555','','nazartajb@hotmail.com','123123123','','',0,'',1),(456,'asdasdfasfadf','sdfasdfaf','sdsdfsdf','dfasfdf','asdfdfsd','asdfsdfsd','nazaratjsb@hotmail.com','sdfsdf','','',0,'',1),(457,'jara','huaman','nazart','av. cajaranda','44513558','www.elcomercio.pe','nazart.villano@ec.pe','2355165','','',0,'',1),(458,'javier','carlo','nuevo','av. caasda asdasd','44513552','','','445121555','','',0,'',1),(459,'adaasdad','asdasdada','asdasdad','2332323','22334333','','naza@hotmailss.com','asadasd','','',0,'',1);
+insert  into `cliente`(`idcliente`,`apellidomaterno`,`apellidopaterno`,`nombre`,`direccion`,`dni`,`web`,`correo`,`telefono1`,`telefono2`,`movil`,`flagactivo`,`ruc`,`estado`) values (1,'huaman','jara','asdfasfa','sdfasdfasdf','44513557','','nazartjb@hotmail.com','12312333','','4234234234',0,'',1),(2,'dgsdgsd','sdfgsdgsd','jorge','sdgsdfg','445855587','','','sdgsdgsdfg','','',0,'',1),(455,'asdasdasd','asdadasd','asdasdasd','asdasdasd','44513555','','nazartajb@hotmail.com','123123123','','',0,'',1),(456,'asdasdfasfadf','sdfasdfaf','sdsdfsdf','dfasfdf','asdfdfsd','asdfsdfsd','nazaratjsb@hotmail.com','sdfsdf','','',0,'',1),(457,'jara','huaman','nazart','av. cajaranda','44513558','www.elcomercio.pe','nazart.villano@ec.pe','2355165','','',0,'',1),(458,'javier','carlo','nuevo','av. caasda asdasd','44513552','','','445121555','','',0,'',1),(459,'adaasdad','asdasdada','asdasdad','2332323','22334333','','naza@hotmailss.com','asadasd','','',0,'',1);
 
 /*Table structure for table `cobro` */
 
@@ -180,7 +180,7 @@ CREATE TABLE `core_session` (
 
 /*Data for the table `core_session` */
 
-insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('7ovrq0apeh89t2k3ut32cc5vd5','','',1323635973,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}dojo|a:1:{s:15:\"articuloEnLista\";a:0:{}}'),('fhp21sl0uvadciulim2buc1ra5','','',1323624973,1440,'');
+insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('0p978hbddpu0o8l0avk12fae37','','',1323673487,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}dojo|a:1:{s:15:\"articuloEnLista\";a:0:{}}'),('2i7vltqbmveb8b05dg0cttbnk7','','',1323827238,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('7ovrq0apeh89t2k3ut32cc5vd5','','',1323635973,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}dojo|a:1:{s:15:\"articuloEnLista\";a:0:{}}'),('fhp21sl0uvadciulim2buc1ra5','','',1323624973,1440,''),('i25vcst8agqaugs22pqpfh33e7','','',1323754426,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('n8mf485m3bujopauf210qndj46','','',1323673829,1440,'');
 
 /*Table structure for table `crg` */
 
@@ -243,18 +243,21 @@ CREATE TABLE `documentopago` (
   `idcliente` int(11) NOT NULL,
   `idestado` int(11) NOT NULL COMMENT '0 pedido, 1 entregado, 2 eliminado',
   `flagactivo` int(11) DEFAULT NULL,
-  `moneda` char(10) NOT NULL,
-  `tipocambio` decimal(10,2) NOT NULL,
+  `moneda` char(10) DEFAULT NULL,
+  `tipocambio` decimal(10,2) DEFAULT NULL,
   `idvendedor` varchar(150) NOT NULL,
   `IGV` char(3) NOT NULL DEFAULT 'SIN',
   `comentario` varchar(250) DEFAULT NULL,
   `idpedido` int(11) DEFAULT NULL COMMENT 'en caso de que el comprobante viene de un pedido',
   `direccion` text,
+  `flagdespacho` tinyint(1) unsigned DEFAULT NULL,
   PRIMARY KEY (`iddocumento`),
   KEY `fk_doc_tip_doc1` (`idtipodocumento`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Data for the table `documentopago` */
+
+insert  into `documentopago`(`iddocumento`,`numeroserie`,`numerocomprobante`,`fechacreacion`,`fecvencimiento`,`total`,`idtipodocumento`,`idempresa`,`idcliente`,`idestado`,`flagactivo`,`moneda`,`tipocambio`,`idvendedor`,`IGV`,`comentario`,`idpedido`,`direccion`,`flagdespacho`) values (1,'1',48,'2011-12-01','2011-12-13','800.00',1,1,1,1,1,NULL,NULL,'1','SIN',NULL,NULL,NULL,NULL),(2,'1',49,'2011-12-05','2011-12-15','500.00',2,1,2,1,1,NULL,NULL,'1','SIN',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `emp` */
 
@@ -284,18 +287,6 @@ CREATE TABLE `emp` (
 
 /*Data for the table `emp` */
 
-/*Table structure for table `est` */
-
-DROP TABLE IF EXISTS `est`;
-
-CREATE TABLE `est` (
-  `idest` int(11) NOT NULL DEFAULT '0',
-  `des` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`idest`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-/*Data for the table `est` */
-
 /*Table structure for table `est_per` */
 
 DROP TABLE IF EXISTS `est_per`;
@@ -307,6 +298,20 @@ CREATE TABLE `est_per` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Data for the table `est_per` */
+
+/*Table structure for table `estado` */
+
+DROP TABLE IF EXISTS `estado`;
+
+CREATE TABLE `estado` (
+  `idestado` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `des` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idestado`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `estado` */
+
+insert  into `estado`(`idestado`,`des`) values (1,'pendiente'),(2,'pagada'),(3,'anulada');
 
 /*Table structure for table `kardex` */
 
@@ -369,7 +374,7 @@ CREATE TABLE `menu` (
 
 /*Data for the table `menu` */
 
-insert  into `menu`(`idmenu`,`nombre`,`url`,`orden`) values (1,'Categoriás','/admin/categoria',2),(2,'Clientes','/admin/cliente',3),(3,'Artículo','/admin/articulo',4),(4,'Pedidos','/admin/pedidos',5),(5,'Comprobantes','/admin/comprobante',6),(6,'Usuario','/admin/usuario',7),(7,'Reportes','/admin/reportes',8),(8,'Admin','/admin/index',1);
+insert  into `menu`(`idmenu`,`nombre`,`url`,`orden`) values (1,'Categoriás','/admin/categoria',2),(2,'Clientes','/admin/cliente',3),(3,'Almacén','/admin/articulo',4),(4,'Pedidos','/admin/pedidos',5),(5,'Comprobantes','/admin/comprobante',6),(6,'Usuario','/admin/usuario',7),(7,'Reportes','/admin/reportes',8),(8,'Admin','/admin/index',1);
 
 /*Table structure for table `niv_acc` */
 
@@ -598,21 +603,16 @@ DELIMITER $$
 /*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `TG_actualizarStock` */$$
 
 /*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `TG_actualizarStock` BEFORE INSERT ON `kardex` FOR EACH ROW BEGIN
-	DECLARE cantidadTotal INT;
-	DECLARE cantidadFinal INT;
-	
-	SELECT stock INTO cantidadTotal FROM kardex WHERE idkardex < new.idkardex ORDER BY idkardex DESC  limit 1;
-	
-	IF new.fla = 2 THEN
-		SET cantidadFinal = (new.cantidadtotal - cantidadTotal) ;
-	ELSE
-		SET cantidadFinal = (new.cantidadtotal + cantidadTotal) ;
-	END IF;	
-	
-	UPDATE kardex set cantidadtotal= cantidadTotal, fecha = curdate() WHERE idkardex= new.idkardex;
-	UPDATE articulo SET cantidad = cantidadFinal WHERE idarticulo= new.idarticulo; 
-	
-    END */$$
+DECLARE cantidadTotal INT;
+DECLARE cantidadFinal INT;
+SELECT cantidad INTO cantidadTotal FROM articulo WHERE idarticulo = new.idarticulo;
+IF new.fla = 2 THEN
+    SET cantidadFinal = (cantidadTotal - new.stock) ;
+ELSE
+    SET cantidadFinal = (new.stock + cantidadTotal) ;
+END IF;
+UPDATE articulo SET cantidad = cantidadFinal WHERE idarticulo= new.idarticulo; 
+END */$$
 
 
 DELIMITER ;
