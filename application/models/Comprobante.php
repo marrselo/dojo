@@ -40,8 +40,6 @@ class Application_Model_Comprobante  extends Zend_Db_Table {
         return $max;
     }    
     function listarNumSerieComprobantes($idTipoComprobante){
-        
-
         return $this->getAdapter()
                 ->select()
                 ->from('numeroserie')
@@ -51,6 +49,18 @@ class Application_Model_Comprobante  extends Zend_Db_Table {
                 ->query()
                 ->fetchAll();
                ;
+    }
+    function listarComprobantes($idTipoDocumento,$numSerie){
+        return $this->getAdapter()
+                ->select()
+                ->from('documentopago')
+                ->where('idtipodocumento = ?',array($idTipoDocumento))
+                ->where('numeroserie = ?',array($numSerie))
+                ->limit(1,1)
+                ->order('iddocumento')
+                ->query()
+                ->fetch();
+                
     }
 
 

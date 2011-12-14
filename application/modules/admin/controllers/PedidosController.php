@@ -72,19 +72,67 @@ class Admin_PedidosController
                                                            isset($params['idCategoria'])?$params['idCategoria']:'',$notInt);
         echo $this->_helper->json($articulo);
     }
-    
     function indexAction(){
         $this->session->articuloEnLista=array();
         $date = new Zend_Date();
-        echo $date->now()->get('YY-mm-dd');
+        
         $form = new Application_Form_FormCliente();
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
         $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
         $this->view->formularioCliente = $form;
-        $modelComprobante = new Application_Model_TipoDocumento();
-        $this->view->comprobantes = $modelComprobante->getTipoDocumento();
+        $formComprobantes = $this->getFormGenerarComprobante(); 
+        $formComprobantes->setAction('/admin/pedidos/generar-comprobante');
+        $formComprobantes->getElement('fechaEntrega')
+                ->setValue($date->now()->getDate()->get('YYYY-mm-dd'));
+        $this->view->formGenerarComprobantes = $formComprobantes;
+        
     }
     
+    function ajaxGenerarNumComprobanteAction(){
+        $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        $idTipoDocumento = $params['tipoDocumento'];
+        $numSerie = $params['numSerie'];
+        $modelComprobante = new Application_Model_Comprobante();
+        $arrayResult = $modelComprobante->listarComprobantes($idTipoDocumento,$numSerie);
+        echo $this->_helper->json($arrayResult);
+    }
+    function generarComprobanteAction(){
+        print_r($this->_getAllParams());
+        $date = new Zend_Date();
+        
+        $param = $this->_getAllParams();
+        $data ['numeroserie'] = $param['numSerie'];
+        $data ['numerocomprobante']= $param['numComprobante'];
+        $data ['fechacreacion']= $date->now()->get('YY-mm-dd');
+//        $data ['fecvencimiento']= $date->set($param['fecvencimiento'])->get('YY-mm-dd');
+        //$data ['total']= $param['total'];
+        $data ['idtipodocumento'] = $param['tipoDocumento'];
+        $data ['idcliente'] = $param['idcliente'];;
+        $data ['idestado'] = 1;
+        $data ['flagactivo'] = 1;
+        $data ['idvendedor']= $this->_identity->idusuario;
+        $data ['IGV']= 18.00;//$param['igv'];
+        $data ['comentario']= $param['comentarioPedido'];
+        $idDocumento = $this->_documentoModel->crearDocumento($data);
+        $arrayProductos = $param['idarticulo'];
+        foreach ($arrayProductos as $index => $value){
+            //$paramDetalle = explode($index,'-');
+            $dataDetalle['iddocumento']= $idDocumento;
+            $dataDetalle['idarticulo']= $value;
+            $dataDetalle['precio']= $param['precio'][$index];
+            $dataDetalle['cantidad']= $param['cantidad'][$index];
+            $this->crearDetalleDocumento($dataDetalle);
+        }
+
+    }
+    function getFormGenerarComprobante (){
+        $form = new Application_Form_FormGeneraComrpobante();
+        $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/generacomrpobante.phtml'))));
+        return $form;
+    }
+
+
     function nuevoClienteAjaxAction(){
         $this->_helper->layout()->disableLayout();
         $form = new Application_Form_FormCliente();
@@ -116,33 +164,7 @@ class Admin_PedidosController
                                      'data' => $data ));
     }
     
-    function crearDocumentoAction(){
-        $date = new Zend_Date();
-        $param = $this->_getAllParams();
-        $data ['numeroserie'] = $param['numeroserie'];
-        $data ['numerocomprobante']= $param['numerocomprobante'];
-        $data ['fechacreacion']= $date->now()->get('YY-mm-dd');
-        $data ['fecvencimiento']= $date->set($param['fecvencimiento'])->get('YY-mm-dd');
-        $data ['total']= $param['total'];
-        $data ['idtipodocumento'] = $param['idtipodocumento'];
-        $data ['idcliente'] = $param['idcliente'];
-        $data ['idestado'] = $param['idestado'];
-        $data ['flagactivo'] = 1;
-        $data ['idvendedor']= $param['idvendedor'];
-        $data ['IGV']= $param['igv'];
-        $data ['comentario']= $param['comentarioPedido'];
-        $idDocumento = $this->_documentoModel->crearDocumento($data);
-        $arrayProductos = explode($param['idproductos'],',');/*12-23-23,1-23-23,2-23-23,idproducto-cantidad-importe */
-        foreach ($arrayProductos as $index){
-            $paramDetalle = explode($index,'-');
-            $dataDetalle['iddocumento']= $idDocumento;
-            $dataDetalle['idarticulo']= $paramDetalle[0];
-            $dataDetalle['importe']= $paramDetalle[1];
-            $dataDetalle['precio']= $paramDetalle[2];
-            $this->crearDetalleDocumento($dataDetalle);
-        }
-    }
-    
+   
     function crearDetalleDocumento($param){
         $data ['iddocumento'] = $param['iddocumento'];
         $data ['cantidad'] = $param['cantidad'];
