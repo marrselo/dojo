@@ -43,41 +43,7 @@
 												</span>
 											</li>
 										</span>
-<!--										<span class="thmr_call">
-											<li class="leaf">
-												<span class="thmr_call">
-													<a href="/admin/articulo">Artículos</a>
-												</span>
-											</li>
-										</span>
-										<span class="thmr_call">
-											<li class="leaf">
-												<span class="thmr_call">
-													<a href="/admin/pedidos">Pedidos</a>
-												</span>
-											</li>
-										</span>
-										<span class="thmr_call">
-											<li class="leaf">
-												<span class="thmr_call">
-													<a href="/admin/pedidos">Comprobantes</a>
-												</span>
-											</li>
-										</span>
-										<span class="thmr_call">
-											<li class="leaf">
-												<span class="thmr_call">
-													<a href="/admin/usuario">Usuarios</a>
-												</span>
-											</li>
-										</span>
-										<span class="thmr_call">
-											<li class="leaf">
-												<span class="thmr_call">
-													<a href="/admin/reportes">Reportes</a>
-												</span>
-											</li>
-										</span>-->
+
                                                                             
 									</ul>
 								</span>
@@ -89,7 +55,14 @@
                     <div id="squeeze">
                         <div class="right-corner">
                             <div class="left-corner">
-                                <?php if(is_array($this->messages) && count($this->messages)>0 ) { ?>
+                                
+                                <?php 
+                                if(is_array($this->menuTop)){
+                                    foreach($this->menuTop as $index => $valor){?>
+                                <a href="<?php echo $valor?>" ><?php echo $index?></a>&nbsp;&nbsp;
+                                <?php }
+                                };
+                                if(is_array($this->messages) && count($this->messages)>0 ) { ?>
                                 <div class="ybox center ">
                                 <?php foreach($this->messages as $index):?>
                                 <p><?php echo $index; ?></p>

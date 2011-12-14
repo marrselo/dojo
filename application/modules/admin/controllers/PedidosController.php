@@ -42,6 +42,14 @@ class Admin_PedidosController
         $cliente = $this->_clienteModel->listarUnCliente($params['idCliente']);
         echo $this->_helper->json($cliente);
     }
+    
+    function ajaxListarNumeroSerieAction(){
+        $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        $comprobante = new Application_Model_Comprobante();
+        echo $this->_helper->json($comprobante->listarNumSerieComprobantes($params['idTipoComprobante']));
+    }
+    
     function ajaxDeleteArticuloAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
@@ -52,7 +60,6 @@ class Admin_PedidosController
     function ajaxGetArticuloAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        //$articulo = $this->_articuloModel->listarUnArticulo($params['idArticulo']);
         $this->session->articuloEnLista[] = $params['idArticulo'];
         echo $this->_helper->json($articulo);
     }
@@ -74,6 +81,8 @@ class Admin_PedidosController
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
         $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
         $this->view->formularioCliente = $form;
+        $modelComprobante = new Application_Model_TipoDocumento();
+        $this->view->comprobantes = $modelComprobante->getTipoDocumento();
     }
     
     function nuevoClienteAjaxAction(){
@@ -143,11 +152,11 @@ class Admin_PedidosController
         $this->_detalleDocumentoModel->crearDetalleDocumento($data);
     }
     
-    function listarPedidosAction(){
-        
+    function listaPedidosAction(){
+        $this->view->menuTop = $menuTop = array('Lista Productos'=>'..//admin/articulo','Nuevo Articulo'=>'../articulo/nuevo-articulo','Lista Pedidos'=>'pedidos/lista-pedidos');
+        $pedidos = new Application_Model_Documento();
+        $this->view->listaPedidos = $pedidos->listarDocumentos();
     }
-    
-    
     
     
    

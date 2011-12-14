@@ -69,7 +69,5 @@ class Admin_ComprobanteController
         $this->view->paginator = $paginator;
     }
     
-    function listarComprobantes(){
-        
-    }
+
 }

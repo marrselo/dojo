@@ -64,16 +64,16 @@
             <option value="30">30</option>
             <option value="45">45</option>
         </select>
-    
-    
 </div>
 
 <div>
     <label>
         Tipo Documento
-        <select>
-            <option>as</option>
-            <option>as</option>
+        <select  name="tipoDocumento" id="tipoDocumento">
+            <option value="">------</option>
+            <?php foreach($this->comprobantes as $index=>$value ):?>
+            <option value="<?php echo $index?>"><?php echo $value?></option>
+            <?php endforeach;?>
         </select>
     </label>
 </div>
@@ -81,16 +81,18 @@
 <div>
     <label>
         Nº Serie
-        <select>
+        <span id="spanNumSerie">
+        <select id="numSerie" name="numSerie">
+            
         </select>
+        </span>
     </label>
 </div>
 
 <div>
     <label>
-        Nº Serie
-        <select>
-        </select>
+        Nº de Documento
+        <input type="text">
     </label>
 </div>
 
@@ -118,6 +120,28 @@
 
 <script type="text/javascript">
 $(function() {
+    
+    $('#tipoDocumento').change(function(){
+                   $.ajax({
+                data: "idTipoComprobante="+this.value,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-listar-numero-serie",
+                success: function(data){ 
+                var contenido ='<select id="numSerie" name="numSerie">';
+                for (var i = 0; i < data.length; i++) { 
+                    contenido = contenido + '<option value="'+ data[i]['idnumeroserie'] +'">'+ data[i]['serie'] +'</option>';    
+                }
+                contenido = contenido + '</select>';
+                $('#spanNumSerie').empty();
+                $('#spanNumSerie').append(contenido);
+                }
+               });
+
+    });
+    
+    
+    
     $('#actionViewModal').click(function(){
         $("#modalView").attr('class','modalActive'); 
     });

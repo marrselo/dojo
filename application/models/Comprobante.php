@@ -38,10 +38,20 @@ class Application_Model_Comprobante  extends Zend_Db_Table {
         $max=$result['max'];
         
         return $max;
-
-        
-        
     }    
+    function listarNumSerieComprobantes($idTipoComprobante){
+        
+
+        return $this->getAdapter()
+                ->select()
+                ->from('numeroserie')
+                ->where('idtip_doc = ?',
+                        array($idTipoComprobante))
+               // ->where('flag = ?',array(1))
+                ->query()
+                ->fetchAll();
+               ;
+    }
 
 
 }

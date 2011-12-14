@@ -8,6 +8,7 @@ class Admin_ArticuloController
     function init() {
         parent::init();
         $this->_articuloModel= new Application_Model_Articulo();
+        $this->view->menuTop = $menuTop = array('Lista Productos'=>'/admin/articulo','Nuevo Articulo'=>'articulo/nuevo-articulo','Lista Pedidos'=>'pedidos/lista-pedidos');
     }
     function indexAction()
     {

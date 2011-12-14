@@ -15,6 +15,18 @@ class Application_Model_Documento  extends Zend_Db_Table {
                 ->fetch();
     }
     
+    function listarDocumentos(){
+        return $this->getAdapter()
+                ->select()
+                ->from('documentopago')
+                ->join('cliente','cliente.idcliente=documentopago.idcliente',
+                        array('nombre','apellidomaterno','apellidopaterno'))
+                ->join('estado','estado.idestado=documentopago.idestado',
+                        array('nombreEstado'=>'des'))
+                ->query()
+                ->fetchAll();
+    }
+    
 }
 
     
