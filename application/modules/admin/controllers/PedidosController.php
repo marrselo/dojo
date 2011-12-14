@@ -46,8 +46,8 @@ class Admin_PedidosController
     function ajaxListarNumeroSerieAction(){
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        
-        echo $this->_helper->json(array());
+        $comprobante = new Application_Model_Comprobante();
+        echo $this->_helper->json($comprobante->listarNumSerieComprobantes($params['idTipoComprobante']));
     }
     
     function ajaxDeleteArticuloAction(){
@@ -81,6 +81,8 @@ class Admin_PedidosController
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
         $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
         $this->view->formularioCliente = $form;
+        $modelComprobante = new Application_Model_TipoDocumento();
+        $this->view->comprobantes = $modelComprobante->getTipoDocumento();
     }
     
     function nuevoClienteAjaxAction(){
