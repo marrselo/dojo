@@ -40,6 +40,8 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         array('label'=>'Nº Serie')));
         $this->addElement(new Zend_Form_Element_Text('fechaEntrega',
         array('label'=>'Fecha Entrega')));
+        $this->addElement(new Zend_Form_Element_Text('direccion',
+        array('label'=>'Direccion')));
         $this->addElement(new Zend_Form_Element_Text('numComprobante',
         array('label'=>'Nº de Documento')));
         $this->addElement(new Zend_Form_Element_Textarea('informacionAdicional',

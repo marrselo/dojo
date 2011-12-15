@@ -43,6 +43,7 @@
     </table>
 
     <div>
+        <?php echo $this->element->direccion ?>
         <?php echo $this->element->fechaEntrega ?>
         <?php echo $this->element->hora ?>
         <?php echo $this->element->minuto ?>
@@ -124,6 +125,7 @@
 
         $("#searchTextResponsable").keypress(function(e) {
             if(e.which == 13){
+                e.preventDefault();
                 searchResponsable(this.value);
             } 
         });
