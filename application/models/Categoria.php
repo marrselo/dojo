@@ -3,11 +3,11 @@ class Application_Model_Categoria  extends Zend_Db_Table {
     protected  $_name = "categoria";
     
     public function listaCategorias() {
-        $estado = 1;
+        
         return $this->getAdapter()
                 ->select()
                 ->from('categoria')
-                ->where('estado = ?', $estado)
+                ->order('estado desc')
                 ->query()->fetchAll();
     }
     public function crearCategoria($data){
