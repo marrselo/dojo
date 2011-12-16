@@ -18,8 +18,8 @@ class ZExtraLib_Controller_Action
         $this->initView();
         
         if ($this->_request->getModuleName()=='admin' && $this->_request->getControllerName()!='login' ) {
-            print_r($this->_request->getModuleName())
-            print_r($this->_request->getControllerName())
+            print_r($this->_request->getModuleName());
+            print_r($this->_request->getControllerName());
                     
             if(!isset($this->_identity)){
         //        $this->_redirect ('/admin/login'); 
