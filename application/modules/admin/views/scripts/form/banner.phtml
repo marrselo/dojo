@@ -1,20 +1,18 @@
-
+<br />
 <form action="<?php echo $this->element->getAction();?>" 
       method="<?php echo $this->element->getMethod();?>"
       enctype="<?php echo $this->element->getAttrib('enctype');?>">
     <div>
-<?php echo $this->element->codigo ?>
+
 <?php echo $this->element->nombre ?>
 <?php echo $this->element->descripcion ?>
-<?php echo $this->element->precioventa ?>
-<?php echo $this->element->preciocompra ?>
-<?php echo $this->element->idcategoria ?>
-<?php echo $this->element->slugBusqueda ?>
+<?php echo $this->element->link ?>
 <?php echo $this->element->imagen ?>
-<?php echo $this->element->Enviar ?>
+<?php echo $this->element->estado ?>
+<?php echo $this->element->Guardar ?>
     </div>
     <div>
-<img src="/imagen-articulo/<?php echo $this->element->getView()->imagen; ?>">
-    </div>    
+<img src="/imagen-banner/<?php echo $this->element->getView()->imagen; ?>">
+    </div>
 </form>
    

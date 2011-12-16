@@ -1,12 +1,11 @@
 <?php
 
-class Admin_PedidosController
-        extends ZExtraLib_Controller_Action
-{
-       protected $_clienteModel;
-       protected $_articuloModel;
-       protected $_documentoModel;
-       protected $_usuarioModel;
+class Admin_PedidosController extends ZExtraLib_Controller_Action {
+
+    protected $_clienteModel;
+    protected $_articuloModel;
+    protected $_documentoModel;
+    protected $_usuarioModel;
 
     function init() {
         parent::init();
@@ -16,92 +15,158 @@ class Admin_PedidosController
         $this->_detalleDocumentoModel = new Application_Model_DetalleDocumento();
         $this->_usuarioModel = new Application_Model_Usuario();
     }
-    function ajaxSearchClientesAction(){
+
+    function ajaxSearchClientesAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $cliente = $this->_clienteModel->listaClientes($params['searchCliente']);
         echo $this->_helper->json($cliente);
     }
-    
-    function ajaxSearchResponsableAction(){
+
+    function ajaxSearchResponsableAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $usuarios = $this->_usuarioModel->listaUsuarios($this->_getParam('buscarResponsable'));
         echo $this->_helper->json($usuarios);
     }
-    
-    function ajaxGetResponsableAction(){
+
+    function ajaxGetResponsableAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $usuarios = $this->_usuarioModel->listarUnUsuario($this->_getParam('idusuario'));
         echo $this->_helper->json($usuarios);
     }
-    function ajaxGetClienteAction(){
+
+    function ajaxGetClienteAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $cliente = $this->_clienteModel->listarUnCliente($params['idCliente']);
         echo $this->_helper->json($cliente);
     }
-    
-    function ajaxListarNumeroSerieAction(){
+
+    function ajaxListarNumeroSerieAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $comprobante = new Application_Model_Comprobante();
         echo $this->_helper->json($comprobante->listarNumSerieComprobantes($params['idTipoComprobante']));
     }
-    
-    function ajaxDeleteArticuloAction(){
+
+    function ajaxDeleteArticuloAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        unset($this->session->articuloEnLista[array_search($params['idArticulo'],$this->session->articuloEnLista)]); 
+        unset($this->session->articuloEnLista[array_search($params['idArticulo'], $this->session->articuloEnLista)]);
         echo $this->_helper->json(array());
     }
-    
-    function ajaxGetArticuloAction(){
+
+    function ajaxGetArticuloAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $this->session->articuloEnLista[] = $params['idArticulo'];
         echo $this->_helper->json($articulo);
     }
-    
-    function ajaxSearchArticulosAction(){
+
+    function ajaxSearchArticulosAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
-        $notInt = count($this->session->articuloEnLista)>0?implode(',',$this->session->articuloEnLista):'';
-        $articulo = $this->_articuloModel->buscarArticulos(isset($params['searchArticulo'])?$params['searchArticulo']:'',
-                                                           isset($params['idCategoria'])?$params['idCategoria']:'',$notInt);
+        $notInt = count($this->session->articuloEnLista) > 0 ? implode(',', $this->session->articuloEnLista) : '';
+        $articulo = $this->_articuloModel->buscarArticulos(isset($params['searchArticulo']) ? $params['searchArticulo'] : '', isset($params['idCategoria']) ? $params['idCategoria'] : '', $notInt);
         echo $this->_helper->json($articulo);
     }
-    
-    function indexAction(){
-        $this->session->articuloEnLista=array();
+
+    function indexAction() {
+        $this->session->articuloEnLista = array();
         $date = new Zend_Date();
-        echo $date->now()->get('YY-mm-dd');
         $form = new Application_Form_FormCliente();
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
-        $form->setDecorators(array(array('ViewScript',array('viewScript'=>'form/cliente.phtml'))));
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/cliente.phtml'))));
+
         $this->view->formularioCliente = $form;
-        $modelComprobante = new Application_Model_TipoDocumento();
-        $this->view->comprobantes = $modelComprobante->getTipoDocumento();
+        $formComprobantes = $this->getFormGenerarComprobante();
+
+
+        if ($this->_request->isPost()) {
+            $params = $this->_getAllParams();
+            $comprobante = new Application_Model_Comprobante();
+            $serieComprobante = $comprobante->listarNumSerieComprobantes($params['tipoDocumento']);
+            foreach ($serieComprobante as $index) {
+                $arraySerie[$index['serie']] = $index['serie'];
+            }
+            $formComprobantes->getElement('numSerie')->setMultiOptions($arraySerie);
+            if ($formComprobantes->isValid($params)) {
+                $this->generarComprobante($params);
+                echo 'generado';
+            }
+        }
+
+        //$formComprobantes->setAction('/admin/pedidos/generar-comprobante');
+        $formComprobantes->getElement('fechaEntrega')
+                ->setValue($date->now()->getDate()->get('YYYY-mm-dd'));
+        $this->view->formGenerarComprobantes = $formComprobantes;
+    }
+
+    function ajaxGenerarNumComprobanteAction() {
+        $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        $idTipoDocumento = $params['tipoDocumento'];
+        $numSerie = $params['numSerie'];
+        $modelComprobante = new Application_Model_Comprobante();
+        $arrayResult = $modelComprobante->listarComprobantes($idTipoDocumento, $numSerie);
+        echo $this->_helper->json($arrayResult);
+    }
+
+    function generarComprobante($param) {
+        $date = new Zend_Date();
+        $data ['numeroserie'] = $param['numSerie'];
+        $data ['numerocomprobante'] = $param['numComprobante'];
+        $data ['fechacreacion'] = $date->now()->get('YYYY-mm-dd');
+        $data ['idtipodocumento'] = $param['tipoDocumento'];
+        $data ['direccion'] = $param['direccion'];
+        $data ['idcliente'] = $param['idcliente'];
+        $data ['idestado'] = 1;
+        $data ['flagactivo'] = 1;
+        $data ['idvendedor'] = $this->_identity->idusuario;
+        $data ['IGV'] = 18.00; //$param['igv'];
+        $data ['comentario'] = $param['informacionAdicional'];
+        $idDocumento = $this->_documentoModel->crearDocumento($data);
+        $arrayProductos = $param['idarticulo'];
+        foreach ($arrayProductos as $index => $value) {
+            $dataDetalle['iddocumento'] = $idDocumento;
+            $dataDetalle['idarticulo'] = $value;
+            $dataDetalle['precio'] = $param['precio'][$index];
+            $dataDetalle['cantidad'] = $param['cantidad'][$index];
+            $this->crearDetalleDocumento($dataDetalle);
+        }
+    }
+
+    function getFormGenerarComprobante() {
+        $form = new Application_Form_FormGeneraComrpobante();
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/generacomrpobante.phtml'))));
+        return $form;
     }
     
-    function nuevoClienteAjaxAction(){
+    function visualizarComprobanteAction(){
+        
+        
+    }
+    
+
+    function nuevoClienteAjaxAction() {
         $this->_helper->layout()->disableLayout();
         $form = new Application_Form_FormCliente();
         $params = $this->_getAllParams();
         if ($this->_request->isPost()) {
-            if($form->isValid($params)){
-                $data['nombre']=$params['nombre'];
-                $data['apellidomaterno']=$params['apellidomaterno'];
-                $data['apellidopaterno']=$params['apellidopaterno'];
-                $data['direccion']=$params['direccion'];
-                $data['dni']=$params['dni'];
-                $data['web']=$params['web'];
-                $data['correo']=$params['correo'];
-                $data['telefono1']=$params['telefono1'];
-                $data['telefono2']=$params['telefono2'];
-                $data['movil']=$params['movil'];
-                $data['ruc']=$params['ruc'];
+            if ($form->isValid($params)) {
+                $data['nombre'] = $params['nombre'];
+                $data['apellidomaterno'] = $params['apellidomaterno'];
+                $data['apellidopaterno'] = $params['apellidopaterno'];
+                $data['direccion'] = $params['direccion'];
+                $data['dni'] = $params['dni'];
+                $data['web'] = $params['web'];
+                $data['correo'] = $params['correo'];
+                $data['telefono1'] = $params['telefono1'];
+                $data['telefono2'] = $params['telefono2'];
+                $data['movil'] = $params['movil'];
+                $data['ruc'] = $params['ruc'];
                 $idcliente = $this->_clienteModel->crearCliente($data);
                 $data = $this->_clienteModel->listarUnCliente($idcliente);
                 $messages = 'Usuario registrado';
@@ -111,54 +176,24 @@ class Admin_PedidosController
             $estado = 0;
             $data = array();
         }
-        echo $this->_helper->json(array('messages'=> $messages,
-                                     'estado' => $estado,
-                                     'data' => $data ));
+        echo $this->_helper->json(array('messages' => $messages,
+            'estado' => $estado,
+            'data' => $data));
     }
-    
-    function crearDocumentoAction(){
-        $date = new Zend_Date();
-        $param = $this->_getAllParams();
-        $data ['numeroserie'] = $param['numeroserie'];
-        $data ['numerocomprobante']= $param['numerocomprobante'];
-        $data ['fechacreacion']= $date->now()->get('YY-mm-dd');
-        $data ['fecvencimiento']= $date->set($param['fecvencimiento'])->get('YY-mm-dd');
-        $data ['total']= $param['total'];
-        $data ['idtipodocumento'] = $param['idtipodocumento'];
-        $data ['idcliente'] = $param['idcliente'];
-        $data ['idestado'] = $param['idestado'];
-        $data ['flagactivo'] = 1;
-        $data ['idvendedor']= $param['idvendedor'];
-        $data ['IGV']= $param['igv'];
-        $data ['comentario']= $param['comentarioPedido'];
-        $idDocumento = $this->_documentoModel->crearDocumento($data);
-        $arrayProductos = explode($param['idproductos'],',');/*12-23-23,1-23-23,2-23-23,idproducto-cantidad-importe */
-        foreach ($arrayProductos as $index){
-            $paramDetalle = explode($index,'-');
-            $dataDetalle['iddocumento']= $idDocumento;
-            $dataDetalle['idarticulo']= $paramDetalle[0];
-            $dataDetalle['importe']= $paramDetalle[1];
-            $dataDetalle['precio']= $paramDetalle[2];
-            $this->crearDetalleDocumento($dataDetalle);
-        }
-    }
-    
-    function crearDetalleDocumento($param){
+
+    function crearDetalleDocumento($param) {
         $data ['iddocumento'] = $param['iddocumento'];
         $data ['cantidad'] = $param['cantidad'];
-        $data ['importe'] = ($param['cantidad']*$param['precio']) ;
+        $data ['importe'] = ($param['cantidad'] * $param['precio']);
         $data ['precio'] = $param['precio'];
         $data ['idarticulo'] = $param['idarticulo'];
         $this->_detalleDocumentoModel->crearDetalleDocumento($data);
     }
-    
-    function listaPedidosAction(){
-        $this->view->menuTop = $menuTop = array('Lista Productos'=>'..//admin/articulo','Nuevo Articulo'=>'../articulo/nuevo-articulo','Lista Pedidos'=>'pedidos/lista-pedidos');
+
+    function listaPedidosAction() {
+        $this->view->menuTop = $menuTop = array('Lista Productos' => '..//admin/articulo', 'Nuevo Articulo' => '../articulo/nuevo-articulo', 'Lista Pedidos' => 'pedidos/lista-pedidos');
         $pedidos = new Application_Model_Documento();
         $this->view->listaPedidos = $pedidos->listarDocumentos();
     }
-    
-    
-   
-    
+
 }

@@ -1,0 +1,349 @@
+<form action="<?php echo $this->element->getAction();?>" 
+      method="<?php echo $this->element->getMethod();?>"
+      enctype="<?php echo $this->element->getAttrib('enctype');?>">
+    <div>
+        <?php echo $this->element->searchCliente ?>
+    </div>
+    <div id="actionViewModal"> Nuevo Cliente </div>
+    <span id="autocompleteCliente" style="position: absolute; background-color: #009ede;">
+    </span>
+    <input type="hidden" value="" id="idcliente" name="idcliente">
+    <div id="tableSeachCLiente"></div>
+    <div>
+        <?php echo $this->element->searchArticulo ?>
+        <div id="tableSeachArticulo">
+        </div>
+        <span id="autocompleteArticulo" style="position: absolute; background-color: #009ede;">
+        </span>
+    </div>
+    <table id="tableArticulo" class="sticky-enabled tableSelect-processed sticky-table">
+        <thead class="tableHeader-processed">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td style="color: red; font-weight: bold"> Total General </td>
+            <td style="color: red; font-weight: bold"> <span id="total">0</span></td>
+            <td> </td>
+        </tr>
+
+    </table>
+
+    <div>
+        <?php echo $this->element->direccion ?>
+        <?php echo $this->element->fechaEntrega ?>
+        <?php echo $this->element->hora ?>
+        <?php echo $this->element->minuto ?>
+    </div>
+
+    <div>
+        <?php echo $this->element->tipoDocumento ?>
+    </div>
+
+    <div>
+        <span id="spanNumSerie">
+            <?php echo $this->element->numSerie ?>
+        </span>
+        </label>
+    </div>
+
+    <div>
+        <?php echo $this->element->numComprobante ?>
+    </div>
+
+    <div>
+        <?php echo $this->element->informacionAdicional ?>
+    </div>
+    <div>
+        <?php echo $this->element->searchTextResponsable ?>
+        <span id="responsableSearch" style="position: absolute; background-color: #009ede;">
+        </span>
+        <span id="responsable"></span>
+    </div> 
+    <div> 
+        <?php echo $this->element->enviar ?>
+        <?php echo $this->element->cancelar ?>
+    </div>
+
+</form>
+
+<div id="modalView" class="modalInActive" >
+    <div id="boxes" >
+        <?php echo $this->element->getView()->formularioCliente; ?>
+    </div>    
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#numSerie').live('change',function(){
+            $.ajax({
+                data: "idTipoComprobante="+this.value,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-generar-num-comprobante",
+                success: function(data){ }
+            });
+            
+        })
+        
+    
+        $('#tipoDocumento').change(function(){
+            $.ajax({
+                data: "idTipoComprobante="+this.value,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-listar-numero-serie",
+                success: function(data){ 
+                    var contenido ='<select id="numSerie" name="numSerie">';
+                        contenido = contenido + '<option value="">---</option>';    
+                    for (var i = 0; i < data.length; i++) { 
+                        contenido = contenido + '<option value="'+ data[i]['serie'] +'">'+ data[i]['serie'] +'</option>';    
+                    }
+                    contenido = contenido + '</select>';
+                    $('#numSerie-element').empty();
+                    $('#numSerie-element').append(contenido);
+                }
+            });
+
+        });
+        $('#actionViewModal').click(function(){
+            $("#modalView").attr('class','modalActive'); 
+        });
+
+        $("#searchTextResponsable").keypress(function(e) {
+            if(e.which == 13){
+                e.preventDefault();
+                searchResponsable(this.value);
+            } 
+        });
+    
+        $( "#searchCliente" ).keypress(function(e) {
+            if(e.which == 13){
+                e.preventDefault();
+                var valor = this.value;       
+                $.ajax({
+                    data: "searchCliente="+valor,
+                    type: "POST",
+                    dataType: "json",
+                    url: "/admin/pedidos/ajax-search-clientes",
+                    success: function(data){ 
+                        $('#autocompleteCliente').empty(); 
+                        var contenido='';
+                        contenido = '<div><table>';
+                        for (var i = 0; i < data.length; i++) { 
+                            contenidoHidden = '<table class="sticky-enabled tableSelect-processed sticky-table">';
+                            contenidoHidden = contenidoHidden +'<thead class="tableHeader-processed">';
+                            contenidoHidden = contenidoHidden +'<tr>';
+                            contenidoHidden = contenidoHidden +'<th>Nombre</th>';
+                            contenidoHidden = contenidoHidden +'<th>Apellidos</th>';
+                            contenidoHidden = contenidoHidden +'<th>Ruc</th>';
+                            contenidoHidden = contenidoHidden +'<th>Dirección</th>';
+                            contenidoHidden = contenidoHidden +'<th>Telefonos</th>';
+                            contenidoHidden = contenidoHidden +'<th>Dni</th>';
+                            contenidoHidden = contenidoHidden +'</tr>';
+                            contenidoHidden = contenidoHidden +'</thead>';
+                            contenidoHidden = contenidoHidden +'<tbody>';
+                            contenidoHidden = contenidoHidden +'<tr>';
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['nombre']+'</td>';
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['apellidomaterno']+ ' ' +data[i]['apellidopaterno']+'</td>';
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['ruc']+ '</td>';
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['direccion']+ '</td>';
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['telefono1']+ ' - ' +data[i]['telefono2']+ ' - ' +data[i]['movil']+'</td>';
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['dni']+ '</td>';
+                            contenidoHidden = contenidoHidden +'</tr>';
+                            contenidoHidden = contenidoHidden +'</tbody>';
+                            contenidoHidden = contenidoHidden + '</table>';
+                            contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemCliente-'+data[i]['idcliente']+'">';
+                            contenido = contenido + '<td>';
+                            contenido = contenido + "<input type='hidden' id='itemHiddenCliente-"+data[i]['idcliente']+"'   value='"+contenidoHidden+"' >";
+                            contenido = contenido + data[i]['nombre'];
+                            contenido = contenido + '</td>';
+                            contenido = contenido + '<td>';
+                            contenido = contenido + data[i]['apellidomaterno'] +' '+ data[i]['apellidopaterno'];
+                            contenido = contenido + '</td>';
+                            contenido = contenido + '</tr>';
+                        }
+                        contenido = contenido + '</table></div>';
+                        $('#autocompleteCliente').append(contenido);
+                    }
+                });
+            }
+        })
+	
+        $( "#searchArticulo" ).keypress(function(e) {
+            if(e.which == 13){
+                e.preventDefault();
+                var valor = this.value;       
+                $.ajax({
+                    data: "searchArticulo="+valor,
+                    type: "POST",
+                    dataType: "json",
+                    url: "/admin/pedidos/ajax-search-articulos",
+                    success: function(data){
+                        $('#autocompleteArticulo').empty(); 
+                        var contenido='';
+                        var contenidoHidden='';
+                        contenido = '<div><table>';
+                        for (var i = 0; i < data.length; i++) { 
+                            contenidoHidden = contenidoHidden +'<tr id="row_'+data[i]['idarticulo']+'">'
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['nomArticulo']+'<input type="hidden" name="idarticulo[]" value="'+data[i]['idarticulo']+'" id="idarticulo_'+data[i]['idarticulo']+'"></td>'
+                            contenidoHidden = contenidoHidden +'<td>'+data[i]['descArticulo']+'</td>'
+                            contenidoHidden = contenidoHidden +'<td><input name="precio[]" id="precio_'+data[i]['idarticulo']+'" type="text" value="'+parseFloat(data[i]['precioventa'])+'"></td>'
+                            contenidoHidden = contenidoHidden +'<td><input name="cantidad[]" id="cantidad_'+data[i]['idarticulo']+'" type="text" value="1"></td>'
+                            contenidoHidden = contenidoHidden +'<td><input name="total[]" id="total_'+data[i]['idarticulo']+'"  disabled="disabled" type="text" value="0"></td>'
+                            contenidoHidden = contenidoHidden +'<td>[<a id="eliminarArti-'+data[i]['idarticulo']+'" href="#">Eliminar</a>]</td>'
+                            contenidoHidden = contenidoHidden +'</tr>'
+                            contenido = contenido + '<tr style="cursor:pointer" id="itemArticulo-'+data[i]['idarticulo']+'">';
+                            contenido = contenido + "<td><input type='hidden' value='"+contenidoHidden+"' id='itemArticuloHide-"+data[i]['idarticulo']+"'>";
+                            contenido = contenido + data[i]['nomArticulo'];
+                            contenido = contenido + '</td>';
+                            contenido = contenido + '</tr>';
+                            contenidoHidden='';
+                        }
+                        contenido = contenido + '</table></div>';
+                        $('#autocompleteArticulo').append(contenido);
+                    }
+                });
+            }
+        })
+        
+        
+        $("[id^=itemCliente]").live("click",function(){
+            var idClienteArray = this.id.split('-');
+            contenValueHiden = $("#itemHiddenCliente-"+idClienteArray[1]).attr('value');
+            mostrarCLiente(contenValueHiden,idClienteArray[1]);
+        });
+    
+        $("[id^=itemResponsable]").live("click",function(){
+            var idClienteArray = this.id.split('-');
+            mostrarResponsable(idClienteArray[1]);
+        });
+    
+        $("[id^=itemArticulo]").live("click",function(){
+            var idClienteArray = this.id.split('-');
+            contenValueHiden = $("#itemArticuloHide-"+idClienteArray[1]).attr('value');
+            mostrarArticulo(contenValueHiden,idClienteArray[1]);
+        });
+    
+        $("[id^=eliminarArti]").live("click",function(){
+            var idArticuloArray = this.id.split('-');
+            $(this).parent().parent().remove();
+            eliminaArticulo(idArticuloArray[1]);
+            totalProductos();
+        });
+
+        function mostrarResponsable(idusuario){
+            $.ajax({
+                data: "idusuario="+idusuario,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-get-responsable",
+                success: function(data){
+                    var contenido='';
+                    var nombre = data['apellidomaterno'];
+                    nombre = nombre + ' ' + data['apellidopaterno'];
+                    nombre = nombre + ' ' + data['nombre'];
+                    contenido = nombre+'<input type="hidden" id="idusuario" value='+idusuario+'>';
+                    $('#responsable').empty(); 
+                    $('#responsableSearch').empty(); 
+                    $('#responsable').append(contenido);
+            
+                }
+            });
+        }
+        function eliminaArticulo(idArticulo){
+            $.ajax({
+                data: "idArticulo="+idArticulo,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-delete-articulo",
+                success: function(data){}
+            });
+        }
+        function mostrarArticulo(contenido,idArticulo){
+            $('#autocompleteArticulo').empty(); 
+            $('#tableArticulo tr:first').after(contenido);
+            totalItem(idArticulo);    
+            $.ajax({
+                data: "idArticulo="+idArticulo,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-get-articulo",
+                success: function(data){}
+            });
+        }
+        $("[id^=precio_]").live("keyup",function(e){
+            var splitId = this.id.split('_');
+            totalItem(splitId[1]);
+        });
+        $("[id^=cantidad_]").live("keyup",function(e){
+            var splitId = this.id.split('_');
+            totalItem(splitId[1]);
+        });
+        
+        function totalProductos(){
+            var total =0;
+            $("[id^=idarticulo_]").each(function(){
+                var splitId = this.id.split('_');
+                total = total + parseFloat($('#total_'+splitId[1]).attr('value'));
+            });
+            $('#total').empty(); 
+            $('#total').append(total);
+
+        }
+        
+        function totalItem(idArticulo){
+            $('#total_'+idArticulo).attr('value',parseFloat($('#precio_'+idArticulo).attr('value'))*parseFloat($('#cantidad_'+idArticulo).attr('value')));
+            totalProductos();
+        }
+        
+        
+        function searchResponsable(textSearch){
+            $.ajax({
+                data: "buscarResponsable="+textSearch,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/pedidos/ajax-search-responsable",
+                success: function(data){
+                    var contenido='';
+                    contenido = '<div><table>';
+                    for (var i = 0; i < data.length; i++) { 
+                        var nombre = data[i]['apellidomaterno'];
+                        nombre = nombre + ' ' + data[i]['apellidopaterno'];
+                        nombre = nombre + ' ' + data[i]['nombre'];
+                        contenido = contenido + '<tr style="cursor:pointer" name="asa" id="itemResponsable-'+data[i]['idusuario']+'">';
+                        contenido = contenido + '<td>';
+                        contenido = contenido + nombre;
+                        contenido = contenido + '</td>';
+                        contenido = contenido + '</tr>';
+                    }
+                    contenido = contenido + '</table></div>';
+                    $('#responsableSearch').empty(); 
+                    $('#responsableSearch').append(contenido);
+                }
+            });
+        }
+        
+        function mostrarCLiente(contenido,idcliente){
+            $('#tableSeachCLiente').empty(); 
+            $('#idcliente').attr('value',idcliente); 
+            $('#tableSeachCLiente').append(contenido);
+            $('#autocompleteCliente').empty(); 
+        }
+    });
+
+        
+</script>
