@@ -64,6 +64,9 @@ class ZExtraLib_Controller_Action
                 
             $this->view->perfilUsuario = array();
             echo '<p>'.PHP_VERSION.'<p>';
+            echo Zend_Version::VERSION;
+            
+                
         }
     //}
 
