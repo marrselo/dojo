@@ -10,6 +10,8 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         
         $this->addElement(new Zend_Form_Element_Text('searchCliente',
         array('label'=>'Buscar Cliente')));
+        $this->addElement(new Zend_Form_Element_Text('searchEmpresa',
+        array('label'=>'Buscar Empresa')));
         $this->addElement(new Zend_Form_Element_Text('searchArticulo',
         array('label'=>'Buscar Articulo')));
         

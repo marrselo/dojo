@@ -65,7 +65,7 @@ class Application_Model_Comprobante  extends Zend_Db_Table {
     function listarCabezeraComrpobante($idComprobante){
         return $this->getAdapter()
                 ->select()
-                ->from(array('dp' => 'documentoPago'),array())
+                ->from(array('dp' => 'documentoPago'),array('dp.iddocumento','dp.numeroserie','numerocpmprobando'))
                 ->join(array('td' => 'tipo_doc'), 'td.idtip_doc = dp.idtipodocumento','')
                 ->join(array('cl' => 'cliente'), 'cl.idcliente = cl.idcliente','');
         
