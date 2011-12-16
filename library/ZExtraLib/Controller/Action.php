@@ -19,7 +19,7 @@ class ZExtraLib_Controller_Action
         
         if ($this->_request->getModuleName() == 'admin' && $this->_request->getControllerName() != 'login' ) {
             if(!isset($this->_identity))
-                //$this->_redirect ('/admin/login');
+               $this->_redirect ('/admin/login');
             if($this->_identity->FlagSuperUsuario != 1){
             $modelPerfil = new Application_Model_Perfil();
             $this->view->perfilUsuario = $modelPerfil->listarPerfilUsuarioLogeado($this->_identity->idusuario);
@@ -36,7 +36,7 @@ class ZExtraLib_Controller_Action
         
         if(!in_array($rutaActual, $ruta))
         {
-            //$this->_redirect ('/admin');
+            $this->_redirect ('/admin');
         }
         
             $this->_layout->setLayout('layoutadmin');
