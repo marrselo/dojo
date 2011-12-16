@@ -32,21 +32,21 @@ class Admin_LoginController
         }
         
         public function indexAction(){
-//            $this->view->messages = $this->_flashMessenger->getMessages();
-//            $params =  $this->_request->getParams();
-//            $this->view->form = $form = $this->formLogin();
-//            if ($this->_request->isPost()) {
-//                if ($form->isValid($params)) {
-//                    if ($this->auth($params['login'], $params['password'],1)) {
-//                    $this->_redirect('/admin');
-//                    
-//                    } else {
-//                    $this->_flashMessenger->addMessage('Correo y/o contraseña incorrectos.');
-//                    $this->_redirect('/admin/login');
-//                    }
-//
-//                }
-//            }
+            $this->view->messages = $this->_flashMessenger->getMessages();
+            $params =  $this->_request->getParams();
+            $this->view->form = $form = $this->formLogin();
+            if ($this->_request->isPost()) {
+                if ($form->isValid($params)) {
+                    if ($this->auth($params['login'], $params['password'],1)) {
+                    $this->_redirect('/admin');
+                    
+                    } else {
+                    $this->_flashMessenger->addMessage('Correo y/o contraseña incorrectos.');
+                    $this->_redirect('/admin/login');
+                    }
+
+                }
+            }
         }
         
         public function formLogin(){
