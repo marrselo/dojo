@@ -17,54 +17,53 @@ class ZExtraLib_Controller_Action
         $this->_flashMessenger  = $this->_helper->getHelper('FlashMessenger');
         $this->initView();
         
-        if ($this->_request->getModuleName()=='admin' && $this->_request->getControllerName()!='login' ) {
-            print_r($this->_request->getModuleName());
-            print_r($this->_request->getControllerName());
-                    
-            if(!isset($this->_identity)){
-        //        $this->_redirect ('/admin/login'); 
-            }   
-            if($this->_identity->FlagSuperUsuario != 1){
-            $modelPerfil = new Application_Model_Perfil();
-            $this->view->perfilUsuario = $modelPerfil->listarPerfilUsuarioLogeado($this->_identity->idusuario);
-        }else{
-            $modelMenu = new Application_Model_Menu();
-            $this->view->perfilUsuario = $modelMenu->listaMenuSuperUsuario();
-        }
-            $rutaActual = '/'.$this->_request->getModuleName().'/'.$this->_request->getControllerName();
-            $ruta= array();
-        foreach($this->view->perfilUsuario as $index){
-            $ruta[] = $index['url'];
-        }
-        
-        if(!in_array($rutaActual, $ruta))
-        {
-            $this->_redirect ('/admin');
-        }
-        
-            $this->_layout->setLayout('layoutadmin');
-            $this->view->headLink()->appendStylesheet("/css/style.css")
-                    ->appendStylesheet("/css/custom.css")
-                    ->appendStylesheet("/css/defaults.css")
-                    ->appendStylesheet("/css/print.css",array("media"=>"print"));
-            $this->view->headScript()
-                    ->setIndent('      ')
-                    ->prependFile("/css/fix-ie.css",'text/css',array("media"=>"screen","conditional" =>"lt IE 7"));
-        }else{
-            
-            if($this->_request->getModuleName() == 'admin' && $this->_request->getControllerName() == 'login'){
-                $this->_layout->setLayout('layoutlogin');
-                            $this->view->headLink()->appendStylesheet("/css/style.css")
-                    ->appendStylesheet("/css/defaults.css")
-                    ->appendStylesheet("/css/print.css",array("media"=>"print"));
-                            $this->view->headScript()
-                    ->setIndent('      ')
-                    ->prependFile("/css/fix-ie.css",'text/css',array("media"=>"screen","conditional" =>"lt IE 7"));
-
-            }
+//        if ($this->_request->getModuleName()=='admin' && $this->_request->getControllerName()!='login' ) {
+//            print_r($this->_request->getModuleName());
+//            print_r($this->_request->getControllerName());
+//            if(!isset($this->_identity)){
+//        //        $this->_redirect ('/admin/login'); 
+//            }   
+//            if($this->_identity->FlagSuperUsuario != 1){
+//            $modelPerfil = new Application_Model_Perfil();
+//            $this->view->perfilUsuario = $modelPerfil->listarPerfilUsuarioLogeado($this->_identity->idusuario);
+//        }else{
+//            $modelMenu = new Application_Model_Menu();
+//            $this->view->perfilUsuario = $modelMenu->listaMenuSuperUsuario();
+//        }
+//            $rutaActual = '/'.$this->_request->getModuleName().'/'.$this->_request->getControllerName();
+//            $ruta= array();
+//        foreach($this->view->perfilUsuario as $index){
+//            $ruta[] = $index['url'];
+//        }
+//        
+//        if(!in_array($rutaActual, $ruta))
+//        {
+//            $this->_redirect ('/admin');
+//        }
+//        
+//            $this->_layout->setLayout('layoutadmin');
+//            $this->view->headLink()->appendStylesheet("/css/style.css")
+//                    ->appendStylesheet("/css/custom.css")
+//                    ->appendStylesheet("/css/defaults.css")
+//                    ->appendStylesheet("/css/print.css",array("media"=>"print"));
+//            $this->view->headScript()
+//                    ->setIndent('      ')
+//                    ->prependFile("/css/fix-ie.css",'text/css',array("media"=>"screen","conditional" =>"lt IE 7"));
+//        }else{
+//            
+//            if($this->_request->getModuleName()=='admin' && $this->_request->getControllerName()=='login'){
+//                $this->_layout->setLayout('layoutlogin');
+//                            $this->view->headLink()->appendStylesheet("/css/style.css")
+//                    ->appendStylesheet("/css/defaults.css")
+//                    ->appendStylesheet("/css/print.css",array("media"=>"print"));
+//                            $this->view->headScript()
+//                    ->setIndent('      ')
+//                    ->prependFile("/css/fix-ie.css",'text/css',array("media"=>"screen","conditional" =>"lt IE 7"));
+//
+//            }
                 
             $this->view->perfilUsuario = array();
         }
-    }
+    //}
 
 }
