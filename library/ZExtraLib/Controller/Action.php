@@ -17,16 +17,15 @@ class ZExtraLib_Controller_Action
         $this->_flashMessenger  = $this->_helper->getHelper('FlashMessenger');
         $this->initView();
         
-        if ($this->_request->getModuleName() == 'admin' && $this->_request->getControllerName() != 'login' ) {
+        if ($this->_request->getModuleName()=='admin' && $this->_request->getControllerName()!='login' ) {
             if(!isset($this->_identity))
-               $this->_redirect ('/admin/login');
+               $this->_redirect ('/admin/login'); 
             if($this->_identity->FlagSuperUsuario != 1){
             $modelPerfil = new Application_Model_Perfil();
             $this->view->perfilUsuario = $modelPerfil->listarPerfilUsuarioLogeado($this->_identity->idusuario);
         }else{
             $modelMenu = new Application_Model_Menu();
             $this->view->perfilUsuario = $modelMenu->listaMenuSuperUsuario();
-            
         }
             $rutaActual = '/'.$this->_request->getModuleName().'/'.$this->_request->getControllerName();
             $ruta= array();
