@@ -7,6 +7,7 @@ class Application_Model_Categoria  extends Zend_Db_Table {
         return $this->getAdapter()
                 ->select()
                 ->from('categoria')
+                ->where('idpadre is null')
                 ->order('estado desc')
                 ->query()->fetchAll();
     }
@@ -29,6 +30,32 @@ class Application_Model_Categoria  extends Zend_Db_Table {
                 ->query()
                 ->fetch();
     }
+    
+    public function getCategoria(){
+        $db = $this->getAdapter();
+        return $db->fetchPairs($this->select()->from('categoria',array(
+            'idcategoria','descripcion','codigo','nombre','estado','idpadre'))
+                ->where('idpadre is null')
+                ->where('estado = 1'));
+    }    
+
+    public function getSubcategoria(){
+        $db = $this->getAdapter();        
+        return $db->fetchAll($this->select()->where('idpadre is not null')->where('estado = 1'));
+    }
+    
+    public function getPadre(){
+        $db = $this->getAdapter();        
+        return $db->fetchAll($this->select()->where('idpadre is null')->where('estado = 1'));
+    }    
+    
+    public function getPadreaa($idpadre){
+        $db = $this->getAdapter();        
+        return $db->fetchAll($this->select()->where('idcategoria = ?', $idpadre));
+    }    
+    
+    
+    
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-class Admin_CategoriaController
+class Admin_SubcategoriaController
         extends ZExtraLib_Controller_Action
 {
        protected $_categoriaModel;
@@ -13,37 +13,32 @@ class Admin_CategoriaController
     }
     function indexAction()
     {
-        $categorias = $this->_categoriaModel->listaCategorias();
-        $this->view->categorias = $categorias;
-        $paginator = Zend_Paginator::factory($categorias); 
-        $paginator->setCurrentPageNumber($this->_getParam('page'));
-        $this->view->paginator = $paginator;
+        $form = new Application_Form_SubcategoriaForm();
+        $this->view->form = $form;
         
         if($this->_getParam('id')==null){
         $this->view->messages = $this->_flashMessenger->getMessages();        
-        $form = $this->formularioCategoria();
+        $form = new Application_Form_SubcategoriaForm();
         $this->view->form = $form;
         $params = $this->_getAllParams();
         if ($this->_request->isPost()) {
-        if($form->isValid($params)){
-            $data['codigo']=$params['codigo'];
-            $data['nombre']=$params['nombre'];
+        if($form->isValid($params)){            
             $data['descripcion']=$params['descripcion'];
-            $data['estado']=$params['estado'];
+            $data['idpadre']=$params['idpadre'];
             $this->_categoriaModel->insert($data);
-            $this->_redirect('/admin/categoria');
-            //$this->crearCategoria($data);
-        }}
+            $this->_redirect('/admin/subcategoria');
+            
+        }}            
         }
         else
         {
         $where = 'idcategoria='.$this->_getParam('id');
         $categoria = $this->_categoriaModel->fetchRow($where);
-        $form = $this->formularioCategoria();
+        $form = new Application_Form_SubcategoriaForm();        
         if(!is_null($categoria)){
             if($this->_request->isPost() && $form->isValid($this->_request->getPost()) ){
                 $this->_categoriaModel->update($form->getValues(),$where);
-                $this->_helper->FlashMessenger('Se modificó Categoria ');
+                $this->_helper->FlashMessenger('Se modificó Subcategoria ');
                 $this->_redirect($this->URL);
             }
             $form->setDefaults($categoria->toArray());
@@ -51,12 +46,35 @@ class Admin_CategoriaController
         }else{
             $this->_helper->FlashMessenger('No existe ese fabricante');
             $this->_redirect($this->URL);
-        }  
-        
-
-        
-        
+        }            
         }
+        
+        //relaciones categoria - subcategoria
+        $padre = $this->_categoriaModel->getPadre();
+        $subcat = $this->_categoriaModel->getSubcategoria();        
+        $cat[] = 0;
+        $i=0;
+        foreach ($subcat as $sub):
+           foreach ($padre as $pa):           
+           if($sub['idpadre'] == $pa['idcategoria'])
+               {
+               $sub = $sub + array('padre' => $pa['descripcion']); 
+               $cat[$i] =  $sub;       
+               $i++;             
+               }
+            
+            endforeach;
+        endforeach;               
+        
+        
+        
+        //paginador
+        $paginator = Zend_Paginator::factory($cat); 
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $this->view->paginator = $paginator;        
+        
+        
+        
     }
     function crearCategoria($data){
         
@@ -127,11 +145,8 @@ class Admin_CategoriaController
     public function eliminarAction() {
         $id = $this->_request->getParam('id');
         $this->_categoriaModel->delete('idcategoria='.$id);
-        $this->_helper->FlashMessenger('registro eliminado correctamente ');
+        $this->_helper->FlashMessenger('Se elimino correctamente Categoria');
         $this->_redirect($this->URL);
     }
 
-    
-    
-    
 }
