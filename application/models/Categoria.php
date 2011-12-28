@@ -53,6 +53,9 @@ class Application_Model_Categoria  extends Zend_Db_Table {
         $db = $this->getAdapter();        
         return $db->fetchAll($this->select()->where('idcategoria = ?', $idpadre));
     }    
+    public function listarFullCategorias(){
+    return $this->select()->where('estado !=?','0')->query()->fetchAll();
+    }
     
     
     

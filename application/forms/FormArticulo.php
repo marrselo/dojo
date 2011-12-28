@@ -8,10 +8,7 @@ class Application_Form_FormArticulo extends Zend_Form
         $optionCategoria = array(''=>'Escoge una categoria'); 
         foreach($listaCategoria as $index =>$valor){
             $optionCategoria[$valor['idcategoria']] = $valor['descripcion'];
-            
         }
-       
-        
         $this->setMethod('Post');
         
         $this->setAttrib('enctype', 'multipart/form-data');
@@ -22,6 +19,13 @@ class Application_Form_FormArticulo extends Zend_Form
                               )
                           );
         $this->addElement(new Zend_Form_Element_Text('codigo'));
+        $this->addElement(new Zend_Form_Element_Select('idsubcategoria',
+                array(
+                    'requerid'=>true,
+                    'label'=>'Lista de Sub Categorias'
+                    )
+                )
+                );
         $this->addElement(new Zend_Form_Element_Text('nombre'));
         $this->addElement(new Zend_Form_Element_Textarea('slugBusqueda'));
         $this->addElement(new Zend_Form_Element_Text('descripcion'));
