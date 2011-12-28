@@ -9,8 +9,11 @@
 <h1 id="cart_title">Resumen de su carrito</h1>
 <div>&nbsp;</div>
 
-<?php if(count($this->listaArticuloCarrito)>0){?>
+<?php if(count($this->listaArticuloCarrito)>0){
+    $total=0;
+    ?>
 <p class="cart_shop">Su carrito contiene <span id="summary_products_quantity"><?php echo count($this->listaArticuloCarrito) ?> productos</span></p>
+<div>&nbsp;</div>
 <div class="table_block" id="order-detail-content">
     <table class="std" id="cart_summary">
         <thead>
@@ -24,7 +27,8 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($this->listaArticuloCarrito as $index)?>
+            <?php foreach($this->listaArticuloCarrito as $index) {
+                ?>
             <tr class=" cart_item" id="product_<?php echo $index['idarticulo']?>">
                 <td class="cart_product">
                     <a href="/detalle-producto/<?php echo $index['idarticulo']?>">
@@ -65,15 +69,19 @@
                 </td>
                 <td class="cart_total">
                     <span id="total_product_price_32_62" class="price">
-                        $218.00					</span>
+                        <?php echo $index['precioventa']*$index['cantidadArticulo']?></span>
                 </td>
             </tr>
+            <?php 
+            $total = $total +$index['precioventa']*$index['cantidadArticulo'];
+            
+            }?>
         </tbody>
         
                 <tfoot>
             <tr class="cart_total_price">
                 <td colspan="5">Total productos con IGV:</td>
-                <td id="total_product" class="price" >$218.00</td>
+                <td id="total_product" class="price" ><?php echo $total; ?></td>
             </tr>
             <tr style="display: none;" class="cart_total_voucher">
                 <td colspan="5">
@@ -116,6 +124,11 @@
 
         
     </table>
-</div><?php } else{?>
+</div>
+<p class="cart_navigation">
+	<a title="Continuar la compra" class="button_extralarge" href="http://www.floreriadetalles.com/tienda/category.php?id_category=8">Continuar la compra</a>
+	<a title="Siguiente" class="button_medium" href="http://www.floreriadetalles.com/tienda/order.php?step=1">Siguiente</a></p>
+                
+                <?php } else{?>
 <p class="warning">Su carrito está vacío</p>
 <?php } ?>
