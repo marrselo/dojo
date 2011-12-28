@@ -151,11 +151,12 @@ class Admin_ArticuloController
         foreach($listaSubCategoria as $index =>$valor){
             $optionSubCategoria[$valor['idcategoria']] = $valor['nombre'];
         }
-        $form->getElement('idsubcategoria')->setOptions($optionSubCategoria);
+        $form->getElement('idsubcategoria')->addMultioptions($optionSubCategoria);
                 if($form->isValid($params)){
                 $filter = new ZExtraLib_SeoUrl();
                 $page = ($this->getRequest()->getUserParam('page')=='')? '' : 'page/'.$this->getRequest()->getUserParam('page') ;
                 $data['idcategoria']=$params['idcategoria'];
+                $data['idsubcategoria']=$params['idsubcategoria'];
                 //$slugBusqueda = $filter->filter(trim($params['slugBusqueda']),' ',0);
                 $slugBusqueda = str_replace('-',' ',$filter->filter(trim($params['slugBusqueda']),'-',0));
                 

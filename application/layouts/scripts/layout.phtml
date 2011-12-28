@@ -91,12 +91,12 @@
                             <?php foreach($this->listaCategoria as $index):?>
                                 <?php if($index['idpadre']==''){?>
                                 <li>
-                                    <a href="#" title="Nacimiento niño">¡Ofertas Semanales!</a>
+                                    <a href="#" title="<?php echo $index['nombre'];?>"><?php echo $index['nombre'];?></a>
                                     <ul>
                                         <?php foreach($this->listaCategoria as $index2):?>
                                         <?php if($index2['idpadre']==$index['idcategoria']){?>
                                         <li>
-                                            <a href="#" title="Nacimiento niño">¡Ofertas Semanales!</a>
+                                            <a href="#" title="<?php echo $index2['nombre'];?>"><?php echo $index2['nombre'];?></a>
                                         </li>
                                         <?php } ?>
                                         <?php endforeach;?>
