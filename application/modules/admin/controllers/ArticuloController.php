@@ -144,13 +144,21 @@ class Admin_ArticuloController
         $form = $this->formularioArticulo();               
         $this->view->form = $form;
         $params = $this->_getAllParams();
+        
         if ($this->_request->isPost()) {            
-            if($form->isValid($params)){
+        $categoria = New Application_Model_Categoria();
+        $listaSubCategoria = $categoria->getHijos($params['idcategoria']);        
+        foreach($listaSubCategoria as $index =>$valor){
+            $optionSubCategoria[$valor['idcategoria']] = $valor['nombre'];
+        }
+        $form->getElement('idsubcategoria')->setOptions($optionSubCategoria);
+                if($form->isValid($params)){
                 $filter = new ZExtraLib_SeoUrl();
                 $page = ($this->getRequest()->getUserParam('page')=='')? '' : 'page/'.$this->getRequest()->getUserParam('page') ;
                 $data['idcategoria']=$params['idcategoria'];
                 //$slugBusqueda = $filter->filter(trim($params['slugBusqueda']),' ',0);
                 $slugBusqueda = str_replace('-',' ',$filter->filter(trim($params['slugBusqueda']),'-',0));
+                
                 $data['codigo']=$params['codigo'];
                 $data['nombre']=$params['nombre'];
                 $data['slugbusqueda']=$slugBusqueda;

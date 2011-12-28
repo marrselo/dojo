@@ -50,7 +50,11 @@ class Application_Model_Categoria  extends Zend_Db_Table {
     
     public function getHijos($idpadre){
         $db = $this->getAdapter();        
-        return $db->fetchAll($this->select()->where('idcategoria = ?', $idpadre)->where('estado = 1'));
+        return $db->fetchAll(
+                $this->select()
+                ->where('idpadre = ?', 
+                        $idpadre)
+                ->where('estado = 1'));
     }    
     
     public function listarFullCategorias(){
