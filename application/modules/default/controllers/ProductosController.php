@@ -29,7 +29,6 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
     {
         $params = $this->_getAllParams();
         $this->view->articulo = $this->_modelArticulos->listarUnArticulo($params['producto']);
-        print_r($this->view->articulo);
         $this->view->categorias = $this->_modelCategorias->listaCategorias();
     }
     

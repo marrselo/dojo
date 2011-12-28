@@ -19,7 +19,9 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
         if ($this->getRequest()->getModuleName() == 'default') {
             $modelCategoria = new Application_Model_Categoria();
             $this->view->listaCategoria=$modelCategoria->listarFullCategorias();
-            
+            if(isset($this->session->listaArticulo)){
+            $this->view->listaArticuloCarrito = $this->session->listaArticulo;
+            }
         } else {
             if ($this->getRequest()->getModuleName() == 'admin' && $this->getRequest()->getControllerName() != 'login') {
                 if (!isset($this->_identity))

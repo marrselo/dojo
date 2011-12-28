@@ -71,14 +71,14 @@
                         </form>
                     </div>	
                 </div>
-                
-                <?php if($this->slideshow){  ?>
-                <!-- Show slideshow in homepage -->
-                <div id="slideshow">
-                    <!--NO TE OLVIDES DE AGREGAR UN BANNER ROTATIVO-->
-                </div>
+
+                <?php if ($this->slideshow) { ?>
+                    <!-- Show slideshow in homepage -->
+                    <div id="slideshow">
+                        <!--NO TE OLVIDES DE AGREGAR UN BANNER ROTATIVO-->
+                    </div>
                 <?php } ?>
-                
+
             </div>
             <div id="columns">
                 <!-- Left -->
@@ -88,22 +88,22 @@
                         <h4>Delivery de Productos</h4>
                         <div class="block_content">
                             <ul style="display: block;" class="tree dynamized">
-                            <?php foreach($this->listaCategoria as $index):?>
-                                <?php if($index['idpadre']==''){?>
-                                <li>
-                                    <a href="#" title="<?php echo $index['nombre'];?>"><?php echo $index['nombre'];?></a>
-                                    <ul>
-                                        <?php foreach($this->listaCategoria as $index2):?>
-                                        <?php if($index2['idpadre']==$index['idcategoria']){?>
+                                <?php foreach ($this->listaCategoria as $index): ?>
+                                    <?php if ($index['idpadre'] == '') { ?>
                                         <li>
-                                            <a href="/productos/<?php echo $index2['idcategoria'];?>" title="<?php echo $index2['nombre'];?>"><?php echo $index2['nombre'];?></a>
+                                            <a href="#" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
+                                            <ul>
+                                                <?php foreach ($this->listaCategoria as $index2): ?>
+                                                    <?php if ($index2['idpadre'] == $index['idcategoria']) { ?>
+                                                        <li>
+                                                            <a href="/productos/<?php echo $index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
+                                                        </li>
+                                                    <?php } ?>
+                                                <?php endforeach; ?>
+                                            </ul>
                                         </li>
-                                        <?php } ?>
-                                        <?php endforeach;?>
-                                    </ul>
-                                </li>
-                                <?php } ?>
-                            <?php endforeach;?>
+                                    <?php } ?>
+                                <?php endforeach; ?>
                             </ul>
                             <script type="text/javascript">
                                 // <![CDATA[
@@ -157,7 +157,28 @@
                             </div>
                             <!-- block list of products -->
                             <div id="cart_block_list" class="expanded">
+                                <?php if(count($this->listaArticuloCarrito)>0){ ?>
+                                <dl class="products">
+
+                                     <?php
+                                     $total = 0;
+                                     foreach($this->listaArticuloCarrito as $index){
+                                        ?>
+                                    <dt class="first_item" id="cart_block_product_<?php echo $index['idarticulo']?>">
+                                        <span class="quantity-formated"><span class="quantity"><?php echo $index['cantidadArticulo']?></span>x</span>
+                                        <a title="Rosa 1" href="/detalle-producto/<?php echo $index['idarticulo']?>" class="cart_block_product_name">
+                                            <?php echo $index['nombre']?></a>
+                                        <span class="remove_link"><a title="eliminar este producto de mi carrito" href="/compras/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" 
+                                                                     class="ajax_cart_block_remove_link" rel="nofollow">&nbsp;</a></span>
+                                        <span class="price">S/. <?php echo $index['precioventa']?></span>
+                                    </dt>
+                                    <?php
+                                    $total=$total+$index['precioventa']*$index['cantidadArticulo'];
+                                    }?>
+                                </dl>
+                                <?php }else{ ?>
                                 <p id="cart_block_no_products">Sin producto</p>
+                                <?php } ?>    
                                 <div id="cart-prices">
                                     <div id="cart-prices-box">
                                         <span>Transporte</span>
@@ -165,7 +186,7 @@
                                     </div>
                                     <div id="cart-prices-box">
                                         <span>Total</span>
-                                        <span id="cart_block_total" class="price ajax_block_cart_total">$0.00</span>
+                                        <span id="cart_block_total" class="price ajax_block_cart_total">S/. <?php echo $total;?></span>
                                     </div>
                                 </div>
                                 <p id="cart-buttons">

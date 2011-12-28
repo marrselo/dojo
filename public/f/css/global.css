@@ -2504,7 +2504,7 @@ form.addresses label {
 #cart_block dl dt a { color: #000; }
 #cart_block dl dt a:hover { color: #000; text-decoration: underline; }
 #cart_block a.ajax_cart_block_remove_link {
-    background: url('../../../img/delete-item.png') no-repeat scroll left top transparent;
+    background: url('/f/img/delete-item.png') no-repeat scroll left top transparent;
     display: block;
     float: right;
     font-size: 0;
