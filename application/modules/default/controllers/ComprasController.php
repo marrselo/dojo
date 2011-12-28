@@ -22,11 +22,30 @@ class Default_ComprasController extends ZExtraLib_Controller_Action
         }
         }
         $this->view->listaArticuloCarrito = $this->session->listaArticulo;
+        //print_r($this->view->listaArticuloCarrito);
     }
     public function eliminarCarritoAction(){
         $params = $this->_getAllParams();
         unset($this->session->listaArticulo[$params['idArticulo']]);
         $this->_redirect($_SERVER['HTTP_REFERER']);
+    }
+    public function addCantAction(){
+        $params = $this->_getAllParams();
+        $cantidadArticulo = $this->session->listaArticulo[$params['idArticulo']]['cantidadArticulo'];
+        $this->session->listaArticulo[$params['idArticulo']]['cantidadArticulo']=$cantidadArticulo+1;
+        $this->_redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+    public function restarCantAction(){
+        $params = $this->_getAllParams();
+        $cantidadArticulo = $this->session->listaArticulo[$params['idArticulo']]['cantidadArticulo'];
+        if($cantidadArticulo==1){
+        unset($this->session->listaArticulo[$params['idArticulo']]);    
+        }else{
+        $this->session->listaArticulo[$params['idArticulo']]['cantidadArticulo']=$cantidadArticulo-1;
+        }
+        $this->_redirect($_SERVER['HTTP_REFERER']);
+        
     }
     
     
