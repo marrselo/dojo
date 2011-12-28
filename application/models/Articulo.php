@@ -53,9 +53,9 @@ class Application_Model_Articulo  extends Zend_Db_Table {
     public function listarArticulosDeUnaCategoria($idCategoria) {
         return  $this->getAdapter()
                 ->select()->from('articulo')
-                ->where('idcategoria = ?', $idCategoria)
-                ->query()
-                ->fetchAll();
+                ->where('idsubcategoria = ?', $idCategoria);
+                //->query();
+                
     }
     
     public function registroSlugArticulo($texto,$idArticulo){

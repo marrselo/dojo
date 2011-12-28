@@ -96,7 +96,7 @@
                                         <?php foreach($this->listaCategoria as $index2):?>
                                         <?php if($index2['idpadre']==$index['idcategoria']){?>
                                         <li>
-                                            <a href="#" title="<?php echo $index2['nombre'];?>"><?php echo $index2['nombre'];?></a>
+                                            <a href="/productos/<?php echo $index2['idcategoria'];?>" title="<?php echo $index2['nombre'];?>"><?php echo $index2['nombre'];?></a>
                                         </li>
                                         <?php } ?>
                                         <?php endforeach;?>
