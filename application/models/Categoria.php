@@ -3,7 +3,6 @@ class Application_Model_Categoria  extends Zend_Db_Table {
     protected  $_name = "categoria";
     
     public function listaCategorias() {
-        
         return $this->getAdapter()
                 ->select()
                 ->from('categoria')
@@ -49,10 +48,11 @@ class Application_Model_Categoria  extends Zend_Db_Table {
         return $db->fetchAll($this->select()->where('idpadre is null')->where('estado = 1'));
     }    
     
-    public function getPadreaa($idpadre){
+    public function getHijos($idpadre){
         $db = $this->getAdapter();        
-        return $db->fetchAll($this->select()->where('idcategoria = ?', $idpadre));
+        return $db->fetchAll($this->select()->where('idcategoria = ?', $idpadre)->where('estado = 1'));
     }    
+    
     public function listarFullCategorias(){
     return $this->select()->where('estado !=?','0')->query()->fetchAll();
     }

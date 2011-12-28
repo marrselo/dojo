@@ -130,8 +130,5 @@ class Admin_CategoriaController
         $this->_helper->FlashMessenger('registro eliminado correctamente ');
         $this->_redirect($this->URL);
     }
-
-    
-    
-    
+   
 }

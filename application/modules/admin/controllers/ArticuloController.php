@@ -1,5 +1,4 @@
 <?php
-
 class Admin_ArticuloController
         extends ZExtraLib_Controller_Action
 {
@@ -182,7 +181,10 @@ class Admin_ArticuloController
         $nameFile = $filter->filter(trim($text),'-',0);
         
     }
-
+    public function ajaxListarSubCategoriaAction(){
+        $categoria = new Application_Model_Categoria();
+        echo $this->_helper->json($categoria->getHijos($this->getRequest()->getParam('idcategoria')));
+    }
 }
 
 //class Admin_IndexController
