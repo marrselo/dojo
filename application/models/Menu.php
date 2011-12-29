@@ -19,7 +19,6 @@ class Application_Model_Menu  extends Zend_Db_Table {
         return $this->getAdapter()->fetchAll($this->getAdapter()
                 ->select()
                 ->from('menu')
-                ->where('idtipomenu =?',1)
                 ->order('orden'));
     }
      

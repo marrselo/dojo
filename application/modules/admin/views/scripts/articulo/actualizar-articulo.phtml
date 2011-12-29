@@ -1,3 +1,24 @@
 <?php
 echo $this->formulario;
 ?>
+<script type="text/javascript">
+    $(function() {
+        $('#idcategoria').change(function(){
+            $.ajax({
+                data: "idcategoria="+this.value,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/articulo/ajax-listar-sub-categoria",
+                success: function(data){ 
+                    $('#idsubcategoria').find('option').remove() ;
+                    
+                    for (var i = 0; i < data.length; i++) { 
+                        $('#idsubcategoria').append('<option value="'+data[i]['idcategoria']+'">'+data[i]['nombre']+'</option>')
+                    }
+                }
+            });
+        })
+    });
+
+    
+</script>

@@ -12,6 +12,7 @@
 	<thead class="tableHeader-processed">
 		<tr>
                     <th>Categoria</th>
+                    <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Acciones</th>
 		</tr>
@@ -24,6 +25,10 @@
 		<tr class="<?php echo ($i%2==0)?"odd":"even";?>">			
 			<td>
                             <span class="thmr_call"><?php echo $item["padre"];?>
+                            </span>				
+			</td>
+			<td>
+                            <span class="thmr_call"><?php echo $item["nombre"];?>
                             </span>				
 			</td>
 			<td>

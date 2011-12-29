@@ -105,7 +105,8 @@ class Admin_CategoriaController
         $form->getElement('nombre')->setLabel('Nombre');
         $form->getElement('nombre')->setRequired();
         $form->getElement('descripcion')->setLabel('Descripción');
-        $form->getElement('estado')->setLabel('Estado');
+        $form->getElement('estado')->setLabel('Activo');
+        $form->getElement('estado')->setAttribs(array('checked'=>'checked'));
         return $form;
     }
     
@@ -130,8 +131,5 @@ class Admin_CategoriaController
         $this->_helper->FlashMessenger('registro eliminado correctamente ');
         $this->_redirect($this->URL);
     }
-
-    
-    
-    
+   
 }

@@ -71,14 +71,14 @@
                         </form>
                     </div>	
                 </div>
-                
-                <?php if($this->slideshow){  ?>
-                <!-- Show slideshow in homepage -->
-                <div id="slideshow">
-                    <!--NO TE OLVIDES DE AGREGAR UN BANNER ROTATIVO-->
-                </div>
+
+                <?php if ($this->slideshow) { ?>
+                    <!-- Show slideshow in homepage -->
+                    <div id="slideshow">
+                        <!--NO TE OLVIDES DE AGREGAR UN BANNER ROTATIVO-->
+                    </div>
                 <?php } ?>
-                
+
             </div>
             <div id="columns">
                 <!-- Left -->
@@ -88,24 +88,22 @@
                         <h4>Delivery de Productos</h4>
                         <div class="block_content">
                             <ul style="display: block;" class="tree dynamized">
-                                <li>
-                                    <a href="#" title="Nacimiento niño">¡Ofertas Semanales!</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="Nacimiento niña">Licores</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="Arreglos con rosas">Bebida y Agua</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="Arreglos variados">Snacks y Piqueos</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="Arreglos con girasoles">Cigarros</a>
-                                </li>
-                                <li class="last">
-                                    <a href="#" title="Corsage Promo">Hielos y Otros</a>
-                                </li>
+                                <?php foreach ($this->listaCategoria as $index): ?>
+                                    <?php if ($index['idpadre'] == '') { ?>
+                                        <li>
+                                            <a href="/productos/<?php echo $index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
+                                            <ul>
+                                                <?php foreach ($this->listaCategoria as $index2): ?>
+                                                    <?php if ($index2['idpadre'] == $index['idcategoria']) { ?>
+                                                        <li>
+                                                            <a href="/productos/<?php echo $index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
+                                                        </li>
+                                                    <?php } ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </li>
+                                    <?php } ?>
+                                <?php endforeach; ?>
                             </ul>
                             <script type="text/javascript">
                                 // <![CDATA[
@@ -146,7 +144,7 @@
                     <!-- MODULE Block cart -->
                     <div id="cart_block" class="block exclusive">
                         <h4>
-                            <a href="http://www.floreriadetalles.com/tienda/order.php">Mi Carrito</a>
+                            <a href="/compras">Mi Carrito</a>
                         </h4>
                         <div class="block_content">
                             <!-- block summary -->
@@ -159,7 +157,30 @@
                             </div>
                             <!-- block list of products -->
                             <div id="cart_block_list" class="expanded">
+                                <?php
+                                $total = 0;
+                                if(count($this->listaArticuloCarrito)>0){ ?>
+                                <dl class="products">
+
+                                     <?php
+                                     
+                                     foreach($this->listaArticuloCarrito as $index){
+                                        ?>
+                                    <dt class="first_item" id="cart_block_product_<?php echo $index['idarticulo']?>">
+                                        <span class="quantity-formated"><span class="quantity"><?php echo $index['cantidadArticulo']?></span>x</span>
+                                        <a title="Rosa 1" href="/detalle-producto/<?php echo $index['idarticulo']?>" class="cart_block_product_name">
+                                            <?php echo $index['nombre']?></a>
+                                        <span class="remove_link"><a title="eliminar este producto de mi carrito" href="/compras/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" 
+                                                                     class="ajax_cart_block_remove_link" rel="nofollow">&nbsp;</a></span>
+                                        <span class="price">S/. <?php echo $index['precioventa']?></span>
+                                    </dt>
+                                    <?php
+                                    $total=$total+$index['precioventa']*$index['cantidadArticulo'];
+                                    }?>
+                                </dl>
+                                <?php }else{ ?>
                                 <p id="cart_block_no_products">Sin producto</p>
+                                <?php } ?>    
                                 <div id="cart-prices">
                                     <div id="cart-prices-box">
                                         <span>Transporte</span>
@@ -167,7 +188,7 @@
                                     </div>
                                     <div id="cart-prices-box">
                                         <span>Total</span>
-                                        <span id="cart_block_total" class="price ajax_block_cart_total">$0.00</span>
+                                        <span id="cart_block_total" class="price ajax_block_cart_total">S/. <?php echo $total;?></span>
                                     </div>
                                 </div>
                                 <p id="cart-buttons">
@@ -178,7 +199,7 @@
                     </div>
                     <!-- /MODULE Block cart -->
                     <!-- MODULE Block specials -->
-                    <div id="special_block_right" class="block products_block exclusive blockspecials">
+<!--                    <div id="special_block_right" class="block products_block exclusive blockspecials">
                         <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
                         <div class="block_content">
                             <h5><a href="#" title="Variados 4">Variados 4</a></h5>
@@ -193,12 +214,12 @@
                                 <a href="#" title="Ver todas las ofertas" class="button_large">Ver todas las ofertas</a>
                             </p>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- /MODULE Block specials -->
-                    <div class="box-gray">
+<!--                    <div class="box-gray">
                         <h4>Se aceptan tarjetas</h4>
                         <a href="http://www.floreriadetalles.com/tienda/"><img src="img/payment001.png"></a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="clear"></div>
             </div>
