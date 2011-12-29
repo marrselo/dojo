@@ -47,18 +47,18 @@
                 </td>
                 <td class="cart_quantity">
                     <div>
-                        <a title="Eliminar" href="/compras/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" id="32_62" 
+                        <a title="Eliminar" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" id="32_62" 
                            class="cart_quantity_delete" 
                            rel="nofollow">
                             <img height="13" width="11" class="icon" alt="Eliminar" 
                                  src="/f/img/icon/delete.gif"></a>
                     </div>
                     <div style="float:left;" id="cart_quantity_button">
-                        <a title="Añadir" href="/compras/add-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_up_32_62" class="cart_quantity_up" rel="nofollow">
+                        <a title="Añadir" href="/realizar-pedido/add-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_up_32_62" class="cart_quantity_up" rel="nofollow">
                             <img height="9" width="14" alt="Añadir" src="/f/img/icon/quantity_up.gif">
                         </a>
                         <br>
-                        <a title="sustraer" href="/compras/restar-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_down_32_62" class="cart_quantity_down" rel="nofollow">
+                        <a title="sustraer" href="/realizar-pedido/restar-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_down_32_62" class="cart_quantity_down" rel="nofollow">
                             <img height="9" width="14" alt="sustraer" src="/f/img/icon/quantity_down.gif">
                         </a>
                     </div>
@@ -127,7 +127,7 @@
 </div>
 <p class="cart_navigation">
 	<a title="Continuar la compra" class="button_extralarge" href="/">Continuar la compra</a>
-	<a title="Siguiente" class="button_medium" href="/compras/registrar-pedido">Registrar</a></p>
+	<a title="Siguiente" class="button_medium" href="/realizar-pedido/registrar-pedido">Registrar</a></p>
                 
                 <?php } else{?>
 <p class="warning">Su carrito está vacío</p>

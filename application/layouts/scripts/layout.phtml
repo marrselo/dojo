@@ -57,7 +57,7 @@
                     <ul id="menu">
                         <li><a href="/" class="<?php echo $this->menuActive1 ?>">Inicio</a></li>
                         <li><a href="/zonas-reparto" class="<?php echo $this->menuActive2 ?>">Zonas de Reparto</a></li>	
-                        <li><a href="/realizar-pedidos" class="<?php echo $this->menuActive3 ?>">Realizar Pedidos</a></li>
+                        <li><a href="/realizar-pedido" class="<?php echo $this->menuActive3 ?>">Realizar Pedido</a></li>
                         <li><a href="/politicas" class="<?php echo $this->menuActive4 ?>">Políticas</a></li>
                         <li><a href="/contacto" class="<?php echo $this->menuActive5 ?>">Contacto</a></li>
                     </ul>
@@ -144,7 +144,7 @@
                     <!-- MODULE Block cart -->
                     <div id="cart_block" class="block exclusive">
                         <h4>
-                            <a href="/compras">Mi Carrito</a>
+                            <a href="/realizar-pedido">Mi Carrito</a>
                         </h4>
                         <div class="block_content">
                             <!-- block summary -->
@@ -170,7 +170,7 @@
                                         <span class="quantity-formated"><span class="quantity"><?php echo $index['cantidadArticulo']?></span>x</span>
                                         <a title="Rosa 1" href="/detalle-producto/<?php echo $index['idarticulo']?>" class="cart_block_product_name">
                                             <?php echo $index['nombre']?></a>
-                                        <span class="remove_link"><a title="eliminar este producto de mi carrito" href="/compras/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" 
+                                        <span class="remove_link"><a title="eliminar este producto de mi carrito" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" 
                                                                      class="ajax_cart_block_remove_link" rel="nofollow">&nbsp;</a></span>
                                         <span class="price">S/. <?php echo $index['precioventa']?></span>
                                     </dt>
