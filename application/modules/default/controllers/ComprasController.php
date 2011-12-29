@@ -17,7 +17,11 @@ class Default_ComprasController extends ZExtraLib_Controller_Action {
         if (isset($params['producto']) and $params['producto'] != '') {
             $arrayArticulos = $this->_modelArticulos->listarUnArticulo($params['producto']);
             if ($arrayArticulos) {
-                $arrayArticulos['cantidadArticulo'] = $arrayArticulos['idarticulo'] == $params['producto'] ? $params['cantidad'] : $this->session->listaArticulo[$arrayArticulos['idarticulo']]['cantidadArticulo'];
+                if(isset($this->session->listaArticulo[$arrayArticulos['idarticulo']])) {
+                    $arrayArticulos['cantidadArticulo'] = $params['cantidad']+$this->session->listaArticulo[$arrayArticulos['idarticulo']]['cantidadArticulo'];
+                } else {
+                    $arrayArticulos['cantidadArticulo'] = $params['cantidad'];
+                }
                 $this->session->listaArticulo[$arrayArticulos['idarticulo']] = $arrayArticulos;
             }
         }
