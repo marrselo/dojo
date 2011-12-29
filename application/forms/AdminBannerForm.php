@@ -17,12 +17,18 @@ class Application_Form_AdminBannerForm extends Zend_Form
                                   array('label'=>'Link : ')));
             $this->addElement(new Zend_Form_Element_Checkbox('estado',
                                   array('label'=>'Estado Activado : ')));
+            $this->addElement(new Zend_Form_Element_Checkbox('borrarFoto',
+                                  array('label'=>'Borrar Imagen Banner: ')));
             
             $this->addElement(new Zend_Form_Element_Text('precio',
                                   array('label'=>'Precio Oferta')));
 
             
             $this->getElement('estado')->setValue('1');
+            $this->getElement('estado')->setRequired();
+            
+            $this->getElement('borrarFoto')->setValue('si');
+            
             
             $frontController = Zend_Controller_Front::getInstance();
             $file = $frontController->getParam('bootstrap')->getOption('file2');

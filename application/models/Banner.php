@@ -32,11 +32,14 @@ class Application_Model_Banner  extends Zend_Db_Table {
         $this->update($data, $where);
     }
     public function eliminarBanner($idBanner){
-        
+        $frontController = Zend_Controller_Front::getInstance();
+        $file = $frontController->getParam('bootstrap')->getOption('file2');
+
         $arrImagen = $this->getBanner($idBanner);
-        $imagen = $arrImagen['imagen'];
-        
-        //$where = $this->getAdapter()->quoteInto('idbanner = ?', $idBanner);
-        //$this->delete($where);        
+        if(file_exists($file.'/'.$arrImagen['imagen'])){
+            unlink($file.'/'.$arrImagen['imagen']);
+        }   
+        $where = $this->getAdapter()->quoteInto('idbanner = ?', $idBanner);
+        $this->delete($where);        
     }
 }

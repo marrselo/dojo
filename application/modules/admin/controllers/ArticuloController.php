@@ -207,5 +207,3 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
     }
 
 }
-
-//class Admin_IndexController
