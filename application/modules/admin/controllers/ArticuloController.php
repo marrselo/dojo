@@ -160,8 +160,7 @@ class Admin_ArticuloController
                 $data['preciocompra']=$params['preciocompra'];
                 $data['fla']='1';
                 $idArticulo = $this->_articuloModel->crearArticulo($data);                                
-                $extn = pathinfo($form->imagen->getFileName(),PATHINFO_EXTENSION);
-                
+                $extn = pathinfo($form->imagen->getFileName(),PATHINFO_EXTENSION);                
                 $nameFile = $filter->filter(trim($params['nombre']),'-',0);
                 $form->imagen->addFilter('Rename',array('target' => $form->imagen->getDestination().'/'.$nameFile.'-'.$idArticulo.'.'.$extn )); 
                 $form->imagen->receive();
