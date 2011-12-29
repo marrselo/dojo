@@ -10,7 +10,8 @@ class Application_Form_SubcategoriaForm extends Zend_Form
 
             $element = new Zend_Form_Element_Select('idpadre');
             $element->setLabel('Categoria');
-            $element->addMultiOption('-1', 'Seleccione categoria');
+            $element->setRequired(true);
+            $element->addMultiOption('', 'Seleccione categoria');
             $element->addMultiOptions($docum);
             $opc = array_keys($docum);
             $valid = new Zend_Validate_InArray($opc);
@@ -23,6 +24,13 @@ class Application_Form_SubcategoriaForm extends Zend_Form
             $valid = new Zend_Validate_Alnum();
             $element->addValidator($valid);
             $element->setLabel('Descripcion');
+            $this->addElement($element);
+            
+            $element = new Zend_Form_Element_Text('nombre');
+            $element->setRequired(true);
+            $valid = new Zend_Validate_Alnum();
+            $element->addValidator($valid);
+            $element->setLabel('Nombre');
             $this->addElement($element);
 
             $element = new Zend_Form_Element_Submit('submit');

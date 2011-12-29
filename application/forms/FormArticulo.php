@@ -20,7 +20,6 @@ class Application_Form_FormArticulo extends Zend_Form
         $this->addElement(new Zend_Form_Element_Text('codigo'));
         $this->addElement(new Zend_Form_Element_Select('idsubcategoria',
                 array(
-                    'requerid'=>true,
                     'label'=>'Lista de Sub Categorias'
                     )
                 )

@@ -91,7 +91,7 @@
                                 <?php foreach ($this->listaCategoria as $index): ?>
                                     <?php if ($index['idpadre'] == '') { ?>
                                         <li>
-                                            <a href="#" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
+                                            <a href="/productos/<?php echo $index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
                                             <ul>
                                                 <?php foreach ($this->listaCategoria as $index2): ?>
                                                     <?php if ($index2['idpadre'] == $index['idcategoria']) { ?>
@@ -157,11 +157,13 @@
                             </div>
                             <!-- block list of products -->
                             <div id="cart_block_list" class="expanded">
-                                <?php if(count($this->listaArticuloCarrito)>0){ ?>
+                                <?php
+                                $total = 0;
+                                if(count($this->listaArticuloCarrito)>0){ ?>
                                 <dl class="products">
 
                                      <?php
-                                     $total = 0;
+                                     
                                      foreach($this->listaArticuloCarrito as $index){
                                         ?>
                                     <dt class="first_item" id="cart_block_product_<?php echo $index['idarticulo']?>">
@@ -197,7 +199,7 @@
                     </div>
                     <!-- /MODULE Block cart -->
                     <!-- MODULE Block specials -->
-                    <div id="special_block_right" class="block products_block exclusive blockspecials">
+<!--                    <div id="special_block_right" class="block products_block exclusive blockspecials">
                         <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
                         <div class="block_content">
                             <h5><a href="#" title="Variados 4">Variados 4</a></h5>
@@ -212,12 +214,12 @@
                                 <a href="#" title="Ver todas las ofertas" class="button_large">Ver todas las ofertas</a>
                             </p>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- /MODULE Block specials -->
-                    <div class="box-gray">
+<!--                    <div class="box-gray">
                         <h4>Se aceptan tarjetas</h4>
                         <a href="http://www.floreriadetalles.com/tienda/"><img src="img/payment001.png"></a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="clear"></div>
             </div>

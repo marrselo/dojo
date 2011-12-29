@@ -19,7 +19,7 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
         //$this->view->articulos = $this->_modelArticulos->listarArticulosDeUnaCategoria($params['categoria']);
         $paginator = Zend_Paginator::factory($this->_modelArticulos->listarArticulosDeUnaCategoria($params['categoria']));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
-        $paginator->setItemCountPerPage(2);
+        $paginator->setItemCountPerPage(6);
         $this->view->articulos = $paginator;
         $this->view->idsubcategoria = $params['categoria'];
         $this->view->slug = $this->_getParam('slug');
