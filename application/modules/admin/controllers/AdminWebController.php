@@ -12,10 +12,7 @@ class Admin_AdminWebController
          
     }
     function indexAction(){
-    
-        /*tipo menu = 2 banner*/
         $this->view->listaBanner = $this->_banner->listarBanner();
-
     }
     
     function nuevoBannerAction(){

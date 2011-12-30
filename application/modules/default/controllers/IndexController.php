@@ -5,10 +5,12 @@ class Default_IndexController extends ZExtraLib_Controller_Action
 
     protected $_modelCategorias;
     protected $_modelArticulos;
+    protected $_banner;
     public function init() {
         parent::init();
         $this->_modelCategorias = new Application_Model_Categoria();
         $this->_modelArticulos = new Application_Model_Articulo();
+        $this->_banner = new Application_Model_Banner();
                 
     }
     public function indexAction()
@@ -21,6 +23,8 @@ class Default_IndexController extends ZExtraLib_Controller_Action
         $this->view->articulos = $paginator;
         $this->view->menuActive1='active';
         $this->view->slideshow = true;
+        
+        $this->view->listaBanner = $this->_banner->listarBanner();
 
     }
 }
