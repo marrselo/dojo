@@ -24,6 +24,8 @@ class Application_Form_FormArticulo extends Zend_Form
                     )
                 )
                 );
+        
+        $this->addElement(new Zend_Form_Element_Checkbox('slugportada',array('label'=>'Portada')));
         $this->addElement(new Zend_Form_Element_Text('nombre'));
         $this->addElement(new Zend_Form_Element_Textarea('slugBusqueda'));
         $this->addElement(new Zend_Form_Element_Text('descripcion'));

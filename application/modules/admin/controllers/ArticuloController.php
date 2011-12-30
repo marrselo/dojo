@@ -90,6 +90,17 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
             $form->getElement('preciocompra')->setValue($articulo['preciocompra']);
             $form->getElement('descripcion')->setValue($articulo['descripcion']);
             $form->getElement('slugBusqueda')->setValue($articulo['slugbusqueda']);
+            $form->getElement('idcategoria')->setValue($articulo['idcategoria']);
+            if($articulo['idsubcategoria']!=''){
+            $categoria = New Application_Model_Categoria();
+            $listaSubCategoria = $categoria->getHijos($articulo['idcategoria']);
+            foreach ($listaSubCategoria as $index => $valor) {
+                $optionSubCategoria[$valor['idcategoria']] = $valor['nombre'];
+            }
+            $form->getElement('idsubcategoria')->addMultioptions($optionSubCategoria);
+            $form->getElement('idsubcategoria')->setValue($articulo['idsubcategoria']);
+            }
+            
         }
         $this->view->formulario = $form;
         $this->view->imagen = $articulo['imagen'];
