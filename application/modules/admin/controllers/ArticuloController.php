@@ -25,7 +25,6 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
         $paginator = Zend_Paginator::factory($articulos);
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $this->view->paginator = $paginator;
-
         $this->view->formBuscar = $formBusqueda;
     }
 
@@ -75,6 +74,7 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
                 $data['descripcion'] = $params['descripcion'];
                 $data['precioventa'] = $params['precioventa'];
                 $data['preciocompra'] = $params['preciocompra'];
+                $data['flagportada'] = isset($params['flagportada'])?$params['flagportada']:0;
                 $data['slugbusqueda'] = $slugBusqueda;
                 $data['imagen'] = $nameFile . '-' . $params['idArticulo'] . '.' . $extn;
                 $data['slug'] = $nameFile . '-' . $params['idArticulo'];
@@ -91,6 +91,10 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
             $form->getElement('descripcion')->setValue($articulo['descripcion']);
             $form->getElement('slugBusqueda')->setValue($articulo['slugbusqueda']);
             $form->getElement('idcategoria')->setValue($articulo['idcategoria']);
+            
+            if($articulo['flagportada']==1)
+            $form->getElement('flagportada')->setAttrib ('checked', 'checked');
+            
             if($articulo['idsubcategoria']!=''){
             $categoria = New Application_Model_Categoria();
             $listaSubCategoria = $categoria->getHijos($articulo['idcategoria']);
@@ -178,19 +182,17 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
                 $page = ($this->getRequest()->getUserParam('page') == '') ? '' : 'page/' . $this->getRequest()->getUserParam('page');
                 $data['idcategoria'] = $params['idcategoria'];
                 $data['idsubcategoria'] = $params['idsubcategoria'];
-                //$slugBusqueda = $filter->filter(trim($params['slugBusqueda']),' ',0);
                 $slugBusqueda = str_replace('-', ' ', $filter->filter(trim($params['slugBusqueda']), '-', 0));
-
                 $data['codigo'] = $params['codigo'];
                 $data['nombre'] = $params['nombre'];
                 $data['slugbusqueda'] = $slugBusqueda;
                 $data['descripcion'] = $params['descripcion'];
                 $data['precioventa'] = $params['precioventa'];
                 $data['preciocompra'] = $params['preciocompra'];
+                $data['flagportada'] = isset($params['flagportada'])?$params['flagportada']:0;
                 $data['fla'] = '1';
                 $idArticulo = $this->_articuloModel->crearArticulo($data);
                 $extn = pathinfo($form->imagen->getFileName(), PATHINFO_EXTENSION);
-
                 $nameFile = $filter->filter(trim($params['nombre']), '-', 0);
                 $form->imagen->addFilter('Rename', array('target' => $form->imagen->getDestination() . '/' . $nameFile . '-' . $idArticulo . '.' . $extn));
                 $form->imagen->receive();
@@ -215,6 +217,13 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
     public function ajaxListarSubCategoriaAction() {
         $categoria = new Application_Model_Categoria();
         echo $this->_helper->json($categoria->getHijos($this->getRequest()->getParam('idcategoria')));
+    }
+    public function enPortadaAction(){
+        $params = $this->_getAllParams();
+        $data = array();
+        $data['flagportada'] = $params['flagportada']==1?0:1;
+        $this->_articuloModel->actualizarArticulo($params['idArticulo'], $data);
+        $this->_redirect($_SERVER['HTTP_REFERER']);
     }
 
 }

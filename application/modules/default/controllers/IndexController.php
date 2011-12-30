@@ -15,9 +15,10 @@ class Default_IndexController extends ZExtraLib_Controller_Action
     {
         $categorias = $this->_modelCategorias->listaCategorias();
         $this->view->categorias = $categorias;
-        $params = $this->_getAllParams();
-        $params['categoria']=isset($params['categoria'])?$params['categoria']:$categorias[0]['idcategoria'];
-        $this->view->articulos = $this->_modelArticulos->listarArticulosDeUnaCategoria($params['categoria']);
+        $paginator = Zend_Paginator::factory($this->_modelArticulos->listarEnPortada());
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $paginator->setItemCountPerPage(6);
+        $this->view->articulos = $paginator;
         $this->view->menuActive1='active';
         $this->view->slideshow = true;
 
