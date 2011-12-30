@@ -12,11 +12,11 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
     }
     public function indexAction()
     {
+        
         $categorias = $this->_modelCategorias->listaCategorias();
         $this->view->categorias = $categorias;
         $params = $this->_getAllParams();
         $params['categoria']=isset($params['categoria'])?$params['categoria']:$categorias[0]['idcategoria'];
-        //$this->view->articulos = $this->_modelArticulos->listarArticulosDeUnaCategoria($params['categoria']);
         $paginator = Zend_Paginator::factory($this->_modelArticulos->listarArticulosDeUnaCategoria($params['categoria']));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(6);
@@ -27,6 +27,7 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
     }
     public function detalleProductoAction()
     {
+        $this->view->headLink()->appendStylesheet("/f/css/product.css");
         $params = $this->_getAllParams();
         $this->view->articulo = $this->_modelArticulos->listarUnArticulo($params['producto']);
         $this->view->categorias = $this->_modelCategorias->listaCategorias();

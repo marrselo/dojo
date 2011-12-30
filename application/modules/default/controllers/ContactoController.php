@@ -10,6 +10,7 @@ class Default_ContactoController extends ZExtraLib_Controller_Action
     }
     public function indexAction()
     {
+        $this->view->headLink()->appendStylesheet("/f/css/contacto-form.css");
         $categorias = $this->_modelCategorias->listaCategorias();
         $this->view->categorias = $categorias;
         $this->view->menuActive5='active';

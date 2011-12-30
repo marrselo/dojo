@@ -1,57 +1,63 @@
-<form enctype="multipart/form-data" class="std-contact" method="post" action="/tienda/contact-form.php">
-		<fieldset>
-			<table cellspacing="0" cellpadding="0" border="0" width="100%">
-				<tbody><tr>
-					<td>
-													<select onchange="showElemFromSelect('id_contact', 'desc_contact')" name="id_contact" id="id_contact">
-								<option value="0">--Seleccionar--</option>
-															<option value="2">Service client</option>
-															<option value="1">Webmaster</option>
-														</select>
-											</td>
-					<td>
-												<p class="desc_contact" id="desc_contact0">&nbsp;</p>
-															<p style="display:none;" class="desc_contact" id="desc_contact2">
-									Para cualquier pregunta o queja acerca de un pedido
-								</p>
-															<p style="display:none;" class="desc_contact" id="desc_contact1">
-									Si se produce un problema técnico en el sitio
-								</p>
-																		</td>
-				</tr>
-				<tr>
-					<td>
-															<input type="text" onblur="if (this.value == '') this.value = 'Nombres y apellidos'" onfocus="if (this.value == 'Nombres y apellidos') this.value = ''" value="Nombres y apellidos" name="firstname" id="firstname">
-												</td>
-					<td>
-															<input type="text" onblur="if (this.value == '') this.value = 'Email'" onfocus="if (this.value == 'Email') this.value = ''" value="Email" name="from" id="email">
-												</td>
-				</tr>
-				<tr>
-					<td>
-															<input type="text" onblur="if (this.value == '') this.value = 'Teléfono'" onfocus="if (this.value == 'Teléfono') this.value = ''" value="Teléfono" name="phone" id="phone">
-												</td>
-					<td>
-															<input type="text" onblur="if (this.value == '') this.value = 'Empresa'" onfocus="if (this.value == 'Empresa') this.value = ''" value="Empresa" name="company" id="company">
-												</td>
-				</tr>
-				<tr>
-					<td>
-															<input type="text" onblur="if (this.value == '') this.value = 'Área'" onfocus="if (this.value == 'Área') this.value = ''" value="Área" name="area" id="area">
-												</td>
-					<td>
-															<input type="text" onblur="if (this.value == '') this.value = 'Asunto'" onfocus="if (this.value == 'Asunto') this.value = ''" value="Asunto" name="subject" id="subject">
-												</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-							 <textarea onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" cols="20" rows="15" name="message" id="message">Consulta o comentario</textarea>
-					</td>
-				</tr>
-			</tbody></table>
-		
-		<p class="submit">
-			<input type="submit" onclick="$(this).hide();" class="button_medium" value="Enviar" id="submitMessage" name="submitMessage">
-		</p>
-	</fieldset>
+<!-- Breadcrumb -->    
+<div id="bread-wrap">
+    <div class="breadcrumb">
+        <a title="volver a Inicio" href="http://www.floreriadetalles.com/tienda/">Inicio</a>
+        <span class="navigation-pipe">&gt;</span>
+        <span class="navigation_page">Contacto</span>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+<h1>Contacto</h1>
+<p>Si desea información o contactarnos el primer paso es llenar el formulario que figura abajo
+    o escribirnos a: <a href="mailto:pedidos@deliveripremiumsac.com">pedidos@deliveripremiumsac.com</a></p>
+<form enctype="multipart/form-data" class="std-contact" method="post" action="">
+    <fieldset>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tbody><tr>
+
+                    <td>
+                        <p class="desc_contact" id="desc_contact0">&nbsp;</p>
+                        <p style="display:none;" class="desc_contact" id="desc_contact2">
+                            Para cualquier pregunta o queja acerca de un pedido
+                        </p>
+                        <p style="display:none;" class="desc_contact" id="desc_contact1">
+                            Si se produce un problema técnico en el sitio
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" onblur="if (this.value == '') this.value = 'Nombres y apellidos'" onfocus="if (this.value == 'Nombres y apellidos') this.value = ''" value="Nombres y apellidos" name="firstname" id="firstname">
+                    </td>
+                    <td>
+                        <input type="text" onblur="if (this.value == '') this.value = 'Email'" onfocus="if (this.value == 'Email') this.value = ''" value="Email" name="from" id="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" onblur="if (this.value == '') this.value = 'Teléfono'" onfocus="if (this.value == 'Teléfono') this.value = ''" value="Teléfono" name="phone" id="phone">
+                    </td>
+                    <td>
+                        <input type="text" onblur="if (this.value == '') this.value = 'Empresa'" onfocus="if (this.value == 'Empresa') this.value = ''" value="Empresa" name="company" id="company">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" onblur="if (this.value == '') this.value = 'Área'" onfocus="if (this.value == 'Área') this.value = ''" value="Área" name="area" id="area">
+                    </td>
+                    <td>
+                        <input type="text" onblur="if (this.value == '') this.value = 'Asunto'" onfocus="if (this.value == 'Asunto') this.value = ''" value="Asunto" name="subject" id="subject">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" cols="20" rows="15" name="message" id="message">Consulta o comentario</textarea>
+                    </td>
+                </tr>
+            </tbody></table>
+
+        <p class="submit">
+            <input type="submit" onclick="$(this).hide();" class="button_medium" value="Enviar" id="submitMessage" name="submitMessage">
+        </p>
+    </fieldset>
 </form>

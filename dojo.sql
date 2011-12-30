@@ -72,17 +72,40 @@ CREATE TABLE `articulo` (
   `slug` char(200) DEFAULT NULL,
   `slugbusqueda` text,
   `idsubcategoria` int(11) DEFAULT NULL,
-  `slugportada` int(1) DEFAULT '0',
+  `flagportada` int(1) DEFAULT '0',
   PRIMARY KEY (`idarticulo`),
   KEY `fk_art_sub_fam` (`idcategoria`),
   KEY `fk_art_combo1` (`idcombo`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `articulo` */
 
 LOCK TABLES `articulo` WRITE;
 
-insert  into `articulo`(`idarticulo`,`idcategoria`,`idcombo`,`idunidad`,`codigo`,`nombre`,`descripcion`,`precioventa`,`preciocompra`,`cantidad`,`stock_min`,`peso`,`ubicacion`,`fla`,`imagen`,`slug`,`slugbusqueda`,`idsubcategoria`,`slugportada`) values (1,9,NULL,0,'','coca cola descartable medio litro','nuevo','123.00','1233.00',123,NULL,NULL,NULL,1,'coca-cola-descartable-medio-litro-1.jpg','coca-cola-descartable-medio-litro-1','bebida soda gaseosa helada',NULL,NULL),(2,9,NULL,0,'','pepsi medio litro','pepsi medio litro','123.00','123.00',0,NULL,NULL,NULL,1,'pepsi-medio-litro-2.jpg','pepsi-medio-litro-2','pepsi medio litro soda helada gaseosa',NULL,NULL),(3,33,NULL,0,'','Cristal 355 mL 12pack','Cristal 355 mL 12pack','3.45','1.34',0,NULL,NULL,NULL,1,'cristal-355-ml-12pack-3.jpg','cristal-355-ml-12pack-3','cristal 355 ml 12pack cerveza chela',34,NULL),(4,33,NULL,0,'','Cusqueña 355 mL12pack','Cusqueña 355 mL12pack','2.45','1.34',0,NULL,NULL,NULL,1,'cusquena-355-ml12pack-4.jpg','cusquena-355-ml12pack-4','cusquena 355 ml12pack',34,NULL),(5,33,NULL,0,'','Barena 330 mL 6pack','Barena 330 mL 6pack','2.45','0.00',0,NULL,NULL,NULL,1,'barena-330-ml-6pack-5.jpg','barena-330-ml-6pack-5','barena 330 ml 6pack chela six pack sixpack',34,NULL),(6,33,NULL,0,'','Pilsen Callao 355 mL 12pack','Pilsen Callao 355 mL 12pack','23.00','21.00',0,NULL,NULL,NULL,1,'pilsen-callao-355-ml-12pack-6.jpg','pilsen-callao-355-ml-12pack-6','pilsen callao 355 ml 12pack cerveza chela licor',34,0);
+insert  into `articulo`(`idarticulo`,`idcategoria`,`idcombo`,`idunidad`,`codigo`,`nombre`,`descripcion`,`precioventa`,`preciocompra`,`cantidad`,`stock_min`,`peso`,`ubicacion`,`fla`,`imagen`,`slug`,`slugbusqueda`,`idsubcategoria`,`flagportada`) values (1,9,NULL,0,'','coca cola descartable medio litro','nuevo','123.00','1233.00',123,NULL,NULL,NULL,1,'coca-cola-descartable-medio-litro-1.jpg','coca-cola-descartable-medio-litro-1','bebida soda gaseosa helada',NULL,0),(2,9,NULL,0,'','pepsi medio litro','pepsi medio litro','123.00','123.00',0,NULL,NULL,NULL,1,'pepsi-medio-litro-2.jpg','pepsi-medio-litro-2','pepsi medio litro soda helada gaseosa',NULL,0),(3,33,NULL,0,'','Cristal 355 mL 12pack','Cristal 355 mL 12pack','3.45','1.34',0,NULL,NULL,NULL,1,'cristal-355-ml-12pack-3.jpg','cristal-355-ml-12pack-3','cristal 355 ml 12pack cerveza chela',34,1),(4,33,NULL,0,'','Cusqueña 355 mL12pack','Cusqueña 355 mL12pack','2.45','1.34',0,NULL,NULL,NULL,1,'cusquena-355-ml12pack-4.jpg','cusquena-355-ml12pack-4','cusquena 355 ml12pack',34,1),(5,33,NULL,0,'','Barena 330 mL 6pack','Barena 330 mL 6pack','2.45','0.00',0,NULL,NULL,NULL,1,'barena-330-ml-6pack-5.jpg','barena-330-ml-6pack-5','barena 330 ml 6pack chela six pack sixpack',34,1),(6,33,NULL,0,'','Pilsen Callao 355 mL 12pack','Pilsen Callao 355 mL 12pack','23.00','21.00',0,NULL,NULL,NULL,1,'pilsen-callao-355-ml-12pack-6.jpg','pilsen-callao-355-ml-12pack-6','pilsen callao 355 ml 12pack cerveza chela licor',34,1),(7,33,NULL,0,'','Whisky Johnnie Walker Red Label','Whisky Johnnie Walker Red Label','150.00','100.00',0,NULL,NULL,NULL,1,'whisky-johnnie-walker-red-label-7.jpg','whisky-johnnie-walker-red-label-7','whisky johnnie walker red label',38,1);
+
+UNLOCK TABLES;
+
+/*Table structure for table `banner` */
+
+DROP TABLE IF EXISTS `banner`;
+
+CREATE TABLE `banner` (
+  `idbanner` double DEFAULT NULL,
+  `nombre` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descripcion` blob,
+  `imagen` varchar(600) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `url` varchar(600) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  `orden` tinyint(4) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `banner` */
+
+LOCK TABLES `banner` WRITE;
+
+insert  into `banner`(`idbanner`,`nombre`,`descripcion`,`imagen`,`url`,`precio`,`orden`,`estado`) values (1,'foto 1',NULL,'pame.jpg',NULL,NULL,1,1),(2,'foto 2',NULL,'pame2.jpg',NULL,NULL,2,1),(3,'foto 3',NULL,'pame6.jpg',NULL,NULL,3,1),(5,'pa ra mi','too bueno','pa-ra-mi.jpg','asd',NULL,NULL,1);
 
 UNLOCK TABLES;
 
@@ -213,7 +236,7 @@ CREATE TABLE `core_session` (
 
 LOCK TABLES `core_session` WRITE;
 
-insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('nps3rd5tk5r51aarhg2n3bsub2','','',1325142181,1440,'dojo|a:1:{s:13:\"listaArticulo\";a:1:{i:3;a:20:{s:10:\"idarticulo\";s:1:\"3\";s:11:\"idcategoria\";s:2:\"33\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:0:\"\";s:6:\"nombre\";s:21:\"Cristal 355 mL 12pack\";s:11:\"descripcion\";s:21:\"Cristal 355 mL 12pack\";s:11:\"precioventa\";s:4:\"3.45\";s:12:\"preciocompra\";s:4:\"1.34\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";s:1:\"1\";s:6:\"imagen\";s:27:\"cristal-355-ml-12pack-3.jpg\";s:4:\"slug\";s:23:\"cristal-355-ml-12pack-3\";s:12:\"slugbusqueda\";s:35:\"cristal 355 ml 12pack cerveza chela\";s:14:\"idsubcategoria\";s:2:\"34\";s:10:\"slugporada\";N;s:16:\"cantidadArticulo\";i:20;}}}'),('vc54kokouukac9gilmkfc1bcb6','','',1325210225,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}');
+insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('bp6oeng9pru8kjtuddo4qkra92','','',1325220391,1440,''),('nps3rd5tk5r51aarhg2n3bsub2','','',1325142181,1440,'dojo|a:1:{s:13:\"listaArticulo\";a:1:{i:3;a:20:{s:10:\"idarticulo\";s:1:\"3\";s:11:\"idcategoria\";s:2:\"33\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:0:\"\";s:6:\"nombre\";s:21:\"Cristal 355 mL 12pack\";s:11:\"descripcion\";s:21:\"Cristal 355 mL 12pack\";s:11:\"precioventa\";s:4:\"3.45\";s:12:\"preciocompra\";s:4:\"1.34\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";s:1:\"1\";s:6:\"imagen\";s:27:\"cristal-355-ml-12pack-3.jpg\";s:4:\"slug\";s:23:\"cristal-355-ml-12pack-3\";s:12:\"slugbusqueda\";s:35:\"cristal 355 ml 12pack cerveza chela\";s:14:\"idsubcategoria\";s:2:\"34\";s:10:\"slugporada\";N;s:16:\"cantidadArticulo\";i:20;}}}'),('vc54kokouukac9gilmkfc1bcb6','','',1325223077,1440,'Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}dojo|a:1:{s:13:\"listaArticulo\";a:1:{i:4;a:20:{s:10:\"idarticulo\";s:1:\"4\";s:11:\"idcategoria\";s:2:\"33\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:0:\"\";s:6:\"nombre\";s:22:\"Cusqueña 355 mL12pack\";s:11:\"descripcion\";s:22:\"Cusqueña 355 mL12pack\";s:11:\"precioventa\";s:4:\"2.45\";s:12:\"preciocompra\";s:4:\"1.34\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";s:1:\"1\";s:6:\"imagen\";s:27:\"cusquena-355-ml12pack-4.jpg\";s:4:\"slug\";s:23:\"cusquena-355-ml12pack-4\";s:12:\"slugbusqueda\";s:21:\"cusquena 355 ml12pack\";s:14:\"idsubcategoria\";s:2:\"34\";s:11:\"flagportada\";s:1:\"1\";s:16:\"cantidadArticulo\";s:0:\"\";}}}');
 
 UNLOCK TABLES;
 
@@ -266,13 +289,13 @@ CREATE TABLE `detalleslug` (
   `idarticulo` int(11) DEFAULT NULL,
   `idslug` int(11) DEFAULT NULL,
   PRIMARY KEY (`iddetalleslug`)
-) ENGINE=InnoDB AUTO_INCREMENT=328 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=343 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `detalleslug` */
 
 LOCK TABLES `detalleslug` WRITE;
 
-insert  into `detalleslug`(`iddetalleslug`,`idarticulo`,`idslug`) values (8,6282,5),(9,6282,1),(10,6282,2),(11,6282,8),(12,6282,9),(13,6283,10),(14,6283,1),(15,6283,2),(16,6283,8),(17,6283,9),(18,6283,11),(253,1,1),(254,1,2),(255,1,16),(256,1,8),(257,1,9),(258,1,10),(259,1,15),(260,1,7),(261,1,18),(271,2,11),(272,2,8),(273,2,9),(274,2,15),(275,2,18),(276,2,7),(291,5,25),(292,5,26),(293,5,27),(294,5,28),(295,5,22),(296,5,23),(297,5,24),(298,5,29),(304,4,30),(305,4,31),(306,4,32),(307,3,20),(308,3,31),(309,3,27),(310,3,33),(311,3,19),(312,3,22),(313,0,34),(314,0,35),(315,0,31),(316,0,27),(317,0,33),(318,0,19),(319,0,36),(320,6,34),(321,6,35),(322,6,31),(323,6,27),(324,6,33),(325,6,19),(326,6,22),(327,6,37);
+insert  into `detalleslug`(`iddetalleslug`,`idarticulo`,`idslug`) values (8,6282,5),(9,6282,1),(10,6282,2),(11,6282,8),(12,6282,9),(13,6283,10),(14,6283,1),(15,6283,2),(16,6283,8),(17,6283,9),(18,6283,11),(253,1,1),(254,1,2),(255,1,16),(256,1,8),(257,1,9),(258,1,10),(259,1,15),(260,1,7),(261,1,18),(271,2,11),(272,2,8),(273,2,9),(274,2,15),(275,2,18),(276,2,7),(291,5,25),(292,5,26),(293,5,27),(294,5,28),(295,5,22),(296,5,23),(297,5,24),(298,5,29),(304,4,30),(305,4,31),(306,4,32),(307,3,20),(308,3,31),(309,3,27),(310,3,33),(311,3,19),(312,3,22),(313,0,34),(314,0,35),(315,0,31),(316,0,27),(317,0,33),(318,0,19),(319,0,36),(320,6,34),(321,6,35),(322,6,31),(323,6,27),(324,6,33),(325,6,19),(326,6,22),(327,6,37),(338,7,38),(339,7,39),(340,7,40),(341,7,41),(342,7,42);
 
 UNLOCK TABLES;
 
@@ -439,13 +462,13 @@ CREATE TABLE `menu` (
   `url` char(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `orden` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmenu`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `menu` */
 
 LOCK TABLES `menu` WRITE;
 
-insert  into `menu`(`idmenu`,`nombre`,`url`,`orden`) values (1,'Categoriás','/admin/categoria',2),(2,'Clientes','/admin/cliente',3),(3,'Artículo','/admin/articulo',4),(4,'Pedidos','/admin/pedidos',5),(5,'Comprobantes','/admin/comprobante',6),(6,'Usuario','/admin/usuario',7),(7,'Reportes','/admin/reportes',8),(8,'Admin','/admin/index',1),(9,'SubCategorias','/admin/subcategoria',NULL);
+insert  into `menu`(`idmenu`,`nombre`,`url`,`orden`) values (1,'Categoriás','/admin/categoria',2),(2,'Clientes','/admin/cliente',3),(3,'Artículo','/admin/articulo',4),(4,'Pedidos','/admin/pedidos',5),(5,'Comprobantes','/admin/comprobante',6),(6,'Usuario','/admin/usuario',7),(7,'Reportes','/admin/reportes',8),(8,'Admin','/admin/index',1),(9,'SubCategorias','/admin/subcategoria',NULL),(10,'Banner','/admin/admin-web',NULL);
 
 UNLOCK TABLES;
 
@@ -578,13 +601,13 @@ CREATE TABLE `slug` (
   `idslug` int(11) NOT NULL AUTO_INCREMENT,
   `nombreslug` char(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idslug`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `slug` */
 
 LOCK TABLES `slug` WRITE;
 
-insert  into `slug`(`idslug`,`nombreslug`) values (1,'coca'),(2,'cola'),(3,'wisky'),(4,'ron'),(5,'bebidas'),(6,'pisco'),(7,'gaseosa'),(8,'medio'),(9,'litro'),(10,'bebida'),(11,'pepsi'),(12,'1'),(13,'2'),(14,'cocagaseosabebidasoda'),(15,'soda'),(16,'descartable'),(17,'bebidasodagaseosahelada'),(18,'helada'),(19,'cerveza'),(20,'cristal'),(21,'litros'),(22,'chela'),(23,'six'),(24,'pack'),(25,'barena'),(26,'330'),(27,'ml'),(28,'6pack'),(29,'sixpack'),(30,'cusquena'),(31,'355'),(32,'ml12pack'),(33,'12pack'),(34,'pilsen'),(35,'callao'),(36,'licores'),(37,'licor');
+insert  into `slug`(`idslug`,`nombreslug`) values (1,'coca'),(2,'cola'),(3,'wisky'),(4,'ron'),(5,'bebidas'),(6,'pisco'),(7,'gaseosa'),(8,'medio'),(9,'litro'),(10,'bebida'),(11,'pepsi'),(12,'1'),(13,'2'),(14,'cocagaseosabebidasoda'),(15,'soda'),(16,'descartable'),(17,'bebidasodagaseosahelada'),(18,'helada'),(19,'cerveza'),(20,'cristal'),(21,'litros'),(22,'chela'),(23,'six'),(24,'pack'),(25,'barena'),(26,'330'),(27,'ml'),(28,'6pack'),(29,'sixpack'),(30,'cusquena'),(31,'355'),(32,'ml12pack'),(33,'12pack'),(34,'pilsen'),(35,'callao'),(36,'licores'),(37,'licor'),(38,'whisky'),(39,'johnnie'),(40,'walker'),(41,'red'),(42,'label');
 
 UNLOCK TABLES;
 
