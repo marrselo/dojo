@@ -18,15 +18,42 @@ class Application_Model_Documento  extends Zend_Db_Table {
     function listarDocumentos(){
         return $this->getAdapter()
                 ->select()
+                ->from(array('D'=>'documentopago'))
+                ->join('cliente','cliente.idcliente=D.idcliente',
+                        array('nombre','apellidomaterno','apellidopaterno'))
+                ->join('estado','estado.idestado=D.idestado',
+                        array('nombreEstado'=>'des'))
+                ->where('D.flagdespacho=0')
+                ->query()
+                ->fetchAll();
+    }
+    function actualizarDocumento($data,$idDocumento)
+    {
+        $where = $this->getAdapter()->quoteInto('iddocumento = ?',$idDocumento);
+        $this->update($data,$where);
+    }
+    
+    function borrarDocumento($idDocumento)
+    {
+        $where = $this->getAdapter()->quoteInto('iddocumento = ?',$idDocumento);        
+        $this->delete($where);  
+    }
+    function datosDocumento($idDocumento)
+    {
+        return $this->getAdapter()
+                ->select()
                 ->from('documentopago')
                 ->join('cliente','cliente.idcliente=documentopago.idcliente',
                         array('nombre','apellidomaterno','apellidopaterno'))
                 ->join('estado','estado.idestado=documentopago.idestado',
                         array('nombreEstado'=>'des'))
+                ->join('detalledocumento','detalledocumento.iddocumento=documentopago.iddocumento')
+                ->join('articulo','articulo.idarticulo=detalledocumento.idarticulo',
+                        array('nombreArticulo'=>'nombre'))
+                ->where('iddocumento = ?',array($idDocumento))
                 ->query()
                 ->fetchAll();
     }
-    
 }
 
     

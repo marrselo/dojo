@@ -22,7 +22,16 @@
             <td><?php echo $valor['numeroserie'].' '.$valor['numerocomprobante']?></td>
             <td><?php echo $valor['nombreEstado']?></td>
             <td><?php echo $valor['total']?></td>
-            <td><img src="../../f/img/edit.png" alt="Modificar"  ></td>
+            <td><a href="editar-pedidos/idDocumento/<?php echo $valor['iddocumento']?>">
+                    <img src="../../f/img/edit.png" alt="Modificar">
+                </a> 
+                <a href="borrar-pedidos/idDocumento/<?php echo $valor['iddocumento']?>">
+                    <img src="../../f/img/borrar.png" alt="Modificar"  >
+                </a>
+                <a href="despachar-pedidos/idDocumento/<?php echo $valor['iddocumento']?>" >
+                    Despachar
+                </a>
+            </td>
             <td></td>
         </tr>
         <?php endforeach; endif;?>

@@ -133,11 +133,11 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
             $page = ($this->getRequest()->getUserParam('page') == '') ? '' : 'page/' . $this->getRequest()->getUserParam('page');
             $kardex = New Application_Model_Kardex();
             if ($formMovimiento->isValid($params)) {
-                $data['stock'] = $params['cantidad'];
-                $data['idarticulo'] = $params['idArticulo'];
-                $data['fla'] = $params['fla'];
-                $data['motivo'] = $params['motivo'];
-
+                $data['stock']       = $params['cantidad'];
+                $data['idarticulo']  = $params['idArticulo'];
+                $data['fla']         = $params['fla'];
+                $data['motivo']      = $params['motivo'];
+                $data['fecha']       = date('Y-m-d');
                 $kardex->crearKardex($data);
                 $this->_redirect('/admin/articulo/' . $page);
             }

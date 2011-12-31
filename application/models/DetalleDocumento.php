@@ -13,6 +13,16 @@ class Application_Model_DetalleDocumento  extends Zend_Db_Table {
                 ->query()
                 ->fetchAll();
     }
+    function borrarDetalleDocumento($idDetalle,$idDocumento=NULL)
+    {
+        if(!empty($idDocumento)){
+            $where = $this->getAdapter()->quoteInto('iddocumento = ?', $idDocumento);        
+            $this->delete($where);  
+        }else{
+            $where = $this->getAdapter()->quoteInto('iddetalledocumento = ?',$idDetalle);        
+            $this->delete($where);
+        }
+    }
     
 }
 

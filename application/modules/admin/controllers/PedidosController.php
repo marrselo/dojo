@@ -14,6 +14,7 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $this->_documentoModel = new Application_Model_Documento();
         $this->_detalleDocumentoModel = new Application_Model_DetalleDocumento();
         $this->_usuarioModel = new Application_Model_Usuario();
+        $this->view->menuTop = $menuTop = array('Nuevo Pedido' => '/pedidos/index','Lista Pedidos' => 'pedidos/lista-pedidos');
     }
 
     function ajaxSearchClientesAction() {
@@ -129,13 +130,18 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $data ['comentario'] = $param['informacionAdicional'];
         $idDocumento = $this->_documentoModel->crearDocumento($data);
         $arrayProductos = $param['idarticulo'];
+        $total = 0;
         foreach ($arrayProductos as $index => $value) {
             $dataDetalle['iddocumento'] = $idDocumento;
             $dataDetalle['idarticulo'] = $value;
             $dataDetalle['precio'] = $param['precio'][$index];
             $dataDetalle['cantidad'] = $param['cantidad'][$index];
+            $total = $total + ($dataDetalle['precio'] * $dataDetalle['cantidad']);
             $this->crearDetalleDocumento($dataDetalle);
         }
+        $data2 = array();
+        $data2['total']=$total;
+        $this->_documentoModel->actualizarDocumento($data2,$idDocumento);
     }
 
     function getFormGenerarComprobante() {
@@ -190,10 +196,45 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $this->_detalleDocumentoModel->crearDetalleDocumento($data);
     }
 
-    function listaPedidosAction() {
-        $this->view->menuTop = $menuTop = array('Lista Productos' => '..//admin/articulo', 'Nuevo Articulo' => '../articulo/nuevo-articulo', 'Lista Pedidos' => 'pedidos/lista-pedidos');
-        $pedidos = new Application_Model_Documento();
-        $this->view->listaPedidos = $pedidos->listarDocumentos();
+    function listaPedidosAction() 
+    {
+        $params = $this->_getAllParams();
+        if($params['controller']=='pedidos'){
+            $this->view->menuTop = $menuTop = array('Nuevo Pedido' => '../admin/pedidos','Lista Pedidos' => 'pedidos/lista-pedidos');
+        }else{
+            $this->view->menuTop = $menuTop = array('Lista Productos' => '../admin/articulo', 'Nuevo Articulo' => '../articulo/nuevo-articulo', 'Lista Pedidos' => 'pedidos/lista-pedidos');        
+        }               
+        $this->view->listaPedidos = $this->_documentoModel->listarDocumentos();
+    }
+    
+    function borrarPedidosAction()
+    {
+        //$this->_helper->layout()->disableLayout();
+        //$this->_helper->viewRenderer->setNoRender(true);
+        $params = $this->_getAllParams();
+        $idDocumento = $params['idDocumento'];
+        $this->_documentoModel->borrarDocumento($idDocumento);
+        $this->_redirect('admin/pedidos/lista-pedidos');
+    }
+    
+    function despacharPedidosAction($idDocumento)
+    {
+        $this->_helper->layout()->disableLayout();
+        $params= $this->_getAllParams();
+        $arrDetalle = $this->_detalleDocumentoModel($params['idDocumento']); 
+        $kardex = new Application_Model_Kardex();
+        $data = array();
+        foreach($arrDetalle as $key => $valor){
+            $data['stock']      = $valor['cantidad'];
+            $data['idarticulo'] = $valor['idarticulo'];
+            $data['fla']        = 2;
+            $data['iddoc']      = $idDocumento;
+            $data['motivo']     = 'Despacho ';
+            $kardex->crearKardex($data);
+        }
+        $dataDoc = array('flagdespacho'=>1);        
+        $this->_documentoModel->actualizarDocumento($dataDoc,$idDocumento);
+        $this->_redirect('admin/pedidos/lista-pedidos');
     }
 
 }
