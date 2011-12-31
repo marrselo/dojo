@@ -2694,3 +2694,12 @@ form.addresses label {
 .blockspecials a.special-addcart:hover {
 	color: #ffffff;
 }
+/*paginator*/
+.paginationControl{
+    padding: 10px;
+}
+.block_content .paginationControl .resumPaginator{
+    margin-right: 50px;
+}
+
+/*paginator*/

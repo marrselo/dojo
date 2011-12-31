@@ -1,8 +1,9 @@
 <?php 
 if ($this->pageCount): ?>
 <div class="paginationControl">
-    <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?>
- de <?php echo $this->totalItemCount; ?>
+    <span class="resumPaginator">   <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?>
+ de <?php echo $this->totalItemCount; ?> Totales
+    </span>
 
 <!-- Previous page link -->
 <?php if (isset($this->previous)): ?>

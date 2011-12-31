@@ -82,6 +82,14 @@ class Application_Model_Articulo  extends Zend_Db_Table {
         
     }
 
+    public function listarEnPortada(){
+                return $this->getAdapter()
+                        ->select()
+                        ->distinct()
+                        ->from('articulo')
+                        ->where('fla = ?',1)
+                        ->where('flagportada = ?',1);
+    }
 
     public function buscarArticulos($like,$idCategoria=null,$notInt=null) {
         $fla=1;

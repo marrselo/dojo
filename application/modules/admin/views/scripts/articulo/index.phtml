@@ -4,7 +4,6 @@
     <thead class="tableHeader-processed">
         <tr>
             <th class="select-all"><input type="checkbox" class="form-checkbox" title="Select all rows in this table"></th>
-            <th>Código</th>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Cantidad</th>
@@ -17,9 +16,6 @@
         <?php if (count($this->paginator) > 0): ?>
             <?php foreach ($this->paginator as $item): ?>
                 <tr class="<?php echo ($i % 2 == 0) ? "odd" : "even"; ?>">
-                    <td>
-                        
-                    </td>
                     <td>
                         <span class="thmr_call">
                             <a href="<?php echo $item["idarticulo"]; ?>"><?php echo $item["codigo"]; ?></a>
@@ -47,9 +43,21 @@
                     </td>
                     
                     <td>
-                        <a href="/admin/articulo/actualizar-articulo/idArticulo/<?php echo $item["idarticulo"];?>">Editar</a>
-                        <a href="/admin/articulo/movimiento-articulo/idArticulo/<?php echo $item["idarticulo"];?>">Kardex</a>
-                        <a href="/admin/articulo/eliminar-articulo/idArticulo/<?php echo $item["idarticulo"];?>">borrar</a>
+                        <a href="/admin/articulo/actualizar-articulo/idArticulo/<?php echo $item["idarticulo"];?>">
+                        <img border="0" alt="Editar" title="Editar Banner" src="../../f/img/edit.png">
+                        </a>
+                        
+                        <a href="/admin/articulo/eliminar-articulo/idArticulo/<?php echo $item["idarticulo"];?>">
+                        <img border="0" alt="Eliminar" title="Borrar Banner" src="../../f/img/borrar.png">
+                        </a>
+                        <a href="/admin/articulo/movimiento-articulo/idArticulo/<?php echo $item["idarticulo"];?>">[Kardex]</a>
+                        <a href="/admin/articulo/en-portada/idArticulo/<?php echo $item["idarticulo"];?>/flagportada/<?php echo $item["flagportada"];?>">
+                        <?php if($item["flagportada"]==1){?>
+                            -[En portada]
+                            <?php } else{ ?>
+                            -[A portada]
+                            <?php } ?>
+                        </a>
 
                     </td>
                 </tr>

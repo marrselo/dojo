@@ -25,7 +25,6 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
         $paginator = Zend_Paginator::factory($articulos);
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $this->view->paginator = $paginator;
-
         $this->view->formBuscar = $formBusqueda;
     }
 
@@ -57,8 +56,8 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
             foreach ($listaSubCategoria as $index => $valor) {
                 $optionSubCategoria[$valor['idcategoria']] = $valor['nombre'];
             }
+            
             $form->getElement('idsubcategoria')->addMultioptions($optionSubCategoria);
-
             if ($form->isValid($params)) {
                 unlink($form->imagen->getDestination() . '/' . $articulo['imagen']);
                 $extn = pathinfo($form->imagen->getFileName(), PATHINFO_EXTENSION);
@@ -70,18 +69,20 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
                 $this->redimencionarImagen($form->imagen->getDestination() . '/' . $nameFile . '-' . $params['idArticulo'] . '.' . $extn);
                 $page = ($this->getRequest()->getUserParam('page') == '') ? '' : 'page/' . $this->getRequest()->getUserParam('page');
                 $data['idcategoria'] = $params['idcategoria'];
+                if(isset($params['idsubcategoria'])){
+                $data['idsubcategoria'] = $params['idsubcategoria'];}
                 $data['codigo'] = $params['codigo'];
                 $data['nombre'] = $params['nombre'];
                 $data['descripcion'] = $params['descripcion'];
                 $data['precioventa'] = $params['precioventa'];
                 $data['preciocompra'] = $params['preciocompra'];
+                $data['flagportada'] = isset($params['flagportada'])?$params['flagportada']:0;
                 $data['slugbusqueda'] = $slugBusqueda;
                 $data['imagen'] = $nameFile . '-' . $params['idArticulo'] . '.' . $extn;
                 $data['slug'] = $nameFile . '-' . $params['idArticulo'];
                 $this->_articuloModel->actualizarArticulo($params['idArticulo'], $data);
                 $this->_flashMessenger->addMessage('Datos actualizados satisfactoriamente.');
                 $this->_articuloModel->registroSlugArticulo($params['nombre'] . ' ' . $slugBusqueda, $params['idArticulo']);
-                //$this->_redirect('/admin/articulo/'.$page);
             }
         } else {
             $form->getElement('codigo')->setValue($articulo['codigo']);
@@ -90,6 +91,19 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
             $form->getElement('preciocompra')->setValue($articulo['preciocompra']);
             $form->getElement('descripcion')->setValue($articulo['descripcion']);
             $form->getElement('slugBusqueda')->setValue($articulo['slugbusqueda']);
+            $form->getElement('idcategoria')->setValue($articulo['idcategoria']);
+            if($articulo['flagportada']==1)
+            $form->getElement('flagportada')->setAttrib ('checked', 'checked');
+            if($articulo['idsubcategoria']!=''){
+            $categoria = New Application_Model_Categoria();
+            $listaSubCategoria = $categoria->getHijos($articulo['idcategoria']);
+            foreach ($listaSubCategoria as $index => $valor) {
+                $optionSubCategoria[$valor['idcategoria']] = $valor['nombre'];
+            }
+            $form->getElement('idsubcategoria')->addMultioptions($optionSubCategoria);
+            $form->getElement('idsubcategoria')->setValue($articulo['idsubcategoria']);
+            }
+            
         }
         $this->view->formulario = $form;
         $this->view->imagen = $articulo['imagen'];
@@ -167,19 +181,17 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
                 $page = ($this->getRequest()->getUserParam('page') == '') ? '' : 'page/' . $this->getRequest()->getUserParam('page');
                 $data['idcategoria'] = $params['idcategoria'];
                 $data['idsubcategoria'] = $params['idsubcategoria'];
-                //$slugBusqueda = $filter->filter(trim($params['slugBusqueda']),' ',0);
                 $slugBusqueda = str_replace('-', ' ', $filter->filter(trim($params['slugBusqueda']), '-', 0));
-
                 $data['codigo'] = $params['codigo'];
                 $data['nombre'] = $params['nombre'];
                 $data['slugbusqueda'] = $slugBusqueda;
                 $data['descripcion'] = $params['descripcion'];
                 $data['precioventa'] = $params['precioventa'];
                 $data['preciocompra'] = $params['preciocompra'];
+                $data['flagportada'] = isset($params['flagportada'])?$params['flagportada']:0;
                 $data['fla'] = '1';
                 $idArticulo = $this->_articuloModel->crearArticulo($data);
                 $extn = pathinfo($form->imagen->getFileName(), PATHINFO_EXTENSION);
-
                 $nameFile = $filter->filter(trim($params['nombre']), '-', 0);
                 $form->imagen->addFilter('Rename', array('target' => $form->imagen->getDestination() . '/' . $nameFile . '-' . $idArticulo . '.' . $extn));
                 $form->imagen->receive();
@@ -204,6 +216,13 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
     public function ajaxListarSubCategoriaAction() {
         $categoria = new Application_Model_Categoria();
         echo $this->_helper->json($categoria->getHijos($this->getRequest()->getParam('idcategoria')));
+    }
+    public function enPortadaAction(){
+        $params = $this->_getAllParams();
+        $data = array();
+        $data['flagportada'] = $params['flagportada']==1?0:1;
+        $this->_articuloModel->actualizarArticulo($params['idArticulo'], $data);
+        $this->_redirect($_SERVER['HTTP_REFERER']);
     }
 
 }

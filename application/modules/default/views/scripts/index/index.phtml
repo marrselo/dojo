@@ -1,35 +1,72 @@
 <div id="featured-products_block_center" class="block products_block">
     <h4>Productos destacados</h4>
     <div class="block_content">
-        <ul>
-            <?php foreach($this->articulos as $index): ?>
-            <li class="ajax_block_product first_item clear ">
-                <div id="product-box">
-                    <h5>
-                        <a href="#" title="<?php echo $index['nombre']?>"><?php echo $index['nombre']?></a>
-                    </h5>
-                    <div class="product_imagebox">
-                        <a href="#" title="<?php echo $index['nombre']?>" class="product_image">
-                            <img src="/imagen-articulo/<?php echo $index['imagen']?>" alt="<?php echo $index['nombre']?>" >
-                        </a>
-                    </div>
-                    <div>
-                        <p class="price_container" style="width: 100px; ">
-                            <span class="price"><?php echo $index['precioventa']?></span>
-                        </p>
-                        <p class="price_container" style="width: 70px;">
-                        <input type="text" style="width: 30px; height: 20px;">
-                        <span>cantidad</span>
-                        </p>
-                        <p class="product_buttons">
-                            
-                            <a class="product-addcart ajax_add_to_cart_button" rel="ajax_id_product_14" href="" title="Añadir al carrito">Añadir al carrito</a>
-                            <a class="product-viewdetails" href="/detalle-producto/<?php echo $index['idarticulo']?>" title="Ver">Ver</a>
-                        </p>					
-                    </div>						
-                </div>
-            </li>
-            <?php  endforeach; ?>
-        </ul>
+        <?php
+        $params = array('idsubcategoria' => $this->idsubcategoria);
+        echo $paginator = $this->paginationControl($this->articulos, 'Sliding', '/productos/paginator.phtml', $params);
+        ?>
+        <?php if (count($this->articulos) > 0) { ?>
+            <ul>
+                <?php foreach ($this->articulos as $index): ?>
+                    <li class="ajax_block_product first_item clear ">
+                        <div id="product-box">
+                            <h5>
+                                <a href="#" title="<?php echo $index['nombre'] ?>"><?php echo $index['nombre'] ?></a>
+                            </h5>
+                            <div class="product_imagebox">
+                                <a href="#" title="<?php echo $index['nombre'] ?>" class="product_image">
+                                    <img src="/imagen-articulo/<?php echo $index['imagen'] ?>" alt="<?php echo $index['nombre'] ?>" >
+                                </a>
+                            </div>
+                            <div>
+                                <form id="form_pres_<?php echo $index['idarticulo'] ?>" action="/realizar-pedido" method="Post">
+                                    <input type="hidden" id="hidden_idArticulo_<?php echo $index['idarticulo'] ?>" name="producto" value="<?php echo $index['idarticulo'] ?>">
+                                    <p class="price_container" style="width: 100px; ">
+                                        <span class="price"><?php echo $index['precioventa'] ?></span>
+                                    </p>
+                                    <p class="price_container" style="width: 70px;">
+                                        <input type="text" id="text_cant_<?php echo $index['idarticulo'] ?>" name="cantidad" style="width: 30px; height: 20px;">
+                                        <span>cantidad</span>
+                                    </p>
+                                    <p class="product_buttons">
+                                        <a href="#" class="product-addcart ajax_add_to_cart_button" id="ajax_id_product_<?php echo $index['idarticulo'] ?>" rel="ajax_id_product_<?php echo $index['idarticulo'] ?>"  title="Añadir al carrito">
+                                            Añadir al carrito
+                                        </a>
+                                        <a class="product-viewdetails" href="/detalle-producto/<?php echo $index['idarticulo'] ?>" title="Ver">
+                                            Ver
+                                        </a>
+                                    </p>
+                                </form>
+                            </div>						
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+
+            </ul>
+            <?php echo $paginator; ?>
+        <?php } else { ?>    
+            No se encontro ningun articulo
+        <?php } ?>    
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $(function() {
+        $("[id^=ajax_id_product_]").click(function(e){
+            e.preventDefault();
+            var Array = this.id.split('_');
+            $("#form_pres_"+Array[3]).submit();
+        }) 
+        
+    });
+        
+    $("[id^=text_cant_]").keypress(function(e) {
+        if(e.which == 13){
+            e.preventDefault();
+            var Array = this.id.split('_');
+            $("#form_pres_"+Array[2]).submit();
+        } 
+    });    
+
+</script>
