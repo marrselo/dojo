@@ -6,6 +6,7 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
     protected $_articuloModel;
     protected $_documentoModel;
     protected $_usuarioModel;
+    protected $_detalleDocumentoModel; 
 
     function init() {
         parent::init();
@@ -221,8 +222,8 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
     {
         $this->_helper->layout()->disableLayout();
         $params= $this->_getAllParams();
-        $detalle = $this->_detalleDocumentoModel;
-        $arrDetalle->getDetalleDocumento($params['idDocumento']);
+        $detalle = $this->_detalleDocumentoModel;        
+        $arrDetalle = $detalle->getDetalleDocumento($params['idDocumento']);
         $kardex = new Application_Model_Kardex();
         $data = array();
         foreach($arrDetalle as $key => $valor){
@@ -235,7 +236,7 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         }
         $dataDoc = array('flagdespacho'=>1);        
         $this->_documentoModel->actualizarDocumento($dataDoc,$idDocumento);
-        $this->_redirect('admin/pedidos/lista-pedidos');
+        $this->_redirect('admin/pedidos/lista-pedidos');                   
     }
 
 }
