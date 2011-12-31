@@ -85,3 +85,15 @@ form.std-contact select {
 	margin: 0.4em 0;
 	behavior: url('/tienda/PIE.htc');
 }
+.std-contact .errors {
+    color: red;
+    padding-bottom: 10px;
+}
+
+.std-contact td label {
+    font-size: 13px;
+    
+}
+.std-contact ul  {
+    list-style: none;
+}

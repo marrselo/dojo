@@ -8,9 +8,9 @@ if ($this->pageCount): ?>
 <?php if (isset($this->previous)): ?>
   <a href="/productos/<?php echo $this->idsubcategoria;?>/page/<?php echo $this->previous ?>">
     &lt; Previous
-  </a> |
+  </a> 
 <?php else: ?>
-  <span class="disabled">&lt; Previous</span> |
+  <span class="disabled">&lt; Previous</span> 
 <?php endif; ?>
  
 <!-- Numbered page links -->
@@ -18,9 +18,9 @@ if ($this->pageCount): ?>
   <?php if ($page != $this->current): ?>
     <a href="/productos/<?php echo $this->idsubcategoria;?>/page/<?php echo $page ?>">
         <?php echo $page; ?>
-    </a> |
+    </a> 
   <?php else: ?>
-    <?php echo $page; ?> |
+    <?php echo $page; ?> 
   <?php endif; ?>
 <?php endforeach; ?>
  

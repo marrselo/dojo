@@ -51,7 +51,6 @@ class Application_Model_Articulo  extends Zend_Db_Table {
     }
     
     public function listarArticulosDeUnaCategoria($idCategoria) {
-        
         return  $this->getAdapter()
                 ->select()->from('articulo')
                 ->orWhere('idcategoria = ?', $idCategoria)

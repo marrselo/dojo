@@ -21,6 +21,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 ->setHeader('Expires', 'max-age=' . 20, true)
                 ->setHeader('Cache-Control', 'private', 'must-revalidate')
                 ->setHeader('Pragma', 'no-cache', true);
+        
+        $this->bootstrap('cachemanager');
+        $cache = $this->getResource('cachemanager')->getCache('cacheCoreFile');
+        Zend_Registry::set('cache', $cache);
+        
+        $this->bootstrap('mail');
+        Zend_Mail::setDefaultTransport($this->getResource('mail'));
+        Zend_Registry::set('mail', new Zend_Mail('utf-8'));
 
     }
 

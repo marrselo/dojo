@@ -121,15 +121,17 @@
                                     <h4>Delivery de Productos</h4>
                                     <div class="block_content">
                                         <ul style="display: block;" class="tree dynamized">
-<?php foreach ($this->listaCategoria as $index): ?>
+<?php 
+$filter = new ZExtraLib_SeoUrl();
+foreach ($this->listaCategoria as $index): ?>
     <?php if ($index['idpadre'] == '') { ?>
                                                     <li>
-                                                        <a href="/productos/<?php echo $index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
+                                                        <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0).'-'.$index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
                                                         <ul>
         <?php foreach ($this->listaCategoria as $index2): ?>
             <?php if ($index2['idpadre'] == $index['idcategoria']) { ?>
                                                                     <li>
-                                                                        <a href="/productos/<?php echo $index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
+                                                                        <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0).'-'.$filter->filter(trim($index2['nombre']), '-', 0).'-'.$index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
                                                                     </li>
             <?php } ?>
                                                     <?php endforeach; ?>

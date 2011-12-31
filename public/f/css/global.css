@@ -2697,9 +2697,25 @@ form.addresses label {
 /*paginator*/
 .paginationControl{
     padding: 10px;
+    font-size: 13px;
+    color: red;
+    
 }
 .block_content .paginationControl .resumPaginator{
     margin-right: 50px;
+    font-size: 11px;
+    color: #635F59;
+}
+.paginationControl a {
+    font-size: 11px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.paginationControl .disabled {
+    font-size: 11px;
+    color: #635F59;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 /*paginator*/
