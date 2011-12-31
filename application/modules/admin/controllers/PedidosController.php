@@ -235,7 +235,7 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
             $kardex->crearKardex($data);
         }
         $dataDoc = array('flagdespacho'=>1);        
-        $this->_documentoModel->actualizarDocumento($dataDoc,$idDocumento);
+        $this->_documentoModel->actualizarDocumento($dataDoc,$params['idDocumento']);
         $this->_redirect('admin/pedidos/lista-pedidos');                   
     }
 
