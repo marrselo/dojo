@@ -1,0 +1,361 @@
+/* product.tpl */
+#primary_block {
+	background: url('../img/product_background.jpg') repeat;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-o-border-radius: 1em;
+	-ms-border-radius: 1em;
+	box-shadow: 0 1px 2px #000 inset;
+	-webkit-box-shadow: 0 3px 30px #dddddd inset;
+	-moz-box-shadow: 0 3px 30px #dddddd inset;
+	margin-bottom: 0.7em;
+	margin-right: 10px;
+	position: relative;
+	-pie-border-radius: 1em;
+	-pie-box-shadow: 0 3px 30px #dddddd inset;
+	behavior: url('/tienda/PIE.htc');
+}
+#primary_block h1 {
+	color: #37580D;
+	font-family: 'AllerBoldItalic';
+	font-size: 24px;
+	letter-spacing: 1px;
+	margin: 0;
+	padding: 0.5em 0.5em;
+	text-transform: capitalize;
+}
+#primary_block #product_data {
+	width: 340px;
+	float: right;
+	margin-right: 	15px;
+}
+#primary_block #product_data .quantity {
+	float: right;
+}
+#primary_block h2 {
+	color: #ff9600;
+	font-size: 22px;
+	font-style: italic;
+	letter-spacing: 1px;
+	margin: 0;
+	text-transform: capitalize;
+	line-height: 1.3em;
+	text-align: right;
+}
+#primary_block #pb-right-column {
+	width: 520px;
+	hegiht: 315px; 
+	float: left
+}
+#primary_block #details_product {
+	display: inline-block;
+	height: 255px;
+	vertical-align: top;
+	width: 250px;	
+}
+#primary_block #details_product img {
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-o-border-radius: 1em;
+	-ms-border-radius: 1em;
+	-pie-border-radius: 1em;
+	display: inline-block;
+	cursor: pointer;
+	height: 101px;
+	margin-bottom: 5px;
+	text-align: center;
+	vertical-align: top;
+	width: 101px;
+	behavior: url('/tienda/PIE.htc');
+}
+#primary_block .quantity {
+	display: inline-block;
+	color: #585858;
+    font-family: 'AllerItalic';
+	font-size: 14px;
+	padding: 0 0.3em;	
+}
+#primary_block #image-block {
+	border: 2px solid white;
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-o-border-radius: 1em;
+	-ms-border-radius: 1em;
+	-pie-border-radius: 1em;
+	display: inline-block;
+	float: none;
+	height: 251px;
+	margin: 0 1em;
+	position: relative;
+	width: 232px;
+	behavior: url('/tienda/PIE.htc');
+}
+#primary_block #image-block img#bigpic { 
+	border-radius: 1em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-o-border-radius: 1em;
+	-ms-border-radius: 1em;
+	-pie-border-radius: 1em;
+	cursor: pointer;
+	float: none;
+	height: 251px;
+	margin: 0;
+	position: relative;
+	width: 232px;
+	behavior: url('/tienda/PIE.htc');
+}
+#primary_block #views_block { 
+	display: inline-block;
+	vertical-align: bottom;
+	width: 255px;
+}
+#primary_block #product_boxtop {
+	display: inline-block;
+	height: 140px;
+}
+#primary_block #more_info_block {
+	display: block; 
+	padding: 1em 1em 0; 
+	width: 492px
+}
+#primary_block ul#usefull_link_block {
+    clear: both;
+    display: block;
+    list-style-type: none;
+    padding-top: 1em;
+}
+#primary_block ul#usefull_link_block li {
+	background: url('../img/icon/vs-icons.gif') no-repeat scroll 0 3px transparent;
+	margin: 0.5em 1em 0.5em 0; 
+	display: block;
+}
+#primary_block ul#usefull_link_block li a,
+#primary_block ul#usefull_link_block span.span_link,
+#primary_block ul#usefull_link_block span.span_link:hover {
+    color: #A5A196;
+    font-size: 11px;
+    height: 20px;
+    padding-left: 20px;
+    text-decoration: none;
+}
+#primary_block ul#usefull_link_block li a:hover, #primary_block ul#usefull_link_block li span:hover { color: #C28F41; }
+#primary_block ul#usefull_link_block li.view{ background-position:0 -41px; }
+#primary_block ul#usefull_link_block li.print{ background-position:0 center; }
+#primary_block #pb-left-column {
+    float: left;
+    width: 520px;
+    margin: 10px 0;	
+	border-bottom: #bababa solid 1px;
+}
+#primary_block #pb-left-column h1 {
+    border: medium none;
+    color: #4C4945;
+    font-size: 21px;
+    letter-spacing: 0;
+    line-height: 1.2em;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
+}
+#primary_block #short_description_block {
+	margin: 1.5em 0
+}
+#primary_block #color_picker p {
+    margin-bottom: 0.4em;
+    padding: 0;
+}
+#primary_block #color_picker {
+    border-bottom: 1px dashed #CBC3B4;
+    border-top: 1px dashed #CBC3B4;
+    margin-bottom: 1.5em;
+    padding-bottom: 5px;
+}
+#primary_block #color_to_pick_list li {
+	display: inline;
+	float: left;
+	margin: 0 0.2em 0.4em 0
+}
+#primary_block a.color_pick {
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+    display: block;
+    height: 15px;
+    width: 15px;
+}
+#primary_block a.color_pick:hover { border: 1px solid #c9baa4 }
+#primary_block a#color_all { cursor: pointer }
+#primary_block #image-block img#bigpic.jqzoom {
+	cursor: crosshair;
+	position: relative
+}
+#primary_block p.buttons_bottom_block { margin: 0 }
+#primary_block #short_description_content { margin-bottom: 0.5em }
+#primary_block #buy_block { margin-bottom: 1.5em; display: inline-block; }
+#primary_block #buy_block p {
+	display: inline-block;
+}
+#primary_block #buy_block img.on_sale_img { float: left }
+#primary_block #buy_block span.on_sale {
+	color: #da0f00;
+	text-transform: uppercase;
+	font-weight: bold;
+	float: right
+}
+#primary_block #buy_block span.discount {
+	color: #da0f00;
+	text-transform: uppercase;
+	font-weight: bold;
+	float: right
+}
+#primary_block #buy_block span.our_price_display { float: right }
+#primary_block #buy_block span#availability_label {
+	float: left;
+	margin-right: 1em
+}
+#primary_block #buy_block label { text-align: right }
+#primary_block #buy_block label,#primary_block #buy_block select {
+	color: #37580D;
+	display: block;
+	float: left;
+	font-family: 'AllerItalic';
+	padding: 0.4em 0.4em 0.4em 0;
+}
+#primary_block #buy_block select { 
+	background: rgba(222, 222, 222, 0.4);
+	-pie-background: rgba(222, 222, 222, 0.4);
+	border: none;
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-o-border-radius: 0.5em;
+	-ms-border-radius: 0.5em;
+	padding: 0.4em;
+	width:100px;
+	behavior: url('/tienda/PIE.htc');
+}
+#primary_block div#attributes p, #quantity_wanted_p {
+	clear: left;
+	height: 2em
+}
+#primary_block #buy_block #quantity_bar {
+    background: url('../img/vs-quantity.png') no-repeat scroll 0 0 transparent;
+	overflow:hidden;
+	height:50px;
+}
+#primary_block #buy_block #quantity_wanted_p {
+    clear: none;
+    color: #6D4D1C;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 10px;
+}
+#primary_block #buy_block #pQuantityAvailable {
+    clear: none;
+    color: #4C4945;
+    float: left;
+    font-size: 11px;
+    line-height: 42px;
+}
+#primary_block div#attributes p, #minimal_quantity_wanted_p {
+	clear: left;
+}
+#primary_block #buy_block #last_quantities {
+    background-color: #AD7112;
+    color: #FFFFFF;
+    font-family: arial;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: normal;
+    padding: 2px 5px;
+}
+#primary_block #buy_block p.onlineonly {
+    color: #6D4D1C;
+    font-size: 11px;
+    font-weight: bold;
+}
+#primary_block #buy_block p#mywish a.button {
+    background: url('../img/vs-global-large.png') repeat-x scroll right bottom #91611A;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    width: 130px;
+}
+
+/* prices */
+#primary_block p.price {
+    margin: 0;
+    padding: 0;
+}
+#primary_block span#pretaxe_price {
+	font-size: 0.75em;
+	text-align: right
+}
+#primary_block div#old_price {
+	color:#888888;
+ 	display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-decoration: line-through;
+    width: 130px;
+}
+#primary_block div#reduction_percent {
+ 	display: inline-block;
+    color: #37580d;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+}
+#primary_block div.price-ecotax {
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    width: 130px;
+}
+#admin-action {
+    color: #374853; 
+    background-color: #DFFAD3; 
+    margin-bottom:10px; 
+    padding: 4px; 
+    border: 1px solid #72CB67
+}
+#admin-action input.exclusive
+{
+	float: right
+}
+
+.product_accessories_price
+{
+	margin-top: 5px
+}
+.our_price_display { 
+	color:#000000; 
+}
+div.our_price { 
+	display: inline-block;
+	color:#37580d; 
+    font-family: 'AllerItalic';
+    font-size: 14px;
+	padding: 1px 0;
+	width: 50px;
+}
+#our_price_display {
+	display: inline-block;
+    color: #37580d;
+    font-family: 'ChunkFiveRoman';
+    font-size: 18px;
+	vertical-align: top;
+}
+#primary_block div.discount { 
+	display: inline-block;
+    font-family: 'AllerBoldItalic';
+	font-size: 18px;
+	letter-spacing: -1px; 
+}

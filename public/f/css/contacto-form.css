@@ -1,0 +1,87 @@
+/* contact-form.tpl */
+form.std p.desc_contact span.like_input {
+	width: 366px;
+	text-align: left
+}
+
+form.std-contact {
+	border: none;
+	font-size: 11px;
+}
+form.std-contact fieldset {
+    background: transparent;
+    border: none;
+    padding: 1em 0;
+}
+form.std-contact input[type='text'] {
+    background: rgba(0,0,0,0.1);
+	-pie-background: rgba(0,0,0,0.1);
+	border: 1px solid #c6c6c6;
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-o-border-radius: 0.5em;
+	-ms-border-radius: 0.5em;
+	box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-webkit-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-moz-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-o-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-ms-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-pie-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	color: #6d6d6d;
+	height: 12px;
+	font-size: 12px;
+	font-family: Arial;
+	margin: 0.4em 0;
+	padding: 1em 0 0.7em 6px;
+	position: relative;
+	width: 250px;
+	behavior: url('/tienda/PIE.htc');
+}
+form.std-contact textarea {
+	background: rgba(0,0,0,0.1);
+	-pie-background: rgba(0,0,0,0.1);
+	border: 1px solid #c6c6c6;
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-o-border-radius: 0.5em;
+	-ms-border-radius: 0.5em;
+	box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-webkit-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-moz-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-o-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-ms-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-pie-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	color: #6d6d6d;
+	font-size: 12px;
+	font-family: Arial;
+	height: 120px;
+	margin: 0.4em 0;
+	padding: 5px;
+	position: relative;
+	width: 510px;
+	behavior: url('/tienda/PIE.htc');
+}
+form.std-contact select {
+	background: #D9D9D9;
+	border: 1px solid #C6C6C6;
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-o-border-radius: 0.5em;
+	-ms-border-radius: 0.5em;
+	box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-webkit-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-moz-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-o-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-ms-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-pie-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	color: #6D6D6D;
+	font-size: 12px;
+	font-family: Arial;
+	padding: 6px 3px 6px 0;
+	position: relative;
+	margin: 0.4em 0;
+	behavior: url('/tienda/PIE.htc');
+}
