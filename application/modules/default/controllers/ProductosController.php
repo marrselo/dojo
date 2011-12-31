@@ -12,12 +12,14 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
     }
     public function indexAction()
     {
-        
-        $categorias = $this->_modelCategorias->listaCategorias();
-        $this->view->categorias = $categorias;
         $params = $this->_getAllParams();
-        $params['categoria']=isset($params['categoria'])?$params['categoria']:$categorias[0]['idcategoria'];
-        $paginator = Zend_Paginator::factory($this->_modelArticulos->listarArticulosDeUnaCategoria($params['categoria']));
+        $array = explode('-',$params['categoria']);
+        $params['categoria'] = $array[count($array)-1];
+        $paginator = Zend_Paginator::factory($this
+                ->_modelArticulos
+                ->listarArticulosDeUnaCategoria
+                ($params['categoria']));
+        
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(6);
         $this->view->articulos = $paginator;
