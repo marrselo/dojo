@@ -54,8 +54,9 @@ class Admin_AdminWebController
  
     function editarBannerAction()
     {
-        
+        $params = $this->_getAllParams();
         $idBanner = $this->_getParam('idBanner');
+        
         if(empty($idBanner)){ $this->_redirect('../'); }
         $arrBanner = $this->_banner->getBanner($idBanner);
         
@@ -66,7 +67,7 @@ class Admin_AdminWebController
         if ($this->_request->isPost() && $form->isValid($params)){
             //unlink($form->imagen->getDestination().'/'.$arrBanner['imagen']);
             
-            echo $form->imagen->getDestination();exit;
+            $form->imagen->getDestination();
             $filter = new ZExtraLib_SeoUrl();
             $estado = ($params['estado']==1)? 1 : 0 ;
             $extn = pathinfo($form->imagen->getFileName(),PATHINFO_EXTENSION);
