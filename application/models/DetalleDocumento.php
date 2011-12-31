@@ -24,6 +24,16 @@ class Application_Model_DetalleDocumento  extends Zend_Db_Table {
         }
     }
     
+    function getDetalleDocumento($idDocumento)
+    {
+         return $this->getAdapter()
+                ->select()
+                ->from('detalledocumentopago')
+                ->where('iddocumento = ?',$idDocumento)
+                ->query()
+                ->fetchAll();
+    }
+    
 }
 
     

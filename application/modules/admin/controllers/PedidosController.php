@@ -217,11 +217,12 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $this->_redirect('admin/pedidos/lista-pedidos');
     }
     
-    function despacharPedidosAction($idDocumento)
+    function despacharPedidosAction()
     {
         $this->_helper->layout()->disableLayout();
         $params= $this->_getAllParams();
-        $arrDetalle = $this->_detalleDocumentoModel($params['idDocumento']); 
+        $detalle = $this->_detalleDocumentoModel;
+        $arrDetalle->getDetalleDocumento($params['idDocumento']);
         $kardex = new Application_Model_Kardex();
         $data = array();
         foreach($arrDetalle as $key => $valor){
