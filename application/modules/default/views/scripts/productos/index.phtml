@@ -25,7 +25,7 @@
                                         <span class="price"><?php echo $index['precioventa'] ?></span>
                                     </p>
                                     <p class="price_container" style="width: 70px;">
-                                        <input type="text" id="text_cant_<?php echo $index['idarticulo'] ?>" name="cantidad" style="width: 30px; height: 20px;">
+                                        <input type="text" id="text_cant_<?php echo $index['idarticulo'] ?>" name="cantidad" value="1" style="width: 30px; height: 20px;">
                                         <span>cantidad</span>
                                     </p>
                                     <p class="product_buttons">
@@ -59,7 +59,7 @@
             $("#form_pres_"+Array[3]).submit();
         }) 
         
-    });
+    
         
     $("[id^=text_cant_]").keypress(function(e) {
         if(e.which == 13){
@@ -68,5 +68,5 @@
             $("#form_pres_"+Array[2]).submit();
         } 
     });    
-
+});
 </script>
