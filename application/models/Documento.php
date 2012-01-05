@@ -44,16 +44,19 @@ class Application_Model_Documento  extends Zend_Db_Table {
                 ->select()
                 ->from('documentopago')
                 ->join('cliente','cliente.idcliente=documentopago.idcliente',
-                        array('nombre','apellidomaterno','apellidopaterno'))
+                        array('nombre','apellidomaterno','apellidopaterno','ruc'))
                 ->join('estado','estado.idestado=documentopago.idestado',
                         array('nombreEstado'=>'des'))
-                ->join('detalledocumento','detalledocumento.iddocumento=documentopago.iddocumento')
-                ->join('articulo','articulo.idarticulo=detalledocumento.idarticulo',
+                ->join('detalledocumentopago','detalledocumentopago.iddocumento=documentopago.iddocumento')
+                ->join('articulo','articulo.idarticulo=detalledocumentopago.idarticulo',
                         array('nombreArticulo'=>'nombre'))
-                ->where('iddocumento = ?',array($idDocumento))
+                ->join('tip_doc','tip_doc.idtip_doc=documentopago.idtipodocumento',
+                        array('tipodocumento'=>'des'))
+                ->where('documentopago.iddocumento = ?',array($idDocumento))
                 ->query()
                 ->fetchAll();
     }
+    
 }
 
     

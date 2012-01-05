@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin t&iacute;tulo</title>
+
+<link rel="stylesheet" href="f/css/base.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="f/css/boleta.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="f/css/printboleta.css" type="text/css" media="print" />
+</head>
+
+<body>
+
+<div id="cnt_boleta">
+	<div id="cnt_boleta_inner">
+		<div id="header">
+			<div class="block">
+				<div id="brand">
+					<!--<img class="img_logo" src="img/idip_logo.jpg" height="66" width="180" alt="IDIP" title="IDIP" />-->
+					<input id="btn_imprimir" class="ml_10" type="button" onClick="javascript:print();" value="imprimir" />
+				</div>
+				
+				<div id="cnt_desc_link">
+					<p class="">
+						www.delviverypremiumsac.com<br/>						
+						Telefs Los Olivos: 721-2121<br/>
+						<br/>						
+						Nextel: ********
+					</p>
+				</div>
+				
+			</div>
+		
+			<div id="cnt_num_boleta">
+				<p class="boleta_text"><?php echo $this->datosDocumento[0]["tipodocumento"]?></p>
+				<p class="num_boleta"><span class="serial_boleta">001 -</span>  <span class="number_boleta">0000902</span></p>
+			</div>	
+		</div>
+		<div class="cnt_block_mat">		
+			<div class="cnt_apenom_mat">				
+				<div class="cnt_block_imp apenom_mat">
+				<?php echo $this->datosDocumento[0]["nombre"].' '.$this->datosDocumento[0]["apellidopaterno"]?>
+				</div>				
+			</div>
+			<div class="cnt_dni_mat">
+				<div class="cnt_main_block_imp">
+					<span class="text_dni_mat"></span>
+					<div class="cnt_block_imp dni_mat">
+					<?php echo date('d')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo date('m')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp <?php echo date('Y')?>
+					</div>
+				</div>								
+			</div>				
+		</div>
+		<div class="cnt_block_mat">
+			<div class="cnt_apenom_mat">
+				<div class="cnt_block_imp apenom_mat">
+				<?php echo $this->datosDocumento[0]["direccion"]?>
+				</div>				
+			</div>
+			<div class="cnt_dni_mat">
+				<div class="cnt_main_block_imp">
+					<span class="text_dni_mat">D.N.I.</span>
+					<div class="cnt_block_imp dni_mat dni_mat2">
+					<!--  DNI-->
+					</div>
+				</div>								
+			</div>			
+		</div>
+		<?php if($this->datosDocumento[0]["idtipodocumento"]==2){?>
+		<div class="cnt_block_mat">
+			<div class="cnt_apenom_mat">
+				<div class="cnt_block_imp apenom_mat">
+				<?php echo $this->datosDocumento[0]["ruc"]?>
+				</div>				
+			</div>
+			
+		</div>
+		<?php }?>
+		<div class="cnt_block_mat">		
+			<div class="cnt_direccionlab_mat">
+				<p class="title center ml_10 mb_5">DESCRIPCION</p>
+				<div class="cnt_block_imp descripcion_mat">
+					<div class="descripcion_mat_l">
+						<?php $i = 0; 
+                                                foreach($this->datosDocumento as $key => $fila) { $i = $i + 1;?>
+						<span class="span_mat_l">
+						<?php echo $fila["cantidad"]?>&nbsp;&nbsp;&nbsp;<?php echo $fila["nombreArticulo"]?>
+						</span>
+						<? }?>
+					</div>
+					<div class="descripcion_mat_r">						
+						<?php $total = 0;  foreach($this->datosDocumento as $key => $fila) { ?>
+						<span class="span_mat_r">
+						<?php echo ($fila["importe"]*$fila["cantidad"]); $total = $total + ($fila["importe"]*$fila["cantidad"])?>
+						</span>
+						<? }?>
+					</div>
+				</div>				
+			</div>						
+		</div>
+		<div class="cnt_block_mat cnt_bottom_mat">
+				<div class="cnt_bottom_mat_l">
+					<div class="cnt_referencia_mat mb_10">
+						<p class="title ml_5 mb_5">REFERENCIA</p>
+						<div class="cnt_block_imp referencia_mat">
+						<!-- REFERENCIA -->
+						</div>				
+					</div>
+				</div>
+				<div class="cnt_bottom_mat_r">
+					<span class="text_total">TOTAL S/. </span>
+					<div class="cnt_block_imp total_mat">
+					<?php echo $total?>
+					</div>
+				
+				</div>
+
+
+		</div>
+		
+	</div>
+</div>
+
+<div class="block mb_10 mt_10">
+	<input id="btn_imprimir" class="ml_10" type="button" onClick="javascript:print();" value="imprimir" />
+</div>
+
+</body>
+</html>

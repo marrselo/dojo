@@ -238,5 +238,15 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $this->_documentoModel->actualizarDocumento($dataDoc,$params['idDocumento']);
         $this->_redirect('admin/pedidos/lista-pedidos');                   
     }
+    
+    function imprimirAction()
+    {
+         $this->_helper->layout()->disableLayout();
+        $params = $this->_getAllParams();
+        $idDocumento = $params['idDocumento'];
+        $this->view->datosDocumento = $this->_documentoModel->datosDocumento($params['idDocumento']);
+       
+        
+    }
 
 }

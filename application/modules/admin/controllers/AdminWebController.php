@@ -65,7 +65,8 @@ class Admin_AdminWebController
         $form->getElement('idBanner')->setValue($idBanner);
         $form->getElement('idBanner')->setRequired();
         if ($this->_request->isPost() && $form->isValid($params)){
-            //unlink($form->imagen->getDestination().'/'.$arrBanner['imagen']);
+            
+            unlink($form->imagen->getDestination().'/'.$arrBanner['imagen']);
             
             $form->imagen->getDestination();
             $filter = new ZExtraLib_SeoUrl();
@@ -74,7 +75,7 @@ class Admin_AdminWebController
             $nameFile = $filter->filter(trim($params['nombre']),'-',0);
             $form->imagen->addFilter('Rename',array('target' => $form->imagen->getDestination().'/'.$nameFile.'.'.$extn )); 
             $form->imagen->receive();
-            $this->redimencionarImagen($form->imagen->getDestination().'/'.$nameFile.'-'.$params['idArticulo'].'.'.$extn);
+            $this->redimencionarBanner($form->imagen->getDestination().'/'.$nameFile.'-'.$params['idBanner'].'.'.$extn);
             $data = array(
                     'nombre'      => $params['nombre'],
 		    'descripcion' => $params['descripcion'],
@@ -91,6 +92,8 @@ class Admin_AdminWebController
             $form->getElement('link')->setValue($arrBanner['url']);
             $form->getElement('estado')->setValue($arrBanner['estado']);
             $this->view->imagen = $arrBanner['imagen'];
+            print_r($form->getMessages());
+
         }
     }
     
