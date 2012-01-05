@@ -23,7 +23,6 @@ class Default_IndexController extends ZExtraLib_Controller_Action
         $this->view->articulos = $paginator;
         $this->view->menuActive1='active';
         $this->view->slideshow = true;
-        
         $this->view->listaBanner = $this->_banner->listarBanner();
 
     }

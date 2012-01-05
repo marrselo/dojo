@@ -3,20 +3,65 @@
       method="<?php echo $this->element->getMethod();?>"
       enctype="<?php echo $this->element->getAttrib('enctype');?>">
     <div>
-<?php echo $this->element->codigo ?>
-<?php echo $this->element->nombre ?>
-<?php echo $this->element->descripcion ?>
-<?php echo $this->element->precioventa ?>
-<?php echo $this->element->preciocompra ?>
-<?php echo $this->element->idcategoria ?>
-<?php echo $this->element->idsubcategoria ?>
-<?php echo $this->element->flagportada ?>
-<?php echo $this->element->slugBusqueda ?>
-<?php echo $this->element->imagen ?>
-<?php echo $this->element->Enviar ?>
+        <table>
+            <tr>
+                <td>
+                    <?php echo $this->element->codigo ?>
+                </td>
+                <td >
+                    <?php echo $this->element->nombre ?>
+                </td>
+                <td>
+                    <?php echo $this->element->descripcion ?>
+                </td>
+                <td>
+                    <?php echo $this->element->precioventa ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $this->element->preciocompra ?>
+                </td>
+                <td >
+                    <?php echo $this->element->idcategoria ?>
+                </td>
+                <td>
+                    <?php echo $this->element->idsubcategoria ?>
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $this->element->flagoferta ?>
+                </td>
+                <td >
+                    <?php echo $this->element->preciooferta ?>
+                </td>
+                <td>
+                    <?php echo $this->element->flagportada ?>
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <?php echo $this->element->slugBusqueda ?>
+                </td>
+                <td >
+                    <?php echo $this->element->imagen ?>
+                </td>
+                <td>
+                    <?php echo $this->element->Enviar ?>
+                </td>
+
+            </tr>
+        </table>
     </div>
     <div>
-<img src="/imagen-articulo/<?php echo $this->element->getView()->imagen; ?>">
+        <img src="/imagen-articulo/<?php echo $this->element->getView()->imagen; ?>?<?php echo rand(0,1000);?>">
     </div>    
 </form>
    

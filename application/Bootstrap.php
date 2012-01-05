@@ -26,10 +26,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $cache = $this->getResource('cachemanager')->getCache('cacheCoreFile');
         Zend_Registry::set('cache', $cache);
         
-        $this->bootstrap('mail');
+        /*$this->bootstrap('mail');
         Zend_Mail::setDefaultTransport($this->getResource('mail'));
         Zend_Registry::set('mail', new Zend_Mail('utf-8'));
-
+*/
     }
 
 }

@@ -3,11 +3,17 @@
 class Admin_ArticuloController extends ZExtraLib_Controller_Action {
 
     protected $_articuloModel;
+    protected $_relacionarModel;
 
     function init() {
         parent::init();
         $this->_articuloModel = new Application_Model_Articulo();
-        $this->view->menuTop = $menuTop = array('Lista Productos' => '/admin/articulo', 'Nuevo Articulo' => 'articulo/nuevo-articulo', 'Lista Pedidos' => 'pedidos/lista-pedidos');
+        $this->_relacionarModel = new Application_Model_RelacionarArticulo();
+        $this->view->menuTop = $menuTop = 
+                array('Lista Productos' => '/admin/articulo', 
+                    'Nuevo Articulo' => '/admin/articulo/nuevo-articulo', 
+                    'Relacionar Articulos' => '/admin/articulo/relacionar-articulos', 
+                    'Lista Pedidos' => '/admin/pedidos/lista-pedidos');
     }
 
     function indexAction() {
@@ -76,7 +82,9 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
                 $data['descripcion'] = $params['descripcion'];
                 $data['precioventa'] = $params['precioventa'];
                 $data['preciocompra'] = $params['preciocompra'];
+                $data['preciooferta'] = $params['preciooferta'];
                 $data['flagportada'] = isset($params['flagportada'])?$params['flagportada']:0;
+                $data['flagoferta'] = isset($params['flagoferta'])?$params['flagoferta']:0;
                 $data['slugbusqueda'] = $slugBusqueda;
                 $data['imagen'] = $nameFile . '-' . $params['idArticulo'] . '.' . $extn;
                 $data['slug'] = $nameFile . '-' . $params['idArticulo'];
@@ -94,6 +102,8 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
             $form->getElement('idcategoria')->setValue($articulo['idcategoria']);
             if($articulo['flagportada']==1)
             $form->getElement('flagportada')->setAttrib ('checked', 'checked');
+            if($articulo['flagoferta']==1)
+            $form->getElement('flagoferta')->setAttrib ('checked', 'checked');
             if($articulo['idsubcategoria']!=''){
             $categoria = New Application_Model_Categoria();
             $listaSubCategoria = $categoria->getHijos($articulo['idcategoria']);
@@ -163,6 +173,11 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
         $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/articulo.phtml'))));
         return $form;
     }
+    function formularioRelacionarArticulo() {
+        $form = new Application_Form_FormRelacionarArticulo();
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/relacionararticulo.phtml'))));
+        return $form;
+    }
 
     function nuevoArticuloAction() {
         $form = $this->formularioArticulo();
@@ -188,7 +203,9 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
                 $data['descripcion'] = $params['descripcion'];
                 $data['precioventa'] = $params['precioventa'];
                 $data['preciocompra'] = $params['preciocompra'];
+                $data['preciooferta'] = $params['preciooferta'];
                 $data['flagportada'] = isset($params['flagportada'])?$params['flagportada']:0;
+                $data['flagoferta'] = isset($params['flagoferta'])?$params['flagoferta']:0;
                 $data['fla'] = '1';
                 $idArticulo = $this->_articuloModel->crearArticulo($data);
                 $extn = pathinfo($form->imagen->getFileName(), PATHINFO_EXTENSION);
@@ -224,5 +241,18 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
         $this->_articuloModel->actualizarArticulo($params['idArticulo'], $data);
         $this->_redirect($_SERVER['HTTP_REFERER']);
     }
+    public function relacionarArticulosAction(){
+        $this->view->formulario = $this->formularioRelacionarArticulo();
+        $params = $this->_getAllParams();
+        if ($this->_request->isPost()) {
+            $this->_relacionarModel->relacionarArticulo($params['idarticulo'], $params['arrayArticulo']);
+        }
+    }
+    public function ajaxListarArticulosCategoriaAction(){
+        $params = $this->_getAllParams();
+        echo $this->_helper->json($this->_articuloModel
+                ->listarArticulosDeUnaCategoria($params['idcategoria'])->query()->fetchAll());
+    }
+    
 
 }

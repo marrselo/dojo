@@ -15,6 +15,7 @@ class Application_Model_Busqueda  extends Zend_Db_Table {
             'articulo.descripcion',
             'articulo.precioventa',
             'articulo.preciocompra', 
+            'articulo.slug', 
             'articulo.cantidad',
             'articulo.stock_min'))
                 ->join('detalleslug', 'articulo.idarticulo = detalleslug.idarticulo','')

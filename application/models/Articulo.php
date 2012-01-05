@@ -54,7 +54,8 @@ class Application_Model_Articulo  extends Zend_Db_Table {
         return  $this->getAdapter()
                 ->select()->from('articulo')
                 ->orWhere('idcategoria = ?', $idCategoria)
-                ->orWhere('idsubcategoria = ?', $idCategoria);
+                ->orWhere('idsubcategoria = ?', $idCategoria)
+                ->where('fla = ? ','1');
     }
     
     public function registroSlugArticulo($texto,$idArticulo){
@@ -89,6 +90,27 @@ class Application_Model_Articulo  extends Zend_Db_Table {
                         ->where('fla = ?',1)
                         ->where('flagportada = ?',1);
     }
+    public function listarUnArticulosEnOferta(){
+                return  $this->getAdapter()
+                        ->select()
+                        ->distinct()
+                        ->from('articulo')
+                        ->where('fla = ?',1)
+                        ->where('flagoferta = ?',1)
+                        ->order('rand()')
+                        ->limit(1)
+                        ->query()
+                        ->fetch();
+    }
+    public function listarArticulosEnOferta(){
+                return  $this->getAdapter()
+                        ->select()
+                        ->distinct()
+                        ->from('articulo')
+                        ->where('fla = ?',1)
+                        ->where('flagoferta = ?',1);
+    }
+    
 
     public function buscarArticulos($like,$idCategoria=null,$notInt=null) {
         $fla=1;
