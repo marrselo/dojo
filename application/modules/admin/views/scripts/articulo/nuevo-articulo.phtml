@@ -12,7 +12,7 @@ echo $this->form;
                 url: "/admin/articulo/ajax-listar-sub-categoria",
                 success: function(data){ 
                     $('#idsubcategoria').find('option').remove() ;
-                    
+                    $('#idsubcategoria').append('<option value=""></option>')
                     for (var i = 0; i < data.length; i++) { 
                         $('#idsubcategoria').append('<option value="'+data[i]['idcategoria']+'">'+data[i]['nombre']+'</option>')
                     }

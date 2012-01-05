@@ -25,11 +25,13 @@ class Application_Form_FormArticulo extends Zend_Form
                 )
                 );
         $this->addElement(new Zend_Form_Element_Checkbox('flagportada',array('label'=>'Portada')));
+        $this->addElement(new Zend_Form_Element_Checkbox('flagoferta',array('label'=>'Oferta')));
         $this->addElement(new Zend_Form_Element_Text('nombre'));
         $this->addElement(new Zend_Form_Element_Textarea('slugBusqueda'));
-        $this->addElement(new Zend_Form_Element_Text('descripcion'));
+        $this->addElement(new Zend_Form_Element_Textarea('descripcion'));
         $this->addElement(new Zend_Form_Element_Text('precioventa'));
         $this->addElement(new Zend_Form_Element_Text('preciocompra'));
+        $this->addElement(new Zend_Form_Element_Text('preciooferta',array('label'=>'Precio Oferta')));
         $this->addElement(new Zend_Form_Element_File('imagen'));         
         $this->addElement(new Zend_Form_Element_Submit('Enviar'));         
         
@@ -38,6 +40,7 @@ class Application_Form_FormArticulo extends Zend_Form
         $this->getElement('codigo')->setLabel('Código');
         $this->getElement('slugBusqueda')->setLabel('Slug Busqueda');
         $this->getElement('slugBusqueda')->setAttribs(array('rows'=>5,'cols'=>50));
+        $this->getElement('descripcion')->setAttribs(array('rows'=>2,'cols'=>30));
         $this->getElement('imagen')->setLabel('imagen')
                 ->setDestination($file['ruta'])
                 ->addValidator('Count', false, 1)     // ensure only 1 file

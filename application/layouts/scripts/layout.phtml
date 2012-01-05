@@ -1,23 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" xmlns:fb="http://ogp.me/ns/fb#">
     <head>
         <?php echo $this->headTitle() ?>
         <?php echo $this->headMeta() ?>
         <?php echo $this->headLink() ?>
         <script type="text/javascript" src="/f/js/jquery-1.js"></script>
-        <script type="text/javascript" src="/f/js/s3Slider.js"></script>
-        <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
-        <?php echo $this->headStyle() ?>
         <?php if ($this->slideshow) { ?>
-        <link href="/f/css/banner.css" rel="stylesheet" type="text/css" media="all">
-        <?php } ?>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#slider1').s3Slider({
-            timeOut: 4000 
-        });
-    });
-</script>
+            <script type="text/javascript" src="/f/js/s3Slider.js"></script>
+        <?php } ?>        
+        <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
+            <?php echo $this->headStyle() ?>
+            <?php if ($this->slideshow) { ?>
+                <link href="/f/css/banner.css" rel="stylesheet" type="text/css" media="all">
+                <?php } ?>
+                <script type="text/javascript">
+<?php if ($this->slideshow) { ?>
+        
+                        $(document).ready(function() {
+                            $('#slider1').s3Slider({
+                                timeOut: 4000 
+                            });
+                        });
+<?php } ?>        
+
+                </script>
                 </head>
                 <body id="index">
                     <div id="page">
@@ -27,7 +33,7 @@
                                 <!-- Logo -->
                                 <div class="header-middle">
                                     <a id="header_logo" href="index.html" title="Delivery Premium">
-                                        <img class="logo" src="img/logo.png" alt="Delivery Premium">
+                                        <img class="logo" src="<?php echo $this->baseUrl() ?>/f/img/logo.png" alt="Delivery Premium">
                                     </a>
                                     <div id="header_right">
                                         <!-- Block user information module HEADER -->
@@ -36,29 +42,37 @@
                                                 Bienvenido,
                                                 <a href="#">Entrar</a>
                                             </p>
-                                            <ul id="header_nav">
-                                                <li id="shopping_cart">
-                                                    <a href="#" title="Su carrito de la compra"><span class="ajax_cart_quantity hidden">0</span>
-                                                        <span class="ajax_cart_product_txt hidden">producto</span>
-                                                        <span class="ajax_cart_product_txt_s hidden">productos</span>
-                                                    </a>
-                                                    <span class="ajax_cart_no_product">Sin productos</span>
-                                                </li>
-                                                <li id="your_account">
-                                                    <a href="#" title="Su cuenta">Su cuenta</a>
-                                                </li>
-                                            </ul>
+                                            <!--                                            <ul id="header_nav">
+                                                                                            <li id="shopping_cart">
+                                                                                                <a href="#" title="Su carrito de la compra"><span class="ajax_cart_quantity hidden">0</span>
+                                                                                                    <span class="ajax_cart_product_txt hidden">producto</span>
+                                                                                                    <span class="ajax_cart_product_txt_s hidden">productos</span>
+                                                                                                </a>
+                                                                                                <span class="ajax_cart_no_product">Sin productos</span>
+                                                                                            </li>
+                                                                                            <li id="your_account">
+                                                                                                <a href="#" title="Su cuenta">Su cuenta</a>
+                                                                                            </li>
+                                                                                        </ul>-->
                                         </div>
                                         <!-- /Block user information module HEADER -->
                                         <div id="phone_block">
                                             <span>Central telefónica</span>
-                                            <h4>721-2121</h4>
+                                            <h4>355-8888</h4>
                                         </div>
-                                        <div id="exchange_block">
-                                            <p><a href="http://www.sunat.gob.pe/cl-at-ittipcam/tcS01Alias" target="_blank">Tipo de cambio</a></p>
-                                        </div>
+
                                         <div id="social_block">
-                                            <a href="#"><img src="img/faceb.png" alt="Facebook" title="Hazte fan en Facebook"></a>
+                                            <div id="fb-root"></div>
+
+                                            <div id="fb-root"></div>
+                                            <script>(function(d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id)) return;
+                                                js = d.createElement(s); js.id = id;
+                                                js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));</script>
+                                            <div class="fb-like" data-send="true" data-width="300" data-show-faces="true" data-colorscheme="dark" data-font="arial"></div>
                                         </div>
                                     </div>
                                     <div class="clear"></div>
@@ -69,7 +83,7 @@
                                     <li><a href="/" class="<?php echo $this->menuActive1 ?>">Inicio</a></li>
                                     <li><a href="/zonas-reparto" class="<?php echo $this->menuActive2 ?>">Zonas de Reparto</a></li>	
                                     <li><a href="/realizar-pedido" class="<?php echo $this->menuActive3 ?>">Realizar Pedido</a></li>
-                                    <li><a href="/politicas" class="<?php echo $this->menuActive4 ?>">Políticas</a></li>
+                                    <li><a href="/eventos" class="<?php echo $this->menuActive4 ?>">Eventos</a></li>
                                     <li><a href="/contacto" class="<?php echo $this->menuActive5 ?>">Contacto</a></li>
                                 </ul>
                                 <!-- Block search module -->
@@ -91,7 +105,7 @@
                                             <?php
                                             if (is_array($this->listaBanner)):
                                                 foreach ($this->listaBanner as $index => $value):
-                                                ?>
+                                                    ?>
                                                     <li class="slider1Image">
                                                         <a href="<?php echo $value['url'] ?>">
                                                             <img src="../../imagen-banner/<?php echo $value['imagen'] ?>" alt="1" />
@@ -101,10 +115,11 @@
                                                                 <?php echo $value['nombre'] ?>
                                                             </strong>
                                                             <br />
-                                                                <?php echo $value['descripcion'] ?>
+                                                            <?php echo $value['descripcion'] ?>
                                                         </span>
                                                     </li>
-                                            <?php endforeach; endif; ?>
+                                                <?php endforeach;
+                                            endif; ?>
                                             <div class="clear slider1Image">
                                             </div>
                                         </ul>
@@ -121,15 +136,21 @@
                                     <h4>Delivery de Productos</h4>
                                     <div class="block_content">
                                         <ul style="display: block;" class="tree dynamized">
-<?php foreach ($this->listaCategoria as $index): ?>
+                                            <li>
+                                                <a href="<?php echo $this->baseUrl() ?>/ofertas">Ofertas</a>
+                                            </li>
+                                            <?php
+                                            $filter = new ZExtraLib_SeoUrl();
+                                            foreach ($this->listaCategoria as $index):
+                                                ?>
     <?php if ($index['idpadre'] == '') { ?>
                                                     <li>
-                                                        <a href="/productos/<?php echo $index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
+                                                        <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0) . '-' . $index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
                                                         <ul>
         <?php foreach ($this->listaCategoria as $index2): ?>
             <?php if ($index2['idpadre'] == $index['idcategoria']) { ?>
                                                                     <li>
-                                                                        <a href="/productos/<?php echo $index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
+                                                                        <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0) . '-' . $filter->filter(trim($index2['nombre']), '-', 0) . '-' . $index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
                                                                     </li>
             <?php } ?>
                                                     <?php endforeach; ?>
@@ -139,10 +160,10 @@
 <?php endforeach; ?>
                                         </ul>
                                         <script type="text/javascript">
-                                            // <![CDATA[
-                                            // we hide the tree only if JavaScript is activated
-                                            $('div#categories_block_left ul.dhtml').hide();
-                                            // ]]>
+                                        // <![CDATA[
+                                        // we hide the tree only if JavaScript is activated
+                                        $('div#categories_block_left ul.dhtml').hide();
+                                        // ]]>
                                         </script>
                                     </div>
                                 </div>
@@ -201,7 +222,7 @@
                                                         ?>
                                                         <dt class="first_item" id="cart_block_product_<?php echo $index['idarticulo'] ?>">
                                                             <span class="quantity-formated"><span class="quantity"><?php echo $index['cantidadArticulo'] ?></span>x</span>
-                                                            <a title="Rosa 1" href="/detalle-producto/<?php echo $index['idarticulo'] ?>" class="cart_block_product_name">
+                                                            <a title="Rosa 1" href="/detalle-producto/<?php echo $index['slug'] ?>" class="cart_block_product_name">
         <?php echo $index['nombre'] ?></a>
                                                             <span class="remove_link"><a title="eliminar este producto de mi carrito" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo'] ?>" 
                                                                                          class="ajax_cart_block_remove_link" rel="nofollow">&nbsp;</a></span>
@@ -233,22 +254,25 @@
                                 </div>
                                 <!-- /MODULE Block cart -->
                                 <!-- MODULE Block specials -->
-                                <!--                    <div id="special_block_right" class="block products_block exclusive blockspecials">
-                                                        <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
-                                                        <div class="block_content">
-                                                            <h5><a href="#" title="Variados 4">Variados 4</a></h5>
-                                                            <p class="description">&nbsp;bouquet de rosas rojas y...</p>
-                                                            <div class="product_image">
-                                                                <a href="#"><img src="delivery_files/39-92-large.jpg" alt="Variados 4" title="Variados 4"></a>
-                                                            </div>
-                                                            <span class="price-discount">Antes $43.00</span>
-                                                            <span class="price">$32.00</span>
-                                                            <a class="special-addcart ajax_add_to_cart_button" rel="ajax_id_product_39" href="#" title="Add to cart">Agregar a carrito</a>
-                                                            <p>
-                                                                <a href="#" title="Ver todas las ofertas" class="button_large">Ver todas las ofertas</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>-->
+<?php if ($this->listaDeUnArticulosEnOferta != '') { ?>
+                                    <div id="special_block_right" class="block products_block exclusive blockspecials">
+                                        <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
+                                        <div class="block_content">
+                                            <h5><a href="#" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>
+                                            <p class="description"><?php echo $this->listaDeUnArticulosEnOferta['descripcion']; ?></p>
+                                            <div class="product_image">
+                                                <a href="#">
+                                                    <img src="/imagen-articulo/<?php echo $this->listaDeUnArticulosEnOferta['imagen']; ?>" alt="/imagen-articulo/<?php echo $this->listaDeUnArticulosEnOferta['imagen']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"></a>
+                                            </div>
+                                            <span class="price-discount">Antes S/. <?php echo $this->listaDeUnArticulosEnOferta['precioventa']; ?></span>
+                                            <span class="price">S/. <?php echo $this->listaDeUnArticulosEnOferta['preciooferta']; ?></span>
+                                            <a class="special-addcart ajax_add_to_cart_button" rel="ajax_id_product_39" href="#" title="Add to cart">Agregar a carrito</a>
+                                            <p>
+                                                <a href="<?php echo $this->baseUrl() ?>/ofertas/" title="Ver todas las ofertas" class="button_large">Ver todas las ofertas</a>
+                                            </p>
+                                        </div>
+                                    </div>
+<?php } ?>
                                 <!-- /MODULE Block specials -->
                                 <!--                    <div class="box-gray">
                                                         <h4>Se aceptan tarjetas</h4>

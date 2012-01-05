@@ -2,7 +2,9 @@
 class Application_Model_Busqueda  extends Zend_Db_Table {
 
     public function buscar($arraySlug){
-        return $this->getAdapter()
+       if($arraySlug=='[a]')     
+           $arraySlug='';
+        $result = $this->getAdapter()
                 ->select()
                 ->distinct()
                 ->from('articulo',array('articulo.idarticulo',
@@ -13,10 +15,16 @@ class Application_Model_Busqueda  extends Zend_Db_Table {
             'articulo.descripcion',
             'articulo.precioventa',
             'articulo.preciocompra', 
+            'articulo.slug', 
             'articulo.cantidad',
             'articulo.stock_min'))
                 ->join('detalleslug', 'articulo.idarticulo = detalleslug.idarticulo','')
-                ->join('slug', 'slug.idslug = detalleslug.idslug','')
-                ->where('slug.nombreslug REGEXP ?',array($arraySlug));
+                ->join('slug', 'slug.idslug = detalleslug.idslug','');
+        if($arraySlug!=''){
+            $result->where('slug.nombreslug REGEXP ?',array($arraySlug));
+        }
+        return $result;
+        
+                
     }
 }
