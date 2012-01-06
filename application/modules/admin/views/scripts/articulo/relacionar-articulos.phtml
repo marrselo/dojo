@@ -1,0 +1,87 @@
+<?php echo $this->formulario; ?>
+<style>
+    #error{
+        font-size: 10px;
+        color: red;
+    }
+</style>
+<script type="text/javascript">
+    $(function() {
+        $('#idcategoria').change(function(){
+            listaArticulo(this.value,'idarticulo');
+            listarCategoria(this.value,'idsubcategoria');
+        })
+        $('#idcategoria2').change(function(){
+            listaArticulo(this.value,'idarticulo2');
+            listarCategoria(this.value,'idsubcategoria2');
+        })
+        $('#idsubcategoria').change(function(){
+            listaArticulo(this.value,'idarticulo');
+        });
+        $('#idsubcategoria2').change(function(){
+            listaArticulo(this.value,'idarticulo2');
+        });
+        $('#idarticulo').change(function(){
+            $('#itemProduct_'+this.value).parent().parent().remove();
+            
+        });
+        
+        $('#asignar').click(function(){
+            var id=0;
+            var text='';
+            id = $('#idarticulo2').attr('value');
+            text = $("#idarticulo2 option[value='"+$('#idarticulo2').attr('value')+"']").text();
+            if($('#itemProduct_'+id).length==0 && id!=''){
+                if($('#idarticulo').attr('value')!=id){
+                $('#listaAsignado').append('<tr><td>'+text+'</td><td><input type="hidden" id="itemProduct_'+id+'" name="arrayArticulo[]" value="'+id+'"><a id="deleItem_'+id+'" href="#">Eliminar</a></td></tr>');
+                $('#error').empty(); 
+                }else{
+                $('#error').empty(); 
+                $('#error').append('No se puede asociar al mismo producto');
+                }
+            }else{
+            if(id!=''){
+                $('#error').empty(); 
+                $('#error').append('El producto: ' +text+' ya esta registrado');
+            }else{
+                $('#error').empty(); 
+                $('#error').append('Debe tener al menos un producto');
+            }
+            }
+        });
+        $("[id^=deleItem_]").live("click",function(e){
+            e.preventDefault();
+            $(this).parent().parent().remove();
+        });
+        function listaArticulo(value,idElement){
+            $.ajax({
+                data: "idcategoria="+value,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/articulo/ajax-listar-articulos-categoria",
+                success: function(data){ 
+                    $('#'+idElement).find('option').remove() ;
+                    $('#'+idElement).append('<option value=""></option>')
+                    for (var i = 0; i < data.length; i++) { 
+                        $('#'+idElement).append('<option value="'+data[i]['idarticulo']+'">'+data[i]['nombre']+'</option>')
+                    }
+                }
+            });
+        }
+        function listarCategoria(value,idElement){
+            $.ajax({
+                data: "idcategoria="+value,
+                type: "POST",
+                dataType: "json",
+                url: "/admin/articulo/ajax-listar-sub-categoria",
+                success: function(data){ 
+                    $('#'+idElement).find('option').remove() ;
+                    $('#'+idElement).append('<option value=""></option>')
+                    for (var i = 0; i < data.length; i++) { 
+                        $('#'+idElement).append('<option value="'+data[i]['idcategoria']+'">'+data[i]['nombre']+'</option>')
+                    }
+                }
+            });
+        }
+    });
+</script>
