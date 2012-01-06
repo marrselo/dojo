@@ -27,11 +27,11 @@ class Application_Form_FormCliente extends Zend_Form
                     'Validators'=>$arrayValidator)));
         $arrayValidator = array(new Zend_Validate_StringLength(array('min'=>1,'max'=>15)));
         $this->addElement(new Zend_Form_Element_Text('telefono1',
-                array('label'=>'Telefono 1',
+                array('label'=>'Telefono',
                       'required'=>true,
                       'Validators'=>$arrayValidator)));
         $this->addElement(new Zend_Form_Element_Text('telefono2',
-                array('label'=>'Telefono 2')));
+                array('label'=>'Movil')));
         $this->addElement(new Zend_Form_Element_Text('movil',
                 array('label'=>'Celular')));
         $this->addElement(new Zend_Form_Element_Text('ruc',
