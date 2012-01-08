@@ -27,6 +27,15 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
         $this->view->articulos = $paginator;
         $this->view->idsubcategoria = $params['categoria'];
         $this->view->slug = $this->_getParam('slug');
+        $this->view->categoria = $this->_modelCategorias->listarUnaCategoria($params['categoria']);
+        $this->view->idpadre = false;
+        if(isset($this->view->categoria['idpadre'])){
+            $this->view->subCategoria = $this->_modelCategorias->listarUnaCategoria($params['categoria']);
+            $this->view->categoria = $this->_modelCategorias->listarUnaCategoria($this->view->categoria['idpadre']);
+            $this->view->idpadre = true;
+        }
+        
+
         
     }
     public function detalleProductoAction()
@@ -36,12 +45,10 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
         $array = explode('-',$params['producto']);
         $params['producto'] = $array[count($array)-1];
         $dataArticulo = $this->_modelArticulos->listarUnArticulo($params['producto']);
-        $modelCategoria = new Application_Model_Categoria();
-        $this->view->categoria = $modelCategoria->listarUnaCategoria($dataArticulo['idcategoria']);
-        $this->view->subCategoria = $modelCategoria->listarUnaCategoria($dataArticulo['idsubcategoria']);
+        $this->view->categoria = $this->_modelCategorias->listarUnaCategoria($dataArticulo['idcategoria']);
+        $this->view->subCategoria = $this->_modelCategorias->listarUnaCategoria($dataArticulo['idsubcategoria']);
         $this->view->articulo = $dataArticulo;
         $this->view->articuloRelacionado = $this->_modelRelacionarArticulo->listarRelacionArticulo($params['producto']);
-        //$this->view->categorias = $this->_modelCategorias->listaCategorias();
     }
     
     
