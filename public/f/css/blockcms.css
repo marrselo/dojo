@@ -6,7 +6,7 @@
 }
 #footer .block_various_links li { display: inline; }
 #footer .block_various_links li a { 
-    background: url('../../../img/vs-bottom-navigation-dot.png') no-repeat scroll right center transparent;
+    background: url('/f/img/vs-bottom-navigation-dot.png') no-repeat scroll right center transparent;
     font-size: 10px;
     padding: 0 10px 0 0;
     text-transform: uppercase;
@@ -32,7 +32,7 @@
     width: 200px;
 }
 #footer-facebook {
-    background: url('../../../img/footer-facebook.png') no-repeat scroll 0 0 transparent;
+    background: url('/f/img/footer-facebook.png') no-repeat scroll 0 0 transparent;
     display: block;
     float: left;
     height: 16px;
@@ -41,7 +41,7 @@
     width: 76px;
 }
 #footer-twitter {
-    background: url('../../../img/footer-twitter.png') no-repeat scroll 0 0 transparent;
+    background: url('/f/img/footer-twitter.png') no-repeat scroll 0 0 transparent;
     display: block;
     float: left;
     height: 15px;
@@ -58,7 +58,7 @@
     width: 140px;
 }
 #dapurpixel {
-    background: url('../../../img/dapurpixel.png') no-repeat scroll 0 0 transparent;
+    background: url('/f/img/dapurpixel.png') no-repeat scroll 0 0 transparent;
     display: block;
     float: right;
     height: 19px;

@@ -25,14 +25,14 @@
 	padding-left: 15px;
 }
 #categories_block_left .tree a {
-	background: url('../../../img/list-arrow.png') left top no-repeat;
+	background: url('/f/img/list-arrow.png') left top no-repeat;
     color: #585858;
     display: block;
     padding: 3px 0 3px 13px;
 	float:left;
 }
 #categories_block_left .tree a:hover { 
-	background: url('../../../img/list-arrow.png') left bottom no-repeat;
+	background: url('/f/img/list-arrow.png') left bottom no-repeat;
 	color: #1fa22e;
 	text-decoration: none
 }
@@ -52,5 +52,5 @@
     padding: 0;
     width: 9px;
 }
-#categories_block_left span.OPEN { background-image: url('../../../img/icon/less.gif') }
-#categories_block_left span.CLOSE { background-image: url('../../../img/icon/more.gif') }
+#categories_block_left span.OPEN { background-image: url('/f/img/icon/less.gif') }
+#categories_block_left span.CLOSE { background-image: url('/f/img/icon/more.gif') }

@@ -3,7 +3,7 @@
 #newsletter_block_left .block_content p { padding: 0.3em 0; text-align: center }
 #newsletter_block_left .block_content input, #newsletter_block_left .block_content select { margin-left:0; text-align:center; }
 #newsletter_block_left .block_content input.button {
-    background: url('../../../img/vs-btn-special.png') repeat-x scroll right 5px #91611A;
+    background: url('/f/img/vs-btn-special.png') repeat-x scroll right 5px #91611A;
     font-size: 10px !important;
     height: 18px;
     margin: 1em auto 0;
@@ -14,7 +14,7 @@
 
 /* Block newsletter home */
 #index #center_column #newsletter_block_left {
-    background: url('../../../img/vs-bg-newsletter.gif') no-repeat scroll 0 0 #4F3916;
+    background: url('/f/img/vs-bg-newsletter.gif') no-repeat scroll 0 0 #4F3916;
     float: left;
     margin: 10px 0;
     width: 308px;

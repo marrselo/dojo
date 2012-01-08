@@ -14,14 +14,14 @@
 	overflow: hidden;
 }
 #manufacturers_block_left .tree a {
-	background: url('../../../img/list-arrow.png') left top no-repeat;
+	background: url('/f/img/list-arrow.png') left top no-repeat;
 	color: #585858;
 	display: block;
 	padding: 3px 0 3px 13px;
 	float: left;
 }
 #manufacturers_block_left .tree a:hover {
-	background: url('../../../img/list-arrow.png') left bottom no-repeat;
+	background: url('/f/img/list-arrow.png') left bottom no-repeat;
 	color: #1FA22E;
 	text-decoration: none;
 }

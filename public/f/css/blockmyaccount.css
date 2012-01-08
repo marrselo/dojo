@@ -1,6 +1,6 @@
 /* block myaccount */
 div.myaccount ul.bullet li { 
-    background: url('../../../img/vs-disc.png') no-repeat scroll 0 10px transparent;
+    background: url('/f/img/vs-disc.png') no-repeat scroll 0 10px transparent;
     border-bottom: 1px dashed #CBC3B4;
     line-height: 1.5;
     margin: 0 5px;
