@@ -31,8 +31,6 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
             )));
         
         $modelComprobante = new Application_Model_TipoDocumento();
-        
-        
         $this->addElement(new Zend_Form_Element_Select('tipoDocumento',
         array('requerid'=>true,
             'label'=>'Tipo Documento',

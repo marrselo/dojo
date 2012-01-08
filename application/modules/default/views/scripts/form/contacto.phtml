@@ -1,0 +1,48 @@
+<form class="std-contact" action="<?php echo $this->element->getAction();?>" method="<?php echo $this->element->getMethod();?>">
+    <fieldset>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tbody>
+                <tr>
+
+                    <td>
+                        <p class="desc_contact" id="desc_contact0">&nbsp;</p>
+                        <p style="display:none;" class="desc_contact" id="desc_contact2">
+                            Para cualquier pregunta o queja acerca de un pedido
+                        </p>
+                        <p style="display:none;" class="desc_contact" id="desc_contact1">
+                            Si se produce un problema técnico en el sitio
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php echo $this->element->nombres?>
+                    </td>
+                    <td>
+                        <?php echo $this->element->email?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php echo $this->element->telefono?>
+                    </td>
+                    <td>
+                        <?php echo $this->element->direccion?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <?php echo $this->element->asunto?>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <?php echo $this->element->comentario?>                        
+                    </td>
+                </tr>
+            </tbody></table>
+        <p class="submit">
+            <input type="submit" onclick="$(this).hide();" class="button_medium" value="Enviar" id="submitMessage" name="submitMessage">
+        </p>
+    </fieldset>
+</form>   
