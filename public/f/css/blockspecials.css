@@ -1,14 +1,14 @@
 /* Block specials */
 .blockspecials h5 {
 	display: block;
-	color: #37580d;
+	color: #A67309;
     font-family: 'AllerItalic';	
 	font-size: 14px;
 	margin-left: 1em;
 }
 .blockspecials h5 a,
 .blockspecials h5 a:hover {
-	color: #37580d;
+	color: #A67309;
 }
 .blockspecials div.product_image {
 	text-align: center;
@@ -23,7 +23,7 @@
 	margin: 0 auto;
 	position: relative;
 	width: 198px;
-	behavior: url('/../PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 .blockspecials div.product_image img {
 	border-radius: 1em;
@@ -35,7 +35,7 @@
 	height: 223px;
 	position: relative;
 	width: 198px;
-	behavior: url('/../PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 .blockspecials p {
 	padding: 3px 0 2px; 
@@ -58,14 +58,14 @@
 }
 .blockspecials span.price {
 	display: block;
-	color: #37580d;
+	color: #A67309;
     font-family: 'ChunkFiveRoman';
 	font-size: 22px;
 	margin: 0;
 	padding: 0 0.6em 0;
 }
 .blockspecials a.special-addcart {
-	background: url('../../../img/button_larger.png');
+	background: url('/f/img/button_larger.png');
 	color: #ffffff;
 	display: block;
 	font-size: 11px;

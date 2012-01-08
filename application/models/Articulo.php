@@ -51,11 +51,17 @@ class Application_Model_Articulo  extends Zend_Db_Table {
     }
     
     public function listarArticulosDeUnaCategoria($idCategoria) {
-        return  $this->getAdapter()
+        if($idCategoria!=''){
+        $return = $this->getAdapter()
                 ->select()->from('articulo')
                 ->orWhere('idcategoria = ?', $idCategoria)
                 ->orWhere('idsubcategoria = ?', $idCategoria)
+                ->where('fla = ? ','1');}else{
+                    $return = $this->getAdapter()
+                ->select()->from('articulo')
                 ->where('fla = ? ','1');
+                }
+        return $return;
     }
     
     public function registroSlugArticulo($texto,$idArticulo){

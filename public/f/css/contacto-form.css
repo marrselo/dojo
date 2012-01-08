@@ -36,7 +36,7 @@ form.std-contact input[type='text'] {
 	padding: 1em 0 0.7em 6px;
 	position: relative;
 	width: 250px;
-	behavior: url('/../PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 form.std-contact textarea {
 	background: rgba(0,0,0,0.1);
@@ -61,7 +61,7 @@ form.std-contact textarea {
 	padding: 5px;
 	position: relative;
 	width: 510px;
-	behavior: url('/../PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 form.std-contact select {
 	background: #D9D9D9;
@@ -83,7 +83,7 @@ form.std-contact select {
 	padding: 6px 3px 6px 0;
 	position: relative;
 	margin: 0.4em 0;
-	behavior: url('/../PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 .std-contact .errors {
     color: red;

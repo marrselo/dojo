@@ -15,8 +15,12 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
     public function indexAction()
     {
         $params = $this->_getAllParams();
+        if(isset($params['categoria'])){
         $array = explode('-',$params['categoria']);
         $params['categoria'] = $array[count($array)-1];
+        }else{
+        $params['categoria']='';    
+        }
         $paginator = Zend_Paginator::factory($this
                 ->_modelArticulos
                 ->listarArticulosDeUnaCategoria
