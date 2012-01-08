@@ -1,0 +1,335 @@
+@charset "UTF-8";
+
+/* remember to define focus styles! 
+--------------------------------------------------------------------------------*/
+
+:focus { outline: 0; }
+
+/* remember to highlight inserts somehow! 
+--------------------------------------------------------------------------------*/
+
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+
+/* Reset */
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6,pre,code,address,caption,cite,code,em,strong,th { font-size: 1em; font-weight: normal; font-style: normal; }
+ul,ol { list-style: none; }
+fieldset,img { border: none; }
+caption,th { text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* Typography 
+--------------------------------------------------------------------------------*/
+body { text-align:left; font-family: arial,verdana, sans-serif, Tahoma;  /*font-family: "Lucida Grande", Tahoma, Arial, sans-serif; */ font-size: 10px; color: #000; }
+img { border: 0; }
+
+/* Links 
+--------------------------------------------------------------------------------*/
+a, a:link a:active { color: #2786C2 /*#3B5998*/;  }
+a:visited { }
+a:hover { text-decoration: none; }
+a { outline: none; }
+
+/* Headings 
+--------------------------------------------------------------------------------*/
+h1 { font-size: 2em; margin:0; padding: 0; text-transform: uppercase; }
+h2 { font-size: 1.9em; font-weight: 600; margin: 0 0 0.5em 0; padding: 0; }
+h3 , .h3 { font-size: 1.3em; font-weight: bold; margin: 0 0 0.2em 0; padding:0; }
+h4 { font-size: 1.2em; margin: 0 0 1em 0; padding:0; }
+h5 { font-size: 1.1em; margin: 0 0 0.4em 0; padding:0; font-weight:bold; }
+h6 { font-family: Arial, 'Trebuchet MS', Verdana, Helvetica, sans-serif; font-size: 11px; margin: 0 0 1em 0; padding:0; }
+
+.maiz { color: #969696 !important; }
+.color { color:#3E3E3E;}
+.blue { color: #4486c3 !important; }
+.gray { color:#666;}
+.red { color:#F92C17;}
+.black { color:black!important;}
+
+/* Text 
+--------------------------------------------------------------------------------*/
+p { font-size: 1em; margin:0 0 1em 0; padding:0; line-height:1.5em; }
+blockquote { border-left:10px solid #ddd; margin-left:10px; }
+pre { display: block; font-family: "Courier New", Courier, monospace; font-size: 11px; background-color: #eee; margin: 0 16px 10px 16px; padding: 2px; }
+code { display: block; font-family: "Courier New", Courier, monospace; font-size: 1em; background-color: #eee; }
+strong, b { font-weight: bold; }
+em, i { font-style:italic; }
+
+/* Lists 
+--------------------------------------------------------------------------------*/
+ul { margin: 0 0 1.5em 20px; padding: 0; font-size:1em; }
+ul li { margin: 0 0 0.25em 10px; padding: 0; line-height:1.3em; }
+ol { margin: 0 0 1.5em 20px; padding:0; line-height: 1.4em; font-size:1em; }
+ol li { margin: 0 0 0.25em 10px; padding: 0; }
+dl { margin: 0 0 1.5em 0; padding: 0; line-height:130%; font-size:1em; }
+dl dt { margin: 0.25em 0 0 0; padding: 0; }
+dl dd { margin: 0 0 0 20px; padding: 0; }
+
+ul.list_style li { list-style-position:inside;list-style-type:disc;}
+ul.outside li { list-style-position:outside; }
+ul.bridge li { border-bottom:solid 1px #DDD; padding-bottom:0.5em; margin-bottom:0.5em;}
+
+/* Table 
+--------------------------------------------------------------------------------*/
+table { margin: 0 0 1.5em 0; font-size: 1em; }
+table caption { font-weight: bold; margin: 0 0 0 0; padding: 0 0 0.5em 0; text-align: left; }
+th { font-weight: bold; text-align: left; }
+
+/* Clearing
+--------------------------------------------------------------------------------*/
+.clear { clear:both; height:1px; margin:0; padding:0; font-size: 1px; line-height: 0; }
+.clearfix:after, .wrapper:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+/* Accessibility 
+--------------------------------------------------------------------------------*/
+#accessibility, .invisible { position: absolute; top: -999em; left: -999em; }
+a { outline: 0 !important; }
+hr.sep_a { display:block!important; height:1px; overflow:hidden; background:#CCC; border:0 none; margin:2em 0;}
+
+/* Yellow Box 
+--------------------------------------------------------------------------------*/
+div.ybox {margin:10px; background:none repeat scroll 0 0 #FFFBE2; border:1px solid #FFE222;  padding:10px; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;}
+div.ybox p , div.parraf  { margin:0;}
+div.parraf ul { margin:0; }
+div.parraf ul li { margin:0; list-style:inside circle; }
+div.ybox .close { cursor:pointer;}
+
+/* Miscellaneous 
+--------------------------------------------------------------------------------*/
+.block { display:block !important; }
+.hide { display:none!important;}
+.inline { display: inline !important; }
+/*.hidden, span.hidden, hr { display:none !important; }*/
+.pointer { cursor:pointer !important; }
+.indent { text-indent: -9000em !important; }
+.relative { position:relative;}
+
+/* Border 
+--------------------------------------------------------------------------------*/
+.noborder_t { border-top:0 !important; }
+.noborder_r { border-right:0 !important; }
+.noborder_b { border-bottom:0 !important; }
+.noborder_l { border-left:0 !important; }
+
+/* Margins
+--------------------------------------------------------------------------------*/
+.no_margin_r { margin-right:0 !important; }
+.no_margin_l { margin-left:0 !important; }
+.no_margin_b { margin-bottom:0 !important; }
+.no_margin_t { margin-top:0 !important; }
+
+/* Text align 
+--------------------------------------------------------------------------------*/
+.left { text-align:left; }
+.right { text-align:right; }
+.center { text-align:center; }
+.justify { text-align:justify; }
+
+/* Images 
+--------------------------------------------------------------------------------*/
+.imgLeft { float:left; margin:5px 10px 5px 0; }
+.imgRight { float:right; margin:5px 0 5px 10px; }
+.imgCenter { text-align:center; padding:15px 0; }
+ img, a img { border:0; }
+
+/* Others 
+--------------------------------------------------------------------------------*/
+.aunderline { text-decoration:underline;}
+.aunderline:hover { text-decoration:none;}
+.no_border { border: 0 none !important; }
+.no_bg { background: none !important; }
+.no_margin { margin: 0 !important; }
+.float_left { float: left; }
+.float_right { float: right; }
+.list_reset, .list_reset li { margin: 0; padding: 0; list-style: none; }
+.no_padding { padding: 0 !important; }
+.no_bold { font-weight: 300; }
+.no_underline { text-decoration: none; }
+.no_underline { text-decoration: none; }
+.no_underline:hover { text-decoration: underline; }
+
+.mt_5 { margin-top:5px !important;}
+.mt_10 { margin-top:10px !important;}
+
+.mb_5 { margin-bottom:5px !important;}
+.mb_10 { margin-bottom:10px !important;}
+
+.mr_5{margin-right: 5px !important;}
+.ml_5{margin-left: 5px !important;}
+
+.mr_10{margin-right: 10px !important;}
+.mr_20{margin-right: 20px !important;}
+.ml_10{margin-left: 10px !important;}
+
+.mr_15{margin-right: 15px !important;}
+.ml_15{margin-left: 15px !important;}
+
+
+.noscroll { overflow:visible;}
+.fix_center { margin:inherit auto inherit auto;}
+.inline + .inline { margin-left:1em;}
+.wauto{width: auto !important;}
+.lheight12{line-height:12px !important;}
+div.dlreset dd, div.dlreset dt { margin:0; padding:0;}
+.sep_bottom10{margin-bottom: 10px;}
+.radius5{-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+.radius10{-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;}
+/* Añadir al base */
+
+
+
+.cont_pro {height: auto;overflow: hidden;}
+
+/* Spinners y Loaders */
+
+.min_loader { background:url(../img/global/min_loader.gif) left center no-repeat; height:16px; padding-left:25px; font-size:12px; }
+
+
+
+/* Forms 
+--------------------------------------------------------------------------------*/
+
+form { margin: 0; padding: 0; color:  #000; }
+fieldset { border: 0; margin: 0 0; padding: 0; }
+label, .label { cursor: pointer; font-size: 1em; margin-right:4px; }
+input.text, input.password { font: 1.1em Tahoma, Arial, Geneva, sans-serif; padding: 2px 4px; color:  #000; }
+textarea { font: 1em/1.2em Arial, 'Trebuchet MS', Verdana, Helvetica, sans-serif; height: 108px; margin-top: 0; padding: 2px 4px; overflow: auto; color:  #000; }
+input.text, textarea { background: #FFF; border: #7E9DB9 solid 1px; }
+select { font: 1em Arial, 'Trebuchet MS', Verdana, Helvetica, sans-serif; width: 126px; overflow:hidden; height:1.9em; vertical-align:middle; margin-right:4px; color:  #000; }
+optgroup { font-weight:bold; font-style:normal; vertical-align:middle; border-top:1px solid #DDD; }
+option { border-top:1px solid #DDD; padding:2px 5px; vertical-align:middle; }
+form dl, form dt, form dd { margin: 0; padding: 0; }
+form dl { padding: 0; }
+form dt { width:100%; }
+form dd { width:100%; margin-bottom: 5px; }
+form dt label { display:block; padding-bottom:2px; }
+form.dtp dt  { padding-bottom:2px; }
+form dt input.text { width:90%;}
+form dd input.text { width:90%;}
+form dd select { width:90%;}
+form p.frm { margin:0; padding:0; }
+button { cursor: pointer; font: 1em Arial, 'Trebuchet MS', Verdana, Helvetica, sans-serif; vertical-align:bottom; padding:0 5px; }
+.frm_common label { line-height:1.9em;}
+.inline_option + .inline_option { margin-left:1em;}
+form label.error { color:#F60; font-size:11px!important; display:block;}
+form dd.nw label.error { white-space:nowrap;}
+
+input.text, select.text, textarea.text { border-color:#989898 #E7E7E7 #E7E7E7 !important;border-style:solid;border-width:1px;}
+input.text, textarea, input.inputbox { background:#FFFFFF; border:1px solid #7E9DB9;}
+input.disabled, textarea.disabled{ background: #ccc; color:#CCC!important;}
+input.radio{margin:0 5px 0 0;vertical-align:middle;}
+
+
+/* Grid forms
+--------------------------------------------------------------------------------*/
+
+.dlgrid .p-b1 p, div.p-b1 p, form.p-b1 p { margin-bottom:1em }
+.dlgrid.dl-b10 dl { margin-bottom:10px; }
+.dlgrid.dl-b15 dl { margin-bottom:15px; }
+.dlgrid.dl-b20 dl { margin-bottom:15px; }
+.dlgrid dl { float:left; margin:0; padding-bottom:10px; }
+.dlgrid dl select { width:90%; /*margin:0 0 10px 0 !important; */ display:block; float:left }
+.dlgrid .w16 dl { width:16.6%; }
+.dlgrid .w18 dl { width:18.0%; }
+.dlgrid .w20 dl { width:20.0%; }
+.dlgrid .w10 dl { width:10.0%; }
+.dlgrid .w25 dl { width:25.0%; }
+.dlgrid .w33 dl { width:33.0%; }
+.dlgrid .w40 dl { width:39.9%; }
+.dlgrid .w50 dl { width:49.9%; }
+.dlgrid .w60 dl { width:59.9%; }
+.dlgrid .w70 dl { width:69.9%; }
+.dlgrid .w80 dl { width:79.9%; }
+.dlgrid .w90 dl { width:89.9%; }
+.dlgrid .w100 dl { width:100%; }
+
+/*clases usadas para el form inline*/
+
+.dlgrid .w100 dl .dd15 { width:20%; }
+.dlgrid .w100 dl .dt55 { width:55%; }
+.dlgrid .w100 dl dd label { line-height: 20px; }
+.divgrid div.cell { float:left; }
+.divgrid .w25 div { width:25.0%; }
+.divgrid .w33 div { width:33.0%; }
+.divgrid .w50 div { width:49.9%; }
+.divgrid .w90 div { width:89.98%; }
+.divgrid .input80 input.text, .divgrid .input80 select.text { width:80%; }
+.dlgrid .dlinline dl dt, .dlgrid .dlinline dl dd { float:left; }
+.dlgrid .input80 input.text, .dlgrid .input80 select.text { width:80%; }
+.dlgrid .label16 label { line-height:1.6em; }
+.dlgrid .label14 label { line-height:1.4em; }
+
+.dlinlinefull dl { float:none; }
+.dlgrid dl.center { margin:0 auto 15px; float:none; }
+.dlgrid dl.dlw50 { width:49.9%; }
+.dlgrid dl.dlw80 { width:80%; }
+.dlgrid dl.dlw90 { width:90%; }
+
+.dlinline dl.dt10 dt, .dlinline dl.dd10 dd { width:10%; }
+.dlinline dl.dt15 dt, .dlinline dl.dd15 dd { width:15%; }
+.dlinline dl.dt20 dt, .dlinline dl.dd20 dd { width:20%; }
+.dlinline dl.dt25 dt, .dlinline dl.dd25 dd { width:20%; }
+.dlinline dl.dt30 dt, .dlinline dl.dd30 dd { width:30%; }
+.dlinline dl.dt35 dt, .dlinline dl.dd35 dd { width:35%; }
+.dlinline dl.dt40 dt, .dlinline dl.dd40 dd { width:40%; }
+.dlinline dl.dt50 dt, .dlinline dl.dd50 dd { width:50%; }
+.dlinline dl.dt60 dt, .dlinline dl.dd60 dd { width:60%; }
+.dlinline dl.dt64 dt, .dlinline dl.dd64 dd { width:64%; }
+.dlinline dl.dt70 dt, .dlinline dl.dd70 dd { width:70%; }
+.dlinline dl.dt75 dt, .dlinline dl.dd75 dd { width:75%; }
+.dlinline dl.dt80 dt, .dlinline dl.dd80 dd { width:80%; }
+.dlinline dl.dt90 dt, .dlinline dl.dd90 dd { width:90%; }
+
+.dlgrid dl dt.sp { padding-bottom:4px; }
+
+/* Grid cols
+--------------------------------------------------------------------------------*/
+
+.col { float: left; }
+
+
+/* Single tables 
+-----------------------------------------------------------------------------*/
+table.mf { width:100%; margin-bottom:10px; border-collapse:collapse; border:solid 1px #DDD; }
+table.mf th { font-weight:bold; background:#F5F5F5; border-bottom:solid 1px #DDD; }
+table.mf.min th { padding:6px; font-size:12px;color: #005782;}
+table.mf th, table.mf td { padding:8px 10px; }
+table.mf tr.rowtotal td { border-top:solid 1px #EDEDED; }
+table.mf tr.rowtotal td.desc { background:#F5F5F5; }
+table.mf td { vertical-align:middle; border:dotted 1px #DDD; }
+table.mf td.number { text-align:right; width:80px; border-right:none; }
+table.mf tr.resalt td { background-color: #FFFBE2;}
+.trhover{ background-color: #FFFBE2 !important;}
+table.mf tr:hover td { background-color: #FFFBE2;}
+table td .relative { float:left; display:block; width:100%;}
+table.mf.min td { padding:6px; font-size:12px;}
+
+/* Font-size
+-----------------------------------------------------------------------------*/
+.font11{font-size:11px !important;}
+.font12{font-size:12px !important;}
+.font13{font-size:13px !important;}
+.font14{font-size:14px !important;}
+.font15{font-size:15px !important;}
+.font16{font-size:16px !important;}
+.font17{font-size:17px !important;}
+.font18{font-size:18px !important;}
+.font19{font-size:19px !important;}
+.font20{font-size:20px !important;}
+
+
+/* LAYOUTS 
+-----------------------------------------------------------------------------*/
+.fix_flex { width:100%;}
+.fix_flex .col1 { float:left; }
+.fix_flex .col2 {  }
+
+.content{padding: 10px 0 10px 0;background: url(../img/bg_content_col1.jpg) repeat-y 238px top;}
+.content p{font-size:12px;text-align:justify;}
+.content .col1 { float:left; width:197px;padding:0 26px 0 18px;}
+.content .col2 { float:left;padding: 0 34px 0 23px;width:634px; }
+.content .col1 .inner{display:block;}
+
+.content .col2_interna {float:left;width: 390px;padding:0 15px 0 15px;}
+.content .col3_interna { float: left;padding: 8px;width:255px;}
