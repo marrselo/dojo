@@ -17,7 +17,7 @@
 	behavior: url('/tienda/PIE.htc');
 }
 #primary_block h1 {
-	color: #37580D;
+	color: #A67309;
 	font-family: 'AllerBoldItalic';
 	font-size: 24px;
 	letter-spacing: 1px;
@@ -218,7 +218,7 @@
 }
 #primary_block #buy_block label { text-align: right }
 #primary_block #buy_block label,#primary_block #buy_block select {
-	color: #37580D;
+	color: #A67309;
 	display: block;
 	float: left;
 	font-family: 'AllerItalic';
@@ -307,7 +307,7 @@
 }
 #primary_block div#reduction_percent {
  	display: inline-block;
-    color: #37580d;
+    color: #A67309;
     font-size: 11px;
     margin: 0;
     padding: 0;
@@ -340,7 +340,7 @@
 }
 div.our_price { 
 	display: inline-block;
-	color:#37580d; 
+	color:#A67309; 
     font-family: 'AllerItalic';
     font-size: 14px;
 	padding: 1px 0;
@@ -348,7 +348,7 @@ div.our_price {
 }
 #our_price_display {
 	display: inline-block;
-    color: #37580d;
+    color: #A67309;
     font-family: 'ChunkFiveRoman';
     font-size: 18px;
 	vertical-align: top;

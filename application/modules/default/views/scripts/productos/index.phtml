@@ -58,8 +58,27 @@
                                         <span class="price"><?php echo $index['precioventa'] ?></span>
                                     </p>
                                     <p class="price_container" style="width: 70px;">
-                                        <input type="text" id="text_cant_<?php echo $index['idarticulo'] ?>" name="cantidad" value="1" style="width: 30px; height: 20px;">
+                                        
+                                        
+                                        <select id="text_cant_<?php echo $index['idarticulo'] ?>" 
+                                            name="cantidad" >
+                                            <?php for ($i=1;$i<=20;$i++) { ?>
+                                            <option value="<?php echo $i; ?>">    
+                                                <?php echo $i;?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
                                         <span>cantidad</span>
+                                        
+<!--                                        <input 
+                                            type="text" 
+                                            id="text_cant_<?php echo $index['idarticulo'] ?>" 
+                                            name="cantidad" 
+                                            value="1" 
+                                            style="width: 30px; height: 20px;">
+                                        
+                                        <span>cantidad</span>-->
+                                        
                                     </p>
                                     <p class="product_buttons">
                                         <a href="#" class="product-addcart ajax_add_to_cart_button" id="ajax_id_product_<?php echo $index['idarticulo'] ?>" rel="ajax_id_product_<?php echo $index['idarticulo'] ?>"  title="Añadir al carrito">

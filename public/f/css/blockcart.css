@@ -40,7 +40,7 @@
 #cart_block dl dt a { color: #000; }
 #cart_block dl dt a:hover { color: #000; text-decoration: underline; }
 #cart_block a.ajax_cart_block_remove_link {
-    background: url('../../../img/delete-item.png') no-repeat scroll left top transparent;
+    background: url('/f/img/delete-item.png') no-repeat scroll left top transparent;
     display: block;
     float: right;
     font-size: 0;
@@ -58,7 +58,7 @@
 #cart_block li { clear: both }
 #cart_block span.price,
 #cart_block dl span.price {
-    color: #49780d;
+    color: #A67309;
 	float: right;
     font-family: 'AllerBoldItalic';
     font-size: 12px;

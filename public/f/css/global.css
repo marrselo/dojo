@@ -108,7 +108,7 @@ ul.idTabs li {
 	margin-right: 15px
 }
 .idTabs a {
-	color: #37580d;
+	color: #A67309;
     font-family: 'Arial';
 	font-size: 16px;
     text-decoration: none;
@@ -116,7 +116,7 @@ ul.idTabs li {
     width: 173px;
 }
 .idTabs .selected {
-	color: #37580d;
+	color: #A67309;
 }
 
 /* IdTabs Short*/
@@ -124,7 +124,7 @@ ul.idTabs li {
 	width: 135px
 }
 .idTabsShort .selected {
-	color: #37580d;
+	color: #A67309;
 }
 div.sheets {
 	clear: both;
@@ -334,8 +334,8 @@ img.logo {
 }
 #search_block input#search_query_block {
 	background: rgba(0,0,0,0.5); 
-	-pie-background: #203505;
-	border: 1px solid #1d3005;	
+	-pie-background: #291F07;
+	border: 1px solid #2B2107;	
 	border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
 	-moz-border-radius: 0.5em;
@@ -537,14 +537,14 @@ form.std {
     clear: both;
 }
 form.std h3 {
-	color: #37580d;
+	color: #A67309;
     font-family: 'Arial';
 	font-size: 18px;
 	margin: 0;
 	font-weight: normal;
 }
-form.std h3 a { color: #37580d; }
-form.std h3 a:hover { color: #37580d; }
+form.std h3 a { color: #A67309; }
+form.std h3 a:hover { color: #A67309; }
 form.std fieldset {
     background: transparent;
     border: none;
@@ -590,7 +590,7 @@ form.std .checkbox label, form.std .radio label, form.std span.form_info {
 	float: none;
 	text-align: left
 }
-.required sup { color: #37580d }
+.required sup { color: #A67309 }
 form.std p.checkbox { padding-left: 30% }
 form.std p.submit {
 	/*padding-left: 31%;*/
@@ -669,8 +669,8 @@ form.std fieldset select {
  form.std fieldset select:focus {
     background: none repeat scroll 0 0 #F0F0F0;
 }*/
-p.checkbox a { color: #37580d; }
-p.checkbox a:hover { color: #37580d; }
+p.checkbox a { color: #A67309; }
+p.checkbox a:hover { color: #A67309; }
 
 
 /* START OF BUTTONS SECTION
@@ -812,7 +812,7 @@ p.price_container {
 	width: 189px;
 }
 #myaccount ul.bullet li a:hover {
-	color: #37580d;
+	color: #A67309;
 }
 #myaccount p.logout {
 	background: url('../img/button_larger.png');
@@ -841,7 +841,7 @@ span#amount_2 {
 h3.condition_title, 
 h3.carrier_title,
 h3.gift_title {
-	color: #37580d;
+	color: #A67309;
     font-family: 'Arial';
 	font-size: 18px;
 	margin: 1em 0 0;
@@ -986,19 +986,19 @@ ul#menu li a:hover, ul#menu li a.active {
 	-moz-border-radius: 0.5em;
 	-o-border-radius: 0.5em;
 	-ms-border-radius: 0.5em;
-	box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #1d3005;
-	-webkit-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #1d3005;
-	-moz-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #1d3005;
-	-o-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #1d3005;
-	-ms-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #1d3005;
+	box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #2B2107;
+	-webkit-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #2B2107;
+	-moz-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #2B2107;
+	-o-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #2B2107;
+	-ms-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #2B2107;
 	font-family: 'Arial';
 	margin: 1px;
 	padding: 0.4em 1em 0.4em;
 	position: relative;
 	text-decoration: none;
 	z-index: 9999;
-	-pie-background: #203505;
-	-pie-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #1d3005;
+	-pie-background: #291F07;
+	-pie-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #2B2107;
 	behavior: url('/f/css/PIE.htc');
 }
 
@@ -1276,12 +1276,12 @@ ul.step li ins {
     right: 0;
     top: 0;
 }
-ul.step li.step_current { color: #37580d }
+ul.step li.step_current { color: #A67309 }
 ul.step li.step_current ins { background-position:left -80px; }
 ul.step li.step_last_done ins { background-position:left -40px; }
 ul.step li.step_done ins { background-position: left -160px; }
 ul.step li.step_last_done { background-position: left -20px; }
-ul.step li.step_done { color: #37580d; }
+ul.step li.step_done { color: #A67309; }
 ul.step li span {
     color: #6d6d6d;
     font-size: 12px;
@@ -1295,8 +1295,8 @@ ul.step li span {
 }
 ul.step li#step_end ins { background-position: left -140px; }
 ul.step li#step_end.step_current ins { background-position: left -180px; }
-ul.step li span a { color: #37580d; }
-ul.step li span a:hover { color: #37580d; }
+ul.step li span a { color: #A67309; }
+ul.step li span a:hover { color: #A67309; }
 
 
 
@@ -1579,7 +1579,7 @@ td.discount_value { white-space: nowrap }
 	margin-bottom: 12px
 }
 .cart_last_product_header .left {
-	color: #37580d;
+	color: #A67309;
     font-family: 'Arial';
 	font-size: 18px;
 }
@@ -2399,7 +2399,7 @@ form.addresses label {
 }
 #manufacturers_block_left .tree a:hover {
 	background: url('../img/list-arrow.png') left bottom no-repeat;
-	color: #1FA22E;
+	color: #A67309;
 	text-decoration: none;
 }
 .blockmanufacturer p { text-align:center; }
@@ -2618,7 +2618,7 @@ form.addresses label {
 /* Block specials */
 .blockspecials h5 {
 	display: block;
-	color: #37580d;
+	color: #A67309;
     font-family: 'Arial';	
 	font-size: 14px;
 	margin-left: 1em;

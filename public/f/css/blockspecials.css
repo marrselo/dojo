@@ -1,14 +1,14 @@
 /* Block specials */
 .blockspecials h5 {
 	display: block;
-	color: #37580d;
+	color: #A67309;
     font-family: 'AllerItalic';	
 	font-size: 14px;
 	margin-left: 1em;
 }
 .blockspecials h5 a,
 .blockspecials h5 a:hover {
-	color: #37580d;
+	color: #A67309;
 }
 .blockspecials div.product_image {
 	text-align: center;
@@ -58,7 +58,7 @@
 }
 .blockspecials span.price {
 	display: block;
-	color: #37580d;
+	color: #A67309;
     font-family: 'ChunkFiveRoman';
 	font-size: 22px;
 	margin: 0;
