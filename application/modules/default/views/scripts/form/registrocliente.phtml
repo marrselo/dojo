@@ -36,6 +36,15 @@
             </td>
         </tr>
         <tr>
+            <td>
+                <?php echo $this->element->fechaEntrega?>
+            </td>
+            <td>
+                <?php echo $this->element->hora ?>
+                <?php echo $this->element->minuto ?>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <?php echo $this->element->direccion?>
             </td>
@@ -77,5 +86,18 @@
     #direccion{
         width: 510px;
     }
+    #minuto-element {
+        float: left;
+    }
+    #minuto-label {
+        float: left;
+    }
+    #hora-element {
+        float: left;
+    }
+    table tr td{
+        vertical-align: top;
+    }
+    
 </style>
     

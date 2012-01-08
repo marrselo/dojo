@@ -238,7 +238,7 @@ CREATE TABLE `core_session` (
 
 LOCK TABLES `core_session` WRITE;
 
-insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('b3ffh1r7l7vgn2ce21oc6dv592','','',1325814046,1440,''),('ia3q7udcqa0c6jr6vjuc449jo2','','',1325359909,1440,'dojo|a:1:{s:13:\"listaArticulo\";a:1:{i:4;a:20:{s:10:\"idarticulo\";s:1:\"4\";s:11:\"idcategoria\";s:2:\"33\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:0:\"\";s:6:\"nombre\";s:22:\"Cusqueña 355 mL12pack\";s:11:\"descripcion\";s:22:\"Cusqueña 355 mL12pack\";s:11:\"precioventa\";s:4:\"2.45\";s:12:\"preciocompra\";s:4:\"1.34\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";s:1:\"1\";s:6:\"imagen\";s:27:\"cusquena-355-ml12pack-4.jpg\";s:4:\"slug\";s:23:\"cusquena-355-ml12pack-4\";s:12:\"slugbusqueda\";s:21:\"cusquena 355 ml12pack\";s:14:\"idsubcategoria\";s:2:\"34\";s:11:\"flagportada\";s:1:\"1\";s:16:\"cantidadArticulo\";s:1:\"1\";}}}');
+insert  into `core_session`(`Id`,`save_path`,`name`,`Modified`,`LifeTime`,`Data`) values ('4jkfk667i42vkj6e1r468qj276','','',1326002993,1440,''),('b3ffh1r7l7vgn2ce21oc6dv592','','',1325829768,1440,'dojo|a:3:{s:13:\"listaArticulo\";a:1:{i:7;a:22:{s:10:\"idarticulo\";s:1:\"7\";s:11:\"idcategoria\";s:2:\"33\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:0:\"\";s:6:\"nombre\";s:31:\"Whisky Johnnie Walker Red Label\";s:11:\"descripcion\";s:31:\"Whisky Johnnie Walker Red Label\";s:11:\"precioventa\";s:6:\"150.00\";s:12:\"preciocompra\";s:6:\"100.00\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";s:1:\"1\";s:6:\"imagen\";s:37:\"whisky-johnnie-walker-red-label-7.jpg\";s:4:\"slug\";s:33:\"whisky-johnnie-walker-red-label-7\";s:12:\"slugbusqueda\";s:31:\"whisky johnnie walker red label\";s:14:\"idsubcategoria\";s:2:\"38\";s:11:\"flagportada\";s:1:\"1\";s:10:\"flagoferta\";N;s:12:\"preciooferta\";N;s:16:\"cantidadArticulo\";i:2;}}s:9:\"idCliente\";N;s:15:\"articuloEnLista\";a:0:{}}Zend_Auth|a:1:{s:7:\"storage\";O:8:\"stdClass\":10:{s:9:\"idusuario\";s:1:\"1\";s:6:\"nombre\";s:6:\"nazart\";s:15:\"apellidopaterno\";s:6:\"huaman\";s:15:\"apellidomaterno\";s:4:\"jara\";s:13:\"idtipousuario\";N;s:6:\"estado\";s:1:\"1\";s:5:\"login\";s:19:\"nazarjb@hotmail.com\";s:8:\"telefono\";s:8:\"22312223\";s:6:\"correo\";s:19:\"nazarjb@hotmail.com\";s:16:\"FlagSuperUsuario\";s:1:\"1\";}}'),('ia3q7udcqa0c6jr6vjuc449jo2','','',1325359909,1440,'dojo|a:1:{s:13:\"listaArticulo\";a:1:{i:4;a:20:{s:10:\"idarticulo\";s:1:\"4\";s:11:\"idcategoria\";s:2:\"33\";s:7:\"idcombo\";N;s:8:\"idunidad\";s:1:\"0\";s:6:\"codigo\";s:0:\"\";s:6:\"nombre\";s:22:\"Cusqueña 355 mL12pack\";s:11:\"descripcion\";s:22:\"Cusqueña 355 mL12pack\";s:11:\"precioventa\";s:4:\"2.45\";s:12:\"preciocompra\";s:4:\"1.34\";s:8:\"cantidad\";s:1:\"0\";s:9:\"stock_min\";N;s:4:\"peso\";N;s:9:\"ubicacion\";N;s:3:\"fla\";s:1:\"1\";s:6:\"imagen\";s:27:\"cusquena-355-ml12pack-4.jpg\";s:4:\"slug\";s:23:\"cusquena-355-ml12pack-4\";s:12:\"slugbusqueda\";s:21:\"cusquena 355 ml12pack\";s:14:\"idsubcategoria\";s:2:\"34\";s:11:\"flagportada\";s:1:\"1\";s:16:\"cantidadArticulo\";s:1:\"1\";}}}'),('nviicea88aqei2cppsp031qpb2','','',1325997454,1440,''),('t07k2oej2gft1lci627s290qr4','','',1325998631,1440,'');
 
 UNLOCK TABLES;
 
@@ -272,13 +272,13 @@ CREATE TABLE `detalledocumentopago` (
   `idarticulo` int(11) NOT NULL,
   PRIMARY KEY (`iddetalledocumento`),
   KEY `fk_det_doc_doc1` (`iddocumento`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 /*Data for the table `detalledocumentopago` */
 
 LOCK TABLES `detalledocumentopago` WRITE;
 
-insert  into `detalledocumentopago`(`iddetalledocumento`,`iddocumento`,`cantidad`,`importe`,`peso`,`precio`,`idarticulo`) values (23,19,1,123,NULL,'123.00',1),(22,19,1,123,NULL,'123.00',2),(24,20,1,123,NULL,'123.00',2),(25,20,1,123,NULL,'123.00',1),(26,21,1,123,NULL,'123.00',2),(27,21,1,123,NULL,'123.00',1);
+insert  into `detalledocumentopago`(`iddetalledocumento`,`iddocumento`,`cantidad`,`importe`,`peso`,`precio`,`idarticulo`) values (23,19,1,123,NULL,'123.00',1),(22,19,1,123,NULL,'123.00',2),(24,20,1,123,NULL,'123.00',2),(25,20,1,123,NULL,'123.00',1),(26,21,1,123,NULL,'123.00',2),(27,21,1,123,NULL,'123.00',1),(28,22,2,246,NULL,'123.00',2),(29,22,3,369,NULL,'123.00',1),(30,22,1,150,NULL,'150.00',7),(31,23,2,246,NULL,'123.00',2),(32,23,3,369,NULL,'123.00',1),(33,23,1,150,NULL,'150.00',7);
 
 UNLOCK TABLES;
 
@@ -327,13 +327,13 @@ CREATE TABLE `documentopago` (
   `flagdespacho` int(11) DEFAULT NULL,
   PRIMARY KEY (`iddocumento`),
   KEY `fk_doc_tip_doc1` (`idtipodocumento`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 /*Data for the table `documentopago` */
 
 LOCK TABLES `documentopago` WRITE;
 
-insert  into `documentopago`(`iddocumento`,`numeroserie`,`numerocomprobante`,`fechacreacion`,`fecvencimiento`,`total`,`idtipodocumento`,`idempresa`,`idcliente`,`idestado`,`flagactivo`,`moneda`,`tipocambio`,`idvendedor`,`IGV`,`comentario`,`idpedido`,`direccion`,`flagdespacho`) values (21,'02',12333,'2011-07-14',NULL,NULL,2,0,454,1,1,'','0.00','1','18','sadadadasdasd',NULL,NULL,1),(20,'02',1212,'0000-00-00',NULL,NULL,2,0,452,1,1,'','0.00','1','18',NULL,NULL,NULL,1),(19,'02',123123123,'0000-00-00',NULL,NULL,2,0,454,1,1,'','0.00','1','18',NULL,NULL,NULL,1);
+insert  into `documentopago`(`iddocumento`,`numeroserie`,`numerocomprobante`,`fechacreacion`,`fecvencimiento`,`total`,`idtipodocumento`,`idempresa`,`idcliente`,`idestado`,`flagactivo`,`moneda`,`tipocambio`,`idvendedor`,`IGV`,`comentario`,`idpedido`,`direccion`,`flagdespacho`) values (21,'02',12333,'2011-07-14',NULL,NULL,2,0,454,1,1,'','0.00','1','18','sadadadasdasd',NULL,NULL,1),(20,'02',1212,'0000-00-00',NULL,NULL,2,0,452,1,1,'','0.00','1','18',NULL,NULL,NULL,1),(19,'02',123123123,'0000-00-00',NULL,NULL,2,0,454,1,1,'','0.00','1','18',NULL,NULL,NULL,1),(22,'02',123,'0000-00-00',NULL,'765.00',2,0,457,1,1,'','0.00','1','18','dadsadasd',NULL,'asdasasd',NULL),(23,'02',123,'0000-00-00',NULL,'765.00',2,0,457,1,1,'','0.00','1','18','dadsadasd',NULL,'asdasasd',NULL);
 
 UNLOCK TABLES;
 

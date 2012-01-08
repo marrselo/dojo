@@ -32,7 +32,7 @@
 	position: relative;
 	width: 100%;	
 	z-index: 9999;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 .roundabout-in-focus {
 	cursor: auto;

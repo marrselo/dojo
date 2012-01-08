@@ -23,7 +23,7 @@
 	margin: 0 auto;
 	position: relative;
 	width: 198px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 .blockspecials div.product_image img {
 	border-radius: 1em;
@@ -35,7 +35,7 @@
 	height: 223px;
 	position: relative;
 	width: 198px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 .blockspecials p {
 	padding: 3px 0 2px; 

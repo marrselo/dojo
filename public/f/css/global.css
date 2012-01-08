@@ -237,7 +237,7 @@ img.logo {
 	position: relative;
 	width: 1004px;
 	z-index: -1;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 #header-wrapper .header-top {
     overflow: hidden;
@@ -354,7 +354,7 @@ img.logo {
 	position: relative;
 	width: 230px;
 	z-index: 9999;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 
 #left_column, #center_column, #right_column { display: inline-block; vertical-align: top; }
@@ -386,7 +386,7 @@ img.logo {
 	margin: 0 auto;
 	position: relative;
 	width: 1004px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 #right_column .box { margin-bottom: 10px; }
 #index #columns {
@@ -403,7 +403,7 @@ img.logo {
 	margin: 0 auto;
 	position: relative;
 	width: 1004px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 .ac_results_instant {
 	display: none;
@@ -617,7 +617,7 @@ form.std fieldset textarea {
 	height: 120px;
 	padding: 3px 3px;
 	width: 380px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 form.std fieldset input[type='text'],
  form.std fieldset input[type='password'] {
@@ -640,7 +640,7 @@ form.std fieldset input[type='text'],
 	font-size: 12px;
 	font-family: Arial;
 	width: 250px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 form.std fieldset select {
     background: #d9d9d9;
@@ -661,7 +661,7 @@ form.std fieldset select {
 	font-family: Arial;
 	height: 33px;
 	padding:3px 3px 3px 0;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 /*form.std fieldset input[type='text']:focus,
  form.std fieldset input[type='password']:focus,
@@ -743,7 +743,7 @@ p.price_container {
 	margin: 0 auto;
 	position: relative;
 	width: 232px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 
 /* newsletter_block CSS */
@@ -774,7 +774,7 @@ p.price_container {
 	padding: 5px 4px 3px 8px;
 	position: relative;
 	width: 180px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 #newsletter_block_left form input[type=submit] {
 	background: url('../img/button_medium.png') repeat-x top center;
@@ -882,7 +882,7 @@ h3.gift_title {
 	height: 2.2em;
 	position: relative;
 	width: 130px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 #login_block form.std p.submit {
 	float: right;
@@ -977,7 +977,7 @@ ul#menu li a {
 	padding: 0.4em 1em 0.4em;
 	position: relative;
 	z-index: 9999;
-	behavior: url(/tienda/PIE.htc);
+	behavior: url(/../PIE.htc);
 }
 ul#menu li a:hover, ul#menu li a.active {
 	background: rgba(0,0,0,0.5); 
@@ -999,7 +999,7 @@ ul#menu li a:hover, ul#menu li a.active {
 	z-index: 9999;
 	-pie-background: #203505;
 	-pie-box-shadow: 1px 1px 2px rgba(255,255,255,0.4); 1px 1px 2px #1d3005;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 
 /* id_state field in managed via JS and is firstly hidden */
@@ -1080,7 +1080,7 @@ img.icon { margin-right: 0.5em; vertical-align: middle }
 	overflow: hidden;
 	padding: 0.5em;
 	width: 522px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 .warning_inline {
 	color: #da0f00;
@@ -1156,7 +1156,7 @@ ul.pagination li, ul.pagination a, ul.pagination span {
 	height: 14px;
 	line-height: 14px;
 	text-transform: capitalize;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 ul.pagination a, ul.pagination span {
     display: block;
@@ -1172,7 +1172,7 @@ ul.pagination a.numbers {
 	height: 17px;
 	padding: 3px 5px 0;
 	width: 22px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 ul.pagination a:hover { color:#000000; }
 ul.pagination .current span {
@@ -1257,7 +1257,7 @@ ul.step {
     overflow: hidden;
     width: 522px;
     height: 32px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 ul.step li {
     float: left;
@@ -1338,7 +1338,7 @@ ul.step li span a:hover { color: #37580d; }
 	margin: 18px auto;
 	position: relative;
 	width: 1004px;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');
 }
 #footer #footer_top .info {
     display: inline-block;
@@ -1481,7 +1481,7 @@ div.block p { font-size:11px; }
 	width: 255px;
 	-pie-border-radius: 1em;
 	-pie-box-shadow: 0 3px 30px #dddddd inset;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');
 }
 
 /*#center_column .products_block li.last_item { float: none; clear: both }*/
@@ -1545,7 +1545,7 @@ div.block p { font-size:11px; }
 	margin: 0;
 	position: relative;
 	width: 232px;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');
 }
 #center_column div.products_block h5 { margin: 1em 0.5em 0.3em 1.5em; }
 #center_column div.products_block ul li div.product_desc a { font-weight: normal }
@@ -1602,7 +1602,7 @@ td.discount_value { white-space: nowrap }
 	overflow: hidden;
 	padding: 0.5em;
 	width: 508px;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');
 }
 .cart_last_product_content { 
 	float:left; 
@@ -1666,7 +1666,7 @@ td.cart_quantity {
     padding: 6px 0;
 	position: relative;
 	text-align: center;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');	
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');	
 }
 td.cart_quantity p, td.cart_quantity a {
 	float: left;
@@ -1733,7 +1733,7 @@ tr.cart_total_price, tr.cart_total_tax { font-weight: normal; font-size: 12px; }
 	margin: 2px 0;
     padding: 6px;
 	position: relative;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');
 } 
 #order form#voucher input.button-voucher, #order-opc form#voucher input.button-voucher { 
 	background: url('../img/button_medium.png') repeat-x top center;
@@ -1843,7 +1843,7 @@ input#submitAccount {
 	text-align: center;
 	vertical-align: top;
 	width: 101px;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');
 }
 #view_scroll_left, #view_scroll_right {
     background: url('../img/vs-arrow.png') no-repeat scroll left top transparent;
@@ -2301,7 +2301,7 @@ a.button_extralarge:hover {
 	margin: 1em 0;
 	padding: 1.6em;
 	position: relative;
-	behavior: url('http://www.floreriadetalles.com/tienda/PIE.htc');
+	behavior: url('http://www.floreriadetalles.com/../PIE.htc');
 }
 .box-gray h4 {
 	color: #896F32;
@@ -2463,7 +2463,7 @@ form.addresses label {
 	float: left;
 }
 /* Special style for block cart*/
-#cart_block .block_content { padding: 6px 6px 2px }
+#cart_block .block_content { padding: 0px 0px 0px }
 #cart_block h4 span {
 	text-transform: none;
 	font-size: 0.8em;
@@ -2567,7 +2567,7 @@ form.addresses label {
 	padding: 5px 4px 3px 8px;
 	position: relative;
 	width: 180px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 #cart_block table#vouchers td {
 	padding: 0;
@@ -2640,7 +2640,7 @@ form.addresses label {
 	margin: 0 auto;
 	position: relative;
 	width: 198px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 .blockspecials div.product_image img {
 	border-radius: 1em;
@@ -2652,7 +2652,7 @@ form.addresses label {
 	height: 223px;
 	position: relative;
 	width: 198px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 .blockspecials p {
 	padding: 3px 0 2px; 

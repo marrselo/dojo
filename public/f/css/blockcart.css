@@ -103,7 +103,7 @@
 	padding: 5px 4px 3px 8px;
 	position: relative;
 	width: 180px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/../PIE.htc');
 }
 #cart_block table#vouchers td {
 	padding: 0;

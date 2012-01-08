@@ -1,3 +1,36 @@
+<?php $filter = new ZExtraLib_SeoUrl();
+?>
+    <!-- Breadcrumb -->
+    <div id="bread-wrap">
+        <div class="breadcrumb">
+            <a title="volver a Inicio" href="<?php echo $this->baseUrl(); ?>">
+                Inicio
+            </a>
+            <span class="navigation-pipe">&gt;</span>
+            <span class="last-crumb">
+                <?php if($this->categoria!='') {
+                    if($this->idpadre){
+                    ?>
+                <a title="<?php echo $this->categoria['nombre']; ?>" href="<?php echo $this->baseUrl()?>/productos/<?php echo $filter->filter(trim($this->categoria['nombre']), '-', 0).'-'.$this->categoria['idcategoria']?>">
+                    <?php echo $this->categoria['nombre']; ?>
+                </a>
+                
+                <span class="navigation-pipe">&gt;</span>
+                <?php } else { ?>
+                <?php echo $this->categoria['nombre']; ?>
+                <?php } 
+                
+                }?>
+                
+                <?php if($this->subCategoria!='') {?>
+                    <?php echo $this->subCategoria['nombre']; ?>
+                <?php } ?>
+                
+            </span>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
 <div id="featured-products_block_center" class="block products_block">
     <h4>Productos destacados</h4>
     <div class="block_content">
