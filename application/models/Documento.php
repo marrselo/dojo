@@ -23,10 +23,26 @@ class Application_Model_Documento  extends Zend_Db_Table {
                         array('nombre','apellidomaterno','apellidopaterno'))
                 ->join('estado','estado.idestado=D.idestado',
                         array('nombreEstado'=>'des'))
+                
                 ->where('D.flagdespacho=0')
                 ->query()
                 ->fetchAll();
     }
+    function listarComprobantes(){
+        return $this->getAdapter()
+                ->select()
+                ->from(array('D'=>'documentopago'))
+                ->join('cliente','cliente.idcliente=D.idcliente',
+                        array('nombre','apellidomaterno','apellidopaterno'))
+                ->join('estado','estado.idestado=D.idestado',
+                        array('nombreEstado'=>'des'))
+                ->join('tip_doc','tip_doc.idtip_doc=D.idtipodocumento',
+                        array('tipodocumento'=>'des'))
+                ->where('D.flagdespacho=1')
+                ->query()
+                ->fetchAll();
+    }
+    
     function actualizarDocumento($data,$idDocumento)
     {
         $where = $this->getAdapter()->quoteInto('iddocumento = ?',$idDocumento);
