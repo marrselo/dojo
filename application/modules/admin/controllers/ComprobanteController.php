@@ -4,7 +4,9 @@ class Admin_ComprobanteController
         extends ZExtraLib_Controller_Action
 {
     function init() {
-        $this->_comprobante = new Application_Model_Comprobante(); 
+        $this->_comprobante = new Application_Model_Comprobante();
+         $this->_documentoModel = new Application_Model_Documento();
+        $this->view->menuTop = $menuTop = array('Ingresar Serie' => 'comprobante/index','Lista Comprobantes' => 'comprobante/lista-comprobantes');
         parent::init();
     }
     function indexAction(){
@@ -69,5 +71,18 @@ class Admin_ComprobanteController
         $this->view->paginator = $paginator;
     }
     
-
+    function listaComprobantesAction()
+    {
+        $this->view->listaComprobantes = $this->_documentoModel->listarComprobantes();
+    }
+    function borrarPedidosAction()
+    {
+        //$this->_helper->layout()->disableLayout();
+        //$this->_helper->viewRenderer->setNoRender(true);
+        $params = $this->_getAllParams();
+        $idDocumento = $params['idDocumento'];
+        $this->_documentoModel->borrarDocumento($idDocumento);
+        $this->_redirect('admin/pedidos/lista-pedidos');
+    }
+    
 }
