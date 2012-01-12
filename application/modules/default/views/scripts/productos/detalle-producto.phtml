@@ -43,9 +43,9 @@
             <div id="product_boxtop">
                 <!-- prices -->
                 <div style="float: left; width: 250px;">
-                    <div class="our_price">Precio: </div>
-                    <div id="our_price_display"><?php echo $this->articulo['precioventa']; ?></div>
+                    <div id="our_price_display">Precio: &nbsp;S/.<?php echo $this->articulo['precioventa']; ?></div>
                 </div>
+                <p>&nbsp;</p>
                 <!-- add to cart form-->
                 <form method="post" action="/realizar-pedido" id="buy_block">
                     <!-- hidden datas -->
@@ -59,7 +59,7 @@
                         cantidad mínima para comprar este producto
                     </p>
                     <p>
-                        <input type="text"  name="cantidad" id="cantidad" >
+                        <input type="text"  name="cantidad" class="input_cantidad"  id="cantidad" >
                     </p>
                     <!-- Out of stock hook -->
                     <p style="" id="oosHook"></p>
@@ -129,7 +129,16 @@
                             </a>
                             <div class="price">
                             S/. <?php echo $index['precioventa']; ?>
-                            </div>    
+                            </div>
+                            <form method="post" action="/realizar-pedido" id="form_prod_sim_<?php echo $index['idarticulo'] ?>">
+                            <input type="hidden" 
+                                   id="hidden_idArticulo_prod_sim_<?php echo $index['idarticulo'] ?>" 
+                                   name="producto" 
+                                   value="<?php echo $index['idarticulo'] ?>">
+                                <a id="submit_a_<?php echo $index['idarticulo'] ?>" href="#">Agregar Al Carrito</a>
+                            </form>
+                            <div>&nbsp;</div>
+                            <div>&nbsp;</div>
                         </li>
                     <?php } ?>
                 </ul>
@@ -148,7 +157,16 @@
     </div>
 
 </div>
-
+<script type="text/javascript">
+    $(function() {
+        $("[id^=submit_a_]").click(function(e){
+            e.preventDefault();
+            var Array = this.id.split('_');
+            $("#form_prod_sim_"+Array[2]).submit();
+        }) 
+        
+    });
+</script>
 <style>
     #artRelation ul {
         list-style-image: none;

@@ -17,11 +17,11 @@ if ($this->pageCount): ?>
 <!-- Numbered page links -->
 <?php foreach ($this->pagesInRange as $page): ?>
   <?php if ($page != $this->current): ?>
-    <a href="/busqueda/<?php echo $this->slug;?>/page/<?php echo $page ?>">
+    <a class="page"  href="/busqueda/<?php echo $this->slug;?>/page/<?php echo $page ?>">
         <?php echo $page; ?>
     </a> 
   <?php else: ?>
-    <?php echo $page; ?> 
+    <span class="page select"><?php echo $page; ?> </span>
   <?php endif; ?>
 <?php endforeach; ?>
  

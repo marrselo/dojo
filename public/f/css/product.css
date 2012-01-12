@@ -1,6 +1,6 @@
 /* product.tpl */
 #primary_block {
-	background: url('../img/product_background.jpg') repeat;
+	background: url('/f/img/product_background.jpg') repeat;
 	border-radius: 1em;
 	-webkit-border-radius: 1em;
 	-moz-border-radius: 1em;
@@ -14,7 +14,7 @@
 	position: relative;
 	-pie-border-radius: 1em;
 	-pie-box-shadow: 0 3px 30px #dddddd inset;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 #primary_block h1 {
 	color: #A67309;
@@ -68,7 +68,7 @@
 	text-align: center;
 	vertical-align: top;
 	width: 101px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 #primary_block .quantity {
 	display: inline-block;
@@ -91,7 +91,7 @@
 	margin: 0 1em;
 	position: relative;
 	width: 232px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 #primary_block #image-block img#bigpic { 
 	border-radius: 1em;
@@ -106,7 +106,7 @@
 	margin: 0;
 	position: relative;
 	width: 232px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 #primary_block #views_block { 
 	display: inline-block;
@@ -129,7 +129,7 @@
     padding-top: 1em;
 }
 #primary_block ul#usefull_link_block li {
-	background: url('../img/icon/vs-icons.gif') no-repeat scroll 0 3px transparent;
+	background: url('/f/img/icon/vs-icons.gif') no-repeat scroll 0 3px transparent;
 	margin: 0.5em 1em 0.5em 0; 
 	display: block;
 }
@@ -235,14 +235,14 @@
 	-ms-border-radius: 0.5em;
 	padding: 0.4em;
 	width:100px;
-	behavior: url('/tienda/PIE.htc');
+	behavior: url('/f/css/PIE.htc');
 }
 #primary_block div#attributes p, #quantity_wanted_p {
 	clear: left;
 	height: 2em
 }
 #primary_block #buy_block #quantity_bar {
-    background: url('../img/vs-quantity.png') no-repeat scroll 0 0 transparent;
+    background: url('/f/img/vs-quantity.png') no-repeat scroll 0 0 transparent;
 	overflow:hidden;
 	height:50px;
 }
@@ -281,7 +281,7 @@
     font-weight: bold;
 }
 #primary_block #buy_block p#mywish a.button {
-    background: url('../img/vs-global-large.png') repeat-x scroll right bottom #91611A;
+    background: url('/f/img/vs-global-large.png') repeat-x scroll right bottom #91611A;
     height: 25px;
     line-height: 25px;
     margin: 0;

@@ -23,7 +23,8 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $arrayArticulos = array();
         if (isset($params['producto']) and $params['producto'] != '') {
             $arrayArticulos = $this->_modelArticulos->listarUnArticulo($params['producto']);
-            $params['cantidad'] = $params['cantidad'] == '' ? 1 : $params['cantidad'];
+            
+            $params['cantidad'] = !isset($params['cantidad'])||number_format(abs($params['cantidad']),0) == ''||number_format(abs($params['cantidad']),0) == 0 ? 1 : number_format(abs($params['cantidad']),0);
             if ($arrayArticulos) {
                 if (isset($this->session->listaArticulo[$arrayArticulos['idarticulo']])) {
                     $arrayArticulos['cantidadArticulo'] = $params['cantidad'] + $this->session->listaArticulo[$arrayArticulos['idarticulo']]['cantidadArticulo'];
@@ -66,6 +67,15 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             $this->_redirect($_SERVER['HTTP_REFERER']);
         }
         $this->view->headLink()->appendStylesheet("/f/css/contacto-form.css");
+        $this->view->headLink()->appendStylesheet("/f/css/jquery-ui-1.8.17.custom.css");
+        $this->view->headScript()->appendFile('/f/js/jquery-ui-1.8.17.custom.min.js');
+        $this->view->headScript()->appendScript('
+            $(function() {
+            $( "#fechaEntrega" ).datepicker();
+            $( "#datepicker" ).datepicker( $.datepicker.regional[ "fr" ] );            
+            
+            });
+            ');
         $params = $this->_request->getParams();
         $form = $this->formularioCliente();
         $form->getAction('');
