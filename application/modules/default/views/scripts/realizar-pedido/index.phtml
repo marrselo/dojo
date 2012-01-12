@@ -43,6 +43,7 @@ if (count($this->listaArticuloCarrito) > 0) {
                         </td>
                         <td class="cart_unit">
                             <span id="product_price_32_62" class="price">
+                                S/. 
                                 <?php echo $index['precioventa'] ?>		</span>
                         </td>
                         <td class="cart_quantity">
@@ -69,7 +70,7 @@ if (count($this->listaArticuloCarrito) > 0) {
                         </td>
                         <td class="cart_total">
                             <span id="total_product_price_32_62" class="price">
-                                <?php echo $index['precioventa'] * $index['cantidadArticulo'] ?></span>
+                                S/.  <?php echo $index['precioventa'] * $index['cantidadArticulo'] ?></span>
                         </td>
                     </tr>
                     <?php
@@ -80,45 +81,16 @@ if (count($this->listaArticuloCarrito) > 0) {
 
             <tfoot>
                 <tr class="cart_total_price">
-                    <td colspan="5">Total productos con IGV:</td>
-                    <td id="total_product" class="price" ><?php echo $total; ?></td>
-                </tr>
-                <tr style="display: none;" class="cart_total_voucher">
-                    <td colspan="5">
-                        Total vales descuento con IGV:
-                    </td>
-                    <td id="total_discount" class="price-discount">
-                        $0.00
-                    </td>
-                </tr>
-                <tr style="display: none;" class="cart_total_voucher">
-                    <td colspan="5">
-                        Total embalaje para regalo con IGV:
-                    </td>
-                    <td id="total_wrapping" class="price-discount">
-                        $0.00
-                    </td>
-                </tr>
-                <tr style="display:none;" class="cart_total_delivery">
-                    <td colspan="5">Total gastos de envío con IGV:</td>
-                    <td id="total_shipping" class="price">$0.00</td>
-                </tr>
-
-                <tr class="cart_total_price">
-                    <td colspan="5">Total sin IGV:</td>
-                    <td id="total_price_without_tax" class="price">$218.00</td>
-                </tr>
-                <tr class="cart_total_tax">
-                    <td colspan="5">Total de impuestos:</td>
-                    <td id="total_tax" class="price">$0.00</td>
+                    <td colspan="5">Total productos:</td>
+                    <td id="total_product" class="price" >S/. <?php echo $total; ?></td>
                 </tr>
                 <tr class="cart_total_price">
-                    <td colspan="5">Total IGV incluído:</td>
-                    <td id="total_price" class="price">$218.00</td>
+                    <td colspan="5">Precio Envío:</td>
+                    <td id="total_price_without_tax" class="price">S/. 6.00</td>
                 </tr>
-                <tr style="display: none;" class="cart_free_shipping">
-                    <td style="white-space: normal;" colspan="5">Cantidad restante que se añadirá a su carrito, afin de obtener el envío gratuito:</td>
-                    <td class="price" id="free_shipping">$0.00</td>
+                <tr class="cart_total_price">
+                    <td colspan="5">Total:</td>
+                    <td id="total_price" class="price">S/. <?php echo $total+6; ?></td>
                 </tr>
             </tfoot>
 
