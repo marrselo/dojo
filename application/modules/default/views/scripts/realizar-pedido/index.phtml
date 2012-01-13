@@ -21,14 +21,19 @@ if (count($this->listaArticuloCarrito) > 0) {
                 <tr>
                     <th class="cart_product first_item">Producto</th>
                     <th class="cart_description item">Nombre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    <th class="cart_availability item">Dispo.</th>
-                    <th class="cart_unit item">Precio unitario</th>
+                    <th class="cart_availability item">P. Oferta</th>
+                    <th class="cart_unit item">P. unitario</th>
                     <th class="cart_quantity item">Cantidad</th>
                     <th class="cart_total last_item">Total</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($this->listaArticuloCarrito as $index) { ?>
+                <?php foreach ($this->listaArticuloCarrito as $index) {
+                    $flagOferta = 0;
+                    if($index['preciooferta']!=''&&$index['flagoferta']){
+                        $flagOferta = 1;
+                    }
+                    ?>
                     <tr class=" cart_item" id="product_<?php echo $index['idarticulo'] ?>">
                         <td class="cart_product">
                             <a href="/detalle-producto/<?php echo $index['idarticulo'] ?>">
@@ -39,12 +44,14 @@ if (count($this->listaArticuloCarrito) > 0) {
                         </td>
 
                         <td class="cart_availability">
-                            <img height="14" width="14" alt="Disponible" src="<?php echo $this->baseUrl()?>/f/img/icon/available.gif">
+                            <span id="product_price_32_62" class="price">
+                                S/. <?php echo $flagOferta?$index['preciooferta']:''; ?>		
+                            </span>
                         </td>
                         <td class="cart_unit">
-                            <span id="product_price_32_62" class="price">
-                                S/. 
-                                <?php echo $index['precioventa'] ?>		</span>
+                            <span id="product_price_32_62" class="price <?php echo $flagOferta?'price-discount':'' ?>">
+                                S/. <?php echo $index['precioventa'] ?>		
+                            </span>
                         </td>
                         <td class="cart_quantity">
                             <div>
@@ -74,7 +81,11 @@ if (count($this->listaArticuloCarrito) > 0) {
                         </td>
                     </tr>
                     <?php
-                    $total = $total + $index['precioventa'] * $index['cantidadArticulo'];
+                    if ($flagOferta) {
+                        $total = $total + $index['preciooferta'] * $index['cantidadArticulo'];
+                        } else {
+                        $total = $total + $index['precioventa'] * $index['cantidadArticulo'];    
+                    }
                 }
                 ?>
             </tbody>

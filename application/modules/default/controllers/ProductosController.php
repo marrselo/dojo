@@ -44,6 +44,8 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
     }
     public function detalleProductoAction()
     {
+        $http = new Zend_Controller_Request_Http();
+        $this->view->urlAbs = $this->view->baseUrl().$http->getRequestUri();
         $this->view->headLink()->appendStylesheet("/f/css/product.css");
         $params = $this->_getAllParams();
         $array = explode('-',$params['producto']);

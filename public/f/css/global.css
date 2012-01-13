@@ -282,17 +282,19 @@ img.logo {
 /**** PHONE MODULE BLOCK ****/
 
 #phone_block {
-	background: url('../img/callcenter_background.png') top center transparent; 
+	background: url('../img/callcenter_background.png') top center transparent no-repeat; 
 	color: #ffffff;
 	font-family: 'Arial';
 	font-size: 14px;
 	height: 51px;
 	padding: 10px 0 0 90px;
 	width: 208px;	
+        padding-top: 11px;
 }
 #phone_block span {
 	display: inline-block;
 	width: 65px;
+        font-size: 15px;
 }
 #phone_block h4 {
 	display: inline;
