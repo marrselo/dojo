@@ -288,7 +288,7 @@
                                     <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>
                                     <p class="description"><?php echo $this->listaDeUnArticulosEnOferta['descripcion']; ?></p>
                                     <div class="product_image">
-                                        <a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>">
+                                        <a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>">
                                             <input type="hidden" 
                                                    value="<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" 
                                                    name="producto" id="hidden_idArticulo_oferta">
