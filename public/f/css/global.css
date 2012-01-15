@@ -1350,7 +1350,7 @@ ul.step li span a:hover { color: #A67309; }
 }
 #footer #footer_top .logo {
 	display: inline-block;
-	padding: 1em 0 0 10em;
+	padding: 1em 0 0 0em;
 }
 #footer #footer_top a { color: #0d4c22; }
 #footer #footer_top a:hover,

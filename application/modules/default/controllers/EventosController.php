@@ -8,6 +8,7 @@ class Default_EventosController extends ZExtraLib_Controller_Action
     }
     public function indexAction()
     {
+        $this->view->headTitle('Eventos');
         $this->view->menuActive4='active';
     }
 }

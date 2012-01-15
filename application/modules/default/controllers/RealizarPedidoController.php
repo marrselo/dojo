@@ -16,6 +16,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $this->_documentoModel = new Application_Model_Documento();
         $this->_detalleDocumentoModel = new Application_Model_DetalleDocumento();
         $this->view->menuActive3 = 'active';
+        $this->view->headTitle('Realizar Pedido');
     }
 
     public function indexAction() {

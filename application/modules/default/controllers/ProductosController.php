@@ -10,6 +10,7 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
         $this->_modelCategorias = new Application_Model_Categoria();
         $this->_modelArticulos = new Application_Model_Articulo();
         $this->_modelRelacionarArticulo = new Application_Model_RelacionarArticulo();
+        $this->view->headTitle('Productos');
                 
     }
     public function indexAction()
