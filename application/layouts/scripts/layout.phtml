@@ -153,12 +153,12 @@
                                     foreach ($this->listaCategoria as $index):
                                         ?>
                                         <?php if ($index['idpadre'] == '') { ?>
-                                            <li>
+                                            <li <?php if($this->idcategoria==$index['idcategoria']){ ?> class="selected" <?php }; ?> >
                                                 <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0) . '-' . $index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
                                                 <ul>
                                                     <?php foreach ($this->listaCategoria as $index2): ?>
                                                         <?php if ($index2['idpadre'] == $index['idcategoria']) { ?>
-                                                            <li>
+                                                            <li <?php if($this->idcategoria==$index2['idcategoria']){ ?> class="selected" <?php }; ?>>
                                                                 <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0) . '-' . $filter->filter(trim($index2['nombre']), '-', 0) . '-' . $index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
                                                             </li>
                                                         <?php } ?>
@@ -312,7 +312,7 @@
                     e.preventDefault();
                     $("#form_oferta").submit();
                 }) 
-
+             $("#categories_block_left ul li:last-child").addClass("last");
             });   
 
         </script>

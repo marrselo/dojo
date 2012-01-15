@@ -39,6 +39,7 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
             $this->view->categoria = $this->_modelCategorias->listarUnaCategoria($this->view->categoria['idpadre']);
             $this->view->idpadre = true;
         }
+        $this->view->idcategoria = $params['categoria'];
         
 
         
