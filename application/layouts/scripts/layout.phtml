@@ -282,7 +282,7 @@
                                 <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
                                 <div class="block_content">
                                     <form id="form_oferta" method="Post" action="<?php echo $this->baseUrl()?>/realizar-pedido">
-                                    <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>
+                                    <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>
                                     <p class="description"><?php echo $this->listaDeUnArticulosEnOferta['descripcion']; ?></p>
                                     <div class="product_image">
                                         <a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>">
