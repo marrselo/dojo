@@ -3,8 +3,14 @@
     <head>
         <?php echo $this->headTitle() ?>
         <?php echo $this->headMeta() ?>
+        <meta property="og:title" content="delivery premium" />
+        <meta property="og:type" content="author" />
+        <meta property="og:url" content="http://deliverypremiumsac.com" />
+        <meta property="og:image" content="http://deliverypremiumsac.com/f/img/logo.png" />
+        <meta property="og:site_name" content="delivery premium" />
+        <meta property="fb:admins" content="698823485" />
         <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
-       <link href="/f/css/blockpaymentlogo.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockpaymentlogo.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blockpermanentlinks.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blockviewed.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blockcart.css" rel="stylesheet" type="text/css" media="all">
@@ -23,7 +29,6 @@
         <link href="/f/css/blockstore.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blocknewsletter.css" rel="stylesheet" type="text/css" media="all">        
         <?php echo $this->headLink() ?>
-
         <?php echo $this->headStyle() ?>
             <?php if ($this->slideshow) { ?>
         <link href="/f/css/banner.css" rel="stylesheet" type="text/css" media="all">
@@ -37,10 +42,16 @@
                     <?php if ($this->slideshow) { ?>
        <script type="text/javascript" src="/f/js/s3Slider.js"></script>
         <?php } ?>
-        
+
+        <script type="text/javascript">
+        if($.browser.version=='7.0' || $.browser.version=='6.0'){
+        window.location="/update-browser";
+        }
+        </script>
 <?php if ($this->slideshow) { ?>
             <script type="text/javascript">
         $(document).ready(function() {
+        
             $('#slider1').s3Slider({
                 timeOut: 4000 
             });

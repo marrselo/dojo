@@ -72,8 +72,8 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $this->view->headScript()->appendFile('/f/js/jquery-ui-1.8.17.custom.min.js');
         $this->view->headScript()->appendScript('
             $(function() {
-            $( "#fechaEntrega" ).datepicker();
-            $( "#datepicker" ).datepicker( $.datepicker.regional[ "fr" ] );            
+            
+            $( "#fechaEntrega" ).datepicker( $.datepicker.regional["es"] );            
             
             });
             ');

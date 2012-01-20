@@ -9,6 +9,7 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
 
     //public $identity;
     public function init() {
+        
         parent::init();
         $this->session = (!isset($this->session)) ? new Zend_Session_Namespace('dojo') : null;
         $this->_identity = Zend_Auth::getInstance()->getIdentity();

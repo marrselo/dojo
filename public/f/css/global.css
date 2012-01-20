@@ -236,7 +236,7 @@ img.logo {
 	margin: 18px auto -1em;
 	position: relative;
 	width: 1004px;
-	z-index: -1;
+	/*z-index: -1;*/
 	behavior: url('/f/css/PIE.htc');
 }
 #header-wrapper .header-top {
