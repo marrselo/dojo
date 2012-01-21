@@ -17,6 +17,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $this->_detalleDocumentoModel = new Application_Model_DetalleDocumento();
         $this->view->menuActive3 = 'active';
         $this->view->headTitle('Realizar Pedido');
+//        print_r($this->session->listaArticulo);
     }
 
     public function indexAction() {
@@ -36,7 +37,6 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             }
         }
         $this->view->listaArticuloCarrito = $this->session->listaArticulo;
-        //print_r($this->view->listaArticuloCarrito);
     }
 
     public function eliminarCarritoAction() {
@@ -79,10 +79,12 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             ');
         $params = $this->_request->getParams();
         $form = $this->formularioCliente();
+        print_r($this->session->listaArticulo);
         $form->getAction('');
         if ($this->_request->isPost()) {
             if ($form->isValid($params)) {
-                
+                $params['idcliente'] = $this->registrarCLiente($params);
+                $this->generarComprobante($params);
             } else {
                 
             }
@@ -98,7 +100,8 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
     function formularioCliente() {
         $form = new Application_Form_FormCliente();
         $form->getElement('dni')->removeValidator('ZExtraLib_Validate_DniExist');
-
+        $form->getElement('dni')->setRequired();
+        $form->getElement('correo')->removeValidator('ZExtraLib_Validate_MailExist');
         $arrayTipoDocumento = array(1 => 'Boleta', 2 => 'Factura');
         $form->addElement(new Zend_Form_Element_Radio('tipoDocumento',
                         array('requerid' => true,
@@ -107,10 +110,10 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                 )));
         $tiposPago = array(1 => 'Efectivo', 2 => 'Tarjeta');
         $form->addElement(new Zend_Form_Element_Radio('tipoPago', array('requerid' => true, 'label' => 'Tipo de Pago', 'multiOptions' => $tiposPago)));
-
         $form->addElement(new Zend_Form_Element_Text('fechaEntrega',
                         array('label' => 'Fecha Entrega')));
-
+        
+        $form->getElement('fechaEntrega')->setRequired();
         foreach (range(0, 23) as $index):
             $value = strlen($index) == 1 ? '0' . $index : $index;
             $arrayHora[$value] = $value;
@@ -130,10 +133,12 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                         array('requerid' => true,
                             'multiOptions' => $arrayMinuto
                 )));
-
         $form->getElement('tipoPago')->setSeparator('');
         $form->getElement('tipoDocumento')->setSeparator('');
-        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/registrocliente.phtml'))));
+        $form->setDecorators(
+                array(
+                    array('ViewScript', 
+                        array('viewScript' => 'form/registrocliente.phtml'))));
         return $form;
     }
 
@@ -158,7 +163,11 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data['telefono2'] = $params['telefono2'];
         $data['movil'] = $params['movil'];
         $data['ruc'] = $params['ruc'];
-        $idcliente = $this->_clienteModel->crearCliente($data);
+        if ($cliente = $this->_clienteModel->verificarCLienteWeb($params['correo'],$params['dni'])) {
+            $idcliente = $this->_clienteModel->actualizarCliente($cliente['idcliente'],$data);
+        } else {
+            $idcliente = $this->_clienteModel->crearCliente($data);
+        }
         return $idcliente;
     }
 
@@ -175,19 +184,27 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data ['IGV'] = 18.00; //$param['igv'];
         $data ['comentario'] = $param['informacionAdicional'];
         $idDocumento = $this->_documentoModel->crearDocumento($data);
-        $arrayProductos = $param['idarticulo'];
         $total = 0;
-        foreach ($arrayProductos as $index => $value) {
+        foreach ($this->session->listaArticulo as $index ) {
             $dataDetalle['iddocumento'] = $idDocumento;
-            $dataDetalle['idarticulo'] = $value;
-            $dataDetalle['precio'] = $param['precio'][$index];
-            $dataDetalle['cantidad'] = $param['cantidad'][$index];
-            $total = $total + ($dataDetalle['precio'] * $dataDetalle['cantidad']);
+            $dataDetalle['idarticulo'] = $index['idarticulo'];
+            $dataDetalle['cantidad'] = $index['cantidadArticulo'];
+            if($index['flagoferta'] == 1 and $index['precioferta']>0){
+            $total = $total + ($index['precioferta'] * $index['cantidadArticulo']);
+            $dataDetalle['precio'] = $index['precioferta'];
+            }else{
+            $total = $total + ($index['precioventa'] * $index['cantidadArticulo']);    
+            $dataDetalle['precio'] = $index['precioventa'];
+            }
             $this->crearDetalleDocumento($dataDetalle);
         }
         $data2 = array();
+        echo $total;
         $data2['total'] = $total;
         $this->_documentoModel->actualizarDocumento($data2, $idDocumento);
+    }
+    function enviarCorreo($params){
+        
     }
 }
 

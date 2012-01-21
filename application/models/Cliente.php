@@ -38,6 +38,7 @@ class Application_Model_Cliente  extends Zend_Db_Table {
     public function  actualizarCliente($idCliente,$data){
         $where = $this->getAdapter()->quoteInto('idcliente = ?', $idCliente);
         $this->update($data, $where);
+        return $idCliente;
     }
     public function listarUnCliente($idCliente) {
         return  $this->getAdapter()
@@ -64,6 +65,14 @@ class Application_Model_Cliente  extends Zend_Db_Table {
             $response->where('idcliente != ?', $idCliente);
         return $this->getAdapter()->fetchAll($response);
         
+    }
+    public function verificarCLienteWeb($correo,$dni){
+        return $this->select()
+                ->from('cliente')
+                ->where('dni = ?', $dni)
+                ->where('correo = ?', $correo)
+                ->query()
+                ->fetch();
     }
 }
 

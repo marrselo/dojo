@@ -183,7 +183,7 @@ div.dlreset dd, div.dlreset dt { margin:0; padding:0;}
 
 /* Spinners y Loaders */
 
-.min_loader { background:url(../img/global/min_loader.gif) left center no-repeat; height:16px; padding-left:25px; font-size:12px; }
+.min_loader { background:url(/f/img/global/min_loader.gif) left center no-repeat; height:16px; padding-left:25px; font-size:12px; }
 
 
 
@@ -325,7 +325,7 @@ table.mf.min td { padding:6px; font-size:12px;}
 .fix_flex .col1 { float:left; }
 .fix_flex .col2 {  }
 
-.content{padding: 10px 0 10px 0;background: url(../img/bg_content_col1.jpg) repeat-y 238px top;}
+.content{padding: 10px 0 10px 0;background: url(/f/img/bg_content_col1.jpg) repeat-y 238px top;}
 .content p{font-size:12px;text-align:justify;}
 .content .col1 { float:left; width:197px;padding:0 26px 0 18px;}
 .content .col2 { float:left;padding: 0 34px 0 23px;width:634px; }

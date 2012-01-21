@@ -1,0 +1,14 @@
+.modalInActive{
+    display: none;
+}
+.modalActive{
+    display: block;
+    position: absolute;
+    
+    
+}
+
+#actionViewModal{
+    float: right;
+    cursor: pointer;
+}

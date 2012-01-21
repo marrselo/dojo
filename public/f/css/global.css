@@ -335,8 +335,8 @@ img.logo {
 	display: none;
 }
 #search_block input#search_query_block {
-	background: rgba(0,0,0,0.5); 
-	-pie-background: #291F07;
+	background: rgba(0,0,0,0.5) url('/f/img/icon/zoom.png') no-repeat right top; 
+	-pie-background: #291F07 url('/f/img/icon/zoom.png') no-repeat right top;
 	border: 1px solid #2B2107;	
 	border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
@@ -593,6 +593,7 @@ form.std .checkbox label, form.std .radio label, form.std span.form_info {
 	text-align: left
 }
 .required sup { color: #A67309 }
+.required span { color: #ff0000 }
 form.std p.checkbox { padding-left: 30% }
 form.std p.submit {
 	/*padding-left: 31%;*/
@@ -1045,7 +1046,7 @@ img.icon { margin-right: 0.5em; vertical-align: middle }
 	color: #161001;
 	font-family: 'Arial';
 	font-size: 18px;
-	margin: 0 25px;
+	/*margin: 0 25px;*/
 }
 
 /* errors */

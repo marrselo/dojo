@@ -1,0 +1,414 @@
+.subtitulo1{
+	font: bold 24px/24px Arial, Helvetica, sans-serif;
+	color: #000000;
+	margin: 0px 0px 10px 0px;
+}
+
+.subtitulo1 a{ 
+   color: #dd0209;
+	text-decoration: none;
+}
+
+.subtitulo1 a:hover{ 
+   color: #dd0209;
+	text-decoration: underline;
+}
+
+.subtitulo2{
+	font: bold 16px Arial, Helvetica, sans-serif;
+	color: #808080;
+	margin: 0px 0px 5px 0px;
+}
+
+.subtitulo2 a{ 
+   color: #808080;
+	text-decoration: none;
+}
+
+.subtitulo2 a:hover{ 
+   color: #808080;
+	text-decoration: underline;
+}
+
+.subtitulo3{
+	font: normal 18px Tahoma;
+	color: #575f57;
+	margin: 0px;
+}
+
+.subtitulo3 a{ 
+   color: #575f57;
+	text-decoration: none;
+}
+
+.subtitulo3 a:hover{ 
+   color: #575f57;
+	text-decoration: underline;
+}
+
+
+
+.subtitulo4{
+	font: bold 1.8em 'TrajanProRegular';
+	color: #9c0038;
+	margin: 0px;
+}
+
+.subtitulo4 a{ 
+   color: #9c0038;
+	text-decoration: none;
+}
+
+.subtitulo4 a:hover{ 
+   color: #9c0038;
+	text-decoration: underline;
+}
+
+
+.subtitulo5{
+	font: bold 2.6em 'TrajanProRegular';
+	color: #d0d0d0;
+	margin: 0px;
+	padding: 0px 20px 0px 0px;
+	background: url(images/fondo_vineta_titulo.png) no-repeat right 13px;
+	float: left;
+	clear: left;
+}
+
+.subtitulo5 a{ 
+   color: #d0d0d0;
+	text-decoration: none;
+}
+
+.subtitulo5 a:hover{ 
+   color: #d0d0d0;
+	text-decoration: underline;
+}
+
+.subtitulo6{
+	font: bold 2.2em 'TrajanProRegular';
+	color: #d0d0d0;
+	margin: 0px;
+}
+
+.subtitulo6 a{ 
+   color: #d0d0d0;
+	text-decoration: none;
+}
+
+.subtitulo6 a:hover{ 
+   color: #d0d0d0;
+	text-decoration: underline;
+}
+
+
+
+
+.texto1{
+	font: normal 16px "Trebuchet MS";
+	color: #fff;
+	margin: 0px;
+}
+
+.texto1 a{ 
+   color: #fff;
+	text-decoration: none;
+}
+
+.texto1 a:hover{ 
+   color: #fff;
+	text-decoration: underline;
+}
+
+.texto2{
+	font: bold 11px "Trebuchet MS";
+	color: #000000;
+	margin: 0px;
+}
+
+.texto2 a{ 
+   color: #000000;
+	text-decoration: none;
+}
+
+.texto2 a:hover{ 
+   color: #000000;
+	text-decoration: underline;
+}
+
+.texto3{
+	font: normal 14px Tahoma;
+	color: #575f57;
+	margin: 0px;
+}
+
+.texto3 a{ 
+   color: #575f57;
+	text-decoration: none;
+}
+
+.texto3 a:hover{ 
+   color: #575f57;
+	text-decoration: underline;
+}
+
+
+.texto4{
+	font: normal 13px "Trebuchet MS";
+	color: #808080;
+	margin: 0px;
+}
+
+.texto4 a{ 
+   color: #808080;
+	text-decoration: none;
+}
+
+.texto4 a:hover{ 
+   color: #808080;
+	text-decoration: underline;
+}
+
+.texto5{
+	font: normal 1.2em 'TrajanProRegular';
+	color: #5b5b5f;
+	margin: 0px;
+	padding: 20px 0px 20px 0px;
+}
+
+.texto5 a{ 
+   color: #d50034;
+	text-decoration: none;
+}
+
+.texto5 a:hover{ 
+   color: #d50034;
+	text-decoration: underline;
+}
+
+.texto6{
+	font: normal 1.2em Arial, Helvetica, sans-serif;
+	color: #989898;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+	float: left;
+}
+
+.texto6 a{ 
+   color: #989898;
+	text-decoration: none;
+}
+
+.texto6 a:hover{ 
+   color: #989898;
+	text-decoration: underline;
+}
+
+hr{
+	background-color: #9c0038;
+	color: #9c0038;
+	height: 2px;
+	overflow: hidden;
+	padding: 0px;
+	border: 0px;
+	margin: 10px 0px;
+}
+
+/*
+
+.tabla1{ 
+	 border: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;   
+}
+
+.tabla1 img{ 
+	 border: none;
+
+}
+
+.tabla1 td{
+    border: none;
+    border-collapse: collapse;
+    margin: 0px;
+    vertical-align: top;    
+}
+
+.tabla1 td.td1{
+	 padding: 34px 50px 0px 80px;
+}
+
+.tabla1 td.td2{
+	 padding: 24px 30px 0px 0px;
+}
+
+.tabla1 td.td3{
+	 width: 310px;
+	 padding: 0px 0px 0px 0px;
+}
+
+.tabla1 td.td4{
+	padding: 242px 0px 0px 50px;
+}
+
+.tabla1 td.td5{
+	padding: 0px 0px 0px 250px;
+}
+
+.tabla1 td.td6{
+	padding: 0px 38px 0px 0px;
+}
+
+.tabla1 td.td7{
+	padding: 0px 20px 0px 0px;
+}
+
+.tabla1 td.td8{
+	padding: 0px 70px 0px 0px;
+}
+
+.tabla1 td.td9{
+	padding: 56px 0px 0px 0px;
+}*/
+
+
+/*.tabla1{ 
+	border: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;   
+}
+
+.tabla1 td{ 
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	border-collapse: collapse;
+
+}
+
+*/
+
+.tablaZona{ 
+	width: 316px;
+	height: 180px;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	border: 0px; 
+	background: url(images/fondo_zona.gif) no-repeat;
+}
+
+.tablaZona td{ 
+	margin: 0px;
+	border: none;
+	border-collapse: collapse;
+	vertical-align: top;
+}
+
+.tablaZona td.td1{
+	 padding: 20px 25px 0px 25px;
+}
+
+.tablaZona td.td2{
+	text-align: right;
+	 padding: 0px 25px 20px 25px;
+}
+
+
+
+.tablaTips{ 
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0px 0px 20px 0px;
+	padding: 0px;
+	border: 0px; 
+	border-bottom: 1px dashed #d5d5d5;
+}
+
+.tablaTips td{ 
+	margin: 0px;
+	border: none;
+	border-collapse: collapse;
+	vertical-align: top;
+}
+
+.tablaTips td.td1{
+	 padding: 0px 0px 0px 0px;
+}
+
+.tablaTips td.td2{
+	padding: 10px 0px 20px 0px;
+}
+
+
+
+
+
+
+
+
+.tablaContacto{ 
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;   
+}
+
+.tablaContacto td{ 
+	margin: 0px;
+	padding: 0px;   
+	border: none;
+	border-collapse: collapse;
+	vertical-align: top;
+	text-align: center;
+}
+/*
+.tabla3{ 
+	width: auto;
+	border: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;   
+}
+
+.tabla3 td{ 
+	margin: 0px;
+	padding: 0px 60px 0px 0px;   
+	border: none;
+	border-collapse: collapse;
+	vertical-align: top;
+}
+
+
+
+
+
+
+.resaltante{
+	width: 320px;
+	height: auto;
+	padding: 0px 0px 0px 94px;
+	background: url(images/imagen_apos1.gif) no-repeat;
+}
+
+.resaltante span{
+	font: normal 20px/30px Tahoma;
+	color: #888888;
+	padding: 0px 94px 10px 0px;
+	background: url(images/imagen_apos2.gif) no-repeat right bottom;
+	display: block;
+}*/
+
+
+/*.tabla2{
+	margin: 0px auto;
+	border: none;
+   border-collapse: collapse;
+   margin: 0px;
+   vertical-align: top;    
+}*/
+
+
