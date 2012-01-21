@@ -54,13 +54,17 @@
                             <div>
                                 <form id="form_pres_<?php echo $index['idarticulo'] ?>" action="<?php echo $this->baseUrl();?>/realizar-pedido" method="Post">
                                     <input type="hidden" id="hidden_idArticulo_<?php echo $index['idarticulo'] ?>" name="producto" value="<?php echo $index['idarticulo'] ?>">
-                                    <p class="price_container" style="width: 100px; ">
-                                        <span class="price"><?php echo $index['precioventa'] ?></span>
-                                    </p>
-                                    <p class="price_container" style="width: 70px;">
+                                    <div class="price_container" style="width:110px;float:left; padding-left:10px;padding-top:10px">
+                                        <?php if($index['flagoferta']==1){?>
+                                        <div style="width: auto;" class="price-discount">Antes S/. <?php echo $index['precioventa'] ?></div>
+                                        <div style="width: 120px; float: left; margin: 0px;" class="price">S/. <?php echo $index['preciooferta'] ?></div>
+                                        <?php }else{?>
+                                        <div style="width: 120px; float: left; margin: 0px;" class="price">S/. <?php echo $index['precioventa'] ?></div>
+                                        <?php }?>
                                         
-                                        
-                                        <select id="text_cant_<?php echo $index['idarticulo'] ?>" 
+                                    </div>
+                                    <p class="price_container" style="width: 50px;">
+                                                                                <select id="text_cant_<?php echo $index['idarticulo'] ?>" 
                                             name="cantidad" >
                                             <?php for ($i=1;$i<=20;$i++) { ?>
                                             <option value="<?php echo $i; ?>">    
@@ -69,17 +73,11 @@
                                             <?php } ?>
                                         </select>
                                         <span>cantidad</span>
-                                        
-<!--                                        <input 
-                                            type="text" 
-                                            id="text_cant_<?php echo $index['idarticulo'] ?>" 
-                                            name="cantidad" 
-                                            value="1" 
-                                            style="width: 30px; height: 20px;">
-                                        
+
+<!--                                        <input type="text" id="text_cant_<?php echo $index['idarticulo'] ?>" name="cantidad" value="1" style="width: 30px; height: 20px;">
                                         <span>cantidad</span>-->
-                                        
                                     </p>
+
                                     <p class="product_buttons">
                                         <a href="#" class="product-addcart ajax_add_to_cart_button" id="ajax_id_product_<?php echo $index['idarticulo'] ?>" rel="ajax_id_product_<?php echo $index['idarticulo'] ?>"  title="Añadir al carrito">
                                             Añadir al carrito

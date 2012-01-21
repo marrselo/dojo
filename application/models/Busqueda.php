@@ -14,6 +14,8 @@ class Application_Model_Busqueda  extends Zend_Db_Table {
             'articulo.imagen',
             'articulo.descripcion',
             'articulo.precioventa',
+            'articulo.flagoferta',
+            'articulo.preciooferta',
             'articulo.preciocompra', 
             'articulo.slug', 
             'articulo.cantidad',
