@@ -217,25 +217,12 @@
 	margin-right: 1em
 }
 #primary_block #buy_block label { text-align: right }
-#primary_block #buy_block label,#primary_block #buy_block select {
+#primary_block #buy_block label{
 	color: #A67309;
 	display: block;
 	float: left;
 	font-family: 'AllerItalic';
 	padding: 0.4em 0.4em 0.4em 0;
-}
-#primary_block #buy_block select { 
-	background: rgba(222, 222, 222, 0.4);
-	-pie-background: rgba(222, 222, 222, 0.4);
-	border: none;
-	border-radius: 0.5em;
-	-webkit-border-radius: 0.5em;
-	-moz-border-radius: 0.5em;
-	-o-border-radius: 0.5em;
-	-ms-border-radius: 0.5em;
-	padding: 0.4em;
-	width:100px;
-	behavior: url('/f/css/PIE.htc');
 }
 #primary_block div#attributes p, #quantity_wanted_p {
 	clear: left;

@@ -10,6 +10,7 @@ class Default_ZonasRepartoController extends ZExtraLib_Controller_Action
     }
     public function indexAction()
     {
+        $this->view->headTitle('Zonas de Reparto');
         $categorias = $this->_modelCategorias->listaCategorias();
         $this->view->categorias = $categorias;
         $this->view->menuActive2='active';

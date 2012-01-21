@@ -45,7 +45,7 @@ if (count($this->listaArticuloCarrito) > 0) {
 
                         <td class="cart_availability">
                             <span id="product_price_32_62" class="price">
-                                S/. <?php echo $flagOferta?$index['preciooferta']:''; ?>		
+                                S/. <?php echo $flagOferta?$index['preciooferta']:'0'; ?>		
                             </span>
                         </td>
                         <td class="cart_unit">
@@ -77,7 +77,7 @@ if (count($this->listaArticuloCarrito) > 0) {
                         </td>
                         <td class="cart_total">
                             <span id="total_product_price_32_62" class="price">
-                                S/.  <?php echo $index['precioventa'] * $index['cantidadArticulo'] ?></span>
+                                S/.  <?php echo $flagOferta==1?$index['preciooferta'] * $index['cantidadArticulo']:$index['precioventa'] * $index['cantidadArticulo'] ?></span>
                         </td>
                     </tr>
                     <?php

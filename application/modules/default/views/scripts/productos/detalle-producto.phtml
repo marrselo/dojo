@@ -59,7 +59,17 @@
                         cantidad mínima para comprar este producto
                     </p>
                     <p>
-                        <input type="text"  name="cantidad" class="input_cantidad"  id="cantidad" >
+                        <select id="text_cant_<?php echo $this->articulo['idarticulo'] ?>"  class="input_cantidad_select" 
+                                            name="cantidad" >
+                                            <?php for ($i=1;$i<=20;$i++) { ?>
+                                            <option value="<?php echo $i; ?>">    
+                                                <?php echo $i;?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
+                        
                     </p>
                     <!-- Out of stock hook -->
                     <p style="" id="oosHook"></p>

@@ -3,8 +3,14 @@
     <head>
         <?php echo $this->headTitle() ?>
         <?php echo $this->headMeta() ?>
+        <meta property="og:title" content="delivery premium" />
+        <meta property="og:type" content="author" />
+        <meta property="og:url" content="http://deliverypremiumsac.com" />
+        <meta property="og:image" content="http://deliverypremiumsac.com/f/img/logo.png" />
+        <meta property="og:site_name" content="delivery premium" />
+        <meta property="fb:admins" content="698823485" />
         <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
-       <link href="/f/css/blockpaymentlogo.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockpaymentlogo.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blockpermanentlinks.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blockviewed.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blockcart.css" rel="stylesheet" type="text/css" media="all">
@@ -23,7 +29,6 @@
         <link href="/f/css/blockstore.css" rel="stylesheet" type="text/css" media="all">
         <link href="/f/css/blocknewsletter.css" rel="stylesheet" type="text/css" media="all">        
         <?php echo $this->headLink() ?>
-
         <?php echo $this->headStyle() ?>
             <?php if ($this->slideshow) { ?>
         <link href="/f/css/banner.css" rel="stylesheet" type="text/css" media="all">
@@ -37,10 +42,16 @@
                     <?php if ($this->slideshow) { ?>
        <script type="text/javascript" src="/f/js/s3Slider.js"></script>
         <?php } ?>
-        
+
+        <script type="text/javascript">
+        if($.browser.version=='7.0' || $.browser.version=='6.0'){
+        window.location="/update-browser";
+        }
+        </script>
 <?php if ($this->slideshow) { ?>
             <script type="text/javascript">
         $(document).ready(function() {
+        
             $('#slider1').s3Slider({
                 timeOut: 4000 
             });
@@ -67,25 +78,12 @@
                                         Bienvenido,
                                         <a href="#">Entrar</a>
                                     </p>
-                                    <!--                                            <ul id="header_nav">
-                                                                                    <li id="shopping_cart">
-                                                                                        <a href="#" title="Su carrito de la compra"><span class="ajax_cart_quantity hidden">0</span>
-                                                                                            <span class="ajax_cart_product_txt hidden">producto</span>
-                                                                                            <span class="ajax_cart_product_txt_s hidden">productos</span>
-                                                                                        </a>
-                                                                                        <span class="ajax_cart_no_product">Sin productos</span>
-                                                                                    </li>
-                                                                                    <li id="your_account">
-                                                                                        <a href="#" title="Su cuenta">Su cuenta</a>
-                                                                                    </li>
-                                                                                </ul>-->
                                 </div>
                                 <!-- /Block user information module HEADER -->
                                 <div id="phone_block">
                                     <span>Central telefónica</span>
                                     <h4>355-8888</h4>
                                 </div>
-
                                 <div id="social_block">
                                     <script>(function(d, s, id) {
                                         var js, fjs = d.getElementsByTagName(s)[0];
@@ -166,12 +164,12 @@
                                     foreach ($this->listaCategoria as $index):
                                         ?>
                                         <?php if ($index['idpadre'] == '') { ?>
-                                            <li>
+                                            <li <?php if($this->idcategoria==$index['idcategoria']){ ?> class="selected" <?php }; ?> >
                                                 <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0) . '-' . $index['idcategoria']; ?>" title="<?php echo $index['nombre']; ?>"><?php echo $index['nombre']; ?></a>
                                                 <ul>
                                                     <?php foreach ($this->listaCategoria as $index2): ?>
                                                         <?php if ($index2['idpadre'] == $index['idcategoria']) { ?>
-                                                            <li>
+                                                            <li <?php if($this->idcategoria==$index2['idcategoria']){ ?> class="selected" <?php }; ?>>
                                                                 <a href="<?php echo $this->baseUrl(); ?>/productos/<?php echo $filter->filter(trim($index['nombre']), '-', 0) . '-' . $filter->filter(trim($index2['nombre']), '-', 0) . '-' . $index2['idcategoria']; ?>" title="<?php echo $index2['nombre']; ?>"><?php echo $index2['nombre']; ?></a>
                                                             </li>
                                                         <?php } ?>
@@ -190,26 +188,7 @@
                             </div>
                         </div>
                         <!-- /Block categories module -->
-                        <!-- Block Newsletter module-->
-<!--                        <div id="newsletter_block_left" class="block">
-                            <h4>Suscríbete</h4>
-                            <div class="block_content">
-                                <form action="http://www.floreriadetalles.com/tienda/" method="post">
-                                    <p>
-                                        <input name="email" size="18" value="su email" onfocus="javascript:if(this.value=='su email')this.value='';" onblur="javascript:if(this.value=='')this.value='su email';" type="text">
-                                    </p>
-                                    <p>
-                                        <select name="action">
-                                            <option selected="selected" value="0">suscribirse</option>
-                                            <option value="1">Borrarse</option>
-                                        </select>
-                                        <input value="ok" name="submitNewsletter" type="submit">
-                                    </p>
-                                </form>
-                            </div>
-                        </div>-->
-<!-- facebook.com
-                        <!-- /Block Newsletter module-->
+                        <div class="fb-like-box" data-href="http://www.facebook.com/deliverypremium" data-width="220" data-show-faces="true" data-stream="false" data-header="true"></div>
                     </div>
                     <!-- Center -->
                     <div id="center_column">
@@ -282,7 +261,7 @@
                                 <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
                                 <div class="block_content">
                                     <form id="form_oferta" method="Post" action="<?php echo $this->baseUrl()?>/realizar-pedido">
-                                    <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>
+                                    <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>
                                     <p class="description"><?php echo $this->listaDeUnArticulosEnOferta['descripcion']; ?></p>
                                     <div class="product_image">
                                         <a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>">
@@ -344,7 +323,7 @@
                     e.preventDefault();
                     $("#form_oferta").submit();
                 }) 
-
+             $("#categories_block_left ul li:last-child").addClass("last");
             });   
 
         </script>
