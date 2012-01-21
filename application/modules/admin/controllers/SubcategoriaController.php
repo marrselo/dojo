@@ -13,6 +13,7 @@ class Admin_SubcategoriaController extends ZExtraLib_Controller_Action {
 
     function indexAction() {
         $form = new Application_Form_SubcategoriaForm();
+        $this->_categoriaModel->clearCache();
         $this->view->form = $form;
         if ($this->_getParam('id') == null) {
             $this->view->messages = $this->_flashMessenger->getMessages();
@@ -71,7 +72,6 @@ class Admin_SubcategoriaController extends ZExtraLib_Controller_Action {
     }
 
     function crearCategoria($data) {
-
         $this->_categoriaModel->crearCategoria($data);
         $this->_flashMessenger->addMessage('Datos actualizados satisfactoriamente.');
         $this->_redirect('/admin/categoria');

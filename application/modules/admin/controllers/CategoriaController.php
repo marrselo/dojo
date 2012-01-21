@@ -13,11 +13,14 @@ class Admin_CategoriaController
     }
     function indexAction()
     {
+        
         $categorias = $this->_categoriaModel->listaCategorias();
         $this->view->categorias = $categorias;
         $paginator = Zend_Paginator::factory($categorias); 
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $this->view->paginator = $paginator;
+        
+        $this->_categoriaModel->clearCache();
         
         if($this->_getParam('id')==null){
         $this->view->messages = $this->_flashMessenger->getMessages();        
