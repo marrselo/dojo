@@ -204,6 +204,121 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
     }
     function enviarCorreo($params){
         
+        '<div>
+    <table style="font-family:Verdana,sans-serif;font-size:11px;color:#374953;width:550px">
+        <tbody>
+            <tr>
+                <td align="left">
+                    <a target="_blank" href="'.$this->baseUrl().'" title="Delivery Premiun">
+                        <img alt="Delivery Premium" 
+                             src="'.$this->baseUrl().'/f/img/logo.png" 
+                             style="border:none">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">Hola <strong style="color:#9c0038">
+                [nombreUsuario]
+                </strong>, gracias por comprar en <strong>Delivery Premiun</strong>.</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="left" style="background-color:#9c0038;color:#fff;font-size:12px;font-weight:bold;padding:0.5em 1em">Detalles del Pedido</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="left">Pedido: 
+                <strong><span style="color:#9c0038">#000006</span> 
+                realizado el 2012-01-05 23:58:58
+                </strong> <br>Forma de Pago: <strong>Pago contra reembolso</strong></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <table style="width:100%;font-size:11px;color:#374953">
+                        <tbody>
+                            <tr style="background-color:#b9babe;text-align:center">
+                                <th>Producto</th>
+                                <th style="width:15%">Precio Unidad</th>
+                                <th style="width:15%">Cantidad</th>
+                                <th style="width:20%">Precio Total</th>
+                            </tr>';
+                             $totalPorductos=0;
+                            foreach($this->session->listaArticulo as $index){
+                            '<tr style="background-color:#ebecee">
+                                <td style="padding:0.6em 0.4em"><strong>'.$index['nombre'].'</strong></td>
+                                    <td style="padding:0.6em 0.4em;text-align:right">
+                                    S/. '.$index['precioventa'].'</td>
+                                <td style="padding:0.6em 0.4em;text-align:center">
+                                    '.$index['cantidadArticulo'].'
+                                </td>
+                                <td style="padding:0.6em 0.4em;text-align:right">
+                                    S/. '.$index['cantidadArticulo']*$index['precioventa'].'
+                                        </td>
+                            </tr>';
+                            $totalPorductos = + $index['cantidadArticulo']*$index['precioventa'];
+                             }
+                            '<tr style="text-align:right">
+                                <td colspan="3" style="background-color:#b9babe;padding:0.6em 0.4em">Precio Productos</td>
+                                <td style="background-color:#b9babe;padding:0.6em 0.4em">'.$totalPorductos.'</td>
+                            </tr>
+                            <tr style="text-align:right">
+                                <td colspan="3" style="background-color:#dde2e6;padding:0.6em 0.4em">Gastos de Envíos</td>
+                                <td style="background-color:#dde2e6;padding:0.6em 0.4em">'.$this->_config['precioventa'].'</td>
+                            </tr>
+                            <tr style="text-align:right;font-weight:bold">
+                                <td colspan="3" style="background-color:#f1aecf;padding:0.6em 0.4em">TOTAL</td>
+                                <td style="background-color:#f1aecf;padding:0.6em 0.4em">S/. '.($totalPorductos+$this->_config['precioventa']).'</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <table style="width:100%;font-size:11px;color:#374953">
+                        <tbody>
+                            <tr style="background-color:#b9babe;text-transform:uppercase">
+                                <th style="text-align:left;padding:0.3em 1em">Dirección de Entrega</th>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.5em 0 0.5em 0.5em;background-color:#ebecee">
+                                    <span style="color:#9c0038;font-weight:bold">'.$nombreCliente.'</span> 
+                                    <br>av. las gaviotas
+                                    <br>LIMA lima
+                                    <br>Perú
+                                    <br>32442323
+                                    <br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="center" style="font-size:10px;border-top:1px solid #d9dade">
+                    <a target="_blank" 
+                       href="'.$this->view->baseUrl().'" 
+                       style="color:#9c0038;font-weight:bold;text-decoration:none">
+                        Delivery Premiun
+                    </a> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>';
     }
 }
 
