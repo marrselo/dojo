@@ -25,8 +25,8 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $arrayArticulos = array();
         if (isset($params['producto']) and $params['producto'] != '') {
             $arrayArticulos = $this->_modelArticulos->listarUnArticulo($params['producto']);
-            
-            $params['cantidad'] = !isset($params['cantidad'])||number_format(abs($params['cantidad']),0) == ''||number_format(abs($params['cantidad']),0) == 0 ? 1 : number_format(abs($params['cantidad']),0);
+
+            $params['cantidad'] = !isset($params['cantidad']) || number_format(abs($params['cantidad']), 0) == '' || number_format(abs($params['cantidad']), 0) == 0 ? 1 : number_format(abs($params['cantidad']), 0);
             if ($arrayArticulos) {
                 if (isset($this->session->listaArticulo[$arrayArticulos['idarticulo']])) {
                     $arrayArticulos['cantidadArticulo'] = $params['cantidad'] + $this->session->listaArticulo[$arrayArticulos['idarticulo']]['cantidadArticulo'];
@@ -85,6 +85,8 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             if ($form->isValid($params)) {
                 $params['idcliente'] = $this->registrarCLiente($params);
                 $this->generarComprobante($params);
+                $this->enviarCorreo($params['nombre'], $params['correo'],$params['direccion']);
+                
             } else {
                 
             }
@@ -95,7 +97,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
     function formatocorreoAction() {
         $this->view->listaArticulo = $this->session->listaArticulo;
     }
-    
+
     function formularioCliente() {
         $form = new Application_Form_FormCliente();
         $form->getElement('dni')->removeValidator('ZExtraLib_Validate_DniExist');
@@ -111,7 +113,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $form->addElement(new Zend_Form_Element_Radio('tipoPago', array('requerid' => true, 'label' => 'Tipo de Pago', 'multiOptions' => $tiposPago)));
         $form->addElement(new Zend_Form_Element_Text('fechaEntrega',
                         array('label' => 'Fecha Entrega')));
-        
+
         $form->getElement('fechaEntrega')->setRequired();
         foreach (range(0, 23) as $index):
             $value = strlen($index) == 1 ? '0' . $index : $index;
@@ -136,7 +138,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $form->getElement('tipoDocumento')->setSeparator('');
         $form->setDecorators(
                 array(
-                    array('ViewScript', 
+                    array('ViewScript',
                         array('viewScript' => 'form/registrocliente.phtml'))));
         return $form;
     }
@@ -162,8 +164,8 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data['telefono2'] = $params['telefono2'];
         $data['movil'] = $params['movil'];
         $data['ruc'] = $params['ruc'];
-        if ($cliente = $this->_clienteModel->verificarCLienteWeb($params['correo'],$params['dni'])) {
-            $idcliente = $this->_clienteModel->actualizarCliente($cliente['idcliente'],$data);
+        if ($cliente = $this->_clienteModel->verificarCLienteWeb($params['correo'], $params['dni'])) {
+            $idcliente = $this->_clienteModel->actualizarCliente($cliente['idcliente'], $data);
         } else {
             $idcliente = $this->_clienteModel->crearCliente($data);
         }
@@ -172,60 +174,64 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
 
     function generarComprobante($param) {
         $date = new Zend_Date();
-        $data ['numeroserie'] = $param['numSerie'];
-        $data ['numerocomprobante'] = $param['numComprobante'];
         $data ['fechacreacion'] = $date->now()->get('YYYY-mm-dd');
         $data ['idtipodocumento'] = $param['tipoDocumento'];
         $data ['direccion'] = $param['direccion'];
         $data ['idcliente'] = $param['idcliente'];
-        $data ['hora'] = $param['hora'].':'.$param['minuto'];
+        $data ['hora'] = $param['hora'] . ':' . $param['minuto'];
         $data ['idestado'] = 1;
         $data ['flagactivo'] = 1;
         $data ['IGV'] = $this->_config['igv']; //$param['igv'];
         $data ['comentario'] = $param['informacionAdicional'];
         $idDocumento = $this->_documentoModel->crearDocumento($data);
         $total = 0;
-        foreach ($this->session->listaArticulo as $index ) {
+        foreach ($this->session->listaArticulo as $index) {
             $dataDetalle['iddocumento'] = $idDocumento;
             $dataDetalle['idarticulo'] = $index['idarticulo'];
             $dataDetalle['cantidad'] = $index['cantidadArticulo'];
-            if($index['flagoferta'] == 1 and $index['precioferta']>0){
-            $total = $total + ($index['precioferta'] * $index['cantidadArticulo']);
-            $dataDetalle['precio'] = $index['precioferta'];
-            }else{
-            $total = $total + ($index['precioventa'] * $index['cantidadArticulo']);    
-            $dataDetalle['precio'] = $index['precioventa'];
+            if ($index['flagoferta'] == 1 and $index['precioferta'] > 0) {
+                $total = $total + ($index['precioferta'] * $index['cantidadArticulo']);
+                $dataDetalle['precio'] = $index['precioferta'];
+            } else {
+                $total = $total + ($index['precioventa'] * $index['cantidadArticulo']);
+                $dataDetalle['precio'] = $index['precioventa'];
             }
             $this->crearDetalleDocumento($dataDetalle);
         }
         $data2 = array();
-        $data2['total'] = $total+$this->_config['precioenvio'];
+        $data2['total'] = $total + $this->_config['precioenvio'];
         $this->_documentoModel->actualizarDocumento($data2, $idDocumento);
     }
-    function enviarCorreo($params){
-        
-        '<div>
+
+    function enviarCorreo($nombreUsuario, $email,$direccion) {
+        $correo = Zend_Registry::get('mail');
+        $correo = new Zend_Mail('utf-8');
+        $apodo = 'nazart';
+        $body = '<div>
     <table style="font-family:Verdana,sans-serif;font-size:11px;color:#374953;width:550px">
         <tbody>
             <tr>
                 <td align="left">
-                    <a target="_blank" href="'.$this->baseUrl().'" title="Delivery Premiun">
+                    <a target="_blank" href="' . $this->view->baseUrl() . '" title="Delivery Premiun">
                         <img alt="Delivery Premium" 
-                             src="'.$this->baseUrl().'/f/img/logo.png" 
+                             src="' . $this->view->baseUrl() . '/f/img/logo.png" 
                              style="border:none">
                     </a>
                 </td>
             </tr>
             <tr>
                 <td align="left">Hola <strong style="color:#9c0038">
-                [nombreUsuario]
+                ' . $nombreUsuario . '
                 </strong>, gracias por comprar en <strong>Delivery Premiun</strong>.</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td align="left" style="background-color:#9c0038;color:#fff;font-size:12px;font-weight:bold;padding:0.5em 1em">Detalles del Pedido</td>
+                <td align="left" 
+                style="background-color:#9c0038;color:#fff;font-size:12px;font-weight:bold;padding:0.5em 1em">
+                Detalles del Pedido
+                </td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -249,32 +255,32 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                                 <th style="width:15%">Cantidad</th>
                                 <th style="width:20%">Precio Total</th>
                             </tr>';
-                             $totalPorductos=0;
-                            foreach($this->session->listaArticulo as $index){
-                            '<tr style="background-color:#ebecee">
-                                <td style="padding:0.6em 0.4em"><strong>'.$index['nombre'].'</strong></td>
+        $totalPorductos = 0;
+        foreach ($this->session->listaArticulo as $index) {
+            $body .= '<tr style="background-color:#ebecee">
+                                <td style="padding:0.6em 0.4em"><strong>' . $index['nombre'] . '</strong></td>
                                     <td style="padding:0.6em 0.4em;text-align:right">
-                                    S/. '.$index['precioventa'].'</td>
+                                    S/. ' . $index['precioventa'] . '</td>
                                 <td style="padding:0.6em 0.4em;text-align:center">
-                                    '.$index['cantidadArticulo'].'
+                                    ' . $index['cantidadArticulo'] . '
                                 </td>
                                 <td style="padding:0.6em 0.4em;text-align:right">
-                                    S/. '.$index['cantidadArticulo']*$index['precioventa'].'
+                                    S/. ' . $index['cantidadArticulo'] * $index['precioventa'] . '
                                         </td>
                             </tr>';
-                            $totalPorductos = + $index['cantidadArticulo']*$index['precioventa'];
-                             }
-                            '<tr style="text-align:right">
+            $totalPorductos = + $index['cantidadArticulo'] * $index['precioventa'];
+        }
+        $body.='<tr style="text-align:right">
                                 <td colspan="3" style="background-color:#b9babe;padding:0.6em 0.4em">Precio Productos</td>
-                                <td style="background-color:#b9babe;padding:0.6em 0.4em">'.$totalPorductos.'</td>
+                                <td style="background-color:#b9babe;padding:0.6em 0.4em">' . $totalPorductos . '</td>
                             </tr>
                             <tr style="text-align:right">
                                 <td colspan="3" style="background-color:#dde2e6;padding:0.6em 0.4em">Gastos de Envíos</td>
-                                <td style="background-color:#dde2e6;padding:0.6em 0.4em">'.$this->_config['precioventa'].'</td>
+                                <td style="background-color:#dde2e6;padding:0.6em 0.4em">' . $this->_config['precioenvio'] . '</td>
                             </tr>
                             <tr style="text-align:right;font-weight:bold">
                                 <td colspan="3" style="background-color:#f1aecf;padding:0.6em 0.4em">TOTAL</td>
-                                <td style="background-color:#f1aecf;padding:0.6em 0.4em">S/. '.($totalPorductos+$this->_config['precioventa']).'</td>
+                                <td style="background-color:#f1aecf;padding:0.6em 0.4em">S/. ' . ($totalPorductos + $this->_config['precioenvio']) . '</td>
                             </tr>
                         </tbody>
                     </table>
@@ -292,12 +298,9 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                             </tr>
                             <tr>
                                 <td style="padding:0.5em 0 0.5em 0.5em;background-color:#ebecee">
-                                    <span style="color:#9c0038;font-weight:bold">'.$nombreCliente.'</span> 
-                                    <br>av. las gaviotas
-                                    <br>LIMA lima
-                                    <br>Perú
-                                    <br>32442323
-                                    <br>
+                                    <span style="color:#9c0038;font-weight:bold">' . $nombreCliente . '</span> 
+                                    <br>' . $direccion . '
+                                    
                                 </td>
                             </tr>
                         </tbody>
@@ -310,7 +313,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             <tr>
                 <td align="center" style="font-size:10px;border-top:1px solid #d9dade">
                     <a target="_blank" 
-                       href="'.$this->view->baseUrl().'" 
+                       href="' . $this->view->baseUrl() . '" 
                        style="color:#9c0038;font-weight:bold;text-decoration:none">
                         Delivery Premiun
                     </a> 
@@ -319,6 +322,22 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         </tbody>
     </table>
 </div>';
+        
+        $subject = 'contacto';
+        try {
+            $correo->addTo($email, $apodo)
+                    ->clearSubject()
+                    ->setSubject('detalle de tu compra')
+                    ->setBodyHtml($body);
+            $correo->send();
+            $message = "Su correo fue enviado Satisfactoriamente";
+        } catch (Exception $e) {
+            //echo 'mensaje->'.$e->getTraceAsString();
+            $message = "Problemas al enviar el correo";
+        }
+        $this->_flashMessenger->addMessage($message);
+        echo $body;
     }
+
 }
 
