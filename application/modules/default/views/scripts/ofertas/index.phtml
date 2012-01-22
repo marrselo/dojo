@@ -15,7 +15,7 @@
                             </h5>
                             <div class="product_imagebox">
                                 <a href="<?php echo $this->baseUrl(); ?>/detalle-producto/<?php echo $index['slug'] ?>" title="<?php echo $index['nombre'] ?>" class="product_image">
-                                    <img src="/imagen-articulo/<?php echo $index['imagen'] ?>" alt="<?php echo $index['nombre'] ?>" >
+                                    <img src="/imagen-articulo/<?php echo $index['imagen'] ?>?<?php echo rand(0,1000);?>" alt="<?php echo $index['nombre'] ?>" >
                                 </a>
                             </div>
                             <div>

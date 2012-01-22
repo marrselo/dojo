@@ -85,7 +85,6 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
                 rename($form->imagen->getDestination() . '/' . $articulo['imagen'], 
                         $form->imagen->getDestination() . '/' . $nameFile . '-' . $params['idArticulo'] . '.' . $extn);
                 }
-                echo $extn;
                 $slugBusqueda = str_replace('-', ' ', $filter->filter(trim($params['slugBusqueda']), '-', 0));
                 $page = ($this->getRequest()->getUserParam('page') == '') ? '' : 'page/' . $this->getRequest()->getUserParam('page');
                 $data['idcategoria'] = $params['idcategoria'];
