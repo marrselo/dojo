@@ -179,6 +179,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data ['idtipodocumento'] = $param['tipoDocumento'];
         $data ['direccion'] = $param['direccion'];
         $data ['idcliente'] = $param['idcliente'];
+        $data ['hora'] = $param['hora'].':'.$param['minuto'];
         $data ['idestado'] = 1;
         $data ['flagactivo'] = 1;
         $data ['IGV'] = 18.00; //$param['igv'];
