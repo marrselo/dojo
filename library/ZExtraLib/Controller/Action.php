@@ -3,6 +3,7 @@
 class ZExtraLib_Controller_Action extends Zend_Controller_Action {
 
     protected $_layout;
+    protected $_config;
     protected $_hostFileStatic;
     protected $_arrayAclAnunciante;
     protected $_identity;
@@ -11,6 +12,10 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
     public function init() {
         
         parent::init();
+        
+        $config = new Application_Model_Config();
+        $this->_config = $config->listarConfig();
+        $this->view->config = $config->listarConfig();
         $this->session = (!isset($this->session)) ? new Zend_Session_Namespace('dojo') : null;
         $this->_identity = Zend_Auth::getInstance()->getIdentity();
         $this->_layout = Zend_Layout::getMvcInstance();
