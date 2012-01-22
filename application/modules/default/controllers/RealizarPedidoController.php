@@ -182,7 +182,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data ['hora'] = $param['hora'].':'.$param['minuto'];
         $data ['idestado'] = 1;
         $data ['flagactivo'] = 1;
-        $data ['IGV'] = 18.00; //$param['igv'];
+        $data ['IGV'] = $this->_config['igv']; //$param['igv'];
         $data ['comentario'] = $param['informacionAdicional'];
         $idDocumento = $this->_documentoModel->crearDocumento($data);
         $total = 0;

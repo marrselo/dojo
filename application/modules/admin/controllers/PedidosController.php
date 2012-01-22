@@ -127,7 +127,7 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $data ['idestado'] = 1;
         $data ['flagactivo'] = 1;
         $data ['idvendedor'] = $this->_identity->idusuario;
-        $data ['IGV'] = 18.00; //$param['igv'];
+        $data ['IGV'] = $this->_config['igv']; //$param['igv'];
         $data ['comentario'] = $param['informacionAdicional'];
         $idDocumento = $this->_documentoModel->crearDocumento($data);
         $arrayProductos = $param['idarticulo'];
