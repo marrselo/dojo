@@ -4,9 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Documento sin t&iacute;tulo</title>
 
-<link rel="stylesheet" href="css/base.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="css/boleta.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="css/printboleta.css" type="text/css" media="print" />
+<link rel="stylesheet" href="../../../../f/css/base.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../f/css/boleta.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../f/css/printboleta.css" type="text/css" media="print" />
 </head>
 
 <body>
@@ -23,9 +23,7 @@
 				<div id="cnt_desc_link">
 					<p class="">
 						www.delviverypremiumsac.com<br/>						
-						Telefs Los Olivos: 721-2121<br/>
-						<br/>						
-						Nextel: ********
+						Telefs Los Olivos: 355-8888<br/>
 					</p>
 				</div>
 				
@@ -91,7 +89,7 @@
 					<div class="descripcion_mat_r">						
 						<?php $total = 0;  foreach($this->datosDocumento as $key => $fila) { ?>
 						<span class="span_mat_r">
-						<?php echo ($fila["importe"]*$fila["cantidad"]); $total = $total + ($fila["importe"]*$fila["cantidad"])?>
+						<?php echo number_format(($fila["importe"]*$fila["cantidad"]),2); $total = $total + ($fila["importe"]*$fila["cantidad"])?>
 						</span>
 						<? }?>
 					</div>
@@ -110,7 +108,7 @@
 				<div class="cnt_bottom_mat_r">
 					<span class="text_total">TOTAL S/. </span>
 					<div class="cnt_block_imp total_mat">
-					<?php echo $total?>
+					<?php echo number_format($total,2)?>
 					</div>
 				
 				</div>

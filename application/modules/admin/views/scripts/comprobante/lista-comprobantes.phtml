@@ -31,7 +31,7 @@
                 <a href="borrar-pedidos/idDocumento/<?php echo $valor['iddocumento']?>">
                     <img src="../../f/img/borrar.png" alt="Modificar"  >
                 </a>
-                <a href="imprimir/idDocumento/<?php echo $valor['iddocumento']?>" target="_blank" >
+                <a href="<?php echo $this->baseUrl(); ?>/admin/pedidos/imprimir/idDocumento/<?php echo $valor['iddocumento']?>" target="_blank" >
                    <img src="../../f/img/print.png" alt="imprimir"  >
                 </a>
             </td>

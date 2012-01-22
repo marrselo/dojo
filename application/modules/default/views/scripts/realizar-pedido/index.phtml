@@ -97,11 +97,11 @@ if (count($this->listaArticuloCarrito) > 0) {
                 </tr>
                 <tr class="cart_total_price">
                     <td colspan="5">Precio Envío:</td>
-                    <td id="total_price_without_tax" class="price">S/. 6.00</td>
+                    <td id="total_price_without_tax" class="price">S/. <?php echo $this->config['precioenvio'] ?></td>
                 </tr>
                 <tr class="cart_total_price">
                     <td colspan="5">Total:</td>
-                    <td id="total_price" class="price">S/. <?php echo $total+6; ?></td>
+                    <td id="total_price" class="price">S/. <?php echo $total+$this->config['precioenvio']; ?></td>
                 </tr>
             </tfoot>
 
@@ -109,7 +109,7 @@ if (count($this->listaArticuloCarrito) > 0) {
         </table>
     </div>
     <p class="cart_navigation">
-        <a title="Volver" class="button_extralarge" href="/realizar-pedido/registrar-pedido">
+            <a title="Volver" class="button_extralarge" href="/realizar-pedido/registrar-pedido">
             Registrar la comprar
         </a>
         <a title="Siguiente" class="button_medium" 

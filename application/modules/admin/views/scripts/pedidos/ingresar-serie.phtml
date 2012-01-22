@@ -1,0 +1,14 @@
+<br /><br />
+<H2>Ingrese Serie y Número de Comprobante</H2>
+<H3><?php echo $this->dataDocumento[0]['nombre'].' '.$this->dataDocumento[0]['apellidopaterno']?></H3>
+<form action='despachar-pedidos' method='post'  >
+Tipo de documento: <select name='tipoDocumento'>
+<option value='1'>Boleta</option>
+<option value='2'>Factura</option>
+</select>
+<br />
+Serie  &nbsp;<input type='text' name='serie' size=4/> &nbsp;&nbsp;
+Numero &nbsp;<input type='text' name='numero' /> &nbsp;&nbsp;
+<input type=hidden name='idDocumento' value='<?php echo $this->dataDocumento[0]['iddocumento']?>' />
+<input type='submit' value='Enviar'>
+</form>

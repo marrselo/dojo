@@ -1,4 +1,4 @@
-<table class="sticky-enabled tableSelect-processed sticky-table">
+   <table class="sticky-enabled tableSelect-processed sticky-table">
     <thead class="tableHeader-processed">
         <tr>
             <th class="select-all"><input type="checkbox" class="form-checkbox" title="Select all rows in this table"></th>           
@@ -12,6 +12,7 @@
     </thead>
     <tbody>
         <?php if(is_array($this->listaPedidos)):
+                	
                 $i = 0;
                 foreach($this->listaPedidos as $valor):
                 $i = $i +1;
@@ -28,10 +29,10 @@
                 <a href="borrar-pedidos/idDocumento/<?php echo $valor['iddocumento']?>">
                     <img src="../../f/img/borrar.png" alt="Modificar"  >
                 </a>
-                <a href="despachar-pedidos/idDocumento/<?php echo $valor['iddocumento']?>" >
+                <a href="despachar-pedidos/idDocumento/<?php echo $valor['iddocumento']?>/numero/<?php echo ($valor['numerocomprobante']=='')? 0 : $valor['numerocomprobante']?>" >
                     Despachar
                 </a>
-                <a href="imprimir/idDocumento/<?php echo $valor['iddocumento']?>" target="_blank" >
+                <a href="<?php echo $this->baseUrl() ?>/pedidos/imprimir/idDocumento/<?php echo $valor['iddocumento']?>" target="_blank" >
                    <img src="../../f/img/print.png" alt="imprimir"  >
                 </a>
             </td>

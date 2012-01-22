@@ -89,7 +89,6 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                 
             }
         }
-
         $this->view->formRegistroCliente = $form;
     }
 
@@ -200,8 +199,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             $this->crearDetalleDocumento($dataDetalle);
         }
         $data2 = array();
-        echo $total;
-        $data2['total'] = $total;
+        $data2['total'] = $total+$this->_config['precioenvio'];
         $this->_documentoModel->actualizarDocumento($data2, $idDocumento);
     }
     function enviarCorreo($params){

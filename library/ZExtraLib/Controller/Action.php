@@ -13,16 +13,17 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
         
         parent::init();
         
-        $config = new Application_Model_Config();
-        $this->_config = $config->listarConfig();
-        $this->view->config = $config->listarConfig();
+        
         $this->session = (!isset($this->session)) ? new Zend_Session_Namespace('dojo') : null;
         $this->_identity = Zend_Auth::getInstance()->getIdentity();
         $this->_layout = Zend_Layout::getMvcInstance();
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         $this->initView();
         
+        
         if ($this->getRequest()->getModuleName() == 'default') {
+            
+            
             $modelCategoria = new Application_Model_Categoria();
             $modelArticulo = new Application_Model_Articulo();
             //();
@@ -76,6 +77,10 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
                 $this->view->perfilUsuario = array();
             }
         }
+        $config = new Application_Model_Config();
+        $this->_config = $config->listarConfig();
+        $this->view->config = $this->_config;
+        
     }
 
 }

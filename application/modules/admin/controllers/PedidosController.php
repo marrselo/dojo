@@ -126,8 +126,9 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $data ['idcliente'] = $param['idcliente'];
         $data ['idestado'] = 1;
         $data ['flagactivo'] = 1;
+        $data ['flagdespacho'] = 0;
         $data ['idvendedor'] = $this->_identity->idusuario;
-        $data ['IGV'] = $this->_config['igv']; //$param['igv'];
+        $data ['IGV'] = 18.00; //$param['igv'];
         $data ['comentario'] = $param['informacionAdicional'];
         $idDocumento = $this->_documentoModel->crearDocumento($data);
         $arrayProductos = $param['idarticulo'];
@@ -201,12 +202,21 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
     {
         $params = $this->_getAllParams();
         if($params['controller']=='pedidos'){
-            $this->view->menuTop = $menuTop = array('Nuevo Pedido' => '../admin/pedidos','Lista Pedidos' => 'pedidos/lista-pedidos');
+            $this->view->menuTop = $menuTop = array('Nuevo Pedido' => $this->view->baseUrl().'/admin/pedidos','Lista Pedidos' => $this->view->baseUrl().'/admin/pedidos/lista-pedidos');
         }else{
-            $this->view->menuTop = $menuTop = array('Lista Productos' => '../admin/articulo', 'Nuevo Articulo' => '../articulo/nuevo-articulo', 'Lista Pedidos' => 'pedidos/lista-pedidos');        
-        }               
-        $this->view->listaPedidos = $this->_documentoModel->listarDocumentos();
+            $this->view->menuTop = $menuTop = array('Lista Productos' => $this->view->baseUrl().'/admin/articulo', 'Nuevo Articulo' => '../articulo/nuevo-articulo', 'Lista Pedidos' => $this->view->baseUrl().'/admin/pedidos/lista-pedidos');        
+        }        
+       $this->view->listaPedidos = $this->_documentoModel->listarDocumentos();
+       
+        
     }
+    function ingresarSerieAction()
+    {
+        $params= $this->_getAllParams();
+        $this->view->dataDocumento = $dataDocumento = $this->_documentoModel->datosDocumento($params['idDocumento']);
+        //print_r($dataDocumento);
+    }
+    
     
     function borrarPedidosAction()
     {
@@ -222,21 +232,30 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
     {
         $this->_helper->layout()->disableLayout();
         $params= $this->_getAllParams();
-        $detalle = $this->_detalleDocumentoModel;        
-        $arrDetalle = $detalle->getDetalleDocumento($params['idDocumento']);
-        $kardex = new Application_Model_Kardex();
-        $data = array();
-        foreach($arrDetalle as $key => $valor){
-            $data['stock']      = $valor['cantidad'];
-            $data['idarticulo'] = $valor['idarticulo'];
-            $data['fla']        = 2;
-            $data['iddoc']      = $idDocumento;
-            $data['motivo']     = 'Despacho ';
-            $kardex->crearKardex($data);
-        }
-        $dataDoc = array('flagdespacho'=>1);        
-        $this->_documentoModel->actualizarDocumento($dataDoc,$params['idDocumento']);
-        $this->_redirect('admin/pedidos/lista-pedidos');                   
+        if($params['numero']==0){
+            $this->_redirect('admin/pedidos/ingresar-serie?idDocumento='.$params['idDocumento']);
+        }else{
+        
+            $detalle = $this->_detalleDocumentoModel;        
+            $arrDetalle = $detalle->getDetalleDocumento($params['idDocumento']);
+            $kardex = new Application_Model_Kardex();
+            $data = array();
+            foreach($arrDetalle as $key => $valor){
+	         $data['stock']      = $valor['cantidad'];
+	         $data['idarticulo'] = $valor['idarticulo'];
+	         $data['fla']        = 2;
+	         $data['iddoc']      = $idDocumento;
+	         $data['motivo']     = 'Despacho ';
+	         $kardex->crearKardex($data);
+            }
+            $dataDoc = array('flagdespacho'=>1);
+            if($params['numero']!=''){
+                $dataDoc['numerocomprobante'] = $params['numero'];
+                $dataDoc['numeroserie']  	      = $params['serie'];
+            }        
+            $this->_documentoModel->actualizarDocumento($dataDoc,$params['idDocumento']);
+            $this->_redirect('admin/pedidos/lista-pedidos');        
+        }                   
     }
     
     function imprimirAction()
