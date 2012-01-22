@@ -40,9 +40,6 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
             $this->view->idpadre = true;
         }
         $this->view->idcategoria = $params['categoria'];
-        
-
-        
     }
     public function detalleProductoAction()
     {

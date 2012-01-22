@@ -56,23 +56,37 @@ class Admin_ArticuloController extends ZExtraLib_Controller_Action {
         $form->addElement(new Zend_Form_Element_Hidden('idArticulo'));
         $form->getElement('idArticulo')->setValue($params['idArticulo']);
         $form->getElement('idArticulo')->setRequired();
+        $form->getElement('imagen')->setRequired(false);
+        
         if ($this->_request->isPost()) {
             $categoria = New Application_Model_Categoria();
             $listaSubCategoria = $categoria->getHijos($params['idcategoria']);
             foreach ($listaSubCategoria as $index => $valor) {
                 $optionSubCategoria[$valor['idcategoria']] = $valor['nombre'];
             }
-            
             $form->getElement('idsubcategoria')->addMultioptions($optionSubCategoria);
             if ($form->isValid($params)) {
-                unlink($form->imagen->getDestination() . '/' . $articulo['imagen']);
-                $extn = pathinfo($form->imagen->getFileName(), PATHINFO_EXTENSION);
                 $filter = new ZExtraLib_SeoUrl();
                 $nameFile = $filter->filter(trim($params['nombre']), '-', 0);
-                $slugBusqueda = str_replace('-', ' ', $filter->filter(trim($params['slugBusqueda']), '-', 0));
-                $form->imagen->addFilter('Rename', array('target' => $form->imagen->getDestination() . '/' . $nameFile . '-' . $params['idArticulo'] . '.' . $extn));
+                if (count($form->imagen->getFileName())) {
+                unlink($form->imagen->getDestination() . '/' . $articulo['imagen']);
+                
+                $extn = pathinfo($form->imagen->getFileName(), PATHINFO_EXTENSION);
+                $form->imagen->addFilter('Rename',
+                        array('target' => 
+                            $form->imagen->getDestination() . '/' 
+                            . $nameFile . '-' 
+                            . $params['idArticulo'] . '.' 
+                            . $extn,'overwrite' => true));
                 $form->imagen->receive();
                 $this->redimencionarImagen($form->imagen->getDestination() . '/' . $nameFile . '-' . $params['idArticulo'] . '.' . $extn);
+                }  else {
+                $extn = pathinfo($form->imagen->getDestination() . '/' . $articulo['imagen'], PATHINFO_EXTENSION);    
+                rename($form->imagen->getDestination() . '/' . $articulo['imagen'], 
+                        $form->imagen->getDestination() . '/' . $nameFile . '-' . $params['idArticulo'] . '.' . $extn);
+                }
+                echo $extn;
+                $slugBusqueda = str_replace('-', ' ', $filter->filter(trim($params['slugBusqueda']), '-', 0));
                 $page = ($this->getRequest()->getUserParam('page') == '') ? '' : 'page/' . $this->getRequest()->getUserParam('page');
                 $data['idcategoria'] = $params['idcategoria'];
                 if(isset($params['idsubcategoria'])){
