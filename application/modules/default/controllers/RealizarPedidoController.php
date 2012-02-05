@@ -89,7 +89,6 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                 
             }
         }
-
         $this->view->formRegistroCliente = $form;
     }
 
@@ -179,9 +178,10 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data ['idtipodocumento'] = $param['tipoDocumento'];
         $data ['direccion'] = $param['direccion'];
         $data ['idcliente'] = $param['idcliente'];
+        $data ['hora'] = $param['hora'].':'.$param['minuto'];
         $data ['idestado'] = 1;
         $data ['flagactivo'] = 1;
-        $data ['IGV'] = 18.00; //$param['igv'];
+        $data ['IGV'] = $this->_config['igv']; //$param['igv'];
         $data ['comentario'] = $param['informacionAdicional'];
         $idDocumento = $this->_documentoModel->crearDocumento($data);
         $total = 0;
@@ -199,8 +199,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             $this->crearDetalleDocumento($dataDetalle);
         }
         $data2 = array();
-        echo $total;
-        $data2['total'] = $total;
+        $data2['total'] = $total+$this->_config['precioenvio'];
         $this->_documentoModel->actualizarDocumento($data2, $idDocumento);
     }
     function enviarCorreo($params){

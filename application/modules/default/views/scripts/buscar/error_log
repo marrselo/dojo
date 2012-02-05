@@ -1,0 +1,2 @@
+[11-Dec-2011 17:06:09] PHP Fatal error:  Using $this when not in object context in /home/delivery/public_html/application/modules/default/views/scripts/buscar/paginator.phtml on line 2
+[11-Dec-2011 17:06:10] PHP Fatal error:  Using $this when not in object context in /home/delivery/public_html/application/modules/default/views/scripts/buscar/busqueda.phtml on line 5

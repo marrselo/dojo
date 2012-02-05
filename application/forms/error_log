@@ -1,0 +1,8 @@
+[11-Dec-2011 17:06:01] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/FormArticulo.php on line 2
+[11-Dec-2011 17:06:01] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/ComprobanteForm.php on line 3
+[11-Dec-2011 17:06:01] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/FormCliente.php on line 3
+[11-Dec-2011 17:06:01] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/AdminBannerForm.php on line 3
+[12-Dec-2011 00:46:54] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/FormCliente.php on line 3
+[12-Dec-2011 00:56:24] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/FormArticulo.php on line 2
+[12-Dec-2011 01:02:53] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/ComprobanteForm.php on line 3
+[12-Dec-2011 01:08:22] PHP Fatal error:  Class 'Zend_Form' not found in /home/delivery/public_html/application/forms/AdminBannerForm.php on line 3

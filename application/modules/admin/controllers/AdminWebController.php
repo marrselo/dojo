@@ -7,7 +7,7 @@ class Admin_AdminWebController
 
     function init() {
         parent::init();
-        $this->view->menuTop = $menuTop = array('Administrar Banner'=>'../admin-web/','Menu WEB'=>'/admin-web/lista-menu');
+        $this->view->menuTop = $menuTop = array('Administrar Banner'=> $this->view->baseUrl().'/admin/admin-web/');
         $this->_banner = new Application_Model_Banner();
          
     }

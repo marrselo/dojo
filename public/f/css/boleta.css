@@ -1,79 +1,79 @@
-@import url("base.css");
-body{color: #000;}
-#cnt_boleta{width:935px;display:block;height:800px;background: #f9f9f9 ;padding:115px 9px  0 40px;position:relative;}
-#cnt_boleta_planilla{ background: #F9F9F9;display: block;height: 1000px;padding: 115px 4px 0 37px;position: relative;width: 941px;}
-#cnt_boleta_inner{display:block;}
-#header{
-	display: block;
-	height: auto;
-	left: 39px;
-	overflow: hidden;
-	position: absolute;
-	top: 25px;
-	width: 95%;
-}
-#brand{width:380px;height:72px;display:block;margin:9px 0 0 0;float:left;}
-	.img_logo{margin-left:12px;float:left;}
-	h1.logo{display: block;font-family: "times new roman";font-size: 17px;font-weight: bold;height: 50px;line-height: 17px;margin: 0;padding: 0 0 0 208px;text-transform: uppercase;width: 180px;}
-	h2.slogan{display:block;font-family: "times new roman";font-size: 11px;font-weight: normal;height: 12px;letter-spacing: 2px;margin: 0;padding: 0 0 0 208px;width: 180px;}
-	em.rd{ display: block;font-family: "times new roman";font-size: 8px;font-style: normal;font-weight: normal;    letter-spacing: 0;margin: 0;padding: 0 0 0 208px;width: 180px;}
-	
-#cnt_desc_link{  display: block;float: left;margin-right:21px;padding: 4px 0 0;width: 212px;} 	
-#cnt_desc_link p{font-size: 15px;line-height: 17px;margin: 0;text-align: center;}
-
-#cnt_num_boleta{background: #fffd;border:2px solid #000;-moz-border-radius:10px;width:304px;float:left;padding:5px;text-align:center;}
-#cnt_num_boleta .num_ruc{font-weight:bold;font-size:20px;margin:0;}
-#cnt_num_boleta .boleta_text{font-size: 18px;font-weight: bold;letter-spacing: -1px;margin: 0 0 6px;}
-#cnt_num_boleta .num_boleta span.serial_boleta{float: left;font-size: 20px;font-weight: bold;height: 22px;line-height: 22px;margin: 0 0 0 31px;text-align: left;width: 74px;}
-#cnt_num_boleta .num_boleta span.number_boleta{float: left;font-size: 20px;font-weight: bold;letter-spacing: -1px;margin: 7px 0 0 5px;}
-
-.cnt_block_mat{margin-left:15px;display:block;width:99%;float:left;}
-.cnt_main_block_imp{display:block;}
-.cnt_cod_mat{width:158px;float:left;margin-right:3px;}
-.title{font-size: 17px;font-weight: bold;height: 18px;margin: 0;}
-.cnt_block_imp{border: 2px solid #000000;border-radius: 10px 10px 10px 10px;-moz-border-radius:10px;font-size: 18px;height: 32px;line-height: 30px;padding: 0 5px 0 5px;}
-
-.cnt_fecha_mat{float: left;margin: 0 4px 0 0;width: 156px;}
-
-.cnt_apenom_mat{ float:left;margin: 0 12px 0 0;width:690px;}
-.apenom_mat{height:34px;}
-
-.cnt_dni_mat{float: left;margin: 0 4px 0 0;width: 165px;}
-.dni_mat{border-radius: 10px 10px 10px 10px;float:left;font-size: 12px;height: 34px;line-height: 30px;padding: 0 5px 0 5px;width:125px;position: relative; top: 6px;}
-.dni_mat2{top:0;}
-.text_dni_mat{float: left;font-size: 16px;font-weight: bold;line-height: 37px;margin-right: 2px;width:40px;}
-
-.cnt_programa_mat{ float:left;margin: 0 0px 0 0;width:917px;}
-.cnt_direccionlab_mat{ float:left;margin: 0 0px 0 0;width:917px;}
-.direccionlab_mat{height:34px;}
-
- .cnt_descripcion_mat{ float:left;margin: 0 0px 0 0;width:917px;}
- 
-#cnt_boleta .descripcion_mat{height:216px;padding:0;}
-#cnt_boleta_planilla .descripcion_mat{height:489px;padding:0;}
-
-#cnt_boleta .descripcion_mat_l{width:703px;float:left;height:216px;border-right:2px solid #000;padding: 0 5px;}
-#cnt_boleta .descripcion_mat_r{width:188px;float:left;height:216px;padding: 0 5px;}
-
-#cnt_boleta_planilla .descripcion_mat_l{width:754px;float:left;height:489px;border-right:2px solid #000;padding: 0 5px;}
-#cnt_boleta_planilla .descripcion_mat_r{width:137px;float:left;height:489px;padding: 0 5px;}
-#cnt_boleta .span_mat_l{letter-spacing: 4px;width:703px;float:left;height:16px; padding: 0 5px;}
-#cnt_boleta .span_mat_r{letter-spacing: 4px;width:188px;float:left;height:16px;padding: 0 5px;}
-
-.cnt_bottom_mat_l{display:block;float:left;width: 600px;margin-right:9px;}
-	.referencia_mat{height:36px;width:578px;}
-
-	.cnt_bottom_inner_mat{margin:0;}
-	.cnt_bottom_inner_mat_l{width:435px;float:left;margin-right:8px;}
-	.nomapecont_mat{height:36px;}
-
-	.cnt_bottom_inner_mat_r{width:151px;float:left;}
-	.cnt_firma_mat{border-radius: 15px;height:119px;margin: -5px 0 0;}
-
-.cnt_bottom_mat_r{display:block;float:left;width: 314px;}
-
-#cnt_boleta .text_total{float: left;font-size: 17px;font-weight: bold;height: 18px;margin: 21px 6px 0 38px;width:78px;}
-#cnt_boleta_planilla .text_total{float: left;font-size: 17px;font-weight: bold;height: 18px;margin: 21px 41px 0 38px;width:78px;}
-
-#cnt_boleta .total_mat{border-radius: 10px 10px 10px 10px;float:left;font-size: 25px;height: 49px;line-height: 49px;margin:5px 0 0 0;padding: 0 5px 0 5px;width:171px;}
-#cnt_boleta_planilla .total_mat{border-radius: 10px 10px 10px 10px;float:left;font-size: 25px;height: 49px;line-height: 49px;margin:5px 0 0 0;padding: 0 5px 0 5px;width:134px;}
+@import url("base.css");
+body{color: #000;}
+#cnt_boleta{width:935px;display:block;height:800px;background: #f9f9f9 ;padding:115px 9px  0 40px;position:relative;}
+#cnt_boleta_planilla{ background: #F9F9F9;display: block;height: 1000px;padding: 115px 4px 0 37px;position: relative;width: 941px;}
+#cnt_boleta_inner{display:block;}
+#header{
+	display: block;
+	height: auto;
+	left: 39px;
+	overflow: hidden;
+	position: absolute;
+	top: 25px;
+	width: 95%;
+}
+#brand{width:380px;height:72px;display:block;margin:9px 0 0 0;float:left;}
+	.img_logo{margin-left:12px;float:left;}
+	h1.logo{display: block;font-family: "times new roman";font-size: 17px;font-weight: bold;height: 50px;line-height: 17px;margin: 0;padding: 0 0 0 208px;text-transform: uppercase;width: 180px;}
+	h2.slogan{display:block;font-family: "times new roman";font-size: 11px;font-weight: normal;height: 12px;letter-spacing: 2px;margin: 0;padding: 0 0 0 208px;width: 180px;}
+	em.rd{ display: block;font-family: "times new roman";font-size: 8px;font-style: normal;font-weight: normal;    letter-spacing: 0;margin: 0;padding: 0 0 0 208px;width: 180px;}
+	
+#cnt_desc_link{  display: block;float: left;margin-right:21px;padding: 4px 0 0;width: 212px;} 	
+#cnt_desc_link p{font-size: 15px;line-height: 17px;margin: 0;text-align: center;}
+
+#cnt_num_boleta{background: #fffd;border:2px solid #000;-moz-border-radius:10px;width:304px;float:left;padding:5px;text-align:center;}
+#cnt_num_boleta .num_ruc{font-weight:bold;font-size:20px;margin:0;}
+#cnt_num_boleta .boleta_text{font-size: 18px;font-weight: bold;letter-spacing: -1px;margin: 0 0 6px;}
+#cnt_num_boleta .num_boleta span.serial_boleta{float: left;font-size: 20px;font-weight: bold;height: 22px;line-height: 22px;margin: 0 0 0 31px;text-align: left;width: 74px;}
+#cnt_num_boleta .num_boleta span.number_boleta{float: left;font-size: 20px;font-weight: bold;letter-spacing: -1px;margin: 7px 0 0 5px;}
+
+.cnt_block_mat{margin-left:15px;display:block;width:99%;float:left;}
+.cnt_main_block_imp{display:block;}
+.cnt_cod_mat{width:158px;float:left;margin-right:3px;}
+.title{font-size: 17px;font-weight: bold;height: 18px;margin: 0;}
+.cnt_block_imp{border: 2px solid #000000;border-radius: 10px 10px 10px 10px;-moz-border-radius:10px;font-size: 18px;height: 32px;line-height: 30px;padding: 0 5px 0 5px;}
+
+.cnt_fecha_mat{float: left;margin: 0 4px 0 0;width: 156px;}
+
+.cnt_apenom_mat{ float:left;margin: 0 12px 0 0;width:690px;}
+.apenom_mat{height:34px;}
+
+.cnt_dni_mat{float: left;margin: 0 4px 0 0;width: 165px;}
+.dni_mat{border-radius: 10px 10px 10px 10px;float:left;font-size: 12px;height: 34px;line-height: 30px;padding: 0 5px 0 5px;width:125px;position: relative; top: 6px;}
+.dni_mat2{top:0;}
+.text_dni_mat{float: left;font-size: 16px;font-weight: bold;line-height: 37px;margin-right: 2px;width:40px;}
+
+.cnt_programa_mat{ float:left;margin: 0 0px 0 0;width:917px;}
+.cnt_direccionlab_mat{ float:left;margin: 0 0px 0 0;width:917px;}
+.direccionlab_mat{height:34px;}
+
+ .cnt_descripcion_mat{ float:left;margin: 0 0px 0 0;width:917px;}
+ 
+#cnt_boleta .descripcion_mat{height:216px;padding:0;}
+#cnt_boleta_planilla .descripcion_mat{height:489px;padding:0;}
+
+#cnt_boleta .descripcion_mat_l{width:703px;float:left;height:216px;border-right:2px solid #000;padding: 0 5px;}
+#cnt_boleta .descripcion_mat_r{width:188px;float:left;height:216px;padding: 0 5px;}
+
+#cnt_boleta_planilla .descripcion_mat_l{width:754px;float:left;height:489px;border-right:2px solid #000;padding: 0 5px;}
+#cnt_boleta_planilla .descripcion_mat_r{width:137px;float:left;height:489px;padding: 0 5px;}
+#cnt_boleta .span_mat_l{letter-spacing: 4px;width:703px;float:left;height:16px; padding: 0 5px;}
+#cnt_boleta .span_mat_r{letter-spacing: 4px;width:188px;float:left;height:16px;padding: 0 5px;}
+
+.cnt_bottom_mat_l{display:block;float:left;width: 600px;margin-right:9px;}
+	.referencia_mat{height:36px;width:578px;}
+
+	.cnt_bottom_inner_mat{margin:0;}
+	.cnt_bottom_inner_mat_l{width:435px;float:left;margin-right:8px;}
+	.nomapecont_mat{height:36px;}
+
+	.cnt_bottom_inner_mat_r{width:151px;float:left;}
+	.cnt_firma_mat{border-radius: 15px;height:119px;margin: -5px 0 0;}
+
+.cnt_bottom_mat_r{display:block;float:left;width: 314px;}
+
+#cnt_boleta .text_total{float: left;font-size: 17px;font-weight: bold;height: 18px;margin: 21px 6px 0 38px;width:78px;}
+#cnt_boleta_planilla .text_total{float: left;font-size: 17px;font-weight: bold;height: 18px;margin: 21px 41px 0 38px;width:78px;}
+
+#cnt_boleta .total_mat{border-radius: 10px 10px 10px 10px;float:left;font-size: 25px;height: 49px;line-height: 49px;margin:5px 0 0 0;padding: 0 5px 0 5px;width:171px;}
+#cnt_boleta_planilla .total_mat{border-radius: 10px 10px 10px 10px;float:left;font-size: 25px;height: 49px;line-height: 49px;margin:5px 0 0 0;padding: 0 5px 0 5px;width:134px;}

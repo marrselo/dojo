@@ -1,30 +1,30 @@
-<table class="sticky-enabled tableSelect-processed sticky-table">
-    <thead class="tableHeader-processed">
-        <tr>
-            <th class="select-all"><input type="checkbox" class="form-checkbox" title="Select all rows in this table"></th>           
-            <th>Nombre</th>
-            <th>Num Serie</th>
-            <th>Estado</th>
-            <th>Total S/.</th>
-            <th>Acciones</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if(is_array($this->listaPedidos)):
-                $i = 0;
-                foreach($this->listaPedidos as $valor):
-                $i = $i +1;
-        ?>
-       <tr class="<?php echo ($i % 2 == 0) ? "odd" : "even"; ?>">                      
-            <td><?php echo $i?></td>
-            <td><?php echo $valor['nombre'].' '.$valor['apellidopaterno'].' '.$valor['apellidomaterno']?></td>
-            <td><?php echo $valor['numeroserie'].' '.$valor['numerocomprobante']?></td>
-            <td><?php echo $valor['nombreEstado']?></td>
-            <td><?php echo $valor['total']?></td>
-            <td><img src="f/img/edit.png" alt="Modificar"  ></td>
-            <td></td>
-        </tr>
-        <?php endforeach; endif;?>
-    </tbody>
+<table class="sticky-enabled tableSelect-processed sticky-table">
+    <thead class="tableHeader-processed">
+        <tr>
+            <th class="select-all"><input type="checkbox" class="form-checkbox" title="Select all rows in this table"></th>           
+            <th>Nombre</th>
+            <th>Num Serie</th>
+            <th>Estado</th>
+            <th>Total S/.</th>
+            <th>Acciones</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if(is_array($this->listaPedidos)):
+                $i = 0;
+                foreach($this->listaPedidos as $valor):
+                $i = $i +1;
+        ?>
+       <tr class="<?php echo ($i % 2 == 0) ? "odd" : "even"; ?>">                      
+            <td><?php echo $i?></td>
+            <td><?php echo $valor['nombre'].' '.$valor['apellidopaterno'].' '.$valor['apellidomaterno']?></td>
+            <td><?php echo $valor['numeroserie'].' '.$valor['numerocomprobante']?></td>
+            <td><?php echo $valor['nombreEstado']?></td>
+            <td><?php echo $valor['total']?></td>
+            <td><img src="f/img/edit.png" alt="Modificar"  ></td>
+            <td></td>
+        </tr>
+        <?php endforeach; endif;?>
+    </tbody>
 </table>
