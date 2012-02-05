@@ -34,7 +34,6 @@ class Application_Form_FormArticulo extends Zend_Form
         $this->addElement(new Zend_Form_Element_Text('preciooferta',array('label'=>'Precio Oferta')));
         $this->addElement(new Zend_Form_Element_File('imagen'));         
         $this->addElement(new Zend_Form_Element_Submit('Enviar'));         
-        
         $frontController = Zend_Controller_Front::getInstance();
         $file = $frontController->getParam('bootstrap')->getOption('file');
         $this->getElement('codigo')->setLabel('Código');
