@@ -1,86 +1,86 @@
-body{
-    background:url(/f/img/bg.png) repeat-x;
-    font-family:verdana;
-    font-size:15px;
-    margin:0 auto;
-}
-img {
-    border: 0;
-    display: block;	
-}
-h1,h2,p{
-    font-weight:normal;
-    margin:0;
-}
-
-#contenedor{
-    margin: 0 auto;
-    text-align:left;
-    width:1000px;
-}
-
-#header{
-    height:115px;
-    padding:35px 0 0 0;
-    width:1000px;
-}
-
-#header h1{
-    color:#FFF;
-    font-size:48px;
-    line-height:46px;
-}
-
-#header h2{
-    color:#b4ff00;
-    font-size:18px;
-}
-
-#info{
-    background:url(/f/img/bg-info.png);
-    height:95px;
-    margin:10px 0 0 0;
-    padding:35px 30px 0 130px;
-    width:840px;
-}
-#navegadores {
-    margin: 1em 0;
-    width: 500px;
-    height: 420px;
-    float: left;
-    
-}
-.browser_box {
-    display: block;
-    float: left;
-    margin: 0.5em 0;
-    width: 500px;
-    
-    
-}
-.browser_box .browser_logo {
-    display: block;
-    float: left;
-    margin-right: 1em;
-    width: 90px;	
-}
-.browser_box .browser_content {
-    display: block;
-    float: left;
-    margin: 0.8em 0;
-    width: 380px;
-}
-.browser_box .browser_content h3 {
-    font-size: 24px;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
-}
-.browser_box .browser_content p {
-    color: #8f8f8f;	
-}
-.browser_box .browser_content a,
-.browser_box .browser_content a:hover {
-    color: #000000;
-    text-decoration: none;
-}
+body{
+    background:url(/f/img/bg.png) repeat-x;
+    font-family:verdana;
+    font-size:15px;
+    margin:0 auto;
+}
+img {
+    border: 0;
+    display: block;	
+}
+h1,h2,p{
+    font-weight:normal;
+    margin:0;
+}
+
+#contenedor{
+    margin: 0 auto;
+    text-align:left;
+    width:1000px;
+}
+
+#header{
+    height:115px;
+    padding:35px 0 0 0;
+    width:1000px;
+}
+
+#header h1{
+    color:#FFF;
+    font-size:48px;
+    line-height:46px;
+}
+
+#header h2{
+    color:#b4ff00;
+    font-size:18px;
+}
+
+#info{
+    background:url(/f/img/bg-info.png);
+    height:95px;
+    margin:10px 0 0 0;
+    padding:35px 30px 0 130px;
+    width:840px;
+}
+#navegadores {
+    margin: 1em 0;
+    width: 500px;
+    height: 420px;
+    float: left;
+    
+}
+.browser_box {
+    display: block;
+    float: left;
+    margin: 0.5em 0;
+    width: 500px;
+    
+    
+}
+.browser_box .browser_logo {
+    display: block;
+    float: left;
+    margin-right: 1em;
+    width: 90px;	
+}
+.browser_box .browser_content {
+    display: block;
+    float: left;
+    margin: 0.8em 0;
+    width: 380px;
+}
+.browser_box .browser_content h3 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+.browser_box .browser_content p {
+    color: #8f8f8f;	
+}
+.browser_box .browser_content a,
+.browser_box .browser_content a:hover {
+    color: #000000;
+    text-decoration: none;
+}

@@ -1,5 +1,4 @@
 <?php
-
 class Admin_ArticuloController extends ZExtraLib_Controller_Action {
 
     protected $_articuloModel;

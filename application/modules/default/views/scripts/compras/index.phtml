@@ -1,134 +1,134 @@
-<div id="bread-wrap">
-<div class="breadcrumb">
-	<a title="volver a Inicio" href="/">Inicio</a>
-        <span class="navigation-pipe">&gt;</span>
-                    <span class="navigation_page">Su carrito</span>
-            </div>
-</div>
-
-<h1 id="cart_title">Resumen de su carrito</h1>
-<div>&nbsp;</div>
-
-<?php if(count($this->listaArticuloCarrito)>0){
-    $total=0;
-    ?>
-<p class="cart_shop">Su carrito contiene <span id="summary_products_quantity"><?php echo count($this->listaArticuloCarrito) ?> productos</span></p>
-<div>&nbsp;</div>
-<div class="table_block" id="order-detail-content">
-    <table class="std" id="cart_summary">
-        <thead>
-            <tr>
-                <th class="cart_product first_item">Producto</th>
-                <th class="cart_description item">Nombre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                <th class="cart_availability item">Dispo.</th>
-                <th class="cart_unit item">Precio unitario</th>
-                <th class="cart_quantity item">Cantidad</th>
-                <th class="cart_total last_item">Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($this->listaArticuloCarrito as $index) {
-                ?>
-            <tr class=" cart_item" id="product_<?php echo $index['idarticulo']?>">
-                <td class="cart_product">
-                    <a href="/detalle-producto/<?php echo $index['idarticulo']?>">
-                        <img alt="<?php echo $index['nombre']?>" src="/imagen-articulo/<?php echo $index['imagen']?>"></a>
-                </td>
-                <td class="cart_description">
-                    <a href="/detalle-producto/<?php echo $index['idarticulo']?>"><?php echo $index['nombre']?></a>	
-                </td>
-                
-                <td class="cart_availability">
-                    <img height="14" width="14" alt="Disponible" src="http://www.floreriadetalles.com/tienda/themes/detalles/img/icon/available.gif">
-                </td>
-                <td class="cart_unit">
-                    <span id="product_price_32_62" class="price">
-                        <?php echo $index['precioventa']?>		</span>
-                </td>
-                <td class="cart_quantity">
-                    <div>
-                        <a title="Eliminar" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" id="32_62" 
-                           class="cart_quantity_delete" 
-                           rel="nofollow">
-                            <img height="13" width="11" class="icon" alt="Eliminar" 
-                                 src="/f/img/icon/delete.gif"></a>
-                    </div>
-                    <div style="float:left;" id="cart_quantity_button">
-                        <a title="Añadir" href="/realizar-pedido/add-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_up_32_62" class="cart_quantity_up" rel="nofollow">
-                            <img height="9" width="14" alt="Añadir" src="/f/img/icon/quantity_up.gif">
-                        </a>
-                        <br>
-                        <a title="sustraer" href="/realizar-pedido/restar-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_down_32_62" class="cart_quantity_down" rel="nofollow">
-                            <img height="9" width="14" alt="sustraer" src="/f/img/icon/quantity_down.gif">
-                        </a>
-                    </div>
-                    <input type="hidden" name="quantity_32_62_hidden" value="2">
-                    <input type="text" name="quantity_32_62" value="<?php echo $index['cantidadArticulo']?>" 
-                           class="cart_quantity_input" size="2">
-
-                </td>
-                <td class="cart_total">
-                    <span id="total_product_price_32_62" class="price">
-                        <?php echo $index['precioventa']*$index['cantidadArticulo']?></span>
-                </td>
-            </tr>
-            <?php 
-            $total = $total +$index['precioventa']*$index['cantidadArticulo'];
-            
-            }?>
-        </tbody>
-        
-                <tfoot>
-            <tr class="cart_total_price">
-                <td colspan="5">Total productos con IGV:</td>
-                <td id="total_product" class="price" ><?php echo $total; ?></td>
-            </tr>
-            <tr style="display: none;" class="cart_total_voucher">
-                <td colspan="5">
-                    Total vales descuento con IGV:
-                </td>
-                <td id="total_discount" class="price-discount">
-                    $0.00
-                </td>
-            </tr>
-            <tr style="display: none;" class="cart_total_voucher">
-                <td colspan="5">
-                    Total embalaje para regalo con IGV:
-                </td>
-                <td id="total_wrapping" class="price-discount">
-                    $0.00
-                </td>
-            </tr>
-            <tr style="display:none;" class="cart_total_delivery">
-                <td colspan="5">Total gastos de envío con IGV:</td>
-                <td id="total_shipping" class="price">$0.00</td>
-            </tr>
-
-            <tr class="cart_total_price">
-                <td colspan="5">Total sin IGV:</td>
-                <td id="total_price_without_tax" class="price">$218.00</td>
-            </tr>
-            <tr class="cart_total_tax">
-                <td colspan="5">Total de impuestos:</td>
-                <td id="total_tax" class="price">$0.00</td>
-            </tr>
-            <tr class="cart_total_price">
-                <td colspan="5">Total IGV incluído:</td>
-                <td id="total_price" class="price">$218.00</td>
-            </tr>
-            <tr style="display: none;" class="cart_free_shipping">
-                <td style="white-space: normal;" colspan="5">Cantidad restante que se añadirá a su carrito, afin de obtener el envío gratuito:</td>
-                <td class="price" id="free_shipping">$0.00</td>
-            </tr>
-        </tfoot>
-
-        
-    </table>
-</div>
-<p class="cart_navigation">
-	<a title="Continuar la compra" class="button_extralarge" href="/">Continuar la compra</a>
-	<a title="Siguiente" class="button_medium" href="/realizar-pedido/registrar-pedido">Registrar</a></p>
-                
-                <?php } else{?>
-<p class="warning">Su carrito está vacío</p>
+<div id="bread-wrap">
+<div class="breadcrumb">
+	<a title="volver a Inicio" href="/">Inicio</a>
+        <span class="navigation-pipe">&gt;</span>
+                    <span class="navigation_page">Su carrito</span>
+            </div>
+</div>
+
+<h1 id="cart_title">Resumen de su carrito</h1>
+<div>&nbsp;</div>
+
+<?php if(count($this->listaArticuloCarrito)>0){
+    $total=0;
+    ?>
+<p class="cart_shop">Su carrito contiene <span id="summary_products_quantity"><?php echo count($this->listaArticuloCarrito) ?> productos</span></p>
+<div>&nbsp;</div>
+<div class="table_block" id="order-detail-content">
+    <table class="std" id="cart_summary">
+        <thead>
+            <tr>
+                <th class="cart_product first_item">Producto</th>
+                <th class="cart_description item">Nombre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th class="cart_availability item">Dispo.</th>
+                <th class="cart_unit item">Precio unitario</th>
+                <th class="cart_quantity item">Cantidad</th>
+                <th class="cart_total last_item">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($this->listaArticuloCarrito as $index) {
+                ?>
+            <tr class=" cart_item" id="product_<?php echo $index['idarticulo']?>">
+                <td class="cart_product">
+                    <a href="/detalle-producto/<?php echo $index['idarticulo']?>">
+                        <img alt="<?php echo $index['nombre']?>" src="/imagen-articulo/<?php echo $index['imagen']?>"></a>
+                </td>
+                <td class="cart_description">
+                    <a href="/detalle-producto/<?php echo $index['idarticulo']?>"><?php echo $index['nombre']?></a>	
+                </td>
+                
+                <td class="cart_availability">
+                    <img height="14" width="14" alt="Disponible" src="http://www.floreriadetalles.com/tienda/themes/detalles/img/icon/available.gif">
+                </td>
+                <td class="cart_unit">
+                    <span id="product_price_32_62" class="price">
+                        <?php echo $index['precioventa']?>		</span>
+                </td>
+                <td class="cart_quantity">
+                    <div>
+                        <a title="Eliminar" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo']?>" id="32_62" 
+                           class="cart_quantity_delete" 
+                           rel="nofollow">
+                            <img height="13" width="11" class="icon" alt="Eliminar" 
+                                 src="/f/img/icon/delete.gif"></a>
+                    </div>
+                    <div style="float:left;" id="cart_quantity_button">
+                        <a title="Añadir" href="/realizar-pedido/add-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_up_32_62" class="cart_quantity_up" rel="nofollow">
+                            <img height="9" width="14" alt="Añadir" src="/f/img/icon/quantity_up.gif">
+                        </a>
+                        <br>
+                        <a title="sustraer" href="/realizar-pedido/restar-cant/idArticulo/<?php echo $index['idarticulo']?>" id="cart_quantity_down_32_62" class="cart_quantity_down" rel="nofollow">
+                            <img height="9" width="14" alt="sustraer" src="/f/img/icon/quantity_down.gif">
+                        </a>
+                    </div>
+                    <input type="hidden" name="quantity_32_62_hidden" value="2">
+                    <input type="text" name="quantity_32_62" value="<?php echo $index['cantidadArticulo']?>" 
+                           class="cart_quantity_input" size="2">
+
+                </td>
+                <td class="cart_total">
+                    <span id="total_product_price_32_62" class="price">
+                        <?php echo $index['precioventa']*$index['cantidadArticulo']?></span>
+                </td>
+            </tr>
+            <?php 
+            $total = $total +$index['precioventa']*$index['cantidadArticulo'];
+            
+            }?>
+        </tbody>
+        
+                <tfoot>
+            <tr class="cart_total_price">
+                <td colspan="5">Total productos con IGV:</td>
+                <td id="total_product" class="price" ><?php echo $total; ?></td>
+            </tr>
+            <tr style="display: none;" class="cart_total_voucher">
+                <td colspan="5">
+                    Total vales descuento con IGV:
+                </td>
+                <td id="total_discount" class="price-discount">
+                    $0.00
+                </td>
+            </tr>
+            <tr style="display: none;" class="cart_total_voucher">
+                <td colspan="5">
+                    Total embalaje para regalo con IGV:
+                </td>
+                <td id="total_wrapping" class="price-discount">
+                    $0.00
+                </td>
+            </tr>
+            <tr style="display:none;" class="cart_total_delivery">
+                <td colspan="5">Total gastos de envío con IGV:</td>
+                <td id="total_shipping" class="price">$0.00</td>
+            </tr>
+
+            <tr class="cart_total_price">
+                <td colspan="5">Total sin IGV:</td>
+                <td id="total_price_without_tax" class="price">$218.00</td>
+            </tr>
+            <tr class="cart_total_tax">
+                <td colspan="5">Total de impuestos:</td>
+                <td id="total_tax" class="price">$0.00</td>
+            </tr>
+            <tr class="cart_total_price">
+                <td colspan="5">Total IGV incluído:</td>
+                <td id="total_price" class="price">$218.00</td>
+            </tr>
+            <tr style="display: none;" class="cart_free_shipping">
+                <td style="white-space: normal;" colspan="5">Cantidad restante que se añadirá a su carrito, afin de obtener el envío gratuito:</td>
+                <td class="price" id="free_shipping">$0.00</td>
+            </tr>
+        </tfoot>
+
+        
+    </table>
+</div>
+<p class="cart_navigation">
+	<a title="Continuar la compra" class="button_extralarge" href="/">Continuar la compra</a>
+	<a title="Siguiente" class="button_medium" href="/realizar-pedido/registrar-pedido">Registrar</a></p>
+                
+                <?php } else{?>
+<p class="warning">Su carrito está vacío</p>
 <?php } ?>

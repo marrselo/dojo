@@ -10,7 +10,6 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
 
     //public $identity;
     public function init() {
-        
         parent::init();
         
         

@@ -24,4 +24,10 @@ class Application_Model_Config  extends Zend_Db_Table {
         $result = $this->listarFullCategorias();
     }
     
+    function actualizarConfig($data)
+
+    {
+        $this->update($data);
     }
+    
+}
