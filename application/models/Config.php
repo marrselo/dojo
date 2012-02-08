@@ -14,6 +14,7 @@ class Application_Model_Config  extends Zend_Db_Table {
                 ->limit(1)
                 ->query()
                 ->fetch();
+        $cache->save($result, 'listarConfig');
         }
         return $result;
     }

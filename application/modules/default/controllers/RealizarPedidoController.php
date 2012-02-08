@@ -117,6 +117,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
     }
 
     function formularioCliente() {
+        
         $date = new Zend_Date();
         
         $form = new Application_Form_FormCliente();

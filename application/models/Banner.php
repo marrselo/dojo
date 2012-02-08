@@ -6,12 +6,17 @@ class Application_Model_Banner  extends Zend_Db_Table {
     
     public function listarBanner()
     {
-
-        return $this->getAdapter()->fetchAll($this->getAdapter()
+        $cache = Zend_Registry::get('cache');
+        if (!($result = $cache->load('listarBanner'))) {
+        $result = $this->getAdapter()->fetchAll($this->getAdapter()
                 ->select()
                 ->from('banner',array('idbanner','nombre','descripcion','imagen','url'))
                 ->order('orden')
                 );
+        $cache->save($result, 'listarBanner');
+        }
+        return $result;
+
     }
     public function getBanner($idBanner)
     {        

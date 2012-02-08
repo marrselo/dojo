@@ -22,11 +22,8 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
         
         
         if ($this->getRequest()->getModuleName() == 'default') {
-            
-            
             $modelCategoria = new Application_Model_Categoria();
             $modelArticulo = new Application_Model_Articulo();
-            //();
             $this->view->listaCategoria=$modelCategoria->listarFullCategorias();
             $this->view->listaDeUnArticulosEnOferta = $modelArticulo->listarUnArticulosEnOferta();
             if(isset($this->session->listaArticulo)){

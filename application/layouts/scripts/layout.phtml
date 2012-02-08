@@ -169,7 +169,7 @@
                             <div class="block_content">
                                 <ul style="display: block;" class="tree dynamized">
                                     <li>
-                                        <a href="<?php echo $this->baseUrl() ?>/ofertas">Ofertas</a>
+                                        <a href="<?php echo $this->baseUrl() ?>/ofertas"><?php echo $this->config['nombreoferta'];?></a>
                                     </li>
                                     <?php
                                     $filter = new ZExtraLib_SeoUrl();
@@ -270,7 +270,7 @@
                         <!-- MODULE Block specials -->
                         <?php if ($this->listaDeUnArticulosEnOferta != '') { ?>
                             <div id="special_block_right" class="block products_block exclusive blockspecials">
-                                <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
+                                <h4><a href="#" title="<?php echo $this->config['nombreoferta'];?>"><?php echo $this->config['nombreoferta'];?></a></h4>
                                 <div class="block_content">
                                     <form id="form_oferta" method="Post" action="<?php echo $this->baseUrl()?>/realizar-pedido">
                                     <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>

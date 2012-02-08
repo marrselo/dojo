@@ -16,6 +16,7 @@ class Application_Form_FormCliente extends Zend_Form
                                 new Zend_Validate_StringLength(array('min'=>8,'max'=>8)));
         $this->addElement(new Zend_Form_Element_Text('dni',
                 array('label'=>'Dni',
+                      'maxlength'=>8,
                      'Validators'=>$arrayValidator)));
         $this->addElement(new Zend_Form_Element_Text('web',
                 array('label'=>'web')));
@@ -25,7 +26,7 @@ class Application_Form_FormCliente extends Zend_Form
                 array('label'=>'Correo',
                     'required'=>true,
                     'Validators'=>$arrayValidator)));
-        $arrayValidator = array(new Zend_Validate_StringLength(array('min'=>1,'max'=>15)));
+        $arrayValidator = array(new Zend_Validate_StringLength(array('min'=>1,'max'=>15)),new Zend_Validate_Alnum);
         $this->addElement(new Zend_Form_Element_Text('telefono1',
                 array('label'=>'Telefono',
                       'required'=>true,
@@ -37,6 +38,7 @@ class Application_Form_FormCliente extends Zend_Form
         $this->addElement(new Zend_Form_Element_Text('ruc',
                 array('label'=>'Ruc')));
         $this->addElement(new Zend_Form_Element_Submit('Enviar'));
+        
     }
 }
 
