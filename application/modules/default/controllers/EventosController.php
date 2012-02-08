@@ -12,4 +12,3 @@ class Default_EventosController extends ZExtraLib_Controller_Action
         $this->view->menuActive4='active';
     }
 }
-

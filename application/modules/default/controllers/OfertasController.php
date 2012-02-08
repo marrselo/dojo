@@ -10,12 +10,11 @@ class Default_OfertasController extends ZExtraLib_Controller_Action
     }
     public function indexAction()
     {
-     $this->view->headTitle('Ofertas');   
-     $paginator = Zend_Paginator::factory($this->_modelArticulos->listarArticulosEnOferta()); 
+     $this->view->headTitle('Ofertas');
+     $paginator = Zend_Paginator::factory($this->_modelArticulos->listarArticulosEnOferta());
      $paginator->setCurrentPageNumber($this->_getParam('page'));
      $paginator->setItemCountPerPage(6);
      $this->view->articulos = $paginator;
     }
     
 }
-

@@ -16,4 +16,3 @@ class Default_ZonasRepartoController extends ZExtraLib_Controller_Action
         $this->view->menuActive2='active';
     }
 }
-
