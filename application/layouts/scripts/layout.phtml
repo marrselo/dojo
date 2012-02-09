@@ -169,7 +169,7 @@
                             <div class="block_content">
                                 <ul style="display: block;" class="tree dynamized">
                                     <li>
-                                        <a href="<?php echo $this->baseUrl() ?>/ofertas"><?php echo $this->config['nombreoferta'];?></a>
+                                        <a href="<?php echo $this->baseUrl() ?>/ofertas">Ofertas</a>
                                     </li>
                                     <?php
                                     $filter = new ZExtraLib_SeoUrl();
@@ -233,17 +233,27 @@
 
                                             <?php
                                             foreach ($this->listaArticuloCarrito as $index) {
+                                                $flagOferta = 0;
+                                                if($index['preciooferta']!=''&&$index['flagoferta']){
+                                                $flagOferta = 1;
+                                                }
                                                 ?>
                                                 <dt class="first_item" id="cart_block_product_<?php echo $index['idarticulo'] ?>">
-                                                    <span class="quantity-formated"><span class="quantity"><?php echo $index['cantidadArticulo'] ?></span>x</span>
+                                                    <span class="quantity-formated">
+                                                        <span class="quantity"><?php echo $index['cantidadArticulo'] ?>
+                                                        </span>
+                                                        x
+                                                    </span>
                                                     <a title="<?php echo $index['nombre'] ?>" href="/detalle-producto/<?php echo $index['slug'] ?>" class="cart_block_product_name">
-                                                        <?php echo substr($index['nombre'], 0,21); ?>..</a>
-                                                    <span class="remove_link"><a title="eliminar este producto de mi carrito" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo'] ?>" 
-                                                                                 class="ajax_cart_block_remove_link" rel="nofollow">&nbsp;</a></span>
-                                                    <span class="price">S/. <?php echo $index['precioventa'] ?></span>
+                                                        <?php echo substr($index['nombre'],0,21); ?>..</a>
+                                                    <span class="remove_link">
+                                                        <a title="eliminar este producto de mi carrito" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo'] ?>" 
+                                                           class="ajax_cart_block_remove_link" rel="nofollow">&nbsp;
+                                                        </a>
+                                                    </span>
+                                                    <span class="price">S/. <?php echo $flagOferta==1?$index['preciooferta']:$index['precioventa'] ?></span>
                                                 </dt>
-                                                <?php
-                                                $total = $total + $index['precioventa'] * $index['cantidadArticulo'];
+                                                <?php $total = $total + ($flagOferta==1?$index['preciooferta'] * $index['cantidadArticulo']:$index['precioventa'] * $index['cantidadArticulo']);
                                             }
                                             ?>
                                         </dl>
@@ -253,11 +263,11 @@
                                     <div id="cart-prices">
                                         <div id="cart-prices-box">
                                             <span>Precio Envío</span>
-                                            <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">S/. 6.00</span>
+                                            <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">S/. <?php echo $this->config['precioenvio'] ?></span>
                                         </div>
                                         <div id="cart-prices-box">
                                             <span>Total</span>
-                                            <span id="cart_block_total" class="price ajax_block_cart_total">S/. <?php echo $total+6.00; ?></span>
+                                            <span id="cart_block_total" class="price ajax_block_cart_total">S/. <?php echo $total + $this->config['precioenvio']; ?></span>
                                         </div>
                                     </div>
                                     <p id="cart-buttons">
@@ -270,7 +280,7 @@
                         <!-- MODULE Block specials -->
                         <?php if ($this->listaDeUnArticulosEnOferta != '') { ?>
                             <div id="special_block_right" class="block products_block exclusive blockspecials">
-                                <h4><a href="#" title="<?php echo $this->config['nombreoferta'];?>"><?php echo $this->config['nombreoferta'];?></a></h4>
+                                <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
                                 <div class="block_content">
                                     <form id="form_oferta" method="Post" action="<?php echo $this->baseUrl()?>/realizar-pedido">
                                     <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>

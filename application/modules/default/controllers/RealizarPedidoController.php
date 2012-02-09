@@ -99,8 +99,9 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             if ($form->isValid($params)) {
                 $params['idcliente'] = $this->registrarCLiente($params);
                 $this->generarComprobante($params);
-                echo  $this->enviarCorreo($params['nombre'], $params['correo'],$params['direccion']);
-                
+                $this->session->mensajeConfirmacion = $this->enviarCorreo($params['nombre'], $params['correo'],$params['direccion'],$params['fechaEntrega'].' '.$params['hora'].':'.$params['minuto']);
+                unset($this->session->listaArticulo);
+                $this->_redirect('/realizar-pedido/confirmado');
             } else {
                 $this->_flashMessenger->addMessage('No se pudo realizar el pedido, por favor Vuelva ha intentarlo');
                 $this->view->formRegistroCliente = $form;
@@ -114,6 +115,15 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
 
     function formatocorreoAction() {
         $this->view->listaArticulo = $this->session->listaArticulo;
+    }
+    
+    function confirmadoAction() {
+        if(isset($this->session->mensajeConfirmacion)){
+        $this->view->mensajeConfirmacion = $this->session->mensajeConfirmacion;
+        unset($this->session->mensajeConfirmacion);
+        }else{
+        $this->_redirect('/realizar-pedido');
+        }
     }
 
     function formularioCliente() {
@@ -218,7 +228,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $this->_documentoModel->actualizarDocumento($data2, $idDocumento);
     }
 
-    function enviarCorreo($nombreUsuario, $email,$direccion) {
+    function enviarCorreo($nombreUsuario, $email,$direccion,$fechaHora) {
         $correo = Zend_Registry::get('mail');
         $correo = new Zend_Mail('utf-8');
         $apodo = 'nazart';
@@ -254,7 +264,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             <tr>
                 <td align="left">Pedido: 
                 <strong><span style="color:#9c0038">#000006</span> 
-                realizado el 2012-01-05 23:58:58
+                realizado el '.$fechaHora.'
                 </strong> <br>Forma de Pago: <strong>Pago contra reembolso</strong></td>
             </tr>
             <tr>
