@@ -263,7 +263,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             </tr>
             <tr>
                 <td align="left">Pedido: 
-                <strong><span style="color:#9c0038">#000006</span> 
+                <strong>
                 realizado el '.$fechaHora.'
                 </strong> <br>Forma de Pago: <strong>Pago contra reembolso</strong></td>
             </tr>
@@ -282,6 +282,11 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                             </tr>';
         $totalPorductos = 0;
         foreach ($this->session->listaArticulo as $index) {
+                                $flagOferta = 0;
+                    if($index['preciooferta']!=''&&$index['flagoferta']){
+                        $flagOferta = 1;
+                    }
+
             $body .= '<tr style="background-color:#ebecee">
                                 <td style="padding:0.6em 0.4em"><strong>' . $index['nombre'] . '</strong></td>
                                     <td style="padding:0.6em 0.4em;text-align:right">
@@ -323,7 +328,6 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                             </tr>
                             <tr>
                                 <td style="padding:0.5em 0 0.5em 0.5em;background-color:#ebecee">
-                                    <span style="color:#9c0038;font-weight:bold">' . $nombreUsuario . '</span> 
                                     <br>' . $direccion . '
                                     
                                 </td>
