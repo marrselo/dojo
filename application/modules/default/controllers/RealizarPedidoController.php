@@ -282,15 +282,15 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                             </tr>';
         $totalPorductos = 0;
         foreach ($this->session->listaArticulo as $index) {
-                                $flagOferta = 0;
-                    if($index['preciooferta']!=''&&$index['flagoferta']){
+                    $flagOferta = 0;
+                    if( $index['preciooferta']!='' && $index['flagoferta']){
                         $flagOferta = 1;
                     }
 
             $body .= '<tr style="background-color:#ebecee">
                                 <td style="padding:0.6em 0.4em"><strong>' . $index['nombre'] . '</strong></td>
                                     <td style="padding:0.6em 0.4em;text-align:right">
-                                    S/. ' . $index['precioventa'] . '</td>
+                                    S/. ' . (($flagOferta==1)?$index['preciooferta']:$index['precioventa']) . '</td>
                                 <td style="padding:0.6em 0.4em;text-align:center">
                                     ' . $index['cantidadArticulo'] . '
                                 </td>
@@ -298,7 +298,8 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                                     S/. ' . $index['cantidadArticulo'] * $index['precioventa'] . '
                                         </td>
                             </tr>';
-            $totalPorductos = + $index['cantidadArticulo'] * $index['precioventa'];
+            $totalPorductos = + ($flagOferta==1?($index['preciooferta'] * $index['cantidadArticulo']):($index['precioventa'] * $index['cantidadArticulo']));
+//            $total = $total + ($flagOferta==1?$index['preciooferta'] * $index['cantidadArticulo']:$index['precioventa'] * $index['cantidadArticulo'])
         }
         $body.='<tr style="text-align:right">
                                 <td colspan="3" style="background-color:#b9babe;padding:0.6em 0.4em">Precio Productos</td>
