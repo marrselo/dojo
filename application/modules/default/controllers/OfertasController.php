@@ -15,6 +15,7 @@ class Default_OfertasController extends ZExtraLib_Controller_Action
      $paginator->setCurrentPageNumber($this->_getParam('page'));
      $paginator->setItemCountPerPage(6);
      $this->view->articulos = $paginator;
+     $this->view->flagOferta = 1;
     }
     
 }

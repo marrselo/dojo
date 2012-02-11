@@ -55,6 +55,7 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
         $this->view->articulo = $dataArticulo;
         $this->view->articuloRelacionado = $this->_modelRelacionarArticulo->listarRelacionArticulo($params['producto']);
         $this->view->headMeta()->setProperty('og:image', $this->view->baseUrl().'/imagen-articulo/'.$dataArticulo['imagen'] );
+        $this->view->headMeta()->setProperty('og:description', $dataArticulo['nombre'].': '.$dataArticulo['descripcion']);
     }
     
     

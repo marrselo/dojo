@@ -12,11 +12,12 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
     public function init() {
         parent::init();
                 $this->view->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
-        $this->view->headMeta()->setProperty('og:title', 'delivery premium');
+        $this->view->headMeta()->setProperty('og:title', 'Delivery Premium');
         $this->view->headMeta()->setProperty('og:type', 'author');
+        $this->view->headMeta()->setProperty('og:description', 'Bienvenido a Delivery Premium, Entrar');
         $this->view->headMeta()->setProperty('og:url', $this->view->baseUrl().$_SERVER['REQUEST_URI']);
         $this->view->headMeta()->setProperty('og:image', 'http://deliverypremiumsac.com/f/img/logo.png');
-        $this->view->headMeta()->setProperty('og:site_name', 'delivery premium');
+        $this->view->headMeta()->setProperty('og:site_name', 'Delivery Premium');
         $this->view->headMeta()->setProperty('og:admins', '698823485');
         /*
         <meta property="og:title" content="delivery premium" />
