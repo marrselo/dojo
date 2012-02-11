@@ -30,6 +30,7 @@ class Default_ErrorController extends Zend_Controller_Action
      */
     public function errorAction()
     {
+        Zend_Layout::getMvcInstance()->disableLayout();
         $errors = $this->_getParam('error_handler');
         
         switch ($errors->type) { 
@@ -49,6 +50,8 @@ class Default_ErrorController extends Zend_Controller_Action
         
         $this->view->exception = $errors->exception;
         $this->view->request   = $errors->request;
+        
+        
     }
 
 

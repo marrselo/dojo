@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <meta property="og:title" content="delivery premium" />
+        <meta property="og:type" content="author" />
+        <meta property="og:url" content="http://deliverypremiumsac.com" />
+        <meta property="og:image" content="http://deliverypremiumsac.com/f/img/logo.png" />
+        <meta property="og:site_name" content="delivery premium" />
+        <meta property="fb:admins" content="698823485" />
+        <link href="/f/css/global.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockpaymentlogo.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockpermanentlinks.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockviewed.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockcart.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockmyaccount.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/editorial.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockbestsellers.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockcategories.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockspecials.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockcurrencies.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blocknewproducts.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockuserinfo.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blocklanguages.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockmanufacturer.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockcms.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blocktags.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blockstore.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/f/css/blocknewsletter.css" rel="stylesheet" type="text/css" media="all">        
+        <?php echo $this->headLink() ?>
+        <?php echo $this->headStyle() ?>
+            <?php if ($this->slideshow) { ?>
+        <link href="/f/css/banner.css" rel="stylesheet" type="text/css" media="all">
+            <?php } ?>
+       <script type="text/javascript" src="/f/js/jquery-1.js"></script>
+       <script type="text/javascript" src="/f/js/jquery.easing.1.3.js"></script>
+       <script type="text/javascript" src="/f/js/jquery.roundabout.js"></script>
+       
+            <?php echo $this->headScript() ?>
+       
+                    <?php if ($this->slideshow) { ?>
+       <script type="text/javascript" src="/f/js/s3Slider.js"></script>
+        <?php } ?>
+
+        <script type="text/javascript">
+        if($.browser.version=='7.0' || $.browser.version=='6.0'){
+        window.location="/update-browser";
+        }
+        </script>
+<?php if ($this->slideshow) { ?>
+            <script type="text/javascript">
+        $(document).ready(function() {
+        
+            $('#slider1').s3Slider({
+                timeOut: 4000 
+            });
+        });
+        </script>
+<?php } ?>        
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28520842-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>        
+        </head>
+        <body id="index">
+            <div id="page">
+                <!-- Header -->
+                <div id="header">
+                    <div id="header-wrapper">
+                        <!-- Logo -->
+                        <div class="header-middle">
+                            <a id="header_logo" href="<?php echo $this->baseUrl(); ?>" title="Delivery Premium">
+                                <img class="logo" src="<?php echo $this->baseUrl() ?>/f/img/logo.png" alt="Delivery Premium">
+                            </a>
+                            <div id="header_right">
+                                <!-- Block user information module HEADER -->
+                                <div id="header_user">
+                                    <p id="header_user_info">
+                                        Bienvenido,
+                                        <a href="#">Entrar</a>
+                                    </p>
+                                </div>
+                                <!-- /Block user information module HEADER -->
+                                <div id="phone_block">
+                                    <span>Central telefónica</span>
+                                    <h4>355-8888</h4>
+                                </div>
+                                <div id="social_block">
+                                    <script>(function(d, s, id) {
+                                        var js, fjs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) return;
+                                        js = d.createElement(s); js.id = id;
+                                        js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }(document, 'script', 'facebook-jssdk'));</script>
+                                    <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div id="menu-top">
+                        <ul id="menu">
+                            <li><a href="/" class="<?php echo $this->menuActive1 ?>">Inicio</a></li>
+                            <li><a href="/zonas-reparto" class="<?php echo $this->menuActive2 ?>">Zonas de Reparto</a></li>	
+                            <li><a href="/realizar-pedido" class="<?php echo $this->menuActive3 ?>">Realizar Pedido</a></li>
+                            <li><a href="/eventos" class="<?php echo $this->menuActive4 ?>">Eventos</a></li>
+                            <li><a href="/contacto" class="<?php echo $this->menuActive5 ?>">Contacto</a></li>
+                        </ul>
+                        <!-- Block search module -->
+                        <div id="search_block">
+                            <h4>Buscar</h4>
+                            <form method="get" action="/buscar" id="searchbox">
+                                <p class="block_content">
+                                    <input class="search_query" id="search_query_block" name="search_query" value="Buscar" onfocus="if (this.value == 'Buscar') this.value = ''" onblur="if (this.value == '') this.value = 'Buscar'" type="text">
+                                </p>
+                            </form>
+                        </div>	
+                    </div>
+
+                    <?php if ($this->slideshow) { ?>
+                        <!-- Show slideshow in homepage -->
+                        <div id="slideshow" >
+                            <div id="slider1">
+                                <ul id="slider1Content">
+                                    <?php
+                                    if (is_array($this->listaBanner)):
+                                        foreach ($this->listaBanner as $index => $value):
+                                            ?>
+                                            <li class="slider1Image">
+                                                <a href="<?php echo $value['url'] ?>">
+                                                    <img src="../../imagen-banner/<?php echo $value['imagen'] ?>" alt="1" />
+                                                </a>
+                                                <span class="left">
+                                                    <strong>
+                                                        <?php echo $value['nombre'] ?>
+                                                    </strong>
+                                                    <br />
+                                                    <?php echo $value['descripcion'] ?>
+                                                </span>
+                                            </li>
+                                        <?php endforeach;
+                                    endif; ?>
+                                    <div class="clear slider1Image">
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                </div>
+                <div id="columns">
+                    <!-- Left -->
+                    <div id="left_column" class="column">
+                        <!-- Block categories module -->
+                        <!-- /Block categories module -->
+                        <div class="fb-like-box" data-href="http://www.facebook.com/deliverypremium" data-width="220" data-show-faces="true" data-stream="false" data-header="true"></div>
+                    </div>
+                    <!-- Center -->
+                    <div id="center_column">
+                        <!-- MODULE Home Featured Products -->
+                        <?php echo $this->layout()->content ?>
+                        <!-- /MODULE Home Featured Products -->
+                    </div>
+                    <div id="right_column" class="column">
+                        <!-- MODULE Block cart -->
+                        <div id="cart_block" class="block exclusive">
+                            <h4>
+                                <a href="/realizar-pedido">Mi Carrito</a>
+                            </h4>
+                            <div class="block_content">
+                                <!-- block summary -->
+                                <div id="cart_block_summary" class="collapsed">
+                                    <span class="ajax_cart_quantity" style="display:none;">0</span>
+                                    <span class="ajax_cart_product_txt_s" style="display:none">productos</span>
+                                    <span class="ajax_cart_product_txt">producto</span>
+                                    <span class="ajax_cart_total" style="display:none">$0.00</span>
+                                    <span class="ajax_cart_no_product">(vacío)</span>
+                                </div>
+                                <!-- block list of products -->
+                                <div id="cart_block_list" class="expanded">
+                                    <?php
+                                    $total = 0;
+                                    if (count($this->listaArticuloCarrito) > 0) {
+                                        ?>
+                                        <dl class="products">
+
+                                            <?php
+                                            foreach ($this->listaArticuloCarrito as $index) {
+                                                $flagOferta = 0;
+                                                if($index['preciooferta']!=''&&$index['flagoferta']){
+                                                $flagOferta = 1;
+                                                }
+                                                ?>
+                                                <dt class="first_item" id="cart_block_product_<?php echo $index['idarticulo'] ?>">
+                                                    <span class="quantity-formated">
+                                                        <span class="quantity"><?php echo $index['cantidadArticulo'] ?>
+                                                        </span>
+                                                        x
+                                                    </span>
+                                                    <a title="<?php echo $index['nombre'] ?>" href="/detalle-producto/<?php echo $index['slug'] ?>" class="cart_block_product_name">
+                                                        <?php echo substr($index['nombre'],0,21); ?>..</a>
+                                                    <span class="remove_link">
+                                                        <a title="eliminar este producto de mi carrito" href="/realizar-pedido/eliminar-carrito/idArticulo/<?php echo $index['idarticulo'] ?>" 
+                                                           class="ajax_cart_block_remove_link" rel="nofollow">&nbsp;
+                                                        </a>
+                                                    </span>
+                                                    <span class="price">S/. <?php echo $flagOferta==1?$index['preciooferta']:$index['precioventa'] ?></span>
+                                                </dt>
+                                                <?php $total = $total + ($flagOferta==1?$index['preciooferta'] * $index['cantidadArticulo']:$index['precioventa'] * $index['cantidadArticulo']);
+                                            }
+                                            ?>
+                                        </dl>
+                                    <?php } else { ?>
+                                        <p id="cart_block_no_products">Sin producto</p>
+                                    <?php } ?>    
+                                    <div id="cart-prices">
+                                        <div id="cart-prices-box">
+                                            <span>Precio Envío</span>
+                                            <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">S/. <?php echo $this->config['precioenvio'] ?></span>
+                                        </div>
+                                        <div id="cart-prices-box">
+                                            <span>Total</span>
+                                            <span id="cart_block_total" class="price ajax_block_cart_total">S/. <?php echo $total + $this->config['precioenvio']; ?></span>
+                                        </div>
+                                    </div>
+                                    <p id="cart-buttons">
+                                        <a href="<?php echo $this->baseUrl() ?>/realizar-pedido" class="button_blockcart" title="Carrito">Carrito</a>			<a href="<?php echo $this->baseUrl() ?>/realizar-pedido/registrar-pedido" id="button_order_cart" class="button_blockcart " title="Confirmar">Confirmar</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /MODULE Block cart -->
+                        <!-- MODULE Block specials -->
+                        <?php if ($this->listaDeUnArticulosEnOferta != '') { ?>
+                            <div id="special_block_right" class="block products_block exclusive blockspecials">
+                                <h4><a href="#" title="Ofertas">Oferta Reciente</a></h4>
+                                <div class="block_content">
+                                    <form id="form_oferta" method="Post" action="<?php echo $this->baseUrl()?>/realizar-pedido">
+                                    <h5><a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>"><?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?></a></h5>
+                                    <p class="description"><?php echo $this->listaDeUnArticulosEnOferta['descripcion']; ?></p>
+                                    <div class="product_image">
+                                        <a href="<?php echo $this->baseUrl()?>/detalle-producto/<?php echo $filter->filter(trim($this->listaDeUnArticulosEnOferta['nombre']), '-', 0)?>-<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>">
+                                            <input type="hidden" 
+                                                   value="<?php echo $this->listaDeUnArticulosEnOferta['idarticulo']; ?>" 
+                                                   name="producto" id="hidden_idArticulo_oferta">
+                                            <input type="hidden" 
+                                                   value="1" 
+                                                   name="cantidad" id="hidden_cantidadArticulo_oferta">
+                                            <img src="/imagen-articulo/<?php echo $this->listaDeUnArticulosEnOferta['imagen']; ?>" 
+                                                 alt="/imagen-articulo/<?php echo $this->listaDeUnArticulosEnOferta['imagen']; ?>" 
+                                                 title="<?php echo $this->listaDeUnArticulosEnOferta['nombre']; ?>">
+                                        </a>
+                                    </div>
+                                    <span class="price-discount">Antes S/. <?php echo $this->listaDeUnArticulosEnOferta['precioventa']; ?></span>
+                                    <span class="price">S/. <?php echo $this->listaDeUnArticulosEnOferta['preciooferta']; ?></span>
+                                    <a class="special-addcart ajax_add_to_cart_button" 
+                                       href="#" 
+                                       title="Add to cart"
+                                       id="addToCartOfert"
+                                       >
+                                        Agregar a carrito
+                                    </a>
+                                    <p>
+                                        <a href="<?php echo $this->baseUrl() ?>/ofertas/" title="Ver todas las ofertas" class="button_large">Ver todas las ofertas</a>
+                                    </p>
+                                    </form>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <!-- /MODULE Block specials -->
+                        <div class="box-gray">
+                            <h4>Se aceptan tarjetas</h4>
+                            <a href="#"> 
+                                <img src="<?php echo $this->baseUrl() ?>/f/img/payment001.png"></a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!-- Footer -->
+                <div id="footer">
+                    <div id="footer_top">
+                        <div class="info">
+                            SERVICIO DE REPARTO EXCLUSIVO.<br />
+                            <span style="color:#FFF; font-size:15px">
+                                Atención de repartos de Lunes a Jueves de 7pm a 3am y Viernes Sábado y Domingo de 7pm a 4:30am</span><br /><br />
+                            TOMAR BEBIDAS ALCOHÓLICAS EN EXCESO ES DAÑINO
+                        </div>
+                        <div class="logo">
+                            <a href="<?php echo $this->baseUrl() ?>"><img src="<?php echo $this->baseUrl() ?>/f/img/logo_footer.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+        <script type="text/javascript">
+         $(function() {
+                $("#addToCartOfert").click(function(e){
+                    e.preventDefault();
+                    $("#form_oferta").submit();
+                }) 
+             $("#categories_block_left ul li:last-child").addClass("last");
+            });   
+
+        </script>
+
+        </html>
