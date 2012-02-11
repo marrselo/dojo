@@ -54,6 +54,7 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
         $this->view->subCategoria = $this->_modelCategorias->listarUnaCategoria($dataArticulo['idsubcategoria']);
         $this->view->articulo = $dataArticulo;
         $this->view->articuloRelacionado = $this->_modelRelacionarArticulo->listarRelacionArticulo($params['producto']);
+        $this->view->headMeta()->setProperty('og:image', $this->view->baseUrl().'/imagen-articulo/'.$dataArticulo['imagen'] );
     }
     
     

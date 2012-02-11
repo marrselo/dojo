@@ -11,8 +11,21 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
     //public $identity;
     public function init() {
         parent::init();
-        
-        
+                $this->view->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
+        $this->view->headMeta()->setProperty('og:title', 'delivery premium');
+        $this->view->headMeta()->setProperty('og:type', 'author');
+        $this->view->headMeta()->setProperty('og:url', $this->view->baseUrl().$_SERVER['REQUEST_URI']);
+        $this->view->headMeta()->setProperty('og:image', 'http://deliverypremiumsac.com/f/img/logo.png');
+        $this->view->headMeta()->setProperty('og:site_name', 'delivery premium');
+        $this->view->headMeta()->setProperty('og:admins', '698823485');
+        /*
+        <meta property="og:title" content="delivery premium" />
+        <meta property="og:type" content="author" />
+        <meta property="og:url" content="http://deliverypremiumsac.com" />
+        <meta property="og:image" content="http://deliverypremiumsac.com/f/img/logo.png" />
+        <meta property="og:site_name" content="delivery premium" />
+        <meta property="fb:admins" content="698823485" />
+        */
         $this->session = (!isset($this->session)) ? new Zend_Session_Namespace('dojo') : null;
         $this->_identity = Zend_Auth::getInstance()->getIdentity();
         $this->_layout = Zend_Layout::getMvcInstance();
