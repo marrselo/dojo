@@ -16,8 +16,7 @@ class Admin_ConfigController extends ZExtraLib_Controller_Action {
                 $data['precioenvio'] = $params['precioenvio'];
                 $data['tipocambio']  = $params['tipocambio'];
                 $data['nombreoferta']= $params['nombreoferta'];
-                
-                $config->actualizarConfig($data);
+                $config->insertConfig($data);
                 $this->_redirect('/admin/config');
             }
         }
