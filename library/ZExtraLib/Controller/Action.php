@@ -19,21 +19,11 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
         $this->view->headMeta()->setProperty('og:image', 'http://deliverypremiumsac.com/f/img/logo.png');
         $this->view->headMeta()->setProperty('og:site_name', 'Delivery Premium');
         $this->view->headMeta()->setProperty('og:admins', '698823485');
-        /*
-        <meta property="og:title" content="delivery premium" />
-        <meta property="og:type" content="author" />
-        <meta property="og:url" content="http://deliverypremiumsac.com" />
-        <meta property="og:image" content="http://deliverypremiumsac.com/f/img/logo.png" />
-        <meta property="og:site_name" content="delivery premium" />
-        <meta property="fb:admins" content="698823485" />
-        */
         $this->session = (!isset($this->session)) ? new Zend_Session_Namespace('dojo') : null;
         $this->_identity = Zend_Auth::getInstance()->getIdentity();
         $this->_layout = Zend_Layout::getMvcInstance();
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         $this->initView();
-        
-        
         if ($this->getRequest()->getModuleName() == 'default') {
             $modelCategoria = new Application_Model_Categoria();
             $modelArticulo = new Application_Model_Articulo();
@@ -84,6 +74,7 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
                             ->prependFile("/css/fix-ie.css", 'text/css', array("media" => "screen", "conditional" => "lt IE 7"));
                 }
 
+                
                 $this->view->perfilUsuario = array();
             }
         }

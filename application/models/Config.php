@@ -21,11 +21,10 @@ class Application_Model_Config  extends Zend_Db_Table {
     function clearCache(){
         $cache = Zend_Registry::get('cache');
         $cache->remove('listarConfig');
-        $result = $this->listarFullCategorias();
+        $result = $this->listarConfig();
     }
     
     function actualizarConfig($data)
-
     {
         $this->update($data);
     }

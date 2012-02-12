@@ -16,8 +16,9 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $this->_detalleDocumentoModel = new Application_Model_DetalleDocumento();
         $this->_usuarioModel = new Application_Model_Usuario();
         $this->view->menuTop = $menuTop = array('Nuevo Pedido' => '/pedidos/index','Lista Pedidos' => 'pedidos/lista-pedidos');
+        $this->view->headLink()->appendStylesheet("/f/css/jquery-ui-1.8.17.custom.css");
+        $this->view->headScript()->appendFile('/f/js/jquery-ui-1.8.17.custom.min.js');
     }
-
     function ajaxSearchClientesAction() {
         $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
@@ -81,11 +82,8 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $form = new Application_Form_FormCliente();
         $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
         $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/cliente.phtml'))));
-
         $this->view->formularioCliente = $form;
         $formComprobantes = $this->getFormGenerarComprobante();
-
-
         if ($this->_request->isPost()) {
             $params = $this->_getAllParams();
             $comprobante = new Application_Model_Comprobante();
