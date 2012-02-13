@@ -3,7 +3,7 @@
 class Application_Form_FormCliente extends Zend_Form
 {
     public function init() {
-        $this->setMethod('Post');
+        $this->setMethod('Post');        
         $this->addElement(new Zend_Form_Element_Text('apellidomaterno',
                 array('label'=>'Apellido Materno','required'=>true)));
         $this->addElement(new Zend_Form_Element_Text('apellidopaterno',
@@ -28,8 +28,7 @@ class Application_Form_FormCliente extends Zend_Form
                     'Validators'=>$arrayValidator)));
         $arrayValidator = array(new Zend_Validate_StringLength(array('min'=>1,'max'=>15)),new Zend_Validate_Alnum);
         $this->addElement(new Zend_Form_Element_Text('telefono1',
-                array('label'=>'Telefono',
-                      'required'=>true,
+                array('label'=>'Telefono',                      
                       'Validators'=>$arrayValidator)));
         $this->addElement(new Zend_Form_Element_Text('telefono2',
                 array('label'=>'Movil')));
