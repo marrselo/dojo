@@ -176,15 +176,17 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
                 $idcliente = $this->_clienteModel->crearCliente($data);
                 $data = $this->_clienteModel->listarUnCliente($idcliente);
                 $messages = 'Usuario registrado';
-                $estado = 1;
+                $estado = 1;                
+            }else{
+                $estado = 0;
+                $data = array();
             }
             $messages = $form->getMessages();
-            $estado = 0;
-            $data = array();
+            
         }
         echo $this->_helper->json(array('messages' => $messages,
             'estado' => $estado,
-            'data' => $data));
+            'data2' => $data));
     }
 
     function crearDetalleDocumento($param) {
