@@ -29,8 +29,12 @@ class Application_Model_Usuario  extends Zend_Db_Table {
         $perfilModel = new Application_Model_Perfil();
         $this->insert($data);
         $perfilModel->crearPerfil($menu, $this->getAdapter()->lastInsertId());
-        
     }
+    
+    public function crearUsuarioCliente($data){
+        $this->insert($data);
+    }
+    
     public function eliminarUsuario($idusuario){
         $where = $this->getAdapter()->quoteInto('idusuario = ?', $idusuario);
         $data = array('estado'=>'0');
