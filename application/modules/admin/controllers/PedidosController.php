@@ -149,7 +149,11 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/generacomrpobante.phtml'))));
         return $form;
     }
-    
+    function getFormEditarComprobante() {
+        $form = new Application_Form_FormGeneraComrpobante();
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/editarcomprobante.phtml'))));
+        return $form;
+    }
     function visualizarComprobanteAction(){
         
         
@@ -260,12 +264,45 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
     
     function imprimirAction()
     {
-         $this->_helper->layout()->disableLayout();
+        $this->_helper->layout()->disableLayout();
         $params = $this->_getAllParams();
         $idDocumento = $params['idDocumento'];
         $this->view->datosDocumento = $this->_documentoModel->datosDocumento($params['idDocumento']);
        
         
+    }
+    
+    function editarPedidosAction()
+    {
+        $params= $this->_getAllParams();
+        $this->view->datosDocumento = $this->_documentoModel->datosDocumento($params['idDocumento']);
+        //print_r($this->view->datosDocumento);
+          /*************************/
+        $this->session->articuloEnLista = array();
+        $date = new Zend_Date();
+        $form = new Application_Form_FormCliente();
+        $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/cliente.phtml'))));
+        $this->view->formularioCliente = $form;
+        $formComprobantes = $this->getFormEditarComprobante();
+        if ($this->_request->isPost()) {
+            $params = $this->_getAllParams();
+            $comprobante = new Application_Model_Comprobante();
+            $serieComprobante = $comprobante->listarNumSerieComprobantes($params['tipoDocumento']);
+            foreach ($serieComprobante as $index) {
+                $arraySerie[$index['serie']] = $index['serie'];
+            }
+            $formComprobantes->getElement('numSerie')->setMultiOptions($arraySerie);
+            if ($formComprobantes->isValid($params)) {
+                $this->generarComprobante($params);
+                echo 'generado';
+            }
+        }
+
+        //$formComprobantes->setAction('/admin/pedidos/generar-comprobante');
+        $formComprobantes->getElement('fechaEntrega')
+                ->setValue($date->now()->getDate()->get('YYYY-mm-dd'));
+        $this->view->formEditarComprobantes = $formComprobantes;
     }
 
 }
