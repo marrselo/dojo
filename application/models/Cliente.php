@@ -54,7 +54,6 @@ class Application_Model_Cliente  extends Zend_Db_Table {
         if ($idCliente!='')
             $response->where('idcliente != ?', $idCliente);
         return $this->getAdapter()->fetchAll($response);
-        
     }
     
     public function verificarDniCliente($dni,$idCliente = null) {

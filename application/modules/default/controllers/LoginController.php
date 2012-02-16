@@ -41,7 +41,12 @@ class Default_LoginController extends ZExtraLib_Controller_Action {
                 }
             }
         }
-   public function formLogin(){
+        public function loginAction(){
+            $params =  $this->_request->getParams();
+            $this->auth($params['login'], $params['password'],1);
+            $this->_redirect($_SERVER['HTTP_REFERER']);
+        }
+        public function formLogin(){
             $form = new Zend_Form();
             $form->setMethod('Post');
             $form->addElement(new Zend_Form_Element_Text('login',array('required'=> true,'label'=>'Correo')));

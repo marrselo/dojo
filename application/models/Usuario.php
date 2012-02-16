@@ -35,6 +35,8 @@ class Application_Model_Usuario  extends Zend_Db_Table {
         $this->insert($data);
     }
     
+    
+    
     public function eliminarUsuario($idusuario){
         $where = $this->getAdapter()->quoteInto('idusuario = ?', $idusuario);
         $data = array('estado'=>'0');
@@ -45,6 +47,10 @@ class Application_Model_Usuario  extends Zend_Db_Table {
         $where = $this->getAdapter()->quoteInto('idusuario = ?', $idUsuario);
         $this->update($data, $where);
         $perfilModel->crearPerfil($menu, $idUsuario);
+    }
+    public function  actualizarUsuario2($idUsuario,$data){
+        $where = $this->getAdapter()->quoteInto('idusuario = ?', $idUsuario);
+        $this->update($data, $where);
     }
     public function listarUnUsuario($idUsuario) {
         return  $this->getAdapter()

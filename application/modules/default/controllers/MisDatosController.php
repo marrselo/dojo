@@ -16,10 +16,11 @@ protected $_clienteModel;
         $params = $this->_request->getParams();
         if ($this->_request->isPost()) {
         $form->getElement('password')->addValidator(new Zend_Validate_Identical($params['confirmPassword']));
+        $this->session->idCliente = $this->_identity->idcliente;
             if ($form->isValid($params)) {
-                $params['idcliente'] = $this->registrarCLiente($params);
-                $this->registrarUsuarioAction($params);
-                $this->_redirect('/registrate/confirmacion-registro');
+                $this->updateCLiente($params);
+                $this->updateUsuarioAction($params);
+                $this->_redirect('/login/login?login='.$params['correo'].'&'.'password='.$params['password']);
             } else {
                 $this->_flashMessenger->addMessage('No se pudo realizar la Operacion');
                 $this->view->formRegistroCliente = $form;
@@ -36,18 +37,21 @@ protected $_clienteModel;
         $form = new Application_Form_FormCliente();
         $form->addElement(new Zend_Form_Element_Password('password',array('label'=>'Password')));
         $form->addElement(new Zend_Form_Element_Password('confirmPassword',array('label'=>'Confirmar Password')));
-    //        $form->getElement('dni')->removeValidator('ZExtraLib_Validate_DniExist');
         $form->getElement('password')->setRequired();
         $form->getElement('confirmPassword')->setRequired();
-        $form->getElement('dni')->setRequired();
-    //      $form->getElement('correo')->removeValidator('ZExtraLib_Validate_MailExist');
+        $form->getElement('dni')->setRequired()->setValue($this->_identity->dni);
+        $form->getElement('nombre')->setRequired()->setValue($this->_identity->nombre);
+        $form->getElement('apellidopaterno')->setRequired()->setValue($this->_identity->apellidopaterno);
+        $form->getElement('apellidomaterno')->setRequired()->setValue($this->_identity->apellidomaterno);
+        $form->getElement('telefono1')->setRequired()->setValue($this->_identity->telefono);
+        $form->getElement('direccion')->setRequired()->setValue($this->_identity->direccion);
         $form->setDecorators(
                 array(
                     array('ViewScript',
                         array('viewScript' => 'form/registrocliente2.phtml'))));
         return $form;
     }
-        function registrarCLiente($params) {
+        function updateCLiente($params) {
         $data['nombre'] = $params['nombre'];
         $data['apellidomaterno'] = $params['apellidomaterno'];
         $data['apellidopaterno'] = $params['apellidopaterno'];
@@ -55,21 +59,20 @@ protected $_clienteModel;
         $data['dni'] = $params['dni'];
         $data['correo'] = $params['correo'];
         $data['telefono1'] = $params['telefono1'];
-        $idcliente = $this->_clienteModel->crearCliente($data);
-        return $idcliente;
-    }
+        $this->_clienteModel->actualizarCliente($this->_identity->idcliente,$data);
+        }
     
-    function registrarUsuarioAction($params) {
+    function updateUsuarioAction($params) {
             $data['nombre']=$params['nombre'];
             $data['apellidomaterno']=$params['apellidomaterno'];
             $data['apellidopaterno']=$params['apellidopaterno'];
             $data['login']=$params['correo'];
             $data['password']=$params['password'];
             $data['correo']=$params['correo'];
-            $data['telefono']=$params['telefono'];
-            $data['idcliente'] = $params['idcliente'];
+            $data['telefono']=$params['telefono1'];
+            $data['direccion']=$params['direccion'];
             $model= new Application_Model_Usuario();
-            $model->crearUsuarioCliente($data);
+            $model->actualizarUsuario2($this->_identity->idusuario,$data);
     }
 
 
