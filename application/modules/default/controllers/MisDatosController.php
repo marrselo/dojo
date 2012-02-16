@@ -1,18 +1,12 @@
 <?php
-
-class Default_RegistrateController extends ZExtraLib_Controller_Action
+class Default_MisDatosController extends ZExtraLib_Controller_Action 
 {
 protected $_clienteModel;
 
     public function init() {
         parent::init();
-        if($this->_identity){
-            $this->_redirect('/mis-datos');
-        }
         $this->_clienteModel = new Application_Model_Cliente();
-        
     }
-    
     public function indexAction()
     {
         $this->view->headLink()->appendStylesheet("/f/css/contacto-form.css");
@@ -36,14 +30,9 @@ protected $_clienteModel;
         $this->view->messages = $this->_flashMessenger->getMessages();
 
     }
-    
-    public function confirmacionRegistroAction(){
-        
-    }
-    
+
     public function formularioCliente() {
         $date = new Zend_Date();
-        
         $form = new Application_Form_FormCliente();
         $form->addElement(new Zend_Form_Element_Password('password',array('label'=>'Password')));
         $form->addElement(new Zend_Form_Element_Password('confirmPassword',array('label'=>'Confirmar Password')));

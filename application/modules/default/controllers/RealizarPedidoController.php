@@ -110,6 +110,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             $this->view->formRegistroCliente = $form;
         }
         $this->view->messages = $this->_flashMessenger->getMessages();
+        $this->view->formularioLogin = $this->getFormularioLogin();
         
     }
 
@@ -125,14 +126,34 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $this->_redirect('/realizar-pedido');
         }
     }
+    
+    function getFormularioLogin(){
+        $form = new Application_Form_FormLogin();
+        $form->setAction('/login');
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/login.phtml'))));
+        return $form;
+    }
 
     function formularioCliente() {
         $date = new Zend_Date();
-        
+        print_r($this->_identity);
         $form = new Application_Form_FormCliente();
-        $form->getElement('dni')->removeValidator('ZExtraLib_Validate_DniExist');
-        $form->getElement('dni')->setRequired();
-        $form->getElement('correo')->removeValidator('ZExtraLib_Validate_MailExist');
+        $form->getElement('nombre')
+                ->setValue($this->_identity->nombre);
+        $form->getElement('apellidomaterno')
+                ->setValue($this->_identity->apellidomaterno);
+        $form->getElement('apellidopaterno')
+                ->setValue($this->_identity->apellidopaterno);
+        $form->getElement('telefono1')
+                ->setValue($this->_identity->telefono);
+        $form->getElement('dni')
+                ->removeValidator('ZExtraLib_Validate_DniExist')
+                ->setRequired()
+                ->setValue($this->_identity->dni);
+        $form->getElement('correo')
+                ->removeValidator('ZExtraLib_Validate_MailExist')
+                ->setValue($this->_identity->login);
+        
         $arrayTipoDocumento = array(1 => 'Boleta', 2 => 'Factura');
         $form->addElement(new Zend_Form_Element_Radio('tipoDocumento',
                         array('requerid' => true,

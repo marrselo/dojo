@@ -21,6 +21,7 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
         $this->view->headMeta()->setProperty('og:admins', '698823485');
         $this->session = (!isset($this->session)) ? new Zend_Session_Namespace('dojo') : null;
         $this->_identity = Zend_Auth::getInstance()->getIdentity();
+        $this->view->identity = $this->_identity;
         $this->_layout = Zend_Layout::getMvcInstance();
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         $this->initView();
