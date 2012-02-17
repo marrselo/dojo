@@ -10,11 +10,12 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         
         $this->addElement(new Zend_Form_Element_Text('searchCliente',
         array('label'=>'Buscar Cliente')));
+       $this->getElement('searchCliente')->setAttrib('class','frm_box1');
         $this->addElement(new Zend_Form_Element_Text('searchEmpresa',
         array('label'=>'Buscar Empresa')));
         $this->addElement(new Zend_Form_Element_Text('searchArticulo',
         array('label'=>'Buscar Articulo')));
-        
+        $this->getElement('searchArticulo')->setAttrib('class','frm_box1');
         $this->addElement(new Zend_Form_Element_Select('hora',
         array('requerid'=>true,
             'label'=>'Hora',
@@ -50,6 +51,8 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         array('label'=>'Responsable')));
         $this->addElement(new Zend_Form_Element_Reset('cancelar'));
         $this->addElement(new Zend_Form_Element_Submit('enviar'));
+        
+    
         
     }
 }
