@@ -1,8 +1,6 @@
 <?php
 
-class Admin_LoginController
-        extends ZExtraLib_Controller_Action
-{
+class Default_LoginController extends ZExtraLib_Controller_Action {
     protected $_usuarioModel;
     protected $_perfilModel;
     function init() {
@@ -10,7 +8,6 @@ class Admin_LoginController
         $this->_usuarioModel = new Application_Model_Usuario();
         $this->_perfilModel = new Application_Model_Perfil();
     }
-    
         public function auth($usuario =NULL ,$password =NULL){
         if($usuario== NULL || $password == NULL){
          return false;   
@@ -29,7 +26,6 @@ class Admin_LoginController
             return $resultAut->isValid();
             }
         }
-        
         public function indexAction(){
             $this->view->messages = $this->_flashMessenger->getMessages();
             $params =  $this->_request->getParams();
@@ -37,17 +33,19 @@ class Admin_LoginController
             if ($this->_request->isPost()) {
                 if ($form->isValid($params)) {
                     if ($this->auth($params['login'], $params['password'],1)) {
-                    $this->_redirect('/admin');
-                    
+                    $this->_redirect($_SERVER['HTTP_REFERER']);
                     } else {
                     $this->_flashMessenger->addMessage('Correo y/o contraseña incorrectos.');
-                    $this->_redirect('/admin/login');
+                    $this->_redirect('/login');
                     }
-
                 }
             }
         }
-        
+        public function loginAction(){
+            $params =  $this->_request->getParams();
+            $this->auth($params['login'], $params['password'],1);
+            $this->_redirect($_SERVER['HTTP_REFERER']);
+        }
         public function formLogin(){
             $form = new Zend_Form();
             $form->setMethod('Post');
@@ -55,10 +53,11 @@ class Admin_LoginController
             $form->addElement(new Zend_Form_Element_Password('password',array('required'=> true,'label'=>'Password')));
             $form->addElement(new Zend_Form_Element_Submit('Enviar'));
             return $form;
-        }
-    public function logoutAction(){
+   }
+   
+   public function logoutAction(){
         Zend_Auth::getInstance()->clearIdentity();
-        $this->_redirect('/admin/login');
+        $this->_redirect('/');
     }
 
 }

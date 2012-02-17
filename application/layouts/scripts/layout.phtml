@@ -90,6 +90,32 @@
                                     <span>Central telefónica</span>
                                     <h4>355-8888</h4>
                                 </div>
+                                <div class="loginCliente">
+                                    <?php if(!$this->identity) {?>
+                                    <form action="/login" method="post" class="formLoginClient">
+                                        <table >
+                                            <tr>
+                                                <td>Usuario &nbsp;&nbsp;</td>
+                                                <td><input type="text" name="login" id="login"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Password &nbsp;&nbsp;</td>
+                                                <td><input type="text" name="password" id="password"></td>
+                                                <td>
+                                                    <input type="submit" value="Ok">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                    <?php } else{
+                                        ?>
+                                    Bienvenido <?php echo $this->identity->nombre.' '.$this->identity->apellidopaterno.' '.$this->identity->apellidomaterno ?>
+                                    <a href="/login/logout">Logout</a>
+                                    <br>&nbsp;</br>
+                                        <?php
+                                        
+                                    }?>
+                                </div>
                                 <div id="social_block">
                                     <script>(function(d, s, id) {
                                         var js, fjs = d.getElementsByTagName(s)[0];
@@ -109,7 +135,13 @@
                             <li><a href="/" class="<?php echo $this->menuActive1 ?>">Inicio</a></li>
                             <li><a href="/zonas-reparto" class="<?php echo $this->menuActive2 ?>">Zonas de Reparto</a></li>	
                             <li><a href="/realizar-pedido" class="<?php echo $this->menuActive3 ?>">Realizar Pedido</a></li>
-                            <li><a href="/eventos" class="<?php echo $this->menuActive4 ?>">Eventos</a></li>
+                            <?php if(!$this->identity){?>
+                            <li><a href="/registrate" class="<?php echo $this->menuActive4 ?>">Registrate</a></li>
+                            <?php }else{
+                                ?>
+                            <li><a href="/mis-datos" class="<?php echo $this->menuActive4 ?>">Mis Datos</a></li>
+                            <?php
+                            }?>
                             <li><a href="/contacto" class="<?php echo $this->menuActive5 ?>">Contacto</a></li>
                         </ul>
                         <!-- Block search module -->

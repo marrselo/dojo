@@ -99,40 +99,59 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             if ($form->isValid($params)) {
                 $params['idcliente'] = $this->registrarCLiente($params);
                 $this->generarComprobante($params);
-                $this->session->mensajeConfirmacion = $this->enviarCorreo($params['nombre'], $params['correo'],$params['direccion'],$params['fechaEntrega'].' '.$params['hora'].':'.$params['minuto']);
+                $this->session->mensajeConfirmacion = $this->enviarCorreo($params['nombre'], $params['correo'], $params['direccion'], $params['fechaEntrega'] . ' ' . $params['hora'] . ':' . $params['minuto']);
                 unset($this->session->listaArticulo);
                 $this->_redirect('/realizar-pedido/confirmado');
             } else {
                 $this->_flashMessenger->addMessage('No se pudo realizar el pedido, por favor Vuelva ha intentarlo');
                 $this->view->formRegistroCliente = $form;
             }
-        }else{
+        } else {
             $this->view->formRegistroCliente = $form;
         }
         $this->view->messages = $this->_flashMessenger->getMessages();
-        
+        $this->view->formularioLogin = $this->getFormularioLogin();
     }
 
     function formatocorreoAction() {
         $this->view->listaArticulo = $this->session->listaArticulo;
     }
-    
+
     function confirmadoAction() {
-        if(isset($this->session->mensajeConfirmacion)){
-        $this->view->mensajeConfirmacion = $this->session->mensajeConfirmacion;
-        unset($this->session->mensajeConfirmacion);
-        }else{
-        $this->_redirect('/realizar-pedido');
+        if (isset($this->session->mensajeConfirmacion)) {
+            $this->view->mensajeConfirmacion = $this->session->mensajeConfirmacion;
+            unset($this->session->mensajeConfirmacion);
+        } else {
+            $this->_redirect('/realizar-pedido');
         }
+    }
+
+    function getFormularioLogin() {
+        $form = new Application_Form_FormLogin();
+        $form->setAction('/login');
+        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/login.phtml'))));
+        return $form;
     }
 
     function formularioCliente() {
         $date = new Zend_Date();
-        
         $form = new Application_Form_FormCliente();
-        $form->getElement('dni')->removeValidator('ZExtraLib_Validate_DniExist');
-        $form->getElement('dni')->setRequired();
-        $form->getElement('correo')->removeValidator('ZExtraLib_Validate_MailExist');
+        $form->getElement('nombre')
+                ->setValue($this->_identity->nombre);
+        $form->getElement('apellidomaterno')
+                ->setValue($this->_identity->apellidomaterno);
+        $form->getElement('apellidopaterno')
+                ->setValue($this->_identity->apellidopaterno);
+        $form->getElement('telefono1')
+                ->setValue($this->_identity->telefono);
+        $form->getElement('dni')
+                ->removeValidator('ZExtraLib_Validate_DniExist')
+                ->setRequired()
+                ->setValue($this->_identity->dni);
+        $form->getElement('correo')
+//                ->removeValidator('ZExtraLib_Validate_MailExist')
+                ->setValue($this->_identity->login);
+
         $arrayTipoDocumento = array(1 => 'Boleta', 2 => 'Factura');
         $form->addElement(new Zend_Form_Element_Radio('tipoDocumento',
                         array('requerid' => true,
@@ -190,18 +209,40 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data['dni'] = $params['dni'];
         $data['correo'] = $params['correo'];
         $data['telefono1'] = $params['telefono1'];
+        if(!$this->_identity){
         if ($cliente = $this->_clienteModel->verificarCLienteWeb($params['correo'], $params['dni'])) {
             $idcliente = $this->_clienteModel->actualizarCliente($cliente['idcliente'], $data);
         } else {
+            $data['idconfirm'] = md5(strtotime('now'));
+            $this->enviarCorreoConfirmDatos($data['nombre'], 
+                                            $data['correo'] ,
+                                            $data['idconfirm']);
             $idcliente = $this->_clienteModel->crearCliente($data);
         }
+        
+        }else{
+            $idcliente = $this->_clienteModel->actualizarCliente($this->_identity->idcliente, $data);
+        }
+
         return $idcliente;
     }
-
+    function registrarUsuarioAction($params) {
+        $data['nombre'] = $params['nombre'];
+        $data['apellidomaterno'] = $params['apellidomaterno'];
+        $data['apellidopaterno'] = $params['apellidopaterno'];
+        $data['login'] = $params['correo'];
+        $data['password'] = $params['password'];
+        $data['correo'] = $params['correo'];
+        $data['telefono'] = $params['telefono'];
+        $data['idcliente'] = $params['idcliente'];
+        $model = new Application_Model_Usuario();
+        $model->crearUsuarioCliente($data);
+    }
+   
     function generarComprobante($param) {
         $date = new Zend_Date();
         $data ['fechacreacion'] = $date->now()->get('YYYY-mm-dd');
-        $data ['idtipodocumento'] = isset($param['tipoDocumento'])?$param['tipoDocumento']:1;
+        $data ['idtipodocumento'] = isset($param['tipoDocumento']) ? $param['tipoDocumento'] : 1;
         $data ['direccion'] = $param['direccion'];
         $data ['idcliente'] = $param['idcliente'];
         $data ['hora'] = $param['hora'] . ':' . $param['minuto'];
@@ -228,7 +269,37 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $this->_documentoModel->actualizarDocumento($data2, $idDocumento);
     }
 
-    function enviarCorreo($nombreUsuario, $email,$direccion,$fechaHora) {
+    function enviarCorreoConfirmDatos($nombreUsuario, $email,$codConfirm){
+        $correo = Zend_Registry::get('mail');
+        $correo = new Zend_Mail('utf-8');
+        $body=' <table>
+                    <tr>
+                        <td>
+                            Delivery Premium Sac le comunica que usted 
+                            puede crear su cuenta accediendo a este 
+                            <a href="'.$this->view->baseUrl().'/registrate/confirmar-registro-usuario?id='.$codConfirm.'">
+                                link
+                            </a> 
+                            solo con  ingresar su usuario y contraseña
+                        </td>
+                    </tr>
+                </table>' ;   
+                try {
+            $apodo = $nombreUsuario;        
+            $correo->addTo($email, $apodo)
+                    ->clearSubject()
+                    ->setSubject('Crea tu Usuario')
+                    ->setBodyHtml($body);
+            $correo->send();
+            $message = "Su correo fue enviado Satisfactoriamente";
+        } catch (Exception $e) {
+            //echo 'mensaje->'.$e->getTraceAsString();
+            $message = "Problemas al enviar el correo";
+        }
+        $this->_flashMessenger->addMessage($message);
+
+    }
+    function enviarCorreo($nombreUsuario, $email, $direccion, $fechaHora) {
         $correo = Zend_Registry::get('mail');
         $correo = new Zend_Mail('utf-8');
         $apodo = 'nazart';
@@ -264,7 +335,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             <tr>
                 <td align="left">Pedido: 
                 <strong>
-                realizado el '.$fechaHora.'
+                realizado el ' . $fechaHora . '
                 </strong> <br>Forma de Pago: <strong>Pago contra reembolso</strong></td>
             </tr>
             <tr>
@@ -282,15 +353,15 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                             </tr>';
         $totalPorductos = 0;
         foreach ($this->session->listaArticulo as $index) {
-                    $flagOferta = 0;
-                    if( $index['preciooferta']!='' && $index['flagoferta']){
-                        $flagOferta = 1;
-                    }
+            $flagOferta = 0;
+            if ($index['preciooferta'] != '' && $index['flagoferta']) {
+                $flagOferta = 1;
+            }
 
             $body .= '<tr style="background-color:#ebecee">
                                 <td style="padding:0.6em 0.4em"><strong>' . $index['nombre'] . '</strong></td>
                                     <td style="padding:0.6em 0.4em;text-align:right">
-                                    S/. ' . (($flagOferta==1)?$index['preciooferta']:$index['precioventa']) . '</td>
+                                    S/. ' . (($flagOferta == 1) ? $index['preciooferta'] : $index['precioventa']) . '</td>
                                 <td style="padding:0.6em 0.4em;text-align:center">
                                     ' . $index['cantidadArticulo'] . '
                                 </td>
@@ -298,7 +369,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                                     S/. ' . $index['cantidadArticulo'] * $index['precioventa'] . '
                                         </td>
                             </tr>';
-            $totalPorductos = + ($flagOferta==1?($index['preciooferta'] * $index['cantidadArticulo']):($index['precioventa'] * $index['cantidadArticulo']));
+            $totalPorductos = + ($flagOferta == 1 ? ($index['preciooferta'] * $index['cantidadArticulo']) : ($index['precioventa'] * $index['cantidadArticulo']));
 //            $total = $total + ($flagOferta==1?$index['preciooferta'] * $index['cantidadArticulo']:$index['precioventa'] * $index['cantidadArticulo'])
         }
         $body.='<tr style="text-align:right">
@@ -352,7 +423,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         </tbody>
     </table>
 </div>';
-        
+
         $subject = 'contacto';
         try {
             $correo->addTo($email, $apodo)
@@ -366,8 +437,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
             $message = "Problemas al enviar el correo";
         }
         $this->_flashMessenger->addMessage($message);
-        return $body;//echo $body;
+        return $body; //echo $body;
     }
-
 }
 

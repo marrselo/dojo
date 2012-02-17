@@ -58,10 +58,7 @@ class Admin_UsuarioController
             $data['correo']=$params['correo'];
             $data['telefono']=$params['telefono'];
             $this->crearUsuario($data,$params['menu']);
-            
         }}
-
-        
     }
     
     function crearUsuario($data,$menu){

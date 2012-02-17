@@ -38,6 +38,31 @@ form.std-contact input[type='text'] {
 	width: 250px;
 	behavior: url('/f/css/PIE.htc');
 }
+form.std-contact input[type='password'] {
+    background: rgba(0,0,0,0.1);
+	-pie-background: rgba(0,0,0,0.1);
+	border: 1px solid #c6c6c6;
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-o-border-radius: 0.5em;
+	-ms-border-radius: 0.5em;
+	box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-webkit-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-moz-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-o-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-ms-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	-pie-box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+	color: #6d6d6d;
+	height: 12px;
+	font-size: 12px;
+	font-family: Arial;
+	margin: 0.4em 0;
+	padding: 1em 0 0.7em 6px;
+	position: relative;
+	width: 250px;
+	behavior: url('/f/css/PIE.htc');
+}
 form.std-contact textarea {
 	background: rgba(0,0,0,0.1);
 	-pie-background: rgba(0,0,0,0.1);

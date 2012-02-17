@@ -12,8 +12,7 @@ class Application_Form_FormCliente extends Zend_Form
                 array('label'=>'Nombre','required'=>true)));
         $this->addElement(new Zend_Form_Element_Text('direccion',
                 array('label'=>'Direccion','required'=>true)));
-        $arrayValidator = array(new ZExtraLib_Validate_DniExist(),
-                                new Zend_Validate_StringLength(array('min'=>8,'max'=>8)));
+        $arrayValidator = array(new Zend_Validate_StringLength(array('min'=>8,'max'=>8)));
         $this->addElement(new Zend_Form_Element_Text('dni',
                 array('label'=>'Dni',
                       'maxlength'=>8,
