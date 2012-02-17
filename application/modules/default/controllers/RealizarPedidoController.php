@@ -136,7 +136,6 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
 
     function formularioCliente() {
         $date = new Zend_Date();
-        print_r($this->_identity);
         $form = new Application_Form_FormCliente();
         $form->getElement('nombre')
                 ->setValue($this->_identity->nombre);
