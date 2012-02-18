@@ -7,7 +7,7 @@ class Application_Model_Cliente extends Zend_Db_Table {
     public function consultarItemUsuario($idconfirm){
         return $this->select()
                 ->from($this->_name)
-                        ->where('idconfirm = "?"',$idconfirm)
+                        ->where('idconfirm = ?',"$idconfirm")
                 ->query()
                 ->fetch();
     }

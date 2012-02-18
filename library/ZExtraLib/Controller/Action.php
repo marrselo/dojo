@@ -11,7 +11,7 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
     //public $identity;
     public function init() {
         parent::init();
-                $this->view->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
+        $this->view->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
         $this->view->headMeta()->setProperty('og:title', 'Delivery Premium');
         $this->view->headMeta()->setProperty('og:type', 'author');
         $this->view->headMeta()->setProperty('og:description', 'Bienvenido a Delivery Premium, Entrar');
@@ -36,7 +36,7 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
             
         } else {
             if ($this->getRequest()->getModuleName() == 'admin' && $this->getRequest()->getControllerName() != 'login') {
-                if (!isset($this->_identity))
+                if (!isset($this->_identity) || $this->_identity->idtipousuario!=1)
                     $this->_redirect('/admin/login');
                 if ($this->_identity->FlagSuperUsuario != 1) {
                     $modelPerfil = new Application_Model_Perfil();
@@ -82,7 +82,7 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
         $config = new Application_Model_Config();
         $this->_config = $config->listarConfig();
         $this->view->config = $this->_config;
-        
+        $this->view->getMessages = $this->_flashMessenger->getMessages();
     }
 
 }

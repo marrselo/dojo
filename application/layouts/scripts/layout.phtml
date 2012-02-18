@@ -90,17 +90,43 @@
                                     <span>Central telefónica</span>
                                     <h4>355-8888</h4>
                                 </div>
+                                <?php $message = $this->getMessages; 
+//                                print_r($message);
+                                ?>    
                                 <div class="loginCliente">
-                                    <?php if(!$this->identity) {?>
+                                    <?php 
+                                    if(!$this->identity || $this->identity->idtipousuario!=2) {?>
                                     <form action="/login" method="post" class="formLoginClient">
                                         <table >
                                             <tr>
-                                                <td>Usuario &nbsp;&nbsp;</td>
-                                                <td><input type="text" name="login" id="login"></td>
+                                                <td>Correo &nbsp;&nbsp;</td>
+                                                <td>
+                                                    <input type="text" name="login" id="login">
+                                                        <div class="errors">
+                                                        <?php 
+                                                        
+                                                        if( count($message)>0 && is_array($message[0]) && isset($message[0]['login']) ){
+                                                        foreach($message[0]['login'] as $index){
+                                                            echo $index.'<p>';
+                                                        }  } 
+                                                        ?>
+                                                            </div>
+                                                </td>
                                             </tr>
+                                            
                                             <tr>
                                                 <td>Password &nbsp;&nbsp;</td>
-                                                <td><input type="text" name="password" id="password"></td>
+                                                <td>
+                                                    <input type="text" name="password" id="password">
+                                                        <div class="errors">
+                                                        <?php 
+                                                        if(count($message)>0 && is_array($message[0]) && isset($message[0]['password']) ){
+                                                        foreach($message[0]['password'] as $index){
+                                                            echo $index.'<p>';
+                                                        }  } 
+                                                        ?>
+                                                            </div>
+                                                </td>
                                                 <td>
                                                     <input type="submit" value="Ok">
                                                 </td>
@@ -147,10 +173,12 @@
                         <!-- Block search module -->
                         <div id="search_block">
                             <h4>Buscar</h4>
-                            <form method="get" action="/buscar" id="searchbox">
-                                <p class="block_content">
-                                    <input class="search_query" id="search_query_block" name="search_query" value="Buscar" onfocus="if (this.value == 'Buscar') this.value = ''" onblur="if (this.value == '') this.value = 'Buscar'" type="text">
-                                </p>
+                            <form id="searchbox" action="/buscar" method="get">
+                            <p class="block_content">
+                                <input type="text" onblur="if (this.value == '') this.value = 'Buscar'" onfocus="if (this.value == 'Buscar') this.value = ''" value="Buscar" name="search_query" id="search_query_block" class="search_query">
+                                    <input type="submit" value="ok">                                
+                            </p>
+
                             </form>
                         </div>	
                     </div>

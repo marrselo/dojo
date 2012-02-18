@@ -17,7 +17,6 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $this->_detalleDocumentoModel = new Application_Model_DetalleDocumento();
         $this->view->menuActive3 = 'active';
         $this->view->headTitle('Realizar Pedido');
-//        print_r($this->session->listaArticulo);
     }
 
     public function indexAction() {
@@ -136,22 +135,25 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
     function formularioCliente() {
         $date = new Zend_Date();
         $form = new Application_Form_FormCliente();
+        if($this->_identity->idtipousuario==2){
+        $this->session->idCliente = $this->_identity->idcliente;
+        $dataCliente=$this->_clienteModel->listarUnCliente($this->_identity->idcliente);
         $form->getElement('nombre')
-                ->setValue($this->_identity->nombre);
+                ->setValue($dataCliente['nombre']);
         $form->getElement('apellidomaterno')
-                ->setValue($this->_identity->apellidomaterno);
+                ->setValue($dataCliente['apellidopaterno']);
         $form->getElement('apellidopaterno')
-                ->setValue($this->_identity->apellidopaterno);
+                ->setValue($dataCliente['apellidomaterno']);
         $form->getElement('telefono1')
-                ->setValue($this->_identity->telefono);
+                ->setValue($dataCliente['telefono1']);
         $form->getElement('dni')
-                ->removeValidator('ZExtraLib_Validate_DniExist')
-                ->setRequired()
-                ->setValue($this->_identity->dni);
+                ->setValue($dataCliente['dni']);
         $form->getElement('correo')
-//                ->removeValidator('ZExtraLib_Validate_MailExist')
-                ->setValue($this->_identity->login);
-
+                ->setValue($dataCliente['correo']);
+        $form->getElement('direccion')
+                ->setValue($dataCliente['direccion']);
+        }
+        $form->getElement('dni')->removeValidator('ZExtraLib_Validate_DniExist')->setRequired();
         $arrayTipoDocumento = array(1 => 'Boleta', 2 => 'Factura');
         $form->addElement(new Zend_Form_Element_Radio('tipoDocumento',
                         array('requerid' => true,
@@ -209,19 +211,14 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $data['dni'] = $params['dni'];
         $data['correo'] = $params['correo'];
         $data['telefono1'] = $params['telefono1'];
-        if(!$this->_identity){
-        if ($cliente = $this->_clienteModel->verificarCLienteWeb($params['correo'], $params['dni'])) {
-            $idcliente = $this->_clienteModel->actualizarCliente($cliente['idcliente'], $data);
-        } else {
+        if($this->_identity && $this->_identity->idtipousuario == 2) {
+            $idcliente = $this->_clienteModel->actualizarCliente($this->_identity->idcliente, $data);
+        }else{
             $data['idconfirm'] = md5(strtotime('now'));
+            $idcliente = $this->_clienteModel->crearCliente($data);
             $this->enviarCorreoConfirmDatos($data['nombre'], 
                                             $data['correo'] ,
                                             $data['idconfirm']);
-            $idcliente = $this->_clienteModel->crearCliente($data);
-        }
-        
-        }else{
-            $idcliente = $this->_clienteModel->actualizarCliente($this->_identity->idcliente, $data);
         }
 
         return $idcliente;
@@ -271,7 +268,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
 
     function enviarCorreoConfirmDatos($nombreUsuario, $email,$codConfirm){
         $correo = Zend_Registry::get('mail');
-        $correo = new Zend_Mail('utf-8');
+        //$correo = new Zend_Mail('utf-8');
         $body=' <table>
                     <tr>
                         <td>
@@ -302,7 +299,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
     function enviarCorreo($nombreUsuario, $email, $direccion, $fechaHora) {
         $correo = Zend_Registry::get('mail');
         $correo = new Zend_Mail('utf-8');
-        $apodo = 'nazart';
+        $apodo = $nombreUsuario;
         $body = '<div>
     <table style="font-family:Verdana,sans-serif;font-size:11px;color:#374953;width:550px">
         <tbody>
@@ -428,7 +425,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         try {
             $correo->addTo($email, $apodo)
                     ->clearSubject()
-                    ->setSubject('detalle de tu compra')
+                    ->setSubject('Detalle de tu compra')
                     ->setBodyHtml($body);
             $correo->send();
             $message = "Su correo fue enviado Satisfactoriamente";
