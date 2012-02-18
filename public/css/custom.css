@@ -9,6 +9,7 @@
 }
 
 #actionViewModal{
-    float: right;
+    float: left;
     cursor: pointer;
+    font-size: 0.4em 
 }

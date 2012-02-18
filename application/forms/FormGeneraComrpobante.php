@@ -10,7 +10,7 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         
         $this->addElement(new Zend_Form_Element_Text('searchCliente',
         array('label'=>'Buscar Cliente')));
-       $this->getElement('searchCliente')->setAttrib('class','frm_box1');
+        $this->getElement('searchCliente')->setAttrib('class','frm_box1');
         $this->addElement(new Zend_Form_Element_Text('searchEmpresa',
         array('label'=>'Buscar Empresa')));
         $this->addElement(new Zend_Form_Element_Text('searchArticulo',
@@ -30,7 +30,7 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         array('requerid'=>true,
             'multiOptions'=>$arrayMinuto
             )));
-        
+        $this->getElement('hora')->setAttrib('class','frm_combo2');
         $modelComprobante = new Application_Model_TipoDocumento();
         $this->addElement(new Zend_Form_Element_Select('tipoDocumento',
         array('requerid'=>true,
@@ -41,8 +41,10 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         array('label'=>'Nº Serie')));
         $this->addElement(new Zend_Form_Element_Text('fechaEntrega',
         array('label'=>'Fecha Entrega')));
+        $this->getElement('fechaEntrega')->setAttrib('class','frm_box2');
         $this->addElement(new Zend_Form_Element_Text('direccion',
         array('label'=>'Direccion')));
+        $this->getElement('direccion')->setAttrib('class','frm_box1');
         $this->addElement(new Zend_Form_Element_Text('numComprobante',
         array('label'=>'Nº de Documento')));
         $this->addElement(new Zend_Form_Element_Textarea('informacionAdicional',

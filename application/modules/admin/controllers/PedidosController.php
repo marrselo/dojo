@@ -81,8 +81,11 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $this->session->articuloEnLista = array();
         $date = new Zend_Date();
         $form = new Application_Form_FormCliente();
-        $form->setAction('/admin/pedidos/nuevo-cliente-ajax');        
+        $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
+        $form->addAttribs(array('id'=>'form_cliente'));
+        $form->removeElement('Enviar');        
         $this->view->formularioCliente = $form;
+        
         $formComprobantes = $this->getFormGenerarComprobante();
         foreach ($formComprobantes as $elem){            
             $elem->removeDecorator('label')->removeDecorator('HtmlTag');
