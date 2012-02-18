@@ -46,6 +46,7 @@ protected $_clienteModel;
         $form->getElement('nombre')->setRequired()->setValue($cliente['nombre']);
         $form->getElement('apellidopaterno')->setRequired()->setValue($cliente['apellidopaterno']);
         $form->getElement('apellidomaterno')->setRequired()->setValue($cliente['apellidomaterno']);
+        $form->getElement('correo')->setRequired()->setValue($cliente['correo']);
         $form->getElement('telefono1')->setRequired()->setValue($cliente['telefono1']);
         $form->getElement('direccion')->setRequired()->setValue($cliente['direccion']);
         $form->setDecorators(
