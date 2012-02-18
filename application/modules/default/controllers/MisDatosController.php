@@ -20,7 +20,8 @@ protected $_clienteModel;
             if ($form->isValid($params)) {
                 $this->updateCLiente($params);
                 $this->updateUsuarioAction($params);
-                $this->_redirect('/login/login?login='.$params['correo'].'&'.'password='.$params['password']);
+                $url=($this->view->baseUrl().'/login/login?login='.$params['correo'].'&'.'password='.$params['password']);
+                $this->_redirect($url);
             } else {
                 $this->_flashMessenger->addMessage('No se pudo realizar la Operacion');
                 $this->view->formRegistroCliente = $form;
@@ -38,13 +39,15 @@ protected $_clienteModel;
         $form->addElement(new Zend_Form_Element_Password('password',array('label'=>'Password')));
         $form->addElement(new Zend_Form_Element_Password('confirmPassword',array('label'=>'Confirmar Password')));
         $form->getElement('password')->setRequired();
-        $form->getElement('confirmPassword')->setRequired();
-        $form->getElement('dni')->setRequired()->setValue($this->_identity->dni);
-        $form->getElement('nombre')->setRequired()->setValue($this->_identity->nombre);
-        $form->getElement('apellidopaterno')->setRequired()->setValue($this->_identity->apellidopaterno);
-        $form->getElement('apellidomaterno')->setRequired()->setValue($this->_identity->apellidomaterno);
-        $form->getElement('telefono1')->setRequired()->setValue($this->_identity->telefono);
-        $form->getElement('direccion')->setRequired()->setValue($this->_identity->direccion);
+        $cliente = $this->_clienteModel->listarUnCliente($this->_identity->idcliente);
+        $form->getElement('confirmPassword')->setRequired()->setValue($cliente['password']);
+        $form->getElement('password')->setRequired()->setValue($cliente['password']);
+        $form->getElement('dni')->setRequired()->setValue($cliente['dni']);
+        $form->getElement('nombre')->setRequired()->setValue($cliente['nombre']);
+        $form->getElement('apellidopaterno')->setRequired()->setValue($cliente['apellidopaterno']);
+        $form->getElement('apellidomaterno')->setRequired()->setValue($cliente['apellidomaterno']);
+        $form->getElement('telefono1')->setRequired()->setValue($cliente['telefono1']);
+        $form->getElement('direccion')->setRequired()->setValue($cliente['direccion']);
         $form->setDecorators(
                 array(
                     array('ViewScript',

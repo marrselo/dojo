@@ -7,6 +7,7 @@ class Default_LoginController extends ZExtraLib_Controller_Action {
         parent::init();
         $this->_usuarioModel = new Application_Model_Usuario();
         $this->_perfilModel = new Application_Model_Perfil();
+        $this->view->headLink()->appendStylesheet("/f/css/contacto-form.css");
     }
         public function auth($usuario =NULL ,$password =NULL){
         if($usuario== NULL || $password == NULL){
@@ -14,7 +15,7 @@ class Default_LoginController extends ZExtraLib_Controller_Action {
         } else {
         $auth = Zend_Auth::getInstance();
         $adapter = new Zend_Auth_Adapter_DbTable($this->_usuarioModel->getAdapter(),
-                    'usuario', 'login', 'password');
+                    'cliente', 'correo', 'password');
         $adapter->setIdentity($usuario);
         $adapter->setCredential($password);
         $resultAut = $auth->authenticate($adapter); 
@@ -27,6 +28,7 @@ class Default_LoginController extends ZExtraLib_Controller_Action {
             }
         }
         public function indexAction(){
+            
             $this->view->messages = $this->_flashMessenger->getMessages();
             $params =  $this->_request->getParams();
             $this->view->form = $form = $this->formLogin();
@@ -36,15 +38,31 @@ class Default_LoginController extends ZExtraLib_Controller_Action {
                     $this->_redirect($_SERVER['HTTP_REFERER']);
                     } else {
                     $this->_flashMessenger->addMessage('Correo y/o contraseña incorrectos.');
-                    $this->_redirect('/login');
+                    $this->_redirect('/login/error');
                     }
+                }else{
+                    $this->_flashMessenger->addMessage($form->getMessages());
+                    $this->_redirect($_SERVER['HTTP_REFERER']);
                 }
+            }else{
+                $this->_redirect($_SERVER['HTTP_REFERER']);
             }
         }
+        public function errorAction() {
+            $this->view->error = 'Correo y/o contraseña incorrectos.';
+        }
+        
         public function loginAction(){
             $params =  $this->_request->getParams();
             $this->auth($params['login'], $params['password'],1);
             $this->_redirect($_SERVER['HTTP_REFERER']);
+            
+        }
+        public function loginUpdateAction(){
+            $params =  $this->_request->getParams();
+            $this->auth($params['login'], $params['password'],1);
+            //$this->_redirect($_SERVER['HTTP_REFERER']);
+            
         }
         public function formLogin(){
             $form = new Zend_Form();
@@ -53,6 +71,7 @@ class Default_LoginController extends ZExtraLib_Controller_Action {
             $form->addElement(new Zend_Form_Element_Password('password',array('required'=> true,'label'=>'Password')));
             $form->addElement(new Zend_Form_Element_Submit('Enviar'));
             return $form;
+            
    }
    
    public function logoutAction(){

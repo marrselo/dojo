@@ -19,9 +19,9 @@ class Default_ContactoController extends ZExtraLib_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($params)) {
             //$form->
             $correo = Zend_Registry::get('mail');
-            $correo = new Zend_Mail('utf-8');
-            $email = 'nazarjb@hotmail.com';
-            $apodo = 'nazart';
+            //$correo = new Zend_Mail('utf-8');
+            $email = 'ventas@deliverypremiumsac.com';
+            $apodo = 'Ventas';
             $body = '
         <p>
         Datos De registro.
@@ -42,8 +42,9 @@ class Default_ContactoController extends ZExtraLib_Controller_Action {
                 $correo->send();
                 $message = "Su correo fue enviado Satisfactoriamente";
             } catch (Exception $e) {
-                //echo $e->getMessage();
-                $message = "Problemas al enviar el correo";
+                echo $e->__toString();
+                exit;
+                //$message = "Problemas al enviar el correo";
             }
             $this->_flashMessenger->addMessage($message);
             $this->_redirect('/contacto/enviar');
