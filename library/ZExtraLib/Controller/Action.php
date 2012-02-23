@@ -83,6 +83,6 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
         $this->_config = $config->listarConfig();
         $this->view->config = $this->_config;
         $this->view->getMessages = $this->_flashMessenger->getMessages();
-    }
+     }
 
 }
