@@ -100,7 +100,7 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
             $formComprobantes->getElement('numSerie')->setMultiOptions($arraySerie);
             if ($formComprobantes->isValid($params)) {
                 $this->generarComprobante($params);
-                echo 'generado';
+                $this->_redirect('admin/pedidos/lista-pedidos');
             }
         }
 

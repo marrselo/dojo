@@ -101,12 +101,11 @@ text-shadow:0 1px 1px #000000;
 background-color:#496A9B;
 }
 .frm_label6{
-padding: 3px 0px 0px 0px;
-margin: 4px 0px 0px 6px;
+padding: 3px 1px 0px 0px;
+margin: 4px 5px 0px 6px;
 width: 36px;
 height:18px;
 color:#FFFFFF;
-float: left;
 font: 12px/1 'Lucida Grande', Arial, 'Liberation Sans', FreeSans, sans-serif;
 font-size:13px;
 font-weight:bold;
@@ -171,12 +170,13 @@ background: #ffffff;
 display: block;
 }
 .frm_box2-1{
-padding: 0px;
-margin: 0px;
-width: 40px;
+padding: 1px;
+margin: 4px 0px 0px 6px;
+width: 60px;
 float: left;
-font: normal 11px Arial, Helvetica, sans-serif;
+font: normal 12px Arial, Helvetica, sans-serif;
 color:#696969;
+border: solid 1px #E9E9E9;
 background: #ffffff;
 display: block;
 }

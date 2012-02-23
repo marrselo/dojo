@@ -34,23 +34,40 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         $modelComprobante = new Application_Model_TipoDocumento();
         $this->addElement(new Zend_Form_Element_Select('tipoDocumento',
         array('requerid'=>true,
-            'label'=>'Tipo Documento',
-            'multiOptions'=>$modelComprobante->getTipoDocumento()
+            'label'=>'Tipo Documento'            
             )));
+        $this->getElement('tipoDocumento')->addMultioption('','-------');
+        $this->getElement('tipoDocumento')->addMultioptions($modelComprobante->getTipoDocumento());
         $this->addElement(new Zend_Form_Element_Select('numSerie',
         array('label'=>'Nº Serie')));
         $this->addElement(new Zend_Form_Element_Text('fechaEntrega',
         array('label'=>'Fecha Entrega')));
-        $this->getElement('fechaEntrega')->setAttrib('class','frm_box2');
+        $this->getElement('fechaEntrega')->setAttrib('class','frm_box2-1');
         $this->addElement(new Zend_Form_Element_Text('direccion',
         array('label'=>'Direccion')));
         $this->getElement('direccion')->setAttrib('class','frm_box1');
         $this->addElement(new Zend_Form_Element_Text('numComprobante',
         array('label'=>'Nº de Documento')));
+        $this->getElement('numComprobante')->setAttrib('size','6');
+    
         $this->addElement(new Zend_Form_Element_Textarea('informacionAdicional',
         array('label'=>'Informacion Adicional','attribs'=>array('rows'=>5,'cols'=>50))));
-        $this->addElement(new Zend_Form_Element_Text('searchTextResponsable',
-        array('label'=>'Responsable')));
+        
+        $usuario = new Application_Model_Usuario();
+        print_r($usuario->listaUsuarios());
+
+        $listaUsuario = array();
+        foreach($usuario->listaUsuarios() as $index => $valor){
+            $listaUsuario[$index] = $valor['nombre'].' '.$valor['apellidopaterno'].' '.$valor['apellidmaterno']; 
+        }
+        $this->addElement(new Zend_Form_Element_Select('searchTextResponsable',
+                array('requerid'=>true,            
+            )));
+        
+        $this->getElement('searchTextResponsable')->addMultioption('','Escoger');
+        $this->getElement('searchTextResponsable')->addMultioptions($listaUsuario);
+        
+              
         $this->addElement(new Zend_Form_Element_Reset('cancelar'));
         $this->addElement(new Zend_Form_Element_Submit('enviar'));
         

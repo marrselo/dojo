@@ -4,26 +4,28 @@ class Application_Model_Usuario  extends Zend_Db_Table {
     
     public function listaUsuarios($buscar = null) {
         $estado = 1;
+        echo "asdd";
         if($buscar == ''){
-        return $this->getAdapter()
+        $return = $this->getAdapter()
                 ->select()
                 ->from('usuario')
                 ->where('estado = ?', $estado)
-                ->where('FlagSuperUsuario != ?',1 )
-                ->query()->fetchAll();
+                ->where('FlagSuperUsuario != ?',1 );
+                
         } else{
             
             $where  =  $this->getAdapter()->quoteInto('apellidomaterno like ?', '%'.$buscar.'%');
             $where .= $this->getAdapter()->quoteInto(' or  apellidopaterno like ?', '%'.$buscar.'%');
             $where .= $this->getAdapter()->quoteInto(' or nombre like ?', '%'.$buscar.'%');
-            return $this->getAdapter()
+            $return = $this->getAdapter()
                     ->select()
                     ->from('usuario')
                     ->where('estado = ?', $estado)
                     ->where('FlagSuperUsuario != ?',1 )
-                    ->where($where)
-                    ->query()->fetchAll();
+                    ->where($where);
+                    //->query()->fetchAll();
         }
+        return $return->query()->fetchAll();
     }
     public function crearUsuario($data,$menu = null){
         $perfilModel = new Application_Model_Perfil();
@@ -78,6 +80,13 @@ class Application_Model_Usuario  extends Zend_Db_Table {
         return $this->getAdapter()->fetchAll($response);
         
     }
+    public function listarSelectUsuario()
+    {
+        return $this->getAdapter()
+                ->select(array('idusuario'=>'idusuario','nombres'=>"CONCAT(nombre,' ',apellidopaterno,' ',apellidomaterno)"))
+                ->from('usuario')
+                ->where('estado = ?', 1)
+                ->where('FlagSuperUsuario != 1')
+                ->query()->fetchAll();               
+    }
 }
-
-?>
