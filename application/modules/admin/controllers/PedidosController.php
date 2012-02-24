@@ -122,18 +122,19 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
 
     function generarComprobante($param) {
         $date = new Zend_Date();
-        $data ['numeroserie'] = $param['numSerie'];
+        $data ['numeroserie']       = $param['numSerie'];
         $data ['numerocomprobante'] = $param['numComprobante'];
-        $data ['fechacreacion'] = $date->now()->get('YYYY-mm-dd');
-        $data ['idtipodocumento'] = $param['tipoDocumento'];
-        $data ['direccion'] = $param['direccion'];
-        $data ['idcliente'] = $param['idcliente'];
-        $data ['idestado'] = 1;
-        $data ['flagactivo'] = 1;
-        $data ['flagdespacho'] = 0;
-        $data ['idvendedor'] = $this->_identity->idusuario;
-        $data ['IGV'] = 18.00; //$param['igv'];
-        $data ['comentario'] = $param['informacionAdicional'];
+        $data ['fechacreacion']     = $date->now()->get('YYYY-mm-dd');
+        $data ['idtipodocumento']   = $param['tipoDocumento'];
+        $data ['direccion']         = $param['direccion'];
+        $data ['idcliente']         = $param['idcliente'];
+        $data ['idestado']          = 1;
+        $data ['flagactivo']        =  1;
+        $data ['flagdespacho']      = 0;
+        $data ['idvendedor']        = $this->_identity->idusuario;
+        $data ['IGV']               = 18.00; //$param['igv'];
+        $data ['comentario']        = $param['informacionAdicional'];
+        $data ['hora']              = $param['hora'].':'.$param['minuto'].':00';
         $idDocumento = $this->_documentoModel->crearDocumento($data);
         $arrayProductos = $param['idarticulo'];
         $total = 0;
@@ -207,6 +208,15 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $data ['idarticulo'] = $param['idarticulo'];
         $this->_detalleDocumentoModel->crearDetalleDocumento($data);
     }
+    function actualizarDetalleDocumento($param) {
+        $data ['iddocumento'] = $param['iddocumento'];
+        $data ['cantidad'] = $param['cantidad'];
+        $data ['importe'] = ($param['cantidad'] * $param['precio']);
+        $data ['precio'] = $param['precio'];
+        $data ['idarticulo'] = $param['idarticulo'];
+        //$this->_detalleDocumentoModel->crearDetalleDocumento($data);
+    }
+    
 
     function listaPedidosAction() 
     {
@@ -281,33 +291,41 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
     function editarPedidosAction()
     {
         $params= $this->_getAllParams();
-        $this->view->datosDocumento = $this->_documentoModel->datosDocumento($params['idDocumento']);
-        //print_r($this->view->datosDocumento);
+        $this->view->datosDocumento = $this->_documentoModel->datosDocumento($params['idDocumento']);       
           /*************************/
         $this->session->articuloEnLista = array();
         $date = new Zend_Date();
-        $form = new Application_Form_FormCliente();
-        $form->setAction('/admin/pedidos/nuevo-cliente-ajax');
-        $form->setDecorators(array(array('ViewScript', array('viewScript' => 'form/cliente.phtml'))));
-        $this->view->formularioCliente = $form;
+        
         $formComprobantes = $this->getFormEditarComprobante();
-        if ($this->_request->isPost()) {
-            $params = $this->_getAllParams();
-            $comprobante = new Application_Model_Comprobante();
-            $serieComprobante = $comprobante->listarNumSerieComprobantes($params['tipoDocumento']);
-            foreach ($serieComprobante as $index) {
-                $arraySerie[$index['serie']] = $index['serie'];
-            }
-            $formComprobantes->getElement('numSerie')->setMultiOptions($arraySerie);
-            if ($formComprobantes->isValid($params)) {
-                $this->generarComprobante($params);
-                echo 'generado';
-            }
+        foreach ($formComprobantes as $elem){            
+            $elem->removeDecorator('label')->removeDecorator('HtmlTag');
         }
+        $tipoDocumento              = new Application_Model_TipoDocumento();
+        $getTipoDocumento           = $tipoDocumento->detalleTipoDocumento($this->view->datosDocumento[0]['idtipodocumento']);
+        $this->view->tipoDocumento  = $getTipoDocumento['des'];
+        $this->view->numeroSerie    = $this->view->datosDocumento[0]['numeroserie'];
+        $this->view->numeroDocumento= $this->view->datosDocumento[0]['numerocomprobante'];
+        
+//        if ($this->_request->isPost()) {
+//            $params = $this->_getAllParams();
+//            $comprobante = new Application_Model_Comprobante();
+//            $serieComprobante = $comprobante->listarNumSerieComprobantes($params['tipoDocumento']);
+//            foreach ($serieComprobante as $index) {
+//                $arraySerie[$index['serie']] = $index['serie'];
+//            }
+//            $formComprobantes->getElement('numSerie')->setMultiOptions($arraySerie);
+//            if ($formComprobantes->isValid($params)) {
+//                $this->generarComprobante($params);
+//                $this->_redirect('admin/pedidos/lista-pedidos');
+//            }
+//        }
 
         //$formComprobantes->setAction('/admin/pedidos/generar-comprobante');
         $formComprobantes->getElement('fechaEntrega')
-                ->setValue($date->now()->getDate()->get('YYYY-mm-dd'));
+                         ->setValue($this->view->datosDocumento[0]['fechacreacion']);
+        $formComprobantes->getElement('direccion')
+                         ->setValue($this->view->datosDocumento[0]['direccion']);
+        //$formComprobantes->getElement('fechaEntrega')
         $this->view->formEditarComprobantes = $formComprobantes;
     }
 

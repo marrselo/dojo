@@ -1,11 +1,1 @@
-<?php
-class Application_Model_TipoDocumento  extends Zend_Db_Table {
-    
-    protected  $_name = "tip_doc";    
-
-    public function getTipoDocumento() {
-        $db = $this->getAdapter();
-        return $db->fetchPairs($this->select());
-        
-    }
-}
+<?phpclass Application_Model_TipoDocumento  extends Zend_Db_Table {        protected  $_name = "tip_doc";        public function getTipoDocumento() {        $db = $this->getAdapter();        return $db->fetchPairs($this->select());    }    function detalleTipoDocumento($idTipoDocumento)    {         return $this->getAdapter()                ->select()                ->from('tip_doc')                ->where('idtip_doc = ?',$idTipoDocumento)                ->query()                ->fetch();    }}

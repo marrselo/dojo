@@ -54,11 +54,11 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         array('label'=>'Informacion Adicional','attribs'=>array('rows'=>5,'cols'=>50))));
         
         $usuario = new Application_Model_Usuario();
-        print_r($usuario->listaUsuarios());
+        $lista = $usuario->listaUsuarios();
 
         $listaUsuario = array();
-        foreach($usuario->listaUsuarios() as $index => $valor){
-            $listaUsuario[$index] = $valor['nombre'].' '.$valor['apellidopaterno'].' '.$valor['apellidmaterno']; 
+        foreach($lista as $index => $valor){           
+            $listaUsuario[$valor['idusuario']] =  $valor['nombre'].' '.$valor['apellidopaterno'].' '.$valor['apellidomaterno'];                    
         }
         $this->addElement(new Zend_Form_Element_Select('searchTextResponsable',
                 array('requerid'=>true,            
@@ -67,7 +67,6 @@ class Application_Form_FormGeneraComrpobante extends Zend_Form
         $this->getElement('searchTextResponsable')->addMultioption('','Escoger');
         $this->getElement('searchTextResponsable')->addMultioptions($listaUsuario);
         
-              
         $this->addElement(new Zend_Form_Element_Reset('cancelar'));
         $this->addElement(new Zend_Form_Element_Submit('enviar'));
         
