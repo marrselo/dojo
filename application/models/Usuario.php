@@ -4,28 +4,26 @@ class Application_Model_Usuario  extends Zend_Db_Table {
     
     public function listaUsuarios($buscar = null) {
         $estado = 1;
-        echo "asdd";
         if($buscar == ''){
-        $return = $this->getAdapter()
+        return $this->getAdapter()
                 ->select()
                 ->from('usuario')
                 ->where('estado = ?', $estado)
-                ->where('FlagSuperUsuario != ?',1 );
-                
+                ->where('FlagSuperUsuario != ?',1 )
+                ->query()->fetchAll();
         } else{
             
             $where  =  $this->getAdapter()->quoteInto('apellidomaterno like ?', '%'.$buscar.'%');
             $where .= $this->getAdapter()->quoteInto(' or  apellidopaterno like ?', '%'.$buscar.'%');
             $where .= $this->getAdapter()->quoteInto(' or nombre like ?', '%'.$buscar.'%');
-            $return = $this->getAdapter()
+            return $this->getAdapter()
                     ->select()
                     ->from('usuario')
                     ->where('estado = ?', $estado)
                     ->where('FlagSuperUsuario != ?',1 )
-                    ->where($where);
-                    //->query()->fetchAll();
+                    ->where($where)
+                    ->query()->fetchAll();
         }
-        return $return->query()->fetchAll();
     }
     public function crearUsuario($data,$menu = null){
         $perfilModel = new Application_Model_Perfil();
