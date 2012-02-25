@@ -15,7 +15,7 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
         $this->_documentoModel = new Application_Model_Documento();
         $this->_detalleDocumentoModel = new Application_Model_DetalleDocumento();
         $this->_usuarioModel = new Application_Model_Usuario();
-        $this->view->menuTop = $menuTop = array('Nuevo Pedido' => '/pedidos/index','Lista Pedidos' => 'pedidos/lista-pedidos');
+        $this->view->menuTop = $menuTop = array('Nuevo Pedido' => $this->view->baseUrl().'/admin/pedidos/index','Lista Pedidos' => $this->view->baseUrl().'/admin/pedidos/lista-pedidos');
         $this->view->headLink()->appendStylesheet("/f/css/jquery-ui-1.8.17.custom.css");
         $this->view->headLink()->appendStylesheet("/f/css/cheloform.css");
         $this->view->headScript()->appendFile('/f/js/jquery-ui-1.8.17.custom.min.js');
