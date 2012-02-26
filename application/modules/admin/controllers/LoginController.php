@@ -48,14 +48,14 @@ class Admin_LoginController
             }
         }
         
-        public function formLogin(){
-            $form = new Zend_Form();
-            $form->setMethod('Post');
-            $form->addElement(new Zend_Form_Element_Text('login',array('required'=> true,'label'=>'Correo')));
-            $form->addElement(new Zend_Form_Element_Password('password',array('required'=> true,'label'=>'Password')));
-            $form->addElement(new Zend_Form_Element_Submit('Enviar'));
-            return $form;
-        }
+    public function formLogin(){
+        $form = new Zend_Form();
+        $form->setMethod('Post');
+        $form->addElement(new Zend_Form_Element_Text('login',array('required'=> true,'label'=>'Correo')));
+        $form->addElement(new Zend_Form_Element_Password('password',array('required'=> true,'label'=>'Password')));
+        $form->addElement(new Zend_Form_Element_Submit('Enviar'));
+        return $form;
+    }
     public function logoutAction(){
         Zend_Auth::getInstance()->clearIdentity();
         $this->_redirect('/admin/login');

@@ -325,6 +325,12 @@ class Admin_PedidosController extends ZExtraLib_Controller_Action {
                          ->setValue($this->view->datosDocumento[0]['fechacreacion']);
         $formComprobantes->getElement('direccion')
                          ->setValue($this->view->datosDocumento[0]['direccion']);
+        $formComprobantes->getElement('fechaEntrega')
+                          ->setValue($this->view->datosDocumento[0]['fechacreacion']);
+        $formComprobantes->getElement('hora')
+                          ->addMultioption('',substr($this->view->datosDocumento[0]['hora'],0,-6));
+        $formComprobantes->getElement('minuto')
+                          ->addMultioption('',substr($this->view->datosDocumento[0]['hora'],0,-6));
         //$formComprobantes->getElement('fechaEntrega')
         $this->view->formEditarComprobantes = $formComprobantes;
     }
