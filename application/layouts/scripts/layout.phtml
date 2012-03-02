@@ -36,12 +36,11 @@
                     <?php if ($this->slideshow) { ?>
        <script type="text/javascript" src="/f/js/s3Slider.js"></script>
         <?php } ?>
-
-        <script type="text/javascript">
-        if($.browser.version=='7.0' || $.browser.version=='6.0'){
-        window.location="/update-browser";
-        }
-        </script>
+        <!--[if lte IE 6]>
+                <script type="text/javascript">
+                window.location="/update-browser";
+                </script>
+        <![endif]-->
 <?php if ($this->slideshow) { ?>
             <script type="text/javascript">
         $(document).ready(function() {
