@@ -159,10 +159,13 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $form->addElement(new Zend_Form_Element_Radio('tipoDocumento',
                         array('requerid' => true,
                             'label' => 'Tipo Documento',
+                            'value' => 1,
                             'multiOptions' => $arrayTipoDocumento
                 )));
+        
         $tiposPago = array(1 => 'Efectivo', 2 => 'Tarjeta');
-        $form->addElement(new Zend_Form_Element_Radio('tipoPago', array('requerid' => true, 'label' => 'Tipo de Pago', 'multiOptions' => $tiposPago)));
+        $form->addElement(new Zend_Form_Element_Radio('tipoPago', 
+                array('requerid' => true, 'value' => 1,'label' => 'Tipo de Pago', 'multiOptions' => $tiposPago)));
         $form->addElement(new Zend_Form_Element_Text('fechaEntrega',
                         array('label' => 'Fecha Entrega')));
 
