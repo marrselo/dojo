@@ -36,12 +36,11 @@
                     <?php if ($this->slideshow) { ?>
        <script type="text/javascript" src="/f/js/s3Slider.js"></script>
         <?php } ?>
-
-        <script type="text/javascript">
-        if($.browser.version=='7.0' || $.browser.version=='6.0'){
-        window.location="/update-browser";
-        }
-        </script>
+        <!--[if lte IE 6]>
+                <script type="text/javascript">
+                window.location="/update-browser";
+                </script>
+        <![endif]-->
 <?php if ($this->slideshow) { ?>
             <script type="text/javascript">
         $(document).ready(function() {
@@ -117,7 +116,7 @@
                                             <tr>
                                                 <td>Password &nbsp;&nbsp;</td>
                                                 <td>
-                                                    <input type="text" name="password" id="password">
+                                                    <input type="password" name="password" id="password">
                                                         <div class="errors">
                                                         <?php 
                                                         if(count($message)>0 && is_array($message[0]) && isset($message[0]['password']) ){

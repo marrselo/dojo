@@ -99,6 +99,7 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
                 $params['idcliente'] = $this->registrarCLiente($params);
                 $this->generarComprobante($params);
                 $this->session->mensajeConfirmacion = $this->enviarCorreo($params['nombre'], $params['correo'], $params['direccion'], $params['fechaEntrega'] . ' ' . $params['hora'] . ':' . $params['minuto']);
+                $this->enviarCorreoAdmin();
                 unset($this->session->listaArticulo);
                 $this->_redirect('/realizar-pedido/confirmado');
             } else {
@@ -158,10 +159,13 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         $form->addElement(new Zend_Form_Element_Radio('tipoDocumento',
                         array('requerid' => true,
                             'label' => 'Tipo Documento',
+                            'value' => 1,
                             'multiOptions' => $arrayTipoDocumento
                 )));
+        
         $tiposPago = array(1 => 'Efectivo', 2 => 'Tarjeta');
-        $form->addElement(new Zend_Form_Element_Radio('tipoPago', array('requerid' => true, 'label' => 'Tipo de Pago', 'multiOptions' => $tiposPago)));
+        $form->addElement(new Zend_Form_Element_Radio('tipoPago', 
+                array('requerid' => true, 'value' => 1,'label' => 'Tipo de Pago', 'multiOptions' => $tiposPago)));
         $form->addElement(new Zend_Form_Element_Text('fechaEntrega',
                         array('label' => 'Fecha Entrega')));
 
@@ -295,6 +299,24 @@ class Default_RealizarPedidoController extends ZExtraLib_Controller_Action {
         }
         $this->_flashMessenger->addMessage($message);
 
+    }
+    function enviarCorreoAdmin(){
+        $correo = Zend_Registry::get('mail');
+        $correo = new Zend_Mail('utf-8');
+        $body = $this->session->mensajeConfirmacion;
+        $newcont = '<table>
+                        <tr>
+                        <td>Tiene un nuevo pedido</td>
+                        <td>La boleta es:</td>
+                        </tr>
+                    </table><br></br>';
+        $body = $newcont.$body;
+            $correo->addTo('admin@deliverypremiumsac.com', 'administrador')
+                    ->clearSubject()
+                    ->setSubject('Nuevo Pedido')
+                    ->setBodyHtml($body);
+            $correo->send();
+        
     }
     function enviarCorreo($nombreUsuario, $email, $direccion, $fechaHora) {
         $correo = Zend_Registry::get('mail');
