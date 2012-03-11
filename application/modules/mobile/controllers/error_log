@@ -1,0 +1,9 @@
+[11-Dec-2011 17:06:05] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/BuscarController.php on line 3
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/ContactoController.php on line 3
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'Zend_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/ErrorController.php on line 23
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/ComprasController.php on line 3
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/PoliticasController.php on line 3
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/ProductosController.php on line 3
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/ZonasRepartoController.php on line 3
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/RealizarPedidosController.php on line 3
+[11-Dec-2011 17:06:06] PHP Fatal error:  Class 'ZExtraLib_Controller_Action' not found in /home/delivery/public_html/application/modules/default/controllers/IndexController.php on line 3

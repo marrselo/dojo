@@ -1,0 +1,110 @@
+
+<form class="std-contact"  action="<?php echo $this->element->getAction();?>" method="<?php echo $this->element->getMethod();?>">
+    <fieldset>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tbody>
+        <tr>
+            <td>
+                <?php echo $this->element->nombre ?>
+            </td>
+            <td>
+                <?php echo $this->element->apellidomaterno ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php echo $this->element->apellidopaterno ?>
+            </td>
+            <td>
+                <?php echo $this->element->dni ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php echo $this->element->telefono1 ?>
+            </td>
+            <td>
+                <?php echo $this->element->correo ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php echo $this->element->tipoDocumento?>
+            </td>
+            <td>
+                <?php echo $this->element->tipoPago ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php echo $this->element->fechaEntrega?>
+            </td>
+            <td>
+                <?php echo $this->element->hora ?>
+                <?php echo $this->element->minuto ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?php echo $this->element->direccion?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        <p>
+            &nbsp;
+        </p>
+        <p class="submit">
+            <input type="submit" onclick="$(this).hide();" class="button_medium" value="Enviar" id="submitMessage" name="submitMessage">
+        </p>
+</fieldset>
+</form>
+<style>
+    #tipoPago-label{
+        padding-bottom: 10px;
+    }
+    #tipoPago-element label{
+        float: left;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+    #tipoPago-element br{
+        float: left;
+    }
+
+    #tipoDocumento-label{
+        padding-bottom: 10px;
+    }
+    #tipoDocumento-element label{
+        float: left;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+    #tipoDocumento-element br{
+        float: left;
+    }
+    #direccion{
+        width: 510px;
+    }
+    #minuto-element {
+        float: left;
+    }
+    #minuto-label {
+        float: left;
+    }
+    #hora-element {
+        float: left;
+    }
+    table tr td{
+        vertical-align: top;
+    }
+    
+</style>
+
+        <script type="text/javascript">
+         $(function() {
+                $('.required').append(' <span>(*)</span>');
+            });   
+
+        </script>
+
