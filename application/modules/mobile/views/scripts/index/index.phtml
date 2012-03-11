@@ -65,24 +65,3 @@
         <?php } ?>    
     </div>
 </div>
-
-<script type="text/javascript">
-
-    $(function() {
-        $("[id^=ajax_id_product_]").click(function(e){
-            e.preventDefault();
-            var Array = this.id.split('_');
-            $("#form_pres_"+Array[3]).submit();
-        }) 
-        
-    });
-        
-    $("[id^=text_cant_]").keypress(function(e) {
-        if(e.which == 13){
-            e.preventDefault();
-            var Array = this.id.split('_');
-            $("#form_pres_"+Array[2]).submit();
-        } 
-    });    
-
-</script>

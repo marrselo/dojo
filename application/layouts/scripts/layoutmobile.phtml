@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html lang="ES"> 
+	<head> 
+	<title>Delivery premium</title>
+	<meta charset="utf-8" />	
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+</head> 
+<body> 
+<div data-role="page">
+	<div class="home-header">
+		<a id="header_logo" href="<?php echo $this->baseUrl(); ?>/mobile/" title="Delivery Premium">
+			<img class="logo" src="<?php echo $this->baseUrl() ?>/f/img/logo.png" alt="Delivery Premium">
+		</a>
+	</div>
+	<!-- /header -->
+	<div data-role="content">	
+		<p>Bienvenido a su portal favorito para hacer sus deliverys</p>
+		<ul data-role="listview" data-inset="true" data-filter="false" data-divider-theme="b">
+		<li><a href="#">Zonas de reparto</a></li>
+		<li><a href="#">Realizar pedido</a></li>
+		<li><a href="#">Registrese</a></li>
+		<li><a href="#">Contáctenos</a></li>
+	</ul>	
+	</div><!-- /content -->
+	<div data-role="footer">
+		<h1>Servicio de reparto exclusivo</h1>
+		<!--Atención de repartos de Lunes a viernes de 7pm a 3am y Viernes, sábado y domingo de 7pm a 4:30am
+		tomar bebídas alcoholicas en exceso es dañino -->
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
