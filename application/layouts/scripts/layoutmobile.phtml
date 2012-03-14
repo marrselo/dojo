@@ -1,36 +1,51 @@
-<!DOCTYPE html> 
-<html lang="ES"> 
+Ôªø<!DOCTYPE HTML> 
+<html lang="es-es"> 
 	<head> 
-	<title>Delivery premium</title>
-	<meta charset="utf-8" />	
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
-</head> 
-<body> 
-<div data-role="page">
-	<div class="home-header">
-		<a id="header_logo" href="<?php echo $this->baseUrl(); ?>/mobile/" title="Delivery Premium">
-			<img class="logo" src="<?php echo $this->baseUrl() ?>/f/img/logo.png" alt="Delivery Premium">
-		</a>
-	</div>
-	<!-- /header -->
-	<div data-role="content">	
-		<p>Bienvenido a su portal favorito para hacer sus deliverys</p>
-		<ul data-role="listview" data-inset="true" data-filter="false" data-divider-theme="b">
-		<li><a href="#">Zonas de reparto</a></li>
-		<li><a href="#">Realizar pedido</a></li>
-		<li><a href="#">Registrese</a></li>
-		<li><a href="#">Cont·ctenos</a></li>
-	</ul>	
-	</div><!-- /content -->
-	<div data-role="footer">
-		<h1>Servicio de reparto exclusivo</h1>
-		<!--AtenciÛn de repartos de Lunes a viernes de 7pm a 3am y Viernes, s·bado y domingo de 7pm a 4:30am
-		tomar bebÌdas alcoholicas en exceso es daÒino -->
-	</div><!-- /footer -->
-</div><!-- /page -->
-
-</body>
+		<meta charset="utf-8" />
+		<title>Delivery premium</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+	</head> 
+	<body> 
+		<div data-role="page">
+			<div data-role="header">
+				<a href="/logout">Log in</a>
+				<h1></h1>
+				<a href="/realizar-pedido" data-icon="cart"></a>
+			</div>
+			<div class="home-header">
+				<a id="header_logo" href="<?php echo $this->baseUrl(); ?>/mobile/" title="Delivery Premium">
+					<img class="logo" src="<?php echo $this->baseUrl() ?>/f/img/logo.png" alt="Delivery Premium">
+				</a>
+				
+			</div>
+			<!-- /header -->
+			<div data-role="content">	
+				<!--
+				<p>Bienvenido a su portal favorito para hacer sus deliverys</p>
+				<ul data-role="listview" data-inset="true" data-filter="false" data-divider-theme="b">
+					<li><a href="#">Zonas de reparto</a></li>
+					<li><a href="#">Realizar pedido</a></li>
+					<li><a href="#">Registrese</a></li>
+					<li><a href="#">Cont√°ctenos</a></li>
+				</ul>
+				-->	
+				<!-- MODULE Home Featured Products -->
+				<?php echo $this->layout()->content ?>
+				<!-- /MODULE Home Featured Products -->
+			</div><!-- /content -->
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+						<ul>
+							<li><a href="/mobile" data-icon="home" data-transition="fade">Home</a></li>
+							<li><a href="/mobile/realizar-pedido" data-icon="grid" data-transition="fade">Realizar pedido</a></li>
+							<li><a href="/mobile/registrese" data-icon="info" data-transition="fade">Reg√≠strese</a></li>
+							<li><a href="/contacto/" data-icon="star" data-transition="fade">Cont√°ctenos</a></li>
+						</ul>
+					</div>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+	</body>
 </html>

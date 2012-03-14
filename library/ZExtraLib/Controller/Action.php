@@ -78,6 +78,10 @@ class ZExtraLib_Controller_Action extends Zend_Controller_Action {
                 
                 $this->view->perfilUsuario = array();
             }
+			/*mobile*/
+			if($this->getRequest()->getModuleName() == 'mobile'){
+				$this->_layout->setLayout('layoutmobile');
+            }
         }
         $config = new Application_Model_Config();
         $this->_config = $config->listarConfig();

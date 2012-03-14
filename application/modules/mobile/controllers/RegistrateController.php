@@ -1,12 +1,12 @@
-<?php
+﻿<?php
 
-class Default_RegistrateController extends ZExtraLib_Controller_Action {
+class Mobile_RegistrateController extends ZExtraLib_Controller_Action {
 
     protected $_clienteModel;
 
     public function init() {
         parent::init();
-        if ($this->_identity || $this->_identity->idtipousuario == 2) {
+		if ($this->_identity || $this->_identity->idtipousuario == 2) {
             $this->_redirect('/mis-datos');
         }
         $this->_clienteModel = new Application_Model_Cliente();

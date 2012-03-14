@@ -1,12 +1,13 @@
 <?php
 
-class Default_ProductosController extends ZExtraLib_Controller_Action
+class Mobile_ProductosController extends ZExtraLib_Controller_Action
 {
     protected $_modelCategorias;
     protected $_modelArticulos;
     protected $_modelRelacionarArticulo;
     public function init() {
         parent::init();
+		$this->_helper->layout()->setLayout("layoutmobile");
         $this->_modelCategorias = new Application_Model_Categoria();
         $this->_modelArticulos = new Application_Model_Articulo();
         $this->_modelRelacionarArticulo = new Application_Model_RelacionarArticulo();
@@ -41,9 +42,9 @@ class Default_ProductosController extends ZExtraLib_Controller_Action
         }
         $this->view->idcategoria = $params['categoria'];
     }
-    public function detalleProductoAction()
+    public function detalleProductoMobileAction()
     {
-        $http = new Zend_Controller_Request_Http();
+		$http = new Zend_Controller_Request_Http();
         $this->view->urlAbs = $this->view->baseUrl().$http->getRequestUri();
         $this->view->headLink()->appendStylesheet("/f/css/product.css");
         $params = $this->_getAllParams();

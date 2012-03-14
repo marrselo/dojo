@@ -8,7 +8,6 @@ class Mobile_IndexController extends ZExtraLib_Controller_Action
     protected $_banner;
     public function init() {
         parent::init();
-		$this->_helper->layout()->setLayout("layoutmobile");
         $this->_modelCategorias = new Application_Model_Categoria();
         $this->_modelArticulos = new Application_Model_Articulo();
         $this->_banner = new Application_Model_Banner();
