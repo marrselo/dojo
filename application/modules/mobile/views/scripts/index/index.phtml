@@ -8,7 +8,7 @@
         <?php if (count($this->articulos) > 0) { ?>
             <ul data-role="listview" data-inset="true" data-filter="false" data-divider-theme="d">
                 <?php foreach ($this->articulos as $index): ?>
-                    <li class="ajax_block_product first_item clear ">
+                    <li class="ajax_block_product first_item clear" role="option">
                         <div id="product-box">
                             <h5>
                                 <a href="<?php echo $this->baseUrl(); ?>/detalle-producto/<?php echo $index['slug'] ?>" title="<?php echo $index['nombre'] ?>"><?php echo $index['nombre'] ?></a>
@@ -28,31 +28,8 @@
                                         <?php }else{?>
                                         <div style="width: 120px; float: left; margin: 0px;" class="price">S/. <?php echo $index['precioventa'] ?></div>
                                         <?php }?>
-                                        
                                     </div>
-                                    <p class="price_container" style="width: 50px;">
-                            <select id="text_cant_<?php echo $index['idarticulo'] ?>" 
-                                            name="cantidad" >
-                                            <?php for ($i=1;$i<=20;$i++) { ?>
-                                            <option value="<?php echo $i; ?>">    
-                                                <?php echo $i;?>
-                                            </option>
-                                            <?php } ?>
-                                        </select>
-                                        <span>cantidad</span>
-
-<!--                                        <input type="text" id="text_cant_<?php echo $index['idarticulo'] ?>" name="cantidad" value="1" style="width: 30px; height: 20px;">
-                                        <span>cantidad</span>-->
-                                    </p>
-                                    <p class="product_buttons">
-                                        <a href="#" class="product-addcart ajax_add_to_cart_button" id="ajax_id_product_<?php echo $index['idarticulo'] ?>" rel="ajax_id_product_<?php echo $index['idarticulo'] ?>"  title="Añadir al carrito">
-                                            Añadir al carrito
-                                        </a>
-                                        <a class="product-viewdetails" href="<?php echo $this->baseUrl(); ?>/detalle-producto/<?php echo $index['slug'] ?>" title="Ver">
-                                            Ver
-                                        </a>
-                                    </p>
-                                </form>
+								 </form>
                             </div>						
                         </div>
                     </li>
